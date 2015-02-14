@@ -1,0 +1,80 @@
+\@@addtocsec{htoc}{sec2}{-1}{Prefácio{}}
+\@@addtocsec{htoc}{sec3}{1}{Conteúdo e Organização do Livro{}}
+\@@addtocsec{htoc}{sec4}{1}{Recursos Adicionais{}}
+\@@addtocsec{htoc}{sec5}{1}{Pré-requisitos{}}
+\@@addtocsec{htoc}{sec6}{-1}{\@print{Capítulo 1}\quad{}Introdução{}}
+\newlabel{Introducao}{{1}{X}}
+\@@addtocsec{htoc}{sec7}{0}{\@print{1.1}\quad{}Ordenação{}}
+\@@addtocsec{htoc}{sec8}{1}{\@print{1.1.1}\quad{}Sobre Permutação{}}
+\@@addtocsec{htoc}{sec9}{0}{\@print{1.2}\quad{}Ordenação por Inserção{}}
+\@@addtocsec{htoc}{sec10}{1}{\@print{1.2.1}\quad{}Versão funcional{}}
+\newlabel{insertion-sort-func}{{1.2.1}{X}}
+\citation{PeytonJones92}
+\citation{Thompson99}
+\@@addtocsec{htoc}{sec11}{1}{\@print{1.2.2}\quad{}Versão imperativa{}}
+\newlabel{insertion-sort-imperativ}{{1.2.2}{X}}
+\@@addtocsec{htoc}{sec12}{-1}{\@print{Capítulo 2}\quad{}Complexidade{}}
+\newlabel{Complexidade}{{2}{X}}
+\@@addtocsec{htoc}{sec13}{0}{\@print{2.1}\quad{}Complexidade de Fun\c{c}\~oes{}}
+\newlabel{complexidade-de-funcoes}{{2.1}{X}}
+\@@addtocsec{htoc}{sec14}{0}{\@print{2.2}\quad{}Eficiência assintótica{}}
+\newlabel{eficiencia-assintotica}{{2.2}{X}}
+\@@addtocsec{htoc}{sec15}{1}{\@print{2.2.1}\quad{}Notação $\Theta${}}
+\newlabel{Notacao-Theta}{{2.2.1}{X}}
+\citation{Minko-Markov-2013}
+\@@addtocsec{htoc}{sec16}{0}{\@print{2.3}\quad{}Notação $O${}}
+\newlabel{Notacao-O}{{2.3}{X}}
+\citation{Minko-Markov-2013}
+\@@addtocsec{htoc}{sec17}{0}{\@print{2.4}\quad{}Notação $\Omega${}}
+\newlabel{Notacao-Omega}{{2.4}{X}}
+\citation{Minko-Markov-2013}
+\@@addtocsec{htoc}{sec18}{0}{\@print{2.5}\quad{}Uso de notação assintótica em fórmulas{}}
+\newlabel{uso-notacao-assintotica}{{2.5}{X}}
+\@@addtocsec{htoc}{sec19}{0}{\@print{2.6}\quad{}Notações $o$, $\omega${}}
+\newlabel{Notacao-o}{{2.6}{X}}
+\citation{Minko-Markov-2013}
+\@@addtocsec{htoc}{sec20}{0}{\@print{2.7}\quad{}Propriedades de Relações assintóticas{}}
+\newlabel{Propriedades-de-relacoes-assintoticas}{{2.7}{X}}
+\@@addtocsec{htoc}{sec21}{0}{\@print{2.8}\quad{}Complexidade polinomial, exponencial e logarítmica{}}
+\newlabel{Complexidade-polinomial-exponencial-logaritmica}{{2.8}{X}}
+\@@addtocsec{htoc}{sec22}{0}{\@print{2.9}\quad{}Exercícios Resolvidos{}}
+\citation{Minko-Markov-2013}
+\newlabel{lim-poli-sobre-exp}{{1}{X}}
+\newlabel{lgn-eq-nlgn}{{2}{X}}
+\newlabel{lgprec}{{3}{X}}
+\@@addtocsec{htoc}{sec23}{0}{\@print{2.10}\quad{}Exercícios{}}
+\@@addtocsec{htoc}{sec24}{-1}{\@print{Capítulo 3}\quad{}Estruturas de Dados Básicas{}}
+\newlabel{estruturas-de-dados-basicas}{{3}{X}}
+\@@addtocsec{htoc}{sec25}{0}{\@print{3.1}\quad{}Listas{}}
+\newlabel{listas}{{3.1}{X}}
+\@@addtocsec{htoc}{sec26}{0}{\@print{3.2}\quad{}Pesquisa{}}
+\newlabel{pesquisa-em-lista}{{3.2}{X}}
+\@@addtocsec{htoc}{sec27}{1}{\@print{3.2.1}\quad{}Versão funcional{}}
+\@@addtocsec{htoc}{sec28}{1}{\@print{3.2.2}\quad{}Versão imperativa{}}
+\@@addtocsec{htoc}{sec29}{0}{\@print{3.3}\quad{}Inserção{}}
+\newlabel{insercao-em-lista}{{3.3}{X}}
+\@@addtocsec{htoc}{sec30}{0}{\@print{3.4}\quad{}Remoção{}}
+\newlabel{remocao-de-lista}{{3.4}{X}}
+\@@addtocsec{htoc}{sec31}{0}{\@print{3.5}\quad{}Pilha{}}
+\newlabel{pilha}{{3.5}{X}}
+\@@addtocsec{htoc}{sec32}{1}{\@print{3.5.1}\quad{}Versão funcional{}}
+\newlabel{fig-Pilha}{{3.5.1}{X}}
+\@@addtocsec{htoc}{sec33}{1}{\@print{3.5.2}\quad{}Versão imperativa{}}
+\@@addtocsec{htoc}{sec34}{0}{\@print{3.6}\quad{}Fila{}}
+\newlabel{fila}{{3.6}{X}}
+\@@addtocsec{htoc}{sec35}{1}{\@print{3.6.1}\quad{}Versão funcional{}}
+\@@addtocsec{htoc}{sec36}{1}{\@print{3.6.2}\quad{}Versão imperativa{}}
+\newlabel{fila-imperativa}{{3.6.2}{X}}
+\@@addtocsec{htoc}{sec37}{-1}{\@print{Capítulo 4}\quad{}Algoritmos de Pesquisa{}}
+\newlabel{algoritmos-de-pesquisa}{{4}{X}}
+\@@addtocsec{htoc}{sec38}{-1}{\@print{Capítulo 5}\quad{}Algoritmos de Ordenação{}}
+\newlabel{algoritmos-de-ordenacao}{{5}{X}}
+\@@addtocsec{htoc}{sec39}{-1}{\@print{Capítulo 6}\quad{}Algoritmos de Dispersão (Hash){}}
+\newlabel{hash}{{6}{X}}
+\bibstyle{plain}
+\bibdata{livro,formal,plang,math,ml,haskell,logic}
+\bibcite{PeytonJones92}{1}
+\bibcite{Minko-Markov-2013}{2}
+\bibcite{Thompson99}{3}
+\@@addtocsec{htoc}{sec41}{-1}{\@print{Appendix A}\quad{}{{\tt Haskell}}{}}
+\newlabel{Ap-Haskell}{{A}{X}}

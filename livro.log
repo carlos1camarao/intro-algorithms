@@ -1,0 +1,30 @@
+./livro.aux:2: Parsing of argument failed
+./livro.aux:2: Giving up command: \catcode
+./livro.tex:68: Giving up command: \input
+./livro.tex:68: Giving up command: \@readaux
+./livro.tex:68: Warning: Failure while reading .aux, reading .haux
+./prefacio.tex:29: Warning: Undefined label: 'porqueC'
+./meta.keys:87: Warning: Ignoring (re-)definition of '\gets' by \newcommand
+./introd.tex:19: Warning: Command not found: \Entrada
+./introd.tex:21: Warning: Command not found: \Saida
+./introd.tex:61: Warning: Command not found: \Haskell
+./introd.tex:62: Warning: Command not found: \Pascal
+./introd.tex:62: Warning: Command not found: \Java
+./introd.tex:66: Warning: Undefined label: 'Ap-Haskell'
+./introd.tex:68: Warning: Undefined label: 'Haskell'
+./introd.tex:69: Warning: Undefined citation: 'PeytonJones92'
+./introd.tex:69: Warning: Undefined citation: 'Thompson99'
+./introd.tex:83: Warning: Command not found: \kill
+./introd.tex:83: Warning: Command not found: \>
+./introd.tex:83: Warning: Command not found: \>
+./introd.tex:83: Warning: Command not found: \kill
+./introd.tex:83: Warning: Command not found: \>
+./introd.tex:83: Warning: Command not found: \>
+./introd.tex:83: Warning: Command not found: \>
+./introd.tex:83: Warning: Command not found: \+
+./introd.tex:83: Warning: Command not found: \>
+./introd.tex:83: Warning: Command not found: \>
+./livro.tex:113: Giving up command: \input
+./introd.tex:125: Environment nesting error: Latex env error: '*math' closes ''
+./introd.tex:125: Latex environment '' is pending
+Adios

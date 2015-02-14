@@ -1,0 +1,163 @@
+\chapter{Introdução}
+\label{Introducao}
+
+Neste livro, algoritmo identifica-se com função, no sentido de prover
+uma sequência de passos que associa a cada valor de (um conjunto de
+valores de) entrada um único valor de (um conjunto de valores de)
+saída.
+
+A diferença que existe entre o conceito usual de função é a notação
+usualmente empregada para especificação da sequência de passos. Em
+computação, é usual o emprego de uma notação ou lingugem {\em
+  imperativa\/}, ao passo que usualmente definições de funções
+empregam uma notação mais {\em declarativa\/}, ou {\em funcional\/}.
+
+Por exemplo, considere o problema de ordenação, especificado
+formalmente como a seguir (um problema computacional especifica a
+relação que deve existir entre a entrada e a saída):
+
+\Entrada: sequência de elementos $S_0$.
+
+\Saida: sequência de elementos ordenada $S$ tal que $S$ é uma
+permutação de $S_0$.
+
+Uma sequência $a_1, \ldots, a_n$ é ordenada se $a_i \leq a_{i+1}$ para
+$i=1,\ldots, n-1$.
+
+\subsubsection{Sobre Permutação} 
+
+Uma permutação (ou arranjo) é uma redisposição de (um conjunto ou
+sequência de) elementos em uma certa sequência (se contrapõe a uma
+{\em combinação}, na qual a ordem dos elementos resultantes não é
+relevante). Por exemplo, há 6 permutações distintas dos elementos
+1,2,3, que são, escritas como tuplas: (1,2,3), (1,3,2), (2,1,3),
+(2,3,1), (3,1,2), (3,2,1).
+
+Outro nome, usado no contexto de palavras, é {\em anagrama}. 
+
+Um anagrama é o resultado de rearranjar as letras de uma palavra ou
+frase para produzir uma nova palavra ou frase, usando todas as letras
+originais exatamente uma vez. Por exemplo, "ovo" pode ser rearranjado
+para "voo".
+
+Permutações ocorrem em diversas áreas da matemática e proeminentemente
+no estudo de algoritmos, particularmente de ordenação, em ciência da
+computação.
+
+O número de permutações de $n$ elementos distintos é igual ao fatorial
+de $n$ (usualmente escrito em matemática como $n!$), que é igual ao
+produto de todos os inteiros positivos menores ou iguais a $n$.
+
+\section{Ordenação por Inserção}
+
+Um algoritmo ou função que resolve o problema de ordenação
+especificado acima, chamado de {\em ordenação por inserção\/}, é
+mostrado a seguir. Ele reflete o modo como um jogador de baralho
+usualmente ordena uma sequência de cartas recebidas (por exemplo, em
+um jogo de buraco).
+
+Neste livro, usamos sempre notações funcional e imperativa para
+representar cada algoritmo. A notação funcional é semelhante a
+\Haskell\ e a notação imperativa é um pseudo-código semelhante a \C,
+\Pascal\ ou \Java.
+
+A notação funcional será explicada sempre que necessário, isto é,
+sempre que houver alguma possibilidade de dúvida. Uma descrição
+sucinta da linguagem Haskell é incluída no Apêndice \ref{Ap-Haskell}.
+Descrições mais completas podem ser encontradas em \cite{.....}.
+
+\prog{\sort\ ($a$:$x$) \=\kill
+      \sort\ []        \>= []\\
+      \sort\ ($a$:$x$) \>= \ins\ $a$ (\sort\ x)\\ \\
+
+      \ins\=\ $a$ ($b$:$x$) \=\kill
+      \ins\>\ $a$ []        \>= []
+      \ins\>\ $a$ ($b$:$x$) \+\\ 
+          | $a$ <= $b$      \>= $a$: ($b$ : $x$)\\
+          | \otherwise      \>= $b$: \ins\ $a$ $x$
+}
+
+Explicações sobre a notação funcional (usada em Haskell\footnote{O
+  leitor não familiarizado com Haskell deve ler o Apêndice
+  \ref{Haskell}.}):
+
+\begin{enumerate}
+
+\item $f$ $x$ (aplicação funcional --- a base da programação
+  funcional) é o mesmo que {\tt $f$($x$)} (mas melhor porque evita os
+  parênteses).
+
+\item {\tt $b$: \ins\ $a$ $x$} é o mesmo que {\tt $b$: (\ins\ $a$
+  $x$}): a aplicação funcional tem precedência sobre o uso de
+  operadores binários.
+
+\item O uso de um operador binário nada mais é do que uma variação
+  sintática de (açúcar sintático para) uma aplicação funcional; o uso
+  de um operador binário pode ser transformado em uma aplicação
+  funcional, e vice-versa. Para transformar um operador binário em uma
+  aplicação funcional, basta colocar o operador entre parênteses, e
+  para transformar uma aplicação funcional em um operador, basta
+  colocar o nome da função entre crases.
+  Exemplos: \begin{tabular}{lll} {\tt 2 + 3} & é equivalente a & {\tt
+      (+) 2 3} \\ {\tt $b$ : $x$} & é equivalente a & {\tt (:) $b$
+      $x$} \\ $f$ $x$ $y$ & é equivalente a & {\tt $x$ `$f$` $y$}
+            \end{tabular}
+
+\item As funções \ins\ and \sort\ usam listas, um tipo recursivo, que
+  é um tipo de dado algébrico (chamado em Haskell de {\tt data})
+  parecido com o seguinte:
+
+    \prog{\data\ \List\ $a$ = \Nil\ | \Cons\ $a$ (\List\ $a$)}
+
+  Um tipo de dado algébrico é a maneira como se definem somas (de
+  tipos, sendo que só podem existir somas disjuntas de tipos), que
+  modelam escolha (``ou'') de tipos de dados.
+
+  A declaração de \List\ acima especifica que um valor de tipo lista é
+  polimórfico (o uso da variável de tipo $a$ indica que \List\ é um
+  construtor de tipos que pode ser aplicado a {\em qualquer\/} tipo
+  $t$, isto é, podemos ter qualquer instância \List\ $t$, para {\em
+    qualquer\/} tipo $t$), e que uma lista (um valor de tipo $\List
+  $t$, para algum tipo $t$) pode ser \Nil\ (uma lista vazia) {\em
+    ou\/} {\tt \Cons\ $v$ $x$}, uma lista (não vazia) formada por um
+  valor $v$ (cabeça da lista) e de um restante (ou rabo) da lista, $x$
+  (que deve ser do mesmo tipo da lista da qual é o restante).
+
+  O tipo de listas em Haskell (é parecido mas) difere ligeiramente do
+  tipo algébrico acima porque o construtor \Nil\ é escrito como {\tt
+    []} e o construtor \Cons\ é escrito como um operador binário {\tt
+    :}. Assim, em vez de escrever, {\tt \Cons\ 1 \Nil}, escreve-se em
+  Haskell {\tt 1:[]}. Além disso, pode-se escrever também {\tt
+    [1,2,3]} em vez de {\tt 1:2:3:[]} --- i.e.~em vez de {\tt
+    1:(2:(3:[]))}.
+
+\item Tipos de dados algébricos permitem definir somas (disjuntas) de
+  tipos, que modelam escolha (``ou'') de tipos de dados. Para definir
+  produtos de tipos, podemos usar tipos algébricos, que permitem
+  produtos ``linearizados'' (também chamados de ``currificados'') ou
+  produtos cartesianos (generalizados), também chamados de tuplas. 
+
+  Por exemplo:
+
+  \prog{\data\ \Pair\ $a$ $b$ = \Pair\ $a$ $b$}
+
+  define um construtor de tipos \Pair, que tem dois parâmetros que
+  podem ser instanciados para quaisquer tipos $t$ e $t'$: por exemplo,
+  \Pair\ \Int\ \Bool\ representa pares de valores de inteiros e
+  booleanos (o primeiro componente do par é um inteiro e o segundo um
+  valor booleano). É semelhante ao produto {\tt (\Int,\Bool)}. A
+  diferença é que valores do primeiro são construídos da forma {\tt
+    \Pair\ 1 \True} (especificando um valor inteiro e em seguida um
+  valor booleano), ao passo que valores do segundo são construídos da
+  forma {\tt (1,\True)} (especificando, entre parânteses, primeiro um
+  valor inteiro, seguido de uma vírgula, e depois um valor booleano).
+
+\end{enumerate}
+
+
+
+
+
+
+
+

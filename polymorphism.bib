@@ -1,0 +1,164 @@
+
+@ARTICLE{Harland85,
+	AUTHOR = {David M. Harland and Martyn W. Szyplewski and
+		  John B. Wainwright},
+	TITLE = {{An Alternative View of Polymorphism}},
+	JOURNAL = {SIGPLAN Notices},
+	YEAR = {1985},
+	VOLUME = {20},
+	NUMBER = {10},
+	PAGES = {23--35},
+	MONTH = {Oct},
+	Annotating = {
+
+A strong critical on the current work on polymorphism, e.g in recent
+languages such as Russel and ML. 
+
+Polymorphism is viewed as a sub-product of placing constraints on
+abstract storage types.
+
+They argue that "parametric" polymorphism is innapropriate with
+respect to the declaration correspondence principle (`there should be
+a direct correspondence between the way that names are introduced as
+formal parameters to functions and as simple in-line declarations'),
+since polymorphic capabilities available to parameters must also be
+available to in-line name bindings.
+
+They argue that static typing implies a static constraint on variables
+which gives security but is not flexible for the construction of
+generic programs. In contrast, the type-free (interpretive) languages
+like Lisp impose no constraints but the price is type security.  They
+claim for a combination of expressive freedom with data security
+(`...it's just as naive to expect that every variable will be used to
+hold exactly one type of data as it is to expect that there will be no
+requirement to constrain variables to data of specific types.').
+
+They support the "types as values" paradigm, but making types
+dynamically evaluable. They argue that the tradeoff between static
+verifiability against enhanced expressivity, with dynamic checking and
+a provision for robustness and fault tolerance achieved by means of
+the constraints on storage types. He says here that the issue is not
+whether a system should have static or dynamic type checking, but
+whether or not it is justifiable to constrain a language's
+expressivity.
+
+He then describes how the constraints could be used. He argues that
+perhaps the most interesting use of intelligent storage (with
+constraints) will be to create robust software.
+
+He argues that the real world is not verifiable, it is an on-going
+fault tolerant robust system, and anything which interacts with it
+must be able to harmonise with this dynamic fallibility, suggesting
+that the role of verification is not to provide a complete assurance
+that the whole of any elaborate software system is secure, but more to
+generate increased confidence in those abstractions in any given
+system which are most well defined. Security falls back upon fault
+tolerance.
+
+He concludes that the whole edifice of polymorphism can be constructed
+as as abstraction over types as values, via data structures, and made
+usable by provision of an algebraic framework for data types.
+
+}
+
+}
+
+@INPROCEEDINGS{Ingalls86,
+	AUTHOR = {Daniel H.H. Ingalls},
+	TITLE = {{A Simple Technique for Handling Multiple Polymorphism}},
+	BOOKTITLE = {OOPSLA},
+	YEAR = {1986},
+	EDITOR = {Norman Meyrowitz},
+	PAGES = {38--45},
+	ORGANIZATION = {Special issue of SigPlan Notices},
+	PUBLISHER = {ACM},
+	MONTH = {Nov},
+	Annotating = {
+
+Extremely bad paper.}
+
+}
+
+@INPROCEEDINGS{BirdMeertens98,
+	AUTHOR = {Richard Bird and Lambert Meertens}, 
+	TITLE = {{Nested Datatypes}},
+        BOOKTITLE = {{Proceedings of the 4th International Conference on 
+                      Mathematics of Program Construction, Springer-Verlag LNCS 1422}}, 
+        YEAR = {1998}, 
+        PAGES = {52--67}, 
+        NOTE = {Available at http://citeseer.nj.nec.com/bird98nested.html}, 
+	Annotating = {}
+}		  
+
+@INPROCEEDINGS{Meertens83,
+       AUTHOR = {Lambert Meertens},
+       TITLE = {{Incremental polymorphic type checking in B}},
+       BOOKTITLE = {{10th ACM POPL}},
+       PUBLISHER = {ACM},
+       PAGES = {265-275},
+       YEAR = {1993}
+}                                                                                                         
+
+@INPROCEEDINGS{Okasaki97,
+	AUTHOR = {C.~Okasaki}, 
+	TITLE = {{Catenable double ended queues}},
+        BOOKTITLE = {{Proceedings of the 1997 ACM SIGPLAN  International Conference on 
+                      Functional Programming}}, 
+        YEAR = {1997}, 
+        PAGES = {66--74}, 
+	Annotating = {}
+}		  
+
+@ARTICLE{Hinze99,
+	AUTHOR = {Ralf Hinze}, 
+	TITLE = {{Polytypic Functions over Nested Datatypes}},
+        YEAR = {1999}, 
+	JOURNAL = {{Discrete Mathematics and Theoretical Computer Science}}, 
+        NUMBER = 3, 
+        NOTE = {Available at http://citeseer.nj.nec.com/260683.html}, 
+	Annotating = {}
+}		  
+
+@ARTICLE{BirdPaterson99,
+	AUTHOR = {Richard Bird and Ross Paterson}, 
+	TITLE = {{Generalised Folds for Nested Datatypes}},
+        YEAR = {1999}, 
+	JOURNAL = {{Formal Aspects of Computing}}, 
+        NUMBER = 11,
+        VOLUME = 2,
+        PAGES = {200-222},
+        NOTE = {Available at http://citeseer.nj.nec.com/context/940950/283693}, 
+	Annotating = {}
+}		  
+		 
+@ARTICLE{Hinze00,
+	AUTHOR = {Ralf Hinze}, 
+	TITLE = {{Functional Pearl: Perfect trees and bit-reversal permutations}},
+        YEAR = {2000}, 
+	JOURNAL = {{Journal of Functional Programming}}, 
+        VOLUME = 10, 
+        NUMBER = 3, 
+        PAGES = {305--317}, 
+        NOTE = {Available at http://citeseer.nj.nec.com/hinze99perfect.html}, 
+	Annotating = {}
+
+}		  
+
+@ARTICLE{Connelly95,
+	AUTHOR = {Richard H.~Connelly and F.~Lockwood Morris}, 
+ 	TITLE = {{A generalisation of the trie data structure}},
+        YEAR = {1995}, 
+	JOURNAL = {{Mathematical Structures in Computer Science}}, 
+        VOLUME = 6, 
+        NUMBER = 1, 
+        PAGES = {1--28},
+	Annotating = {}
+
+}		  
+
+@misc{Lennart01, 
+       AUTHOR = {{Lennart Augustsson}},
+       YEAR = 2001,
+       NOTE = {Message to the Haskell mailing list, May 3, 2001, 
+               available from http://www.mail-archive.com/haskell@haskell.org/}
+}

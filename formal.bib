@@ -1,0 +1,1100 @@
+
+@BOOK{Gries81,
+	AUTHOR = {David Gries},
+	TITLE = {{The Science of Programming}},
+	PUBLISHER = {Springer-Verlag},
+	YEAR = {1981},
+	Annotating = {
+The book provides a good description of (equivalence transformation
+and natural deduction) propositional calculus.
+
+The axioms of the equivalence transformation system are theorems in
+the natural deduction system.
+
+Extends propositional calculus to predicate calculus. (A predicate is
+a generalized proposition for which expressions are not only composed
+of boolean expressions (composed of the operators not, and, or,
+implies and equal) but of any expression that has a boolean result (T
+or F), including the existential, universal and numerical
+quantifiers.)
+
+The text gives an axiomatics semantics of a small language using the
+notion of weakest pre-conditions. 
+
+It is a very good reference for axiomatic semantics.}
+
+}
+
+@BOOK{Gordon79,
+	AUTHOR = {Michael J.C. Gordon},
+	TITLE = {{The Denotational Description of Programming Languages: 
+		  An Introduction}},
+	PUBLISHER = {Springer-Verlag},
+	YEAR = {1979},
+	Annotating = {
+
+A good introduction to denotational semantics. 
+
+He describes a tiny language (with only assignment, conditional and
+iterative commands, and sequential composition of them, and read as
+well as simple boolean and arithmethic expressions) and formalizes its
+semantics.  He does this by formalizing the concept of a {\em
+state\/}. This is done by defining the domains $State$, $Memory$,
+$Input$, $Output$ and $Value$.
+
+Then he defines denotations of expressions and of commands.  The
+denotation of an expression $E$ is a function ${\bf E}[E]$ of type:
+  
+  \[ Exp\rightarrow[State\rightarrow[[Value\ X\ State + {error}]] \]
+
+$State$ is needed the first time because the value of an expression
+depends on what values are bound to identifiers in a state, and the
+second time because the evaluation of an expression like $read$ may
+change the state.
+
+The denotation semantics of commands is to produce a new state or
+generate an error, thus:
+
+\[ C:Com\rightarrow[State\rightarrow[State + {error}]] \]
+
+He then applies a semantic function (${\bf E}$ or ${\bf C}$,
+respectively) to each syntactic form of expression and command.
+
+He informally explains why he uses the word {\em domain\/} instead of
+{\em set}: in order that recursive definitons of functions and sets
+can always be solved.
+
+This is only an introductory book. Any serious work based on
+denotational semantics would have to be based on more advanced texts.
+
+}
+}
+
+}
+
+@BOOK{Bakker80,
+	AUTHOR = {Jaco de Bakker},
+	TITLE = {{Mathematical Theory of Program Correctness}},
+	PUBLISHER = {Prentice-Hall},
+	YEAR = {1980},
+	Annotating = {
+
+He uses denotational semantics to specify the meaning of various
+common programming language constructs. He uses these specifications
+to justify the proof rules of axiomatic semantics. Only partial
+correctness is discussed. A good part of the more difficult sections
+of the book is devoted to soundness proofs for proof rules concerning
+recursion and blocks. Concurrency and non-determinism are not
+considered in depth.
+
+A good reference book for the subject of proving correctness of
+sequential programs.
+
+}
+
+}
+
+@BOOK{CliffJones90, 
+	AUTHOR = {Cliff B.~Jones},
+	TITLE = {Systematic Software Development using VDM},
+	PUBLISHER = {Prentice-Hall},
+	YEAR = {1990},
+        EDITION = {Second},
+	Annotating = {
+
+A good introductory book on formal specification of software systems
+and on the application of (more recent) VDM notation to construct
+those specifications. }
+
+}
+
+@BOOK{Jones82,
+	AUTHOR = {Dines Bjorner and Cliff B.~Jones},
+	TITLE = {Formal Specification and Software Development},
+	PUBLISHER = {Prentice-Hall},
+	YEAR = {1982},
+	Annotating = {
+
+This book contain several chapters, by different authors. I've read so
+far only the first four.
+
+The first chapter ({\em Main Approaches to Formal Specifications\/},
+by Peter Lucas) is a very short introduction to the subject of formal
+specification, comprising the main ideas of denotational, operational
+and axiomatic semantics.
+
+The second chapter ({\em The Meta-Language\/}, by Cliff Jones)
+provides a general description of the meta-language used in VDM.
+
+The third chapter ({\em Mathematical Foundations\/}) is not a very
+elucidating article about the mathematics of fixed points. It uses a
+rather intricate `neighbourhood' approach, developed by Dana Scott.
+
+The fourth chapter presents the denotational semantics of basic
+constructs of programming languages. A useful introduction to the
+denotational method using the VDM meta-language.
+
+}
+
+}
+
+@BOOK{Schmidt86,
+	AUTHOR = {David A.~Schmidt},
+	TITLE = {{Denotational Semantics: A Methodology for Language
+		 Development}},
+	PUBLISHER = {Allyn and Bacon},
+	YEAR = {1986},
+	Annotating = {
+
+A very good book on denotational semantics. Covers the subject in
+detail and with great clarity. The last chapter deals succintly with
+non-determinism and concurrency, discussing mainly powerdomain
+structures.} 
+
+}
+
+@ARTICLE{Pnueli79,
+	AUTHOR = {Amir Pnueli},
+	TITLE = {{The Temporal Logic of Concurrent Programs}},
+	JOURNAL = {Lecture Notes in Computer Science},
+	YEAR = {1979},
+	VOLUME = {70},
+	Annotating = {
+
+}
+}
+
+@ARTICLE{HoareWirth73,
+	AUTHOR = {C.A.R. Hoare and N. Wirth},
+	TITLE = {{An Axiomatic Definition of the Programming Language
+		  Pascal}},
+	JOURNAL = {Acta Informatica},
+	YEAR = {1973},
+	VOLUME = {2},
+        PAGES= {335-355}, 
+	Annotating = {
+
+}
+}
+
+@TECHREPORT{Jones92b,
+	AUTHOR = {Cliff B.~Jones},
+	TITLE = {{The Search for Tractable Ways of Reasoning
+		 About Programs}},
+	INSTITUTION = {University of Manchester},
+	YEAR = {1992},
+	NUMBER = {UMCS-92-4-4},
+	ADDRESS = {Department of Computer Science, 
+                   Manchester M13 9PL, England},
+	Annotating = {
+
+This report traces the most important steps in the history of research
+on program verification. Its central issue is that the need to reason
+about programs was apparent from their first creation; the research
+challenge has been to find tractable methods. 
+
+The history of work on the verification on sequential programs is
+described in detail, from the pre-Hoare era (of works of Alan Turing,
+John McCarthy, Robert Floyd and Peter Naur) to the post-Hoare era
+(e.g. of works of Cliff Jones (VDM), Rodney Burstall, David Park, Hans
+Bekic and Dana Scott (structural induction and language semantics)
+etc). 
+
+The way early results have been applied to change the way programs are
+developed is also described.  
+
+Considerations on coping with concurrent algorithms are made. Special
+attention is drawn to the works of Hoare (CSP), Robin Milner (CCS and
+$\pi$-calculus), temporal logic (Rodney Burstall and Amir Pnueli),
+Leslie Lamport and others.}
+
+}
+
+
+
+@TECHREPORT{Jones92c,
+	AUTHOR = {Cliff B.~Jones},
+	TITLE = {An Object-Based Design Method for Concurrent Programs},
+	INSTITUTION = {The University of Manchester},
+	YEAR = {1992},
+	NUMBER = {UMCS-92-12-1},
+	ADDRESS = {Manchester M12 9PL, England},
+	Annotating = {
+
+The article is a step towards finding a compositional development
+method for concurrent programs. A {\em transformational\/} style of
+development (i.e. a concurrent program is developed from a sequential
+one to which transformations are applied) for systems with limited
+interference is proposed. The fact that the interface of an object is
+constrained by the available methods simplifies reasoning about
+interference (with respect to other approaches such as those using
+shared variables). 
+}
+}
+
+@INPROCEEDINGS{Schwartz72,
+	AUTHOR = {Jacob T. Schwartz},
+	TITLE = {{Semantic Definition Methods and 
+		  The Evolution of Programming Languages}},
+	BOOKTITLE = {Formal Semantics of Programming Languages},
+	YEAR = {1972},
+	EDITOR = {Randall Rustin},
+	PAGES = {3--23},
+	ORGANIZATION = {Courant Institute of Mathematical Sciences, 
+			New York University},
+	PUBLISHER = {Prentice-Hall},
+	Annotating = {
+
+
+}
+}
+
+@TECHREPORT{Plotkin82,
+	AUTHOR = {Gordon D.~Plotkin},
+	TITLE = {{An Operational Semantics for CSP}},
+	INSTITUTION = {University of Edinburgh},
+	YEAR = {1982},
+	TYPE = {Internal Report},
+	NUMBER = {CSR-114-82},
+	Annotating = {
+
+I think there are some errors in this formal specification. Things
+started reasonably well and clear, but then turned gloomy just at the
+very heart of the subject. 
+
+In the definition of the dynamic semantics of CSP, the rule specifying
+the transition for the input command, which should be among the most
+interesting and important, is incorrect. $v is the transition label,
+but it has not been included in $\Lambda_c$ or $\Lambda_{gc}$. The
+transition rule for the output command is again incorrect. This time
+$v$ is a configuration, and it has not been included in $\Gamma_c$
+(neither I think it should nor would it explain the rule itself). As
+far as I can understand, the problem is with the rules themselves. 
+
+The third rule for the parallel command (which should again be the
+most important one) does not specify the change to $\sigma$, as I
+think it should.
+
+I did not understand as well which rule implied the appearance of the
+string "B" in Example 5 (the one character buffer). 
+
+At this point I stopped my reading. I was left with the impression
+that it was a rather disappointing formal semantics, after all. To
+overcome this unsatisfactory situation, I thought I'd better read
+\ref{Gordon81} (though it was written before this report itself) and
+then, if the situation persisted, I'd see if someone else in the
+department could agree or disagree with me. }
+
+}
+
+@ARTICLE{Najm91,
+	AUTHOR = {Elle Najm and Jean-Bernard Stefani},
+	TITLE = {Object-Based Concurrency: A Process Calculus Analysis},
+	JOURNAL = {Lecture Notes in Computer Science},
+	YEAR = {1991},
+	NUMBER = {493},
+	PAGES = {359--380},
+	Annotating = {
+
+A good object-based process calculus, easier as a base to model concurrent 
+object-based languages than, for example, the $\pi$-calculus. 
+
+However, some unnatural things remain, as I see it: 
+
+(* ... *) }
+
+}
+
+@ARTICLE{Apt81,
+	AUTHOR = {Krzysztof R.~Apt},
+	TITLE = {{Ten Years of Hoare's Logic: A Survey --- Part I}},
+	JOURNAL = {ACM TOPLAS},
+	YEAR = {1981},
+	VOLUME = {3},
+	PAGES = {431--483},
+	Annotating = {
+
+A good article on proof rules for classical imperative constructs.
+Contains detailed proofs of soundness and relative completeness. 
+} }
+
+@TECHREPORT{Jensen78,
+	AUTHOR = {K.~Jensen},
+	TITLE = {Connection between Dijkstra's predicate transformers and
+                 denotational continuation semantics},
+	INSTITUTION = {Computer Science Dept., Aarhus University},
+	YEAR = {1978},
+	NUMBER = {DAIMI PB-86},
+	NOTE = {}
+}
+
+@BOOK{Apt91,
+	AUTHOR = {Krzysztof R.~Apt and Ernst-R\"udiger Olderog},
+	TITLE = {{Verification of Sequential and Concurrent Programs}},
+	PUBLISHER = {Springer-Verlag},
+	YEAR = {1991},
+	Annotating = {
+
+A very good book containing the fundamental results of proof theory
+for concurrent programs, which are explained with great clarity.
+
+}
+}
+
+@BOOK{Sieber87,
+	AUTHOR = {Jacques Loeckx and Kurt Sieber},
+	TITLE = {The Foundations of Program Verification},
+	PUBLISHER = {John Wiley \& Sons},
+	YEAR = {1987},
+	Annotating = {
+
+A good introductory book on the basic program verification methods for
+sequential programs.  The discussions are based on three small
+languages and include aspects of soundness proofs using denotational
+as well as operational semantics. 
+
+} }
+
+@ARTICLE{Plotkin76,
+	AUTHOR = {Gordon D.~Plotkin},
+	TITLE = {A {P}owerdomain {C}onctruction},
+	JOURNAL = {SIAM J.~Computing},
+	YEAR = {1976},
+	VOLUME = {5},
+	NUMBER = {3},
+	PAGES = {452--487},
+	MONTH = {Sept.},
+	Annotating = {
+
+Some interesting ideas about inductive partial ordering (i.e.~partial
+ordering with a bottom element in which every directed subset has a
+least upper bound) and resumptiom semantics. Not easy to read.
+
+As a minor comment, there's an unfortunate error in the beginning of
+the article: in the last sentence of page 453 (and reproduced in the
+4th paragraph of page 454), it should be read ``{A}n execution of
+$P_3$ either does not terminate or else terminates with $y = 1$'' (not
+$y = 0$).
+
+}
+}
+
+@ARTICLE{Gries80,
+	AUTHOR = {David Gries and Gary Levin},
+	TITLE = {Assignment and Procedure Call Proof Rules},
+	JOURNAL = {ACM TOPLAS},
+	YEAR = {1980},
+	VOLUME = {2},
+	NUMBER = {4},
+	PAGES = {564--579},
+	MONTH = {October},
+	Annotating = {
+
+Good discussion on initial values of logical variables.}
+}
+
+@BOOK{Tennent91,
+	AUTHOR = {R.D.~Tennent},
+	TITLE = {{Semantics of Programming Languages}},
+	PUBLISHER = {Prentice Hall},
+	YEAR = {1991},
+	NOTE = {}
+}
+
+@INCOLLECTION{Astesiano91,
+	AUTHOR = {Egidio Astesiano},
+	TITLE = {{Inductive and Operational Semantics}},
+	BOOKTITLE = {{Formal Description of Programming Concepts}},
+	PUBLISHER = {Springer-Verlag},
+	YEAR = {1991},
+	EDITOR = {E.J.~Neuhold and M.~Paul},
+	PAGES = {51--136},
+	NOTE = {}
+}
+
+@INCOLLECTION{Wirsing91,
+	AUTHOR = {Martin Wirsing},
+	TITLE = {{Algebraic Specification: Semantics, Parametrization and Refinement}},
+	BOOKTITLE = {{Formal Description of Programming Concepts}},
+	PUBLISHER = {Springer-Verlag},
+	YEAR = {1991},
+	EDITOR = {E.J.~Neuhold and M.~Paul},
+	PAGES = {259--318},
+	NOTE = {}
+}
+
+@INCOLLECTION{Bjorner91,
+	AUTHOR = {Dines Bj\orner},
+	TITLE = {{Specification and Transformation}},
+	BOOKTITLE = {{Formal Description of Programming Concepts}},
+	PUBLISHER = {Springer-Verlag},
+	YEAR = {1991},
+	EDITOR = {E.J.~Neuhold and M.~Paul},
+	PAGES = {137--258},
+	NOTE = {}
+}
+
+@INCOLLECTION{Apt91a,
+	AUTHOR = {Krzysztof R.~Apt and Ernst-R\"udiger Olderog},
+	TITLE = {{Introduction to Program Verification}},
+	BOOKTITLE = {{Formal Description of Programming Concepts}},
+	PUBLISHER = {Springer-Verlag},
+	YEAR = {1991},
+	EDITOR = {E.J.~Neuhold and M.~Paul},
+	PAGES = {363--1429},
+	NOTE = {}
+}
+
+@INCOLLECTION{Morris82,
+	AUTHOR = {J.M.~Morris},
+	TITLE = {{Assignment and Linked Data Structures}},
+	BOOKTITLE = {{Theoretical Foundations of Programming Methodology}},
+	PUBLISHER = {D.~Reidel Publishing Company},
+	YEAR = {1982},
+	EDITOR = {M.~Broy and G.~Schmidt},
+	PAGES = {35--41},
+	NOTE = {}
+}
+
+@ARTICLE{Kowaltowski79,
+	AUTHOR = {Tomasz Kowaltowski},
+	TITLE = {Data Structures and Correctness of Programs},
+	JOURNAL = {Journal of the ACM},
+	YEAR = {1979},
+	VOLUME = {26},
+	NUMBER = {2},
+	PAGES = {283--301},
+	NOTE = {}
+}
+
+@TECHREPORT{Kowaltowski92,
+	AUTHOR = {Tomasz Kowaltowski},
+	TITLE = {Examples of Informal but Rigorous Correctness Proofs
+                 for Tree Traversing Algorithms},
+	INSTITUTION = {Unicamp},
+	YEAR = {1992},
+	NUMBER = {92-10},
+	ADDRESS = {Campinas, Brasil},
+}
+
+@MISC{deBoer90,
+	AUTHOR = {Pierre America and Frank de Boer},
+	TITLE = {{A proof theory for a sequential version of POOL}},
+	HOWPUBLISHED = {{Series of notes of the Computing Science Section, 
+          Eindhoven Univ.~of Technology, Dept.~Math.~and Computing Science, 
+          P.O.~Box 513, 5600 MB Eindhoven, The Netherlands}},
+	YEAR = {1990},
+	Annotating = {}
+}
+
+@TECHREPORT{Deursen91,
+	AUTHOR = {A.~van Deursen},
+	TITLE = {{An algebraic specification 
+                  for the static semantics of Pascal}},
+	INSTITUTION = {Centre for Mathematics and Computer Science --- CWI},
+	YEAR = {1991},
+	NUMBER = {CS-R9129}
+}
+
+@TECHREPORT{Kaplan85,
+	AUTHOR = {Simon Mark Kaplan},
+	TITLE = {{Specification and Verification of Context Conditions
+                  for Programming Languages}},
+	INSTITUTION = {Department of Computer Science, University of 
+                       Illinois at Urbana-Champaign},
+	YEAR = {1985},
+	NUMBER = {UIUCDCS-R-85-1232}
+}
+
+@INCOLLECTION{Despeyroux84,
+	AUTHOR = {T.~Despeyroux},
+	TITLE = {{Executable Specification of Static Semantics}},
+	BOOKTITLE = {Lecture Notes in Computer Science, 173},
+	PUBLISHER = {Springer-Verlag},
+	YEAR = {1984},
+	EDITOR = {G.~Kahn and D.B.~MacQueen and G.D.~Plotkin},
+	PAGES = {215--234}
+}
+
+@INBOOK{Frege1892,
+	AUTHOR = {Gottlob Frege},
+	PAGES = {100:25--50},
+	TITLE = {{\"Uber Sinn und Bedeutung. (On Sense and Meaning)}},
+	PUBLISHER = {Zeitschrift f\"ur Philosophie und philosophische Kritik},
+	YEAR = {1892},
+	NOTE = {English translations in {\em Readings in 
+                Philosophical Analysis\/} (H.~Feigl and W.~Sellars, eds.), 
+                pp.~85--102, Appleton-Century-Crofts, NY (1949), and 
+                {\em Translations from the Philosophical Writings of 
+                Gottlob Frege\/} (P.T.~Geach and M.~Black, eds.), pp.~56--78, 
+                Blackwell, Oxford (1960).}
+}
+
+@BOOK{Tar56,
+	AUTHOR = {Alfred Tarski},
+	TITLE = {{Logic, Semantics, and Meta-Mathematics}},
+	PUBLISHER = {Oxford University Press},
+	YEAR = {1956},
+	NOTE = {}
+}
+
+@BOOK{Car56,
+	AUTHOR = {Rudolf Carnap},
+	TITLE = {{Meaning and Necessity, A Study in Semantics and Modal Logic}},
+	PUBLISHER = {University of Chicago Press},
+	YEAR = {1947},
+	NOTE = {Enlarged edition: 1956}
+}
+
+@BOOK{Car48,
+	AUTHOR = {Rudolf Carnap},
+	TITLE = {{Introduction to Semantics}},
+	PUBLISHER = {Harvard University Press},
+	YEAR = {1948},
+	NOTE = {}
+}
+
+@INPROCEEDINGS{ScotStra71,
+	AUTHOR = {D.S.~Scott and C.~Strachey},
+	TITLE = {Towards a mathematical semantics for computer languages},
+	BOOKTITLE = {Proceedings of the Symposium on Computers and Automata},
+	YEAR = {1971},
+	EDITOR = {J.~Fox},
+	PAGES = {19--46},
+	PUBLISHER = {Polytechnic Institute of Brooklyn Press},
+	ADDRESS = {New York},
+	NOTE = {Also Technical Monograph PRG-6, Programming Research Group, 
+                University of Oxford, Oxford.}
+}
+
+@INPROCEEDINGS{Sco72,
+	AUTHOR = {D.S.~Scott},
+	TITLE = {Mathematical concepts in programming language semantics},
+	BOOKTITLE = {Proc.~1972 Spring Joint Computer Conference},
+	YEAR = {1972},
+	PAGES = {225--234},
+	PUBLISHER = {AFIPS Press},
+	ADDRESS = {Montvale, N.J.},
+	NOTE = {}
+}
+
+@INPROCEEDINGS{Stra72,
+	AUTHOR = {C.~Strachey},
+	TITLE = {The varieties of programming language},
+	BOOKTITLE = {Proceedings of the International Computing Symposium},
+	YEAR = {1972},
+	PAGES = {222--233},
+	PUBLISHER = {Cini Foundation},
+	ADDRESS = {Venice},
+	NOTE = {Also Technical Monograph PRG--10, Programming Research Group, 
+                University of Oxford, Oxford.}
+}
+
+@BOOK{Dijkstra90,
+	AUTHOR = {{Edsger W.~Dijkstra and Carel S.~Scholten}},
+	TITLE = {{Predicate Calculus and Program Semantics}},
+	PUBLISHER = {Springer-Verlag},
+	YEAR = {1990},
+	NOTE = {}
+}
+
+@INPROCEEDINGS{Floyd67,
+	AUTHOR = {R.W.~Floyd},
+	TITLE = {{Assigning Meanings to Programs}},
+	BOOKTITLE = {Proceedings of Symposia in Applied Mathematics 19},
+	YEAR = {1967},
+	PAGES = {19--32},
+	NOTE = {}
+}
+
+@INPROCEEDINGS{Hennessy79,
+	AUTHOR = {M.C.B.~Hennessy and G.D.~Plotkin},
+	TITLE = {{Full Abstraction for a Simple Programming Language}},
+	BOOKTITLE = {Proceedings of Mathematical Foundations of 
+                     Computer Science},
+	YEAR = {1979},
+	PAGES = {108--120},
+	PUBLISHER = {Springer-Verlag},
+	NOTE = {Lecture Notes in Computer Science 74}
+}
+
+@TECHREPORT{Plotkin81,
+	AUTHOR = {Gordon D.~Plotkin},
+	TITLE = {A structural approach to operational semantics},
+	INSTITUTION = {Department of Computer Science, Aarhus University},
+	YEAR = {1981},
+	NUMBER = {DAIMI-FN 19},
+	NOTE = {}
+}
+
+@ARTICLE{Naur63,
+	AUTHOR = {P.~Naur and others},
+	TITLE = {{Revised Report on the Algorithmic Language Algol 60}},
+	JOURNAL = {Computer Journal},
+	YEAR = {1963},
+	VOLUME = {5},
+	PAGES = {349--367},
+	NOTE = {}
+}
+
+@BOOK{Stoy77,
+	AUTHOR = {Joseph E.~Stoy},
+	TITLE = {{Denotational Semantics: The Scott-Strachey Approach to 
+		  Programming Language Theory}},
+	PUBLISHER = {MIT Press},
+	YEAR = {1977},
+	SERIES = {MIT Press Series in Computer Science},
+	ADDRESS = {Cambridge, Mass.},
+	Annotating = {510.8, S 116}
+}
+
+@BOOK{Barendregt84,
+	AUTHOR = {H.P.~Barendregt},
+	TITLE = {{The Lambda Calculus: its Syntax and Semantics}},
+	PUBLISHER = {North Holland},
+	YEAR = {1984},
+	Annotating = {Dept. Shelf B1}
+}
+
+@BOOK{Winskel93,
+	AUTHOR = {Glynn Winskell},
+	TITLE = {{The Formal Semantics of Programming Languages: 
+                  An Introduction}},
+	PUBLISHER = {MIT Press},
+	YEAR = {1993},
+	NOTE = {}
+}
+
+@BOOK{Dijkstra76,
+	AUTHOR = {E.W.~Dijkstra},
+	TITLE = {{A Discipline of Programming}},
+	PUBLISHER = {Prentice Hall},
+	YEAR = {1976},
+	NOTE = {}
+}
+
+@BOOK{Morgan92,
+	AUTHOR = {Caroll Morgan and Trevor Vickers},
+	TITLE = {{On the Refinement Calculus}},
+	PUBLISHER = {Springer-Verlag},
+	YEAR = {1992},
+	NOTE = {}
+}
+
+@INPROCEEDINGS{Cook75,
+	AUTHOR = {Derek C.~Oppen and Stephen A.~Cook},
+	TITLE = {{Proving assertions about programs that 
+                  manipulate data structures}},
+	BOOKTITLE = {Conf.~Rec., 7th Ann. ACM Symp.~Theory 
+                     of Computing},
+	YEAR = {1975},
+	PAGES = {107--116},
+	NOTE = {}
+}
+
+@BOOK{Epstein89,
+	AUTHOR = {Richard L.~Epstein and Walter A.~Carnielli},
+	TITLE = {{Computability: Computable Functions, Logic, and
+                  the Foundations of Mathematics}},
+	PUBLISHER = {Wadsworth \& Brooks/Cole Advanced Books \& Software},
+	YEAR = {1989},
+	NOTE = {}
+}
+
+@INPROCEEDINGS{Turing49,
+	AUTHOR = {Alan M.~Turing},
+	TITLE = {Checking a large routine},
+	BOOKTITLE = {Report of a Conference on High Speed Automatic 
+                     Calculating Machines},
+	YEAR = {1949},
+	PAGES = {67--69},
+	ORGANIZATION = {University Mathematical Laboratory},
+	NOTE = {}
+}
+
+@BOOK{Francez92,
+	AUTHOR = {Nissim Francez},
+	TITLE = {{Program Verification}},
+	PUBLISHER = {Addison-Wesley},
+	YEAR = {1992},
+	NOTE = {}
+}
+
+@ARTICLE{Nielsen89,
+	AUTHOR = {Morgens Nielsen and Klaus Havelund and Kim Ritter Wagner
+                  and Chris George},
+	TITLE = {{The RAISE language, method and tools}},
+	JOURNAL = {Formal Aspects of Computing},
+	YEAR = {1989},
+	VOLUME = {1},
+	NUMBER = {1},
+	PAGES = {85--114},
+	MONTH = {January--March},
+	NOTE = {}
+}
+
+@BOOK{Feijs92,
+	AUTHOR = {L.M.G.~Feijs and H.B.M.~Jonkers},
+	TITLE = {Formal Specification and Design},
+	PUBLISHER = {Cambridge University Press},
+	YEAR = {1992},
+	NOTE = {}
+}
+
+@PHDTHESIS{Ah-kee89,
+	AUTHOR = {Jean Alain Ah-kee},
+	TITLE = {{Operation Decomposition for Blocks and Procedures}},
+	SCHOOL = {University of Manchester},
+	YEAR = {1989},
+	ADDRESS = {Department of Computer Science, 
+                   Oxford Road, M13 9PL, Manchester UK},
+
+
+
+
+
+	MONTH = {July},
+	NOTE = {}
+}
+
+@ARTICLE{Hesselink93,
+	AUTHOR = {Wim H.~Hesselink},
+	TITLE = {{Proof Rules for Recursive Procedures}},
+	JOURNAL = {Formal Aspects of Comnputing},
+	YEAR = {1993},
+	VOLUME = {5},
+	PAGES = {554--570},
+	NOTE = {}
+}
+
+@MANUAL{Stanford-Ver79,
+	TITLE = {{Stanford Pascal Verifier User Manual}},
+	AUTHOR = {Stanford Verification Group},
+	YEAR = {1979},
+	NOTE = {Report No.~11}
+}
+
+@ARTICLE{Constable83,
+	AUTHOR = {R.L.~Constable and S.D.~Johnson and C.D.~Eichenlaub},
+	TITLE = {{An Introduction to the PL/CV2 Programming Logic}},
+	JOURNAL = {Lecture Notes in Computer Science},
+	YEAR = {1983},
+	VOLUME = {135},
+	NOTE = {}
+}
+
+@PHDTHESIS{Bates79,
+	AUTHOR = {J.L.~Bates},
+	TITLE = {{A Logic for Correct Program Development}},
+	SCHOOL = {Cornell University},
+	YEAR = {1979},
+	ADDRESS = {Department of Computer Science},
+	NOTE = {}
+}
+
+@ARTICLE{Back81,
+	AUTHOR = {Ralph-Johan R.~Back},
+	TITLE = {On correct refinement of programs},
+	JOURNAL = {Journal of Computer and System Sciences},
+	YEAR = {1981},
+	VOLUME = {23},
+	NUMBER = {1},
+	PAGES = {49--68},
+	MONTH = {February},
+	NOTE = {}
+}
+
+@ARTICLE{Back88,
+	AUTHOR = {Ralph-Johan R.~Back},
+	TITLE = {A calculus of refinements for program derivations},
+	JOURNAL = {Acta Informatica},
+	YEAR = {1988},
+	VOLUME = {25},
+	NUMBER = {6},
+	PAGES = {593--624},
+	NOTE = {}
+}
+
+@ARTICLE{America-deBoer90,
+	AUTHOR = {Pierre America and Frank de Boer},
+	TITLE = {{Proving Total Correctness of Recursive Procedures}},
+	JOURNAL = {Information and Computation},
+	YEAR = {1990},
+	VOLUME = {84},
+	NUMBER = {2},
+	PAGES = {129--162}
+}
+
+@INPROCEEDINGS{Sokolowski77,
+	AUTHOR = {S.~Soko{\l}owski},
+	TITLE = {Total correctness of procedures},
+	BOOKTITLE = {Proceedings of the 6th Symp.~Mathematical Foundations of
+                     Computer Science},
+	YEAR = {1977},
+	PUBLISHER = {Springer-Verlag},
+	NOTE = {Lecture Notes in Lecture Notes in Computer Science, 
+                Vol.~53}
+}
+
+
+@PhdThesis{Camarao94,
+  author = 	 "Carlos Camar{\~{a}}o de Figueiredo",
+  title = 	 "A Proof System for a Sequential Object-Based Language",
+  school = 	 "University of Manchester",
+  year = 	 "1994",
+  OPTcrossref =  "",
+  OPTkey = 	 "",
+  OPTaddress = 	 "",
+  month = 	 "September",
+  OPTtype = 	 "",
+  note = 	 "Also in University of Manchester Technical Report 
+                  UMCS--95--1--1, available via 
+                  ftp.cs.man.ac.uk:pub/TR/UMCS-95-1-1.ps.Z, or 
+                  http://www.cs.man.ac.uk/csonly/cstechrep/Abstracts/UMCS-95-1-1.html",
+  OPTannote = 	 ""
+}
+
+@ARTICLE{Luckham79,
+	AUTHOR = {D.~C.~Luckham and N.~Suzuki},
+	TITLE = {{Verification of Array, Record, and Pointer Operations in Pascal}}, 
+	JOURNAL = {ACM Transactions on Programming Languages and Systems},
+	YEAR = {1979},
+	VOLUME = {1},
+	NUMBER = {2},
+	PAGES = {226--244}
+}
+
+@BOOK{Woes93,
+	AUTHOR = {L.R.~Wiener}, 
+	TITLE = {{Digital Woes}}, 
+	PUBLISHER = {Addison Wesley},
+	YEAR = {1993},
+	NOTE = {}
+}
+
+
+@BOOK{Fejer91,
+	AUTHOR = {P. A. Fejer and D. A. Simovici},
+	TITLE = {Mathematical Foundations of Computer Science
+                 Volume 1: Sets, Relations and Inductions},
+	PUBLISHER = {Springer-Verlag},
+	YEAR = {1991},
+	Annotating = {Dept. Shelf B, ISBN 3-540-97450-4}
+}
+
+@BOOK{Reed91,
+	AUTHOR = {G. M. Reed},
+	TITLE = {Topology and Category Theory for Computer Science},
+	PUBLISHER = {Oxford University Press},
+	YEAR = {1991}
+}
+
+@BOOK{Enderton77,
+	AUTHOR = {H. B. Enderton},
+	TITLE = {Elements of set theory},
+	PUBLISHER = {Academic Press},
+	YEAR = {1977},
+}
+
+@BOOK{Wettstein,
+	AUTHOR = {H.~Wettstein}, 
+	TITLE = {Has Semantics Rested on a Mistake}, 
+	PUBLISHER = {Stanford University Press}, 
+	YEAR = {1996},
+	Annotating = {ISBN 0-8047-2527-6}
+}		  		
+
+@ARTICLE{Camarao97,
+	AUTHOR = {Carlos Camar{\~{a}}ao de Figueiredo},
+	TITLE = {{A Proof System for a Sequential Object-Based Language}},
+	JOURNAL = {Formal Aspects of Computing},
+	YEAR = {1997},
+	VOLUME = {To be published},
+	NUMBER = {},
+	PAGES = {},
+	MONTH = {},
+	NOTE = {}
+}
+
+@BOOK{Diller90,
+	AUTHOR = {Antoni Diller},
+	TITLE = {{Z: An Introduction to Formal Methods}},
+	PUBLISHER = {John Wiley \& Sons},
+	YEAR = {1990},
+}
+
+@BOOK{Morgan90,
+	AUTHOR = {Caroll Morgan},
+	TITLE = {{Programming from Specifications}},
+	PUBLISHER = {Prentice Hall},
+	YEAR = {1990},
+	NOTE = {}
+}
+
+@ARTICLE{Turing37,
+	AUTHOR = {A.~M.~Turing}, 
+	TITLE = {{Computability and lambda definability}}, 
+	JOURNAL = {J. Symbolic Logic},
+	YEAR = {1937},
+	VOLUME = {2},
+        PAGES = {153-163},
+	Annotating = {}
+
+}
+
+@ARTICLE{Kleene36,
+	AUTHOR = {S.C.~Kleene}, 
+	TITLE = {{Lambda definability and recursiveness}}, 
+	JOURNAL = {Duke Math. J.},
+	YEAR = {1936},
+	VOLUME = {2},
+        PAGES = {340-353},
+	Annotating = {}
+
+}
+
+@BOOK{Church41,
+	AUTHOR = {A.~Church},
+	TITLE = {{The Calculi of Lambda Conversrion}}, 
+	PUBLISHER = {Princeton Univ. Press},
+	YEAR = {1941}
+}
+
+@ARTICLE{Church36,
+	AUTHOR = {A.~Church}, 
+	TITLE = {{Un unsolvable problem of elementary number theory}}, 
+	JOURNAL = {Amer.~J.~Math.},
+	YEAR = {1936},
+	VOLUME = {58},
+        PAGES = {345-363},
+	Annotating = {}
+
+}
+
+@ARTICLE{Church32,
+	AUTHOR = {A.~Church}, 
+	TITLE = {{A set of postulates for the foundation of logic}}, 
+	JOURNAL = {Ann.~of Math.},
+	YEAR = {1932},
+	VOLUME = {33},
+        PAGES = {346-366},
+	Annotating = {}
+
+}
+
+@ARTICLE{Scott76,
+	AUTHOR = {D.~S.~Scott}, 
+	TITLE = {{Data types as lattices}}, 
+	JOURNAL = {SIAM J.~Computing},
+	YEAR = {1976},
+	VOLUME = {5},
+        NUMBER = {3}, 
+        PAGES = {522-587},
+	Annotating = {}
+
+}
+
+@ARTICLE{Scott72,
+	AUTHOR = {D.~S.~Scott}, 
+	TITLE = {{Lattice Theory, Data types and Semantics}}, 
+	JOURNAL = {NYU Symposium on Formal Semantics},
+	YEAR = {1972},
+        PUBLISHER = {Prentoce-Hall}, 
+        PAGES = {64-106},
+	Annotating = {}
+
+}
+
+@BOOK{GunterMitchell94,
+	EDITOR = {C.A.~Gunter and J.C.~Mitchell},
+	TITLE = {{Theoretical Aspects of Object-Oriented Programming}}, 
+	PUBLISHER = {MIT Press},
+	YEAR = {1994}
+}
+
+@BOOK{Abadi-Cardelli96,
+	AUTHOR = {M.~Abadi and L.~Cardelli},
+	TITLE = {{A Theory of Objects}},
+	PUBLISHER = {Springer-Verlag},
+	YEAR = {1996},
+	Annotating = {}
+}
+
+@BOOK{Sipser97, 
+        author = {Michael Sipser}, 
+        title  = {Introduction to the Theory of Computation}, 
+        publisher = {PWS Publishing Company}, 
+        year = {1997}
+}
+
+@BOOK{Minsky67, 
+        author = {Marvin Minsky}, 
+        title  = {Computation: Finite and Infinite Machines},
+        publisher = {Prentice-Hall},
+        year = {1967}
+}
+
+@ARTICLE{Hooper66,
+	AUTHOR = {Philip Hooper},
+	TITLE = {{The Undecidability of the Turing Machine 
+                  Immortality Problem}},
+	JOURNAL = {Journal of Symbolic Logic},
+	YEAR = {1966},
+	VOLUME = {31},
+        NUMBER = {2},
+        PAGES = {219-234},
+	Annotating = {}
+}
+
+@article{Blondel02,
+         author = {Vincent Blondel and Julien Cassaigne and Codrin Nichitiu},
+         title = {{On the presence of periodic configurations in Turing machines 
+                   and in counter machines}},
+         journal = {Theoretical Computer Science},
+         year = {2002},
+         volume = {289},
+         pages = {574--590},
+         annotating = {}
+}
+
+@article{Kurka97,
+         author = {Petr Kurka},
+         title = {{On topological dynamics of Turing machines}},
+         journal = {Theoretical Computer Science},
+         year = {1997},
+         volume = {174},
+         pages = {203--216},
+         annotating = {}
+}
+
+@INPROCEEDINGS{Sokolowski77,
+	AUTHOR = {S.~Soko{\l}owski},
+	TITLE = {Total correctness of procedures},
+	BOOKTITLE = {Proceedings of the 6th Symp.~Mathematical Foundations of
+                     Computer Science},
+	YEAR = {1977},
+	PUBLISHER = {Springer-Verlag},
+	NOTE = {Lecture Notes in Lecture Notes in Computer Science, 
+                Vol.~53}
+}
+
+@inproceedings{Kapur88,
+         author = {D.~Kapur and D.~Musser and P.~Narendran and J.~Stillman},
+         title = {{Semi-unification}},
+         booktitle = {Proceedings of 8th Conference on Foundations of Software 
+          Technology and Theoretical Computer Science, 
+          Nori and Kumar (eds.), Pune, India, LNCS vol.~338},
+         year = {1988},
+         volume = {},
+         pages = {435--454},
+         annotating = {}
+}
+
+@book{Velleman,
+     author = {Daniel Velleman},
+     title = {{How to Prove It: A Structured Approach}},
+     year = {2006},
+     publisher = {Cambridge University Press},
+     edition = {2$^{\textrm{\underline{a}}}$}
+}
+
