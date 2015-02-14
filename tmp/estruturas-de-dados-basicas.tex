@@ -1,0 +1,399 @@
+\chapter{Estruturas de Dados Básicas}
+\label{estruturas-de-dados-basicas}
+
+Este capítulo aborda listas e árvores e suas representações e
+operações básicas.
+
+\section{Listas}
+\label{listas}
+
+Uma estrutura de dados básica em computação, chamada de lista, é
+definida recursivamente como a seguir.  Uma lista de elementos de
+determinado tipo $t$ é ou i) vazia ou ii) um elemento de tipo $t$ e um
+resto, sendo o resto também uma lista de tipo $t$.
+
+Em uma linguagem como Haskell, que provê suporte à definição de tipos
+de dados recursivos, o tipo lista pode ser definido como:
+
+  \[ \text{{\tt data \List\ $a$ = \Nil\ | \Cons\ $a$ (\List\ $a$)}} \]
+
+Além de recursivo, \List\ $a$ é um tipo polimórfico: a variável de
+tipo $a$ pode ser instanciada para um tipo qualquer, permitindo assim
+a definição de listas com elementos de um tipo qualquer. 
+
+Além disso, a linguagem Haskell provê suporte à criação de valores de
+tipo lista por meio do uso de uma notação especial para criação de
+listas, simplesmente colocando os elementos entre colchetes, separados
+por vírgulas --- por exemplo {\tt [1,2,3]} representa a lista {\tt
+  \Cons\ 1 (\Cons\ 2 (\Cons\ 3 \Nil))}.
+
+De fato, {\tt []} é usado em vez de \Nil, e o construtor infixado {\tt
+  (:)}, associativo à direita, em vez de \Cons; por exemplo, {\tt 1 :
+  2 : 3 : []} denota o mesmo valor representado, pela definição acima,
+com os construtores \Nil\ e \Cons, por {\tt \Cons\ 1 (\Cons\ 2
+  (\Cons\ 3 \Nil))}.
+
+Em linguagens como \C, um tipo lista distinto tem que ser definido
+para cada tipo distinto para os elementos, usando registros (chamados
+em \C\ de "estruturas", definidos com a palavra-chave \struct) e
+ponteiros. Por exemplo:
+
+\newcommand{\eelem}{{\it elem\/}}
+\newcommand{\ListaDeInteiros}{{\it ListaDeInteiros\/}}
+
+  \progb{
+        \struct\ \ListaDeInteiros\ \{ \\
+        \hspace*{.2cm} int \eelem; \\
+        \hspace*{.2cm} \struct\ \ListaDeInteiros\ * $r$; \\
+        \}
+  }
+define um registro com dois campos, um campo de tipo {\tt int} e nome
+\eelem, e um campo de nome $r$ que é um ponteiro para valores do
+próprio tipo \ListaDeInteiros.
+
+A manipulação de valores de tipo lista em \C\ é mais trabalhosa, pouco
+elegante e legível e sujeita a erros. Por exemplo, simplesmente para
+criar um valor de tipo lista igual a {\tt [1,2,3]} em Haskell, é
+necessário código como o seguinte:
+
+\progb{\struct\ \ListaDeInteiros\ *$p$ = \malloc(\sizeof(\struct\ \ListaDeInteiros));\\
+      $p$->\eelem\ = 1;
+      $p$->$r$ = \malloc(\sizeof(\struct\ \ListaDeInteiros));\\
+      $p$->$r$->\eelem\ = 2;
+      $p$->$r$->$r$ = \malloc(\sizeof(\struct\ \ListaDeInteiros));\\
+      $p$->$r$->$r$->\eelem\ = 3;
+      $p$->$r$->$r$->$r$ = \NULL;
+     }
+
+A falta de suporte a manipulação de valores de tipos recursivos e
+polimórficos torna a programação mais difícil e demorada e o código
+menos legível e mais sujeito a repetições e a ocorrências de erros.
+
+Em Haskell, o acesso a um valor $v$ de uma lista $x$ requer acesso a
+todos os elementos anteriores a $v$ em $x$. De fato, a representação
+de listas é feita por meio de ponteiros, mas a manipulação de
+ponteiros é gerada automaticamente, de acordo com o código Haskell
+usado, em vez de ser feita diretamente pelo programador.
+
+O uso de arranjos é uma maneira alternativa de representar listas em
+uma linguagem (como \C) que não provê suporte a manipulação de valores
+de estruturas de dados recursivas como listas. Nesse caso, o uso de
+arranjos requer que se especifique a priori um número máximo de
+elementos.
+
+\section{Pesquisa}
+\label{pesquisa-em-lista}
+
+Em computação, {\em pesquisar\/} em geral significa determinar se um
+dado elemento está presente ou não em uma estrutura de dados. As
+subseções seguintes tratam de operações de pesquisa, inserção e
+remoção de elementos de listas, de acordo com a forma com que listas
+são representadas.
+
+Em ambos os casos apresentados abaixo, a pesquisa em uma lista de $n$
+elementos tem complexidade $O(n)$ no pior caso, pois envolve
+possivelmente comparação com cada elemento da lista.
+
+\subsection{Versão funcional}
+
+\newcommand{\map}{{\it map\/}}
+
+A função \elem\ pode ser definida como a seguir:
+
+\progb{
+\elem\ \_ [] = \False\\
+\elem\ $a$ ($b$:$x$) \\
+  \hspace*{.2cm} | $a$ == $b$  = \True\\
+  \hspace*{.2cm} | \otherwise\ = \elem\ $a$ $x$
+}
+
+O tipo de \elem\ é: {\tt \Eq\ $a$ => $a$ -> $a$ -> \Bool}.  
+
+Esse é um tipo {\em polimórfico restrito\/}, no qual a restrição (em
+inglês, {\em constraint\/}) \Eq\ $a$ indica que a variável de tipo $a$
+não pode ser instanciada para qualquer tipo, mas apenas para um tipo
+que é membro da classe de tipos \Eq, ou seja, no caso apenas para um
+tipo para o qual exista definida uma operação de igualdade para
+valores do tipo. É um erro de tipo chamar \elem\ com um valor para o
+qual não existe uma definição de igualdade definida.
+
+\HRule
+{\em Nota\/}: 
+
+A função \elem, de fato, faz parte do módulo \Prelude, importado
+automaticamente por todos os módulos (sem necessidade de comando ou
+cláusula explícita de importação). A definição de \elem\ no
+\Prelude\ é feita usando \any, que por sua vez usa \mmap\ e
+\or\ (\or\ usa \foldr), como a seguir (\mmap\ e \foldr\ são ferramentas
+importantes para definição de funções em Haskell):
+
+\progb{
+\foldr\ \hspace*{.5cm}         :: ($a$ -> $b$ -> $b$) -> $b$ -> [$a$] -> $b$\\
+\foldr\ $f$ $z$ []        \hspace*{.2cm} =  $z$\\
+\foldr\ $f$ $z$ ($a$:$x$) \hspace*{.2cm} =  $f$ $a$ (\foldr\ $f$ $z$ $x$)\\ 
+  \hspace*{.5cm} \\
+
+\mmap\               \hspace*{.5cm} :: ($a$ -> $b$) -> [$a$] -> [$b$]\\
+\mmap\ \_ []         \hspace*{.2cm} = []\\
+\mmap\ $f$ ($a$:$x$) \hspace*{.2cm} = $f$ $a$ : \mmap\ $f$ $x$ \\ 
+\hspace*{.5cm}\ \\
+
+\aand, \or\   \hspace*{.5cm} :: [\Bool] -> \Bool\\
+\aand\        \hspace*{.5cm} =  \foldr\ (\&\&) \True\\
+\or\         \hspace*{.5cm} =  \foldr (||) \False\\ 
+\hspace*{.5cm} \\
+
+\any, \all\ \hspace*{.5cm}  :: ($a$ -> \Bool) -> [$a$] -> \Bool\\
+\any\ $p$   \hspace*{.2cm} =  \or\ . \map\ $p$\\
+\all\ $p$   \hspace*{.2cm} =  \and\ . \map\ $p$\\ 
+\hspace*{.5cm}\ \\
+
+\elem\  \hspace*{.5cm} :: (\Eq\ $a$) => $a$ -> [$a$] -> \Bool\\
+\elem\ $a$  \hspace*{.2cm} =  \any\ (== $a$)
+
+}
+\HRule
+
+\subsection{Versão imperativa}
+
+A versão imperativa de \elem\ definida a seguir recebe um argumento em
+$a$ e um apontador para uma lista (de tipo \ListaDeInteiros), denotado
+pelo parâmetro $l$, e retorna um apontador para o elemento da lista
+igual a $a$, se o argumento estiver presente na lista, e \NULL\ em
+caso contrário.
+
+  \progb{\elem ($a$, $l$) \{ \\
+   \hspace*{.2cm} \while\ ($l$ != \NULL \&\& $l$->\elem != $a$) $l$ = $l$->$r$;\\
+   \hspace*{.2cm} return $l$; \\
+   \}
+  }
+
+\section{Inserção}
+\label{insercao-em-lista}
+
+Inserir um elemento no início de uma lista é uma operação de
+complexidade $O(1)$.
+
+A versão funcional cria uma nova lista, que tem como resto a lista
+fornecida como argumento, ou seja, é simplesmente igual a {\tt (:)}:
+
+\progb{\insert\ = (:)}
+
+A versão imperativa aloca um novo registro, de tipo \ListaDeInteiros,
+para inserir um novo valor de tipo inteiro na lista que é fornecida
+como argumento. A lista modificada, com a inserção do novo elemento no
+início, é retornada como resultado da operação.
+
+\progb{\insert ($a$, $l$) \{ \\
+         \hspace*{.2cm} 
+            $p$ = \malloc(\sizeof(\struct\ \ListaDeInteiros));\\
+            $p$->\elem = $a$;\\
+            $p$->$r$ = $l$;\\
+            return $p$;\\
+       \}
+      }
+
+\section{Remoção}
+\label{remocao-de-lista}
+
+
+\section{Pilha}
+\label{pilha}
+
+Uma estrutura de dados {\em Pilha\/} se caracteriza pelo fato de
+inserção, acesso e remoção de elementos serem feitos apenas em apenas
+um de seus lados (ou extremidades). Isso implica em uma política
+algumas vezes chamada de LIFO ({\em last-in first-out\/}: o último a
+ser inserido é o primeiro a ser removido da pilha.
+
+Uma pilha, com operações de i) criar pilha vazia, ii) empilhar
+elemento, iii) desempilhar elemento, iv) obter elemento do topo da
+pilha, e v) testar se pilha está vazia, pode ser implementada como a seguir.
+
+\newcommand{\vazia}{{\it vazia\/}}
+\newcommand{\empilhar}{{\it empilhar\/}}
+\newcommand{\desempilhar}{{\it desempilhar\/}}
+\newcommand{\topo}{{\it topo\/}}
+\newcommand{\estaVazia}{{\it estaVazia\/}}
+\newcommand{\elems}{{\it elems\/}}
+\newcommand{\pilha}{{\it pilha\/}}
+\newcommand{\Pilha}{{\it Pilha\/}}
+
+\subsection{Versão funcional}
+
+Em Haskell uma lista provê diretamente as operações de uma pilha:
+
+  \progb{\vazia\ = []\\
+        \empilhar\ = (:)\\
+        \desempilhar\ (\_:$x$) = $x$\\
+        \topo\ ($a$:\_) = $a$\\
+        \estaVazia\ = \null
+       }
+                  
+Em geral, devemos procurar simplificar o código de nossos programas, e
+podemos não tratar casos de erro por motivos didáticos, mas em
+programas completos não podemos esquecer de tratar todos os casos
+possíveis para os dados de entrada. Um módulo em Haskell que trata
+todos esses casos possíveis para os dados de entrada das operações
+acima envolvendo uma pilha, é mostrado na Figura \ref{fig-Pilha}.
+
+O módulo \Pilha\ implementa o que é chamado em computação de um {\em
+  tipo abstrato de dados\/}, que é um tipo com operações de criação,
+modificação e consulta sobre valores desse tipo. Por exemplo,
+\vazia\ é uma (de fato, nesse caso a única) operação de criação,
+\empilhar\ e \desempilhar\ são operações de modificação, e \topo\ e
+\estaVazia\ são operações de consulta. 
+
+O que caracteriza uma definição de um tipo abstrato de dados é o fato
+de as operações (para criação, modificação e consulta) sobre valores
+do tipo serem definidas e estarem em um trecho de programa (em geral,
+no módulo) onde o tipo foi definido, mas a representação não é
+conhecida para quem usa valores do tipo. Ou seja, um tipo abstrato
+pode ser considerado como um tipo em conjunto com todas as operações
+possíveis sobre valores desse tipo. Qualquer operação sobre um valor
+do tipo só pode ser realizada por meio dessas operações.
+
+Em Haskell, para definir um tipo abstrato pilha usamos um novo tipo,
+com um único construtor, que não é exportado pelo módulo em que o tipo
+é definido (o construtor de valores \Pilha\ não é exportado, apenas o
+construtor de tipos \Pilha). Também definimos, por questão de
+legibilidade, os tipos de todas as funções definidas. Veja Figura
+\ref{fig-Pilha}.
+
+\begin{figure}
+
+\progb{
+module \Pilha\ (\Pilha, \vazia, \empilhar, \desempilhar, \topo, \estaVazia) where\\ \\
+
+newtype \Pilha\ $a$ = \Pilha\ [$a$]\\ \\ 
+
+\vazia:: \Pilha\ $a$\\
+\vazia\ = \Pilha []\\ \\
+
+\empilhar:: $a$ -> \Pilha\ $a$ -> \Pilha\ $a$\\
+\empilhar\ \eelem\ (\Pilha\ $p$) = \Pilha\ ($e$:$p$)\\ \\
+
+\desempilhar:: \Pilha\ $a$ -> \Pilha\ $a$\\
+\desempilhar\ (\Pilha\ [])    = error "Função desempilhar chamada com pilha vazia"\\
+\desempilhar\ (\Pilha\ (\_:$p$)) = \Pilha\ $p$\\ \\
+
+\topo:: \Pilha\ $a$ -> $a$\\
+\topo\ (\Pilha\ [])   = error "Função topo chamada com pilha vazia"\\
+\topo\ (\Pilha\ (\eelem:\_)) = \eelem\\ \\
+
+\estaVazia:: \Pilha\ $a$ -> \Bool\\
+\estaVazia\ (\Pilha\ $p$) = \null\ $p$
+}
+
+\label{fig-Pilha}
+\caption{Tipo abstrato \Pilha\ em Haskell}
+\end{figure}
+
+\subsection{Versão imperativa}
+
+Considerando \pilha\ como um registro com campos \topo\ e \elems,
+sendo \elems\ um arranjo de $n$ elementos --- indexado de $0$ a {\tt
+  $n$-1} --- e \topo\ uma variável inteira que indica o índice do
+último elemento inserido, as operações em uma pilha podem ser
+implementadas como a seguir (desconsiderando casos de erro:
+desempilhar de uma pilha vazia e empilhar em uma pilha cheia).
+
+\newcommand{\nome}{{\it nome\/}}
+
+O comando \with\ serve para tornar os nomes de campos de um registro
+visíveis: \with\ $r$ evita que se tenha que prefixar os nomes dos
+campos do registro $r$ com o registro (\nome\ pode ser usado em vez de
+{\tt $r$.\nome}).
+
+\progb{
+  \vazia\ (\pilha) = \{ \pilha.\topo\ = -1; \}\\
+  \empilhar\ (\eelem, \pilha) \{ \\
+      \hspace*{.2cm} with \pilha\ \{ \\
+        \hspace*{1cm} \topo\ $\leftarrow$ \topo\ + 1;\\
+        \hspace*{1cm} \elems[\topo] $\leftarrow$ \eelem;\\
+      \hspace*{.2cm} \} \\
+  \} \\ 
+  \desempilhar\ (\pilha) \{ \\
+      \hspace*{.2cm} with \pilha\ \{ \topo\ $\leftarrow$ \topo\ - 1; \} \\
+  \}\\
+  \topo\ (\pilha) \{ with \pilha\ \{ \return\ \elems[\topo]; \} \}\\
+  \estaVazia\ (\pilha) \{ \return\ \pilha.\topo\ == -1; \}
+ }
+
+\section{Fila}
+\label{fila}
+
+Em uma {\em fila} a inserção é feita de um lado e a remoção é feita do
+outro lado da estrutura de dados. Isso implica em uma política algumas
+vezes chamada de FIFO ({\em first-in first-out\/}: o primeiro a ser
+inserido é o primeiro a ser removido da fila.
+
+Uma fila, com operações de i) criar fila vazia, ii) entrar (inserir
+elemento) na fila, iii) sair (tirar elemento) da fila, iv) obter
+elemento do início da fila, e v) testar se fila está vazia, pode ser
+implementada como a seguir.
+
+\subsection{Versão funcional}
+
+\newcommand{\frente}{{\it frente\/}}
+\newcommand{\tras}{{\it trás\/}}
+\newcommand{\fila}{{\it fila\/}}
+
+Não é eficiente fazer acesso ao último elemento de uma lista em
+Haskell. A implementação padrão de filas por meio de listas usa assim
+duas listas, \frente\ e \tras. Elementos entram na lista \tras\ e saem
+na lista \frente.
+
+A função \fila\ é usada para garantir o invariante de que se
+\frente\ está vazia, então \tras\ está vazia (e portanto a fila está
+vazia).
+
+\newcommand{\reverse}{{\it reverse\/}}
+\newcommand{\sair}{{\it sair\/}}
+\newcommand{\entrar}{{\it entrar\/}}
+\newcommand{\inicio}{{\it início\/}}
+
+\progb{\vazia\ = ([],[])\\
+      \entrar\ $e$ (\frente,\tras) = \fila\ (\frente, e : \tras)\\
+      \fila\ ([], \tras) = (\reverse\ \tras, [])\\
+      \fila\ $f$        = $f$\\
+      \sair\ ($e$:\frente, \tras) = (\frente,\tras)\\
+      \estaVazia\ (\frente,\_) = \null\ \frente\\
+      \inicio\ ($e$:\frente,\_) = $e$
+     }
+
+\subsection{Versão imperativa}
+\label{fila-imperativa}
+
+\newcommand{\fim}{{\it fim\/}}
+
+Considerando \fila\ como um registro com campos \inicio, \fim\ e
+\elems, sendo \elems\ um arranjo de $n$ elementos --- indexado de $0$
+a {\tt $n$-1}.  Os índices do primeiro e do último elementos inseridos
+são armazenados respectivamente nas variáveis \inicio\ e \fim. 
+
+A fila está vazia quando {\tt \inicio\ == \fim}. A fila está cheia
+quando {\tt \inicio\ == \fim\ + 1}, isto é, a fila é circular: o
+índice {\tt 0} segue o índice {\tt $n$-1}. 
+
+As operações em uma fila podem ser implementadas como a seguir,
+desconsiderando casos de erro: sair de uma fila vazia e entrar em uma
+fila cheia. O operador {\tt \%} é usado para retornar o resto da
+divisão do primeiro operando pelo segundo.
+
+\progb{
+  \vazia\ (\fila) = \{ with \fila \{ \inicio\ = \fim\ = 0; \} \} \\
+  \entrar\ (\eelem, \fila) \{ \\
+      \hspace*{.2cm} with \fila\ \{ \\
+          \hspace*{1cm} \elems[\fim] $\leftarrow$ \eelem;\\
+          \hspace*{1cm} \fim\ $\leftarrow$ (\fim\ + 1) \% $n$;\\
+      \hspace*{.2cm} \} \\
+  \} \\ 
+  \sair\ (\fila) \{ \\
+      \hspace*{.2cm} with \fila\ \{ \inicio\ $\leftarrow$ (\inicio\ + 1) \% $n$;\\
+  \}\\
+  \inicio\ (\fila) \{ with \fila\ \{ \return\ \elems[\inicio]; \} \}\\
+  \estaVazia\ (\pilha) \{ with \fila\ \{ \return\ \inicio\ == \fim; \} \} 
+ }
+
+

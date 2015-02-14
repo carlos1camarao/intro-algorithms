@@ -1,0 +1,141 @@
+\documentclass[a4paper,10pt]{book}
+
+\usepackage{fancyheadings}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{psfig}
+\usepackage{fancybox}
+\usepackage{makeidx}
+\usepackage{subfigure}
+\usepackage{psboxit}
+\usepackage{color}
+\usepackage[latin1]{inputenc}
+\usepackage[portuguese]{babel}
+%\usepackage[T1]{fontenc}
+
+%\selectlanguage{portuguese}
+
+\usepackage{hevea-epsfbox-def} 
+\usepackage{epsfig} 
+\usepackage{indentfirst}
+
+\htmlhead{\sffamily\bfseries{Introdução a Algoritmos}}
+
+\newcommand{\eqdef}{\overset{\text{def}}{=}}
+
+\newcommand{\graybox}[1]{\begin{minipage}{\textwidth}\psboxit{box 0.95 setgray fill}{
+  {\spbox{#1}}}\end{minipage}}
+
+\makeindex
+
+\setcounter{tocdepth}{3}
+
+%----- text format parameters -----
+\setlength\textwidth{150mm}
+\setlength\textheight{241mm}
+\setlength\oddsidemargin{5.4mm}
+\setlength\evensidemargin{5.4mm}
+%\setlength\marginparsep{5mm}
+%\setlength\marginparwidth{15mm}
+\addtolength\voffset{-5mm}
+\addtolength\topmargin{-3mm}
+\addtolength\headsep{2mm}
+\setlength\footskip{10mm}
+
+%---------------- pagestyle ----------
+\pagestyle{fancyplain}
+\addtolength\headwidth{\marginparsep}
+\renewcommand{\chaptermark}[1]
+             {\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]
+             {\markright{\thesection\ #1}}
+\lhead[\fancyplain{}{\bfseries\thepage}]
+      {\fancyplain{}{\bfseries\rightmark}}
+\rhead[\fancyplain{}{\bfseries\leftmark}]
+      {\fancyplain{}{\bfseries\thepage}}
+
+\cfoot{}
+
+%----- lista de exercicios ---------------
+%\newenvironment{exerc}
+%   {\renewcommand{\labelenumi}{\textbf{\theenumi.}}
+%    \begin{enumerate}
+%   }
+%   {\end{enumerate}}                    
+\renewcommand{\chaptername}{Cap\'{\i}tulo}
+\renewcommand{\tablename}{Tabela}
+\renewcommand{\figurename}{Figura}
+\renewcommand{\contentsname}{Sum\'ario}
+
+\begin{document}
+
+\pagestyle{empty}
+\begin{center}
+\begin{tabular}{c}
+\Huge{\sffamily\bfseries{Introdução a Algoritmos}}\\
+\end{tabular}
+\end{center}
+
+\begin{tabular}{l}
+{\Large{\sffamily\bfseries{Carlos Camarão}}} \\
+{\small Universidade Federal de Minas Gerais}\\
+{\small Doutor em Ci\^encia da Computa\c{c}\~ao pela Universidade de Manchester, Inglaterra} \\ \\
+\end{tabular}
+
+\begin{tabular}{l}
+Direitos exclusivos\\
+Copyright \copyright\ 2009 by Carlos Camar\~ao
+\end{tabular}
+
+É permitida a duplicação ou reprodução, no todo ou em parte, sob
+quaisquer formas ou por quaisquer meios (eletrônico, mecânico,
+gravação, fotocópia, distribuição na Web ou outros), desde que seja
+para fins não comerciais.
+
+\pagestyle{fancy}
+\pagenumbering{roman}
+%\setcounter{page}{5}
+
+%\renewcommand{\chaptername}{Capítulo}
+%\renewcommand{\tablename}{Tabela}
+%\renewcommand{\figurename}{Figura}
+
+%\renewcommand{\contentsname}{Sumário}
+
+\tableofcontents
+
+\setcounter{secnumdepth}{-2}
+\input{prefacio}
+
+\input{meta.keys}
+
+\pagestyle{fancy}
+\setcounter{secnumdepth}{10}
+\pagenumbering{arabic}
+
+\input{introd}
+
+\input{complexidade}
+
+\input{estruturas-de-dados-basicas}
+
+\input{algoritmos-de-pesquisa}
+
+\input{algoritmos-de-ordenacao}
+
+\input{hash}
+
+\pagebreak
+\thispagestyle{empty}
+\pagebreak
+\pagestyle{fancyplain}
+
+\bibliographystyle{plain}
+\bibliography{livro,formal,plang,math,ml,haskell,logic}
+
+\input{Haskell}
+
+\printindex
+
+\end{document}

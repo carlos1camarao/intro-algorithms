@@ -1,0 +1,27 @@
+\item As funções \elem\ e \delete\ estão definidas no módulo
+  \Prelude\ de Haskell, que é importado por todo módulo Haskell; foram
+  definidos apenas por questões de completeza e clareza (de fato, o
+  módulo que define \elem\ e \delete\ teria que impedir a importação
+  dessas funções definidas em \Prelude, com {\tt
+    \import\ \Prelude\ \hiding (\elem, \delete)}.
+
+  Um programa em Haskelll é uma sequência de módulos, sendo que um
+  deles, o módulo principal, deve conter uma função de nome \main, na
+  qual a execução do programa inicia.
+
+  A definição de um módulo com nome (digamos) $A$ que importa um
+  módulo {\it MB\/} (abreviado para $B$) que esconde (não importa) de
+  $B$ os nomes \elem\ e \delete\ pode ser feita como a seguir: 
+
+  \prog{\module\ $A$ (nomes-exportados) \where\ \\
+             \import\ {\it MB\/} [\as\ $B$] [[hiding] (\elem, \delete)]\\
+             definições-de-funções 
+       }
+
+  Se {\tt (nomes-exportados)} não for especificado, todos os nomes no
+  escopo global são exportados (para não exportar nennum nome use {\tt
+    ()}). Vários cláusulas de importação podem ser usados (um para
+  cada módulo importado). Os nomes a serem importados podem ser
+  indicados (usando uma cláusula de importação que não usa a
+  palavra-chave \hiding), do contrário todos os nomes do módulo
+  importado se tornam visíveis.
