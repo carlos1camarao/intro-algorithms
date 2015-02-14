@@ -1,0 +1,791 @@
+\chapter{Complexidade}
+\label{Complexidade}
+
+Programas de computadores estão sendo usados em diversas aplicações,
+que estão expandindo sua atuação cada vez mais e para áreas cada vez
+mais diversas. Além disso, a ciência da computação vem influenciando
+as mais diversas áreas científicas, como a lógica, a matemática, a
+física etc.
+
+A ciência da computação se preocupa não só com a correção de
+algoritmos --- o fato de que um algoritmo computa o resultado
+especificado ou esperado para cada instância dos dados de entrada ---
+mas também com a sua eficiência, ou {\em complexidade}. Eficiência se
+mede usualmente pelo tempo gasto na execução de um programa, mas pode
+alternativamente ser baseada em uma medida do espaço (quantidade de
+memória).
+
+A eficiência ou complexidade é em geral medida como uma função de uma
+medida que especifica o tamanho da entrada. Em geral um algoritmo
+eficiente é um algoritmo cujo tempo e espaço gastos na execução não
+aumentam muito com o aumento do tamanho da entrada.
+
+Em geral, problemas difíceis de serem resolvidos eficientemente são
+aqueles para os quais os algoritmos conhecidos e usados gastam um
+tempo de execução cuja variação com o tamanho da entrada não é
+polinomial (não tem como limite superior um polinômio, $n^k$, onde $n$
+é o tamanho da entrada e $k$ é um valor constante, que independe de
+$n$), e sim exponencial (ou seja, a variação do tempo de execução com
+o tamanho da entrada é uma função do tipo $k^n$, onde $k$ é uma
+constante, como veremos em geral $k=2$). Algoritmos de complexidade
+exponencial (isto é, cujo tempo de execução aumenta exponencialmnte
+com o aumento do tamanho da entrada) são ditos {\em intratáveis\/}.
+
+\section{Complexidade de Fun\c{c}\~oes}
+\label{complexidade-de-funcoes}
+
+O tempo de execução de um algoritmo sequencial é a soma dos tempos de
+execução de cada passo executado (no caso de um algoritmo imperativo,
+cada comando executado). Cada passo pode ser executado um certo número
+$k$ de vezes, e essa soma considera então, para cada passo, o produto
+$k\times c$, onde $c$ é uma medida do tempo gasto para execução do
+passo uma única vez.
+
+Na maioria das vezes, estamos interessados em determinar o tempo de
+execução do algoritmo para o {\em pior caso\/} de uma entrada de certo
+tamanho. Isso é devido ao fato de que i) o pior caso é um limite
+superior (que nunca poderá ser ultrapassado), ii) para muitos
+algoritmos o pior caso ocorre bastante frequentemente e iii)
+frequentemente o pior caso representa valor próximo do caso médio, e
+iv) em geral, o {\em caso médio\/} é mais difícil de ser analisado,
+envolvendo técnicas de análise de probabilidades.
+
+A análise de complexidade envolve em geral considerar apenas o termo
+mais significativo de uma soma de termos que expressa uma função sobre
+o tamanho da entrada (em geral usa-se os números naturais como medida
+desse tamanho). Por exemplo, se a função que expressa a variação do
+tempo de execução com o tamanho da entrada é expressa como $f(n) =
+an^2 + bn + c$, onde $a,b,c$ são constantes, dizemos que a função tem
+ordem de complexidade $n^2$, que é o termo mais significativo do
+polinômio $f$. Os termos de menor ordem no polinômio são relativamente
+pouco significantes para valores de $n$ grandes, e também ignora-se as
+constantes (ignoram-se todos os termos de menor ordem e ignora-se
+também a constante $a$ do termo de maior ordem), pelo mesmo motivo de
+ser relativamente pouco significante para valores grandes. Dizemos
+então que $f$ é uma função de complexidade quadrática (o termo de
+maior ordem no polinômio que define a complexidade é $n^2$).
+
+\section{Eficiência assintótica}
+\label{eficiencia-assintotica}
+
+Ao considerar a variação da eficiência de acordo com tamanhos de
+entrada grandes, fazemos simplificações para estudar a eficiência ou
+complexidade de algoritmos, e chamamos a complexidade de {\em
+  assintótica\/}. Usualmente, considera-se algoritmos mais eficientes
+que outros considerando a complexidade assintótica.
+
+A notação geralmente usada na descrição da complexidade assintótica de
+algoritmos e programas é apresentada a seguir.
+
+\subsection{Notação $\Theta$}
+\label{Notacao-Theta}
+
+Considera-se o tamanho da entrada como um valor natural (i.e.~o
+domínio de funções de complexidade é igual ao conjunto dos naturais,
+$\mathbb{N}$) e o contra-domínio é o conjunto dos números reais
+positivos ($\mathbb{R}^+$). 
+
+Seguimos a terminologia usual, que usa $f(n)$ (digamos, por exemplo,
+$lg n$) para se referir na verdade à função $f$ (em notação de
+$\lambda$-calculus, à função $\lambda n \rightarrow lg n$). Temos:
+
+\[ \begin{array}{ll}
+     \Theta(g(n)) = \{ f(n) : & \text{ existem } c_1, c_2, n_0 \text{ positivos tais que } \\
+                              & c_1g(n) \leq f(n) \leq c_2g(n) \text{ para todo } n\geq n_0 
+   \end{array}
+\]
+
+Em palavras, $f(n)$ é membro de $\Theta(g(n))$ se $f(n)$ sempre está
+entre $c_1g(n)$ e $c_2g(n)$, para alguns $c_1, c_2$, para $n$
+suficientemente grande (i.e.~a partir de algum $n_0$). 
+
+\ldots Gráfico? 
+
+Como $\Theta(g(n))$ é um conjunto, o correto seria escrever $f(n) \in
+\Theta(g(n))$, mas é usual escrever $f(n) = \Theta(g(n))$, um abuso de
+notação, que simplifica a notação. 
+
+Escrevemos também $f(n) \asymp g(n)$ (seguindo Minko Markov
+\cite{Minko-Markov-2013}) como sinônimo de $f(n) = \Theta(g(n))$.
+
+%ssume-se também, na definição de $\Theta(g(n))$ que $g(n)$ e os
+%embros $f(n)$ são assintoticamente não-negativos para $n$
+%uficientemente grande.
+
+Por exemplo, temos:
+
+\begin{enumerate}
+
+\item $an^2 - bn \asymp n^2$, para quaisquer determinadas constantes
+      $a,b$.
+
+      Para mostrar isso, devemos determinar $c_1,c_2,n_0$ tais que $0
+      \leq c_1(n^2) \leq an^2 - bn \leq c_2(n^2)$, para $n\leq n_0$.
+      Ou seja (dividindo por $n^2$):
+
+        \[ c_1 \leq a -\frac{b}{n} \leq c_2 \text{, para } n\leq n_0 \]
+      Essa desigualdade pode ser satisfeita, para todo $n\geq 1$,
+      tomando $c_1 \leq a - b$ e $c_2 \geq a$. 
+
+\item $an \not\asymp n^2$, para qualquer constante positiva $a$.
+
+      Nesse caso, deveríamos ter $c_1n^2 \leq an$, para $n$
+      suficientemente grande, ou seja, $c_1n \leq a$, o que não
+      acontece.
+
+\item $an^3 \not\asymp n^2$, para qualquer constante positiva $a$.
+
+      Nesse caso, deveríamos ter $c_2n^2 \geq an^3$, para $n$
+      suficientemente grande, ou seja, $c_2 \leq an$, o que não
+      acontece.
+
+\end{enumerate}
+
+$\Theta(1)$ é usualmente usado em vez de $\Theta(n^0)$,
+considerando-se claro pelo contexto a variável que está-se
+considerando como medida do tamanho da entrada.
+
+\section{Notação $O$}
+\label{Notacao-O}
+
+A notação $\Theta$ limita assintoticamente uma função por limites
+superior e inferior. A notação $O$ usa estabelece apenas um limite
+superior:
+
+\[ \begin{array}{ll}
+     O(g(n)) = \{ f(n) : & \text{ existem } c, n_0 \text{ positivos tais que } \\
+                              & f(n) \leq cg(n) \text{ para } n\geq n_0 
+   \end{array}
+\]
+
+Em palavras, $f(n)$ é membro de $O(g(n))$ se $f(n)$ sempre é menor ou
+igual a $cg(n)$, para algum $c$, e para $n$ suficientemente grande
+(i.e.~a partir de algum $n_0$).
+ 
+Assim como na notação $\Theta$, usa-se $f(n) = O(g(n))$ em vez de
+$f(n) \in O(g(n))$. 
+
+Escrevemos também $f(n) \preceq g(n)$ como sinônimo de $f(n) =
+O(g(n))$ (seguindo Minko Markov \cite{Minko-Markov-2013}).
+
+Note que $f(n) \asymp g(n)$ implica $f(n) \preceq g(n)$, mas a
+implicação inversa não é verdadeira.
+
+Por exemplo, $an + b \preceq n^2$ mas $an + b \npreceq \Theta(n^2)$.
+
+Usando a notação $O$ podemos frequentemente ter uma boa ideia do
+limite superior para o tempo de execução de um programa pela inspecção
+de sua estrutura de repetição.  Por exemplo, o aninhamento duplo do
+programa imperativo de ordenação por inserção indica um limite
+superior $O(n^2)$ para o pior caso do tempo de execução, uma vez que o
+custo de cada comando interno ao comando \while\ é $O(1)$, as
+repetições \for\ e \while\ são controladas pelos índices $i$, $j$ que
+variam no máximo até $n$, e a repetição mais interna é executada no
+máximo uma vez para cada par de $n^2$ valores $(i,j)$.
+
+Note que a notação $O$ fornece um limite superior, e portanto é válida
+para qualquer entrada. Isso não ocorre com a notação $\Theta$, uma vez
+que podem existir entradas para as quais o algoritmo se comporta mais
+eficientemente do que no caso do limite inferior. Por exemplo,
+$O(n^2)$ é válido para qualquer entrada do algoritmo de ordenação por
+inserção (é um limite superior), mas existem entradas
+(especificamente, se a entrada já está ordenada) para as quais o tempo
+de execução é linear, dado por $\Theta(n)$. 
+
+Dizer que o tempo de execução do algoritmo de ordenação por inserção é
+$O(n^2)$ significa, portanto, que existe uma função $f$, em $O(n^2)$,
+tal que, para qualquer entrada e qualquer $n$, o tempo de execução do
+programa para essa entrada é limitado a $f(n)$ (não significa que o
+variação do tempo de execução do algoritmo para uma entrada particular
+varia quadraticamente com o tamanho da entrada, mas que pode variar no
+máximo quadraticamente com o tamanho da entrada).
+
+\section{Notação $\Omega$}
+\label{Notacao-Omega}
+
+A notação $\Omega$ limita assintoticamente uma função por um limite
+inferior:
+
+\[ \begin{array}{ll}
+     \Omega(g(n)) = \{ f(n) : & \text{ existem } c, n_0 \text{ positivos tais que } \\
+                              & cg(n) \leq f(n) \text{ para } n\geq n_0 
+   \end{array}
+\]
+
+Em palavras, $f(n)$ é membro de $\Omega(g(n))$ se $f(n)$ sempre é
+maior ou igual a $cg(n)$, para algum $c$, e para todo $n$
+suficientemente grande.
+
+Assim como na notação $\Theta$, usa-se $f(n) = \Omega(g(n))$ em vez de
+$f(n) \in \Omega(g(n))$.
+
+Escrevemos também $f(n) \succeq g(n)$ como sinônimo de $f(n) =
+\Omega(g(n))$ (seguindo Minko Markov \cite{Minko-Markov-2013}).
+
+Das definições, é fácil ver que, para quaisquer funções $f,g$, temos
+$f(n) \asymp g(n)$ se e somente se $f(n) \preceq g(n)$ e $f(n) \succeq
+g(n)$.
+
+A notação $\Omega$ estabelece um limite inferior, e envolve, assim,
+análise do comportamento do algoritmo para o melhor caso dos dados de
+entrada. Não consideraremos análises de comportamento de algoritmos no
+melhor caso neste livro, e a notação $\Omega$ terá assim aplicação
+limitada, sendo usada mais como complementação à notação $O$.
+
+\section{Uso de notação assintótica em fórmulas}
+\label{uso-notacao-assintotica}
+
+Em equações do tipo $n = O(n^2)$, a notação $O$ significa $n \in
+O(n^2)$. 
+
+Em geral, no entanto, a ocorrência da notação assintótica expressa uma
+função qualquer, anônima, para a qual não há interesse em especificar
+um nome. Por exemplo, $an^2 + bn + c$ pode ser expressa como $an^2 +
+\Theta(n)$, siginificando $an^2 + f(n)$, onde $f(n)$ é um membro de
+$\Theta(n)$, no caso $bn + c$. Continuando nesse sentido, $an^2 +
+\Theta(n)$ pode ser expressa como $\Theta(n^2)$. 
+
+Essas abreviações são usadas para evitar ter que escrever funções que
+correspondem a termos de menor grau em fórmulas.
+
+Como exemplo de uso de notação assintótica, temos: $O(2^{O(lg
+  n)})=n^{O(1)}$.  O uso da notação $O$ nessa fórmula expressa
+supressão de constantes. Note que $n \preceq 2^{lg n}$, e portanto,
+para qualquer constante $c$, temos: $n^c \asymp 2^{c lg n}$, e $O(2^{O(lg
+  n)})=n^{O(1)}$ é outra forma de expressar essa igualdade.
+
+\section{Notações $o$, $\omega$}
+\label{Notacao-o}
+
+Define-se $o(g(n))$ para indicar que trata-se de uma aproximação
+assintótica estrita:
+
+\[ \begin{array}{ll}
+     o(g(n)) = \{ f(n) : & \text{ para todo } c \text { positivo existe } n_0 \text{ positivo tal que } \\
+                              & f(n) < cg(n) \text{ para } n\geq n_0 
+   \end{array}
+\]
+
+Em palavras, $f(n)$ é membro de $O(g(n))$ se $f(n)$ sempre é
+estritamente menor que $cg(n)$, para todo $c$, e para $n$
+suficientemente grande (i.e.~a partir de algum $n_0$).
+Isso é equivalente a:
+
+  \[ \llim_{n\rightarrow\!\infty} \frac{f(n)}{g(n)} = 0 \]
+
+Analogamente, a notação $\omega$ indica um limite inferior que é
+assintoticamente estrito ($\omega$ está para $\Omega$ assim como $o$
+está para $O$):
+
+\[ \begin{array}{ll}
+     \omega(g(n)) = \{ f(n) : & \text{ para todo } c \text { positivo existe } n_0 \text{ positivo tal que } \\
+                              & cg(n) < f(n) \text{ para } n\geq n_0 
+   \end{array}
+ \]
+
+Isso é equivalente a:
+
+  \[ \llim_{n\rightarrow\!\infty} \frac{g(n)}{f(n)} = 0 \]
+
+Escrevemos também $f(n) \succ g(n)$ como sinônimo de $f(n) = o(g(n))$,
+e $f(n) \prec g(n)$ como sinônimo de $f(n) = \omega(g(n))$ (seguindo
+Minko Markov \cite{Minko-Markov-2013}).
+
+Por exemplo, para qualquer $a>0$, $an^2 \succ n$ mas $an^2 \nsucc
+n^2$.
+
+\section{Propriedades de Relações assintóticas}
+\label{Propriedades-de-relacoes-assintoticas}
+
+Para todas as relações $R$ iguais a $\asymp$, $\preceq$, $\succeq$,
+$\prec$, $\succ$, a seguinte transitividade ocorre:
+
+  \[ f(n) R g(n), g(n) R h(n) \text { implicam } f(n) R h(n) \]
+
+Ocorre também reflexividade para $R = \asymp$, $\preceq$, $\succeq$:
+
+  \[ f(n) R f(n) \]
+
+Para $\asymp$ ocorre simetria (mas não para as demais relações):
+
+  \[ f(n) \asymp g(n) \text{ se e somente se } g(n) \asymp f(n) \]
+
+Para $\succeq$ e $\preceq$, e $\succ$ e $\prec$, temos:
+
+  \[ \begin{array}{l}
+       f(n) \succeq g(n) \text{ se e somente se } g(n) \preceq f(n) \\
+       f(n) \succ g(n) \text{ se e somente se } g(n) \prec f(n) 
+     \end{array}
+  \]
+
+Essas propriedades são similares às verificadas para as relações de
+igualdade e desigualdade entre números reais, motivam o uso das
+notações semelhantes para funções e motivam chamar $f$ de
+assintoticamente menor que $g$ se $f(n) = o(g(n))$, $f$ de
+assintoticamente maior que $g$ se $g(n) = \omega(f(n))$), e
+analogamente para ($\asymp$ e $\Theta$, assintoticamente igual),
+($\preceq$ e $O$, assintoticamente menor ou igual a) e ($\succeq$ e
+$\Omega$, assintoticamente maior ou igual a).
+
+\section{Complexidade polinomial, exponencial e logarítmica}
+\label{Complexidade-polinomial-exponencial-logaritmica}
+
+Um polinômio de grau $k$, sendo $k$ inteiro não negativo, é uma função
+da forma:
+
+  \[ \sum_{i=0}^{k} a_in^i \]
+onde $a_i$ são constantes inteiras, chamadas de {\em coeficientes\/}
+do polinômio, e $a_k > 0$. 
+
+Seja $k$ uma constante inteira positiva. Dizemos, de uma função $f$
+sobre os naturais, que:
+
+  \begin{itemize}
+    \item $f$ tem limite (superior) de complexidade polinomial se
+      $f(n) = O(n^k)$,
+    \item tem limite (inferior) de complexidade exponencial se $f(n) =
+      \Omega(k^n)$,
+    \item tem limite (superior) de complexidade logarítmica se $f(n) =
+      O((lg n)^k)$.
+  \end{itemize}
+
+% $lg^k n$ é abreviação de $(lg n)^k$.
+
+$lg$ indica logaritmo na base 2; usamos $log$ para especificar a base,
+  de forma que $lg n = log_2 n$. A base de logaritmos em complexidade
+  algorítmica não é muito relevante, pois, para quaisquer constantes
+  inteiras $a,b,c>0$, temos: $log_b a = \frac{log_c a}{log_c b}$.
+
+$lg lg k$ é abreviação de $lg (lg k)$, e $lg$ tem pouca precedência
+  (só se aplica ao próximo termo em uma fórmula): $lg n + k$ significa
+  $(lg n) + k$.
+
+Para quaisquer constantes inteiras $a,b$, se $a>1$ temos:
+
+  \[ \begin{array}{l}
+       \llim_{n\rightarrow\!\infty} \frac{n^b}{a^n} = 0 % \label{expxpoli}
+            \\
+            \llim_{n\rightarrow\!\infty} \frac{lg^b n}{n^a} = 0 % \label{lgxpoli}
+     \end{array}
+  \]
+A primeira equação indica que toda função exponencial com uma base
+maior que 1 cresce mais rapidamente que qualquer função polinomial.
+
+A segunda equação (que vale também se $a=1$) indica que toda função
+logarítmica cresce mais lentamente que qualquer função polinomial.
+
+%Lembre-se:
+
+%  \[ e^x \begin{array}[t]{l}
+%         = \llim_{n \rightarrow \infty} (1 + \frac{x}{n})^n \\
+%         = \sum_{i=0}^\infty \frac{x^i}{i!}
+%         \end{array}
+%  \]
+
+
+\section{Exercícios Resolvidos}
+
+\begin{enumerate}
+
+\item $2^{n+1} \preceq 2^n$ ? 
+
+Resposta: Sim. Pois $2^{n+1} = 2*2^n$. Constantes não interferem na
+ordem de complexidade (na definição de $O$, basta escolher a constante
+$c$ adequadamente, neste caso podemos escolher qualquer $c\geq 2$).
+
+\item $2^{2n} \preceq 2^n$ ? 
+
+Resposta: Não.
+
+Suponha que sim. Deveríamos ter então $c,n_0$ tais que $0\leq 2^{(2n)}
+\leq c2^n$, para $n\geq n_0$. Dividindo por $2^n$ --- note:
+$2^{2n}=(2^n)^2$ --- obtemos: $2n \leq c$, para todo $n\geq n_0$, o
+que é falso.
+
+A função que recebe $n$ e retorna $2^{2n}$ é chamada de duplamente
+exponencial.
+
+\item Usa-se $\lfloor x \rfloor$ (o chão de $x$) para denotar o menor
+  inteiro maior ou igual a $x$, e $\lceil x \rceil$ (o teto de $x$)
+  para denotar o maior inteiro menor ou igual a $x$.
+
+  A função $\lfloor lg n \rfloor$ tem limite de complexidade
+  polinomial?
+
+Resposta: Sim. 
+
+$\lfloor x \rfloor < x + 1$, e $lg n \preceq n$, e portanto $\lfloor
+lg n \rfloor \preceq n$.
+
+\item Cada entrada da tabela abaixo indica, para o par formado por $v
+  = f(n)$ e $w = g(n)$ das duas primeiras colunas da tabela, se $f(n)
+  = X(g(n))$, para $X$ variando de acordo com o indicado nas colunas
+  seguintes (i.e.~para $X = \Theta,O,\Omega,o,\omega$).  Insira {\tt
+    '*'} quando a entrada da tabela abaixo for "Sim", e deixe em
+  branco caso contrário.
+% Sempre que inserir {\tt '*'}, justifique (mostre porque sim).
+
+Suponha $k\geq 1$, $a > 0$ e $b > 1$ constantes.
+
+%\newcommand{\sin}{{\it sin\/}}
+
+\[ \begin{array}{|c|c|c|c|c|c|c|}
+v        & w        & \Theta & O & \Omega & o & \omega \\ \hline\hline
+(lg n)^k & n^a      &         &  &        &   &        \\ \hline
+n^k      & b^n      &         &  &        &   &        \\ \hline
+\sqrt n  & n^{sin n} &         &  &        &   &        \\ \hline
+2^n      & 2^{n/2}   &         &  &        &   &        \\ \hline
+n^{lg b}  & b^{lg n}  &         &  &        &   &        \\ \hline
+lg (n!)  & lg (n^n) &         &  &        &   &        
+    \end{array}
+\]
+
+Resposta (baseada em \cite{Minko-Markov-2013}):
+
+\[ \begin{array}{|c|c|c|c|c|c|c|}
+    v        & w      & \Theta & O      & \Omega  & o       & \omega\\ \hline
+                                                                        \hline
+(lg n)^k & n^a        &       & {\tt *} &         & {\tt *} &     \\ \hline
+n^k      & b^n        &       & {\tt *} &         & {\tt *} &     \\ \hline
+\sqrt n  & n^{\sin\ n} &        &         &         &         &     \\ \hline
+2^n      & 2^{n/2}     &       &         & {\tt *} &         & {\tt *} \\ \hline
+n^{lg b}  & b^{lg n}    & {\tt *} & {\tt *} & {\tt *} &        &        \\ \hline
+lg (n!)  & lg (n^n) &          & {\tt *} &        & {\tt *} &        
+    \end{array}
+\]
+
+A primeira linha é consequência de $\llim_{n\rightarrow\!\infty}
+\frac{(lg n)^k}{n^a} = 0$, para todo $k$ e todo $a>0$.
+
+A segunda linha é consequência de $\llim_{n\rightarrow\!\infty}
+\frac{n^k}{b^n} = 0$, para todo $a$ e todo $b>1$.
+
+$\sin\ n$ oscila (continuamente) entre 0 e 1, quando $n$ cresce de 0 a
+$\infty$. Portanto, $2^{1/2}$ e $2^{\sin\ n}$ não se relacionam (com as
+relações assintóticas acima).
+
+$\frac{2^{n/2}}{2^n} = \frac{1}{2^{n/2}}$, e portanto $2^n \preceq
+2^{n/2}$.
+
+Temos: $\begin{array}[t]{lll}
+          lg (n^{lg b}) & = lg b (lg n) & \asymp (lg n) \\
+          lg (b^{lg n}) & = lg n (lg b) & = \asymp (lg n) 
+        \end{array}$ e, portanto, $n^{lg b} \asymp b^{lg n}$. 
+
+Temos: 
+
+\[ \begin{array}[t]{llllllll}
+n!  = n & \times (n-1) & \times (n-2) & \times (n-3) & \times \ldots 
+                                      & \times 3 & \times 2 & \times 1\\
+n^n = n & \times  n    & \times  n    & \times n     & \times \ldots
+                                      & \times n & \times n & \times n
+\end{array}
+\]
+
+As duas linhas têm exatamente $n$ termos, e cada termo do lado direito
+da primeira é menor que o termo correspondente da segunda linha, para
+$n$ suficientemente grande.  Logo, $n! \leq n^n$ para $n$
+suficientemente grande.
+
+\item Ordene as seguintes funções sobre os naturais por ordem de
+  complexidade. Ou seja, ordene as funções de $f_1$ a $f_{30}$ de modo
+  que $f_i \prec f_{i+1}$ ou $f_i \asymp f_{i+1}$, para $i=1,\ldots,29$.
+
+  As funções, aplicadas a $n$, são: 
+
+   \[ \begin{array}{|c|c|c|c|c|c|}
+ lg (lg n) & (\sqrt{2})^{lg n}  & n^2          & (3/2)^n       & n^3         & lg^* n        \\
+ 2^{2^n}    & n^{(\frac{1}{lg n})}  & n^n          & lg n          & 2^{lg n}     & (lg n)^{lg n}  \\
+ 2^n       & 4^{lg n}           & n lg n       & 2^{2^{n+1}}     & n!          & (lg n)!       \\
+ (n+1)!    & lg (n!)           & lg (lg^* n)  & 2^{lg * n}     & lg^* (lg n) & 2^{\sqrt{2 lg n}} \\
+ n^{lg lg n} & 1                 & \sqrt{lg n}  & n            & n 2^n       & (lg n)^2
+      \end{array}
+   \]
+
+A notação $lg^*$ é definida a seguir.  Considere primeiro que
+$f^{(i)}$ denota a função ``f aplicada $i$ vezes'', para $i\geq 0$:
+
+\[ f^{(i)} x = 
+    \left\{ \begin{array}{ll}
+      x            & se $i=0$ \\
+      f(f^{(i-1)} x) & caso contrário
+    \end{array}\right. 
+\]
+
+$lg^*$ é uma função que recebe um argumento $n$ e retorna o menor $i$
+tal que $lg^{(i)} n \leq 1$, ou, em outras palavras, retorna quantas
+vezes se precisa aplicar $lg$ para obter-se 1 ou menos:
+
+  \[ lg^* n = min \{ i \mid i\geq 0, lg^{(i)} n \leq 1 \} \]
+
+Por exemplo, $\begin{array}[t]{llll} 
+lg^* 2          &             & = 1 & (lg^{(0)} 2 = 2, lg^{(1)} 2 = lg (lg^{(0)} 2) = lg 2 = 1) \\
+lg^* 3          &             & = 2 & (lg^{(0)} 3 = 3, lg^{(1)} 3 = lg 3, lg^{(2)} 3 = lg (lg 3) = 0.6644\ldots) \\
+lg^* 2^2        & = lg^* 4     & = 2 & (lg^{(0)} 4 = 4, lg^{(1)} 4 = lg 4 = 2, lg^{(2)} 4 = lg 2 = 1) \\
+lg^* 5          &             & = 3 & (lg^{(0)} 5 = 5, lg^{(1)} 5 = lg 5 = 2.3219\ldots, lg^{(2)} 5 = lg 2.3219\ldots = 1.2153\ldots, \ldots)\\
+\ldots          &             &     &       \\
+lg^* 2^{2^2}     & = lg^* 16    & = 3 & \\ 
+               & = lg^* 17    & = 4 & \\
+\ldots         &              &     & \\ 
+lg^* 2^{2^{2^2}}  & = lg^* 65536 & = 4 & \\
+\ldots         & = lg^* 65537 & = 5 & \\
+\ldots         &              &     & \\
+lg^* 2^{2^{2^{2^2}}} & = \ldots     & = 5 & \\
+\ldots         &              &       
+              \end{array}$
+
+Ou seja, $lg^*$ cresce {\em muito\/} lentamente. Só poderíamos
+escrever o próximo valor ($ n_6 = 2^{2^{2^{2^{2^2}}}} $) usando
+exponenciação ($ n_5 = 2^{2^{2^{2^2}}} $ tem 19729 dígitos, mas $n_6$
+tem um número de dígitos extraordinário, ``maior do que o número de
+átomos ($\approx 10^{82}$) que se estima existir no universo que
+podemos observar'' (i.e.~o universo que se expande até 90 e poucos
+bilhões de anos-luz; $10^{82}$ é da ordem de (menor que)
+$2^{(10/3)\times 82}$, que é muito menor que $2^{65536}$). Note que
+$10^3$ é aproximadamente igual (um pouco menor que) $2^{10}$, e
+portanto $10^k = 10^{3 \times (k/3)} = (10^3)^{k/3}$, que é portanto
+da ordem de $(2^{10})^{k/3} = 2^{10 \times (k/3)} = 2^{(10/3)\times
+  k}$.
+
+Solução:
+
+\begin{description}
+
+\item[1] $1 \asymp n^{\frac{1}{lg n}}$
+
+Isso pode ser mostrado tomando $lg$ de $n^{\frac{1}{lg n}}$. Temos que
+$lg (n^{\frac{1}{lg n}}) = (\frac{1}{lg n}) \times lg n = 1$ (e
+portanto $n^{\frac{1}{lg n}} = 2$).  
+Logo, $1 \asymp n^{\frac{1}{lg n}}$.
+
+\item[2] $1 \prec lg (lg^* n)$
+
+Direto. Pois $1 \prec lg (lg^* n)$ decorre de $1 < 2 * lg (lg^* 4)$
+--- pela definição das relações $(\prec)$ e $O$, tomando $n_0 = 4, c = 2$ e usando o
+fato de que $lg (lg^* n)$ é monotônica, i.e.~cresce ou continua igual
+quando $n$ cresce. O que é válido pois: 
+ $1 < 2 * lg (lg^* 4)$ é o mesmo que
+ $1 < 2 * lg 2$, ou seja, $1 < 2$.
+
+\item[3] $lg (lg^* n) \prec lg^* n$
+
+Seja $m = lg^* n$. Temos então que provar: $lg m \prec m$.
+
+$lg m \prec m$ é consequência de $\llim_{n\rightarrow\!\infty} \frac{(lg n)}{n} = 0$.
+
+\HRule
+{\em Nota\/}: 
+O fato de que esse limite é zero é conhecido, mas pode ser obtido
+usando a regra de l'Hôpital, como a seguir.
+
+Usando $'$ (diz-se: 'linha') para denotar a derivada de uma função, a
+regra de l'Hôpital especifica que, para todas as funções $f$, $g$
+diferenciáveis em um intervalo aberto $I$ exceto possivelmente em um
+ponto $k \in I$, se i) $\llim_{x \to k}f(x)=\lim_{x \to k}g(x)=v$,
+onde $v = 0$ ou $v = \pm\infty$, ii) $\lim_{x\to
+  k}\frac{f '(x)}{g'(x)}$ existe, e iii) $g'(x)\neq 0$ para todo $x\in
+I - \{ k\}$, então $\lim_{x\to k}\frac{f(x)}{g(x)} = \lim_{x\to
+  c}\frac{f '(x)}{g'(x)}$.
+
+Assim, para todo $k>0$, temos: 
+  $\lim_{n\rightarrow\!\infty} \frac{(lg n)}{n^k}$ é igual a 
+  $\lim_{n\rightarrow\!\infty} \frac{(\frac{ln n}{ln 2})}{n^k}$ 
+que, pela regra de l'Hôpital, usando o fato de que 
+  $(ln n)' = \frac{1}{n}$ 
+e $(n^k)' = k \times n^{k-1}$, 
+obtemos 
+  $\lim_{n\rightarrow\!\infty} \frac{(\frac{1}{n \times (ln 2) \times k})}{1}$, 
+que é igual a 0. Ou seja, para todo $k>0$ temos:
+  \begin{equation}  
+    \lim_{n\rightarrow\!\infty} \frac{(lg n)}{n^k} = 0 \label{lim-poli-sobre-exp}
+  \end{equation} 
+
+Para mostrar que a derivada de $ln$ é a função inversa (i.e.~$(ln n)'= \frac{1}{n}$),
+seja: $y = ln x$, ou seja, $e^y = x$; derivando ambos os lados em
+relação a $x$, temos: $e^y (\frac{dy}{dx}) = 1$, ou seja, 
+ $x (\frac{dy}{dx}) = 1$, isto é: $\frac{dy}{dx} = \frac{1}{x}$.
+
+{\em Fim de Nota\/} 
+\HRule
+
+\item[4] $lg^* n \asymp lg^* (lg n)$
+
+Veja a variação de valores da função $lg^*$ (veja explicação acima). A
+diferença entre $lg^* n$ e $lg^* (lg n)$ é $1$, ou seja, $lg^* (lg n)
+= (lg^* n) - 1$.
+
+\item[5] $lg^* n \prec 2^{lg^* n}$
+
+Consequência de $m \prec 2^m$ (fazendo $m = lg^* n$). 
+
+\item[6] $2^{lg^* n} \prec lg (lg n)$
+
+Para poder comparar mais facilmente, eliminamos a exponenciação
+tomando o logaritmo (aplicando $lg$) aos dois lados. Obtemos: $lg^* n
+\prec lg (lg (lg n))$. Como $lg^* n$ só cresce com o número de
+potências de 2 de uma torre de potências de 2 que expressa o valor de
+$n$, e como $lg 2^i = i$, com $n$ a partir de $n_5 = 2^{2^{2^{2^2}}}$,
+para o qual $lg^* n_5 = 5$ e $lg (lg (lg n_5)) = 2^{2^2} = 16$,
+teremos sempre $lg^* n$ menor que $lg(lg(lg n))$.
+
+\item[7] $lg (lg n) \prec \sqrt{lg n}$
+
+Com $lg n = m$ obtemos $lg m \prec m^{\frac{1}{2}}$, que é
+consequência de (\ref{lim-poli-sobre-exp}).
+
+\item[8] $\sqrt{lg n} \prec lg n$
+
+Com $lg n = m$ obtemos $\sqrt m \prec m$, o que é verdadeiro (na
+definição de O, basta escolher $n_0 = 1, c = 1$).
+
+\item[9] $lg n \prec (lg n)^2$
+
+Com $lg n = m$ obtemos $m \prec m^2$, o que é verdadeiro (na definição
+de O, basta escolher $n_0 = 1, c = 1$).
+
+\item[10] $(lg n)^2 \prec 2^{\sqrt{2 lg n}}$
+
+Com $lg n = m$ obtemos $m^2 \prec 2^{\frac{m}{2}}$, i.e.~$4m^2 \prec 2^m$, 
+o que é consequência de $\lim_{n\rightarrow\!\infty} \frac{n^b}{a^n} = 0$, 
+para todas as constantes $a$ e $b$ tais que $a>1$. 
+
+\item[11] $2^{\sqrt{2 lg n}} \prec \sqrt{2}^{lg n}$
+
+Temos: $\sqrt{2}^{lg n} = 2^{\frac{lg n}{2}}$. Assim, usando o fato de
+que, para todo $k,f,g$, $k^{f(n)} \prec k^{g(n)}$ se e somente se
+$f(n) \prec g(n)$, obtemos o resultado desejado se e somente se
+$\sqrt{2 lg n} \prec \frac{lg n}{2}$, o que é verdadeiro pois
+$\sqrt{lg n} \prec lg n$.
+
+\item[12] $\sqrt{2}^{lg n} \prec n$
+
+Temos: $\sqrt{2}^{lg n}  \prec n$ se e somente se 
+       $2^{\frac{lg n}{2}} \prec n$ se e somente se 
+       $2^{lg \sqrt{n}}   \prec n$ se e somente se 
+       $\sqrt{n}       \prec n$,
+o que é verdadeiro. % (na definição de $O$, basta escolher $n_0 = 4$, $c = 1$).
+
+\item[13] $2^{lg n} \asymp n$
+
+Aplicando $lg$, obtemos: $lg n \asymp lg n$.
+
+\item[14] $n \prec n lg n$.
+
+Podemos escolher por exemplo $n_0 = 1$, $c=2$ na definição de $O$.
+
+\item[15] $n lg n \asymp lg (n!)$
+
+Usando a {\em aproximação de Stirling\/}:
+
+  \[ n! = \sqrt{2\pi n} (\frac{n}{e})^n (1 + \Theta(\frac{1}{n})) \]
+e aplicando $lg$ a ambos os lados, obtemos: $lg (n!) = lg (\sqrt{2\pi n}) + n lg n - n lg e$, 
+que é assintoticamente igual a $n lg n$:
+
+  \begin{equation}
+    lg (n!) \asymp n lg n 
+    \label{lgn-eq-nlgn}
+  \end{equation}
+
+\item[16] $n lg n \prec n^2$
+
+Podemos escolher por exemplo $n_0 = 2$, $c=1$ na definição de $O$.
+
+\item[17] $n^2 \asymp 4^{lg n}$
+
+Pois $4^{lg n} = (2^2)^{lg n} = 2^{2^{lg n}} = 2^{2 lg n} = 2^{lg (n^2)} = n^2$. 
+
+\item[18] $n^2 \prec n^3$
+
+Podemos escolher por exemplo $n_0 = 1$, $c=2$ na definição de $O$.
+
+\item[19] $n^3 \prec (lg n)!$
+
+Aplicando $lg$ a ambos os lados, obtemos $lg (n^3) \prec lg ((lg n)!)$. 
+Com $m = lg n$, obtemos: $3 m \prec lg (m!)$ (pois $lg (n^3) = 3 lg n$). 
+
+Usando (\ref{lgn-eq-nlgn}) obtemos: $3 m \prec m lg m$, que significa
+$3 \prec lg m$, que é verdadeiro.
+
+\item[20] $(lg n)! \prec (lg n)^{lg n}$. 
+
+É equivalente a $m!\prec m^m$, com $m = lg n$. O que é verdadeiro, pois:
+
+  \[ \lim \frac{m \times (m-1) \times \ldots 2 \times 1}
+               {m \times m \times \ldots m \times m} = 0 
+  \]
+  
+\item[21] $(lg n)^{lg n} \asymp n^{lg (lg n)}$
+
+Vamos usar o fato de que $log_b a^n = n log_b a$, para todo $a,b,n$.
+
+Aplicando $lg$ ao lado esquerdo, obtemos: 
+
+ \[ lg ((lg n)^{lg n}) = lg n \times lg (lg n) \]
+
+Aplicando $lg$ ao lado direito, obtemos:
+
+  \[ lg (n^{lg (lg n)}) = lg (lg n) \times lg n \]
+
+\item[22] $n^{lg (lg n)} \prec (\frac{3}{2})^n$
+
+Aplicando $lg$ ao lado esquerdo, obtemos: $lg n \times lg (lg n)$. 
+
+Aplicando $lg$ ao lado direito, obtemos: $n lg \frac{3}{2}$. 
+
+Temos $n \prec lg (lg n)$ e $lg (lg n) \prec lg n \times lg (lg n)$.
+
+Por transitividade da relação $(\prec)$, obtemos: $n \prec lg n \times
+lg (lg n)$, e portanto $n lg \frac{3}{2} \prec lg n \times lg (lg n)$.
+
+O resultado é então obtido pelo fato de que:
+
+  \begin{equation}
+    \text{Para toda função} f,g, \text{ temos: }
+        lg f(n) \prec lg g(n) \text{ se e somente se } f(n) \prec g(n) 
+    \label{lgprec}
+  \end{equation}
+
+\item[23] $(\frac{3}{2})^n \prec 2^n$
+
+Consequência de: $\lim_{n\rightarrow\!\infty} \frac{(\frac{3}{2})^n}{2^n} = \lim_{n\rightarrow\!\infty} (\frac{3}{4})^n = 0$.
+
+\item[24] $2^n \prec n 2^n$
+
+Com $m = 2^n$ ($n = lg m$), obtemos: $m \prec m lg m$.
+
+\item[25] $n 2^n \prec n!$
+
+Temos: $2^n \prec n!$ e, por transitividade, uma vez que $n 2^n \prec
+2^n$, obtemos $n 2^n \prec n!$.
+
+\item[26] $n! \prec (n+1)!$
+
+Consequência de: $(n+1)! = (n+1) \times (n!)$.
+
+\item[27] $(n+1)! \asymp n^n$
+
+Aplicando $lg$ a ambos os lados, obtemos, usando (\ref{lgn-eq-nlgn}):
+  $(n+1) lg (n+1) \asymp n lg n$, o que é verdadeiro.
+Obtemos o resultado usando (\ref{lgprec}).
+
+\item[28] $n^n \prec 2^{2^n}$
+
+Aplicando $lg$ a ambos os lados, obtemos, usando (\ref{lgn-eq-nlgn}):
+  $n lg n \prec lg (2^n)$, o que é verdadeiro.
+Obtemos o resultado usando (\ref{lgprec}).
+
+\item[29] $2^{2^n} \prec 2^{2^{n+1}}$
+
+Temos: $2^{n+1} = 2 \times 2^n$ e portanto $2^{2^{n+1}} = 2^{2\times
+  {2^n}} = 2^{2^n} \times 2^{2^n}$.
+
+\end{description}
+
+\end{enumerate}
+
+\section{Exercícios}
+
+\begin{enumerate}
+
+\end{enumerate}
+
