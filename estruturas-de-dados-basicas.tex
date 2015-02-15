@@ -188,7 +188,7 @@ para inserir um novo valor de tipo inteiro na lista que é fornecida
 como argumento. A lista modificada, com a inserção do novo elemento no
 início, é retornada como resultado da operação.
 
-\progb{\insert ($a$, $l$) \{ \\
+\progb{\insert\ ($a$, $l$) \{ \\
          \hspace*{.2cm} $p$ = \malloc(\sizeof(\struct\ \ListaDeInteiros));\\
          \hspace*{.2cm} $p$->\elem\ = $a$;\\
          \hspace*{.2cm} $p$->$r$ = $l$;\\
@@ -199,9 +199,13 @@ início, é retornada como resultado da operação.
 \section{Remoção}
 \label{remocao-de-lista}
 
-Remover um elemento de uma lista é uma operação de complexidade
-$O(n)$, porque é necessário primeiro realizar uma operação de
-pesquisa. 
+Remover um elemento de uma lista é uma operação de complexidade $O(n)$
+no pior caso, pois é necessário procurar o elemento a ser removido.
+
+Na versão imperativa, incluímos uma versão de listas duplamente
+encadeadas (Seção \ref{lista-duplamente-encadeada}, onde reescrevemos
+as funções \elem\ e \insert) para realizar a procura com chamada à
+função \elem\ seguida de chamada a \insert.
 
 \subsection{Versão funcional}
 
@@ -218,7 +222,21 @@ passado como parâmetro:
 
 \subsection{Versão imperativa}
 
+A versão imperativa não cria nova lista, usa ponteiro \prev\ para
+guardar ponteiro para o elemento a ser removido, e usa ponteiro para o
+início da lista tanto como parâmetro quanto resultado da operação.
 
+\progb{\delete\ ($a$, $l$) \{ \\
+    \hspace*{.2cm} \struct\ \ListaDeInteiros\ *\prev\ = \NULL,  *$p$ = $l$;\\
+    \hspace*{.2cm} \while\ ($p$ != \NULL \&\& $p$->\eelem\ != $a$) \{ \\
+       \hspace*{.5cm} \prev\ = $p$; \\
+       \hspace*{.5cm} $p$ = $p$->$r$;\\
+    \}\\
+    \hspace*{.2cm} \iif ($p$ != \NULL)\\
+       \hspace*{.5cm} \iif (\prev\ == \NULL)\\ 
+	  \hspace*{1cm} \return\ $l$->$r$;
+       \hspace*{.5cm} \eelse\ \{ \prev->$r$ = $p$->$r$; \return\ $l$; \}
+  }
 
 
 \section{Pilha}
