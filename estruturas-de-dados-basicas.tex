@@ -103,8 +103,8 @@ A função \elem\ pode ser definida como a seguir:
 \progb{
 \elem\ \_ [] = \False\\
 \elem\ $a$ ($b$:$x$) \\
-  \hspace*{.2cm} | $a$ == $b$  = \True\\
-  \hspace*{.2cm} | \otherwise\ = \elem\ $a$ $x$
+  \hspace*{.2cm} | $a$ == $b$  \hspace*{.2cm} = \True\\
+  \hspace*{.2cm} | \otherwise\                = \elem\ $a$ $x$
 }
 
 O tipo de \elem\ é: {\tt \Eq\ $a$ => $a$ -> $a$ -> \Bool}.  
@@ -128,28 +128,28 @@ cláusula explícita de importação). A definição de \elem\ no
 importantes para definição de funções em Haskell):
 
 \progb{
-\foldr\ \hspace*{.5cm}         :: ($a$ -> $b$ -> $b$) -> $b$ -> [$a$] -> $b$\\
-\foldr\ $f$ $z$ []        \hspace*{.2cm} =  $z$\\
-\foldr\ $f$ $z$ ($a$:$x$) \hspace*{.2cm} =  $f$ $a$ (\foldr\ $f$ $z$ $x$)\\ 
+\foldr\ \hspace*{2cm}  :: ($a$ -> $b$ -> $b$) -> $b$ -> [$a$] -> $b$\\
+\foldr\ $f$ $z$ []        \hspace*{.8cm} =  $z$\\
+\foldr\ $f$ $z$ ($a$:$x$) \hspace*{.1cm} =  $f$ $a$ (\foldr\ $f$ $z$ $x$)\\ 
   \hspace*{.5cm} \\
 
-\mmap\               \hspace*{.5cm} :: ($a$ -> $b$) -> [$a$] -> [$b$]\\
-\mmap\ \_ []         \hspace*{.2cm} = []\\
-\mmap\ $f$ ($a$:$x$) \hspace*{.2cm} = $f$ $a$ : \mmap\ $f$ $x$ \\ 
+\mmap\               \hspace*{2cm} :: ($a$ -> $b$) -> [$a$] -> [$b$]\\
+\mmap\ \_ []         \hspace*{.8cm} = []\\
+\mmap\ $f$ ($a$:$x$) \hspace*{.1cm} = $f$ $a$ : \mmap\ $f$ $x$ \\ 
 \hspace*{.5cm}\ \\
 
-\aand, \or\   \hspace*{.5cm} :: [\Bool] -> \Bool\\
-\aand\        \hspace*{.5cm} =  \foldr\ (\&\&) \True\\
-\or\         \hspace*{.5cm} =  \foldr (||) \False\\ 
+\aand, \or\   :: [\Bool] -> \Bool\\
+\aand\        =  \foldr\ (\&\&) \True\\
+\or\          =  \foldr (||) \False\\ 
 \hspace*{.5cm} \\
 
-\any, \all\ \hspace*{.5cm}  :: ($a$ -> \Bool) -> [$a$] -> \Bool\\
-\any\ $p$   \hspace*{.2cm} =  \or\ . \map\ $p$\\
-\all\ $p$   \hspace*{.2cm} =  \and\ . \map\ $p$\\ 
+\any, \all\ :: ($a$ -> \Bool) -> [$a$] -> \Bool\\
+\any\ $p$   =  \or\ . \map\ $p$\\
+\all\ $p$   =  \and\ . \map\ $p$\\ 
 \hspace*{.5cm}\ \\
 
-\elem\  \hspace*{.5cm} :: (\Eq\ $a$) => $a$ -> [$a$] -> \Bool\\
-\elem\ $a$  \hspace*{.2cm} =  \any\ (== $a$)
+\elem\  \hspace*{.2cm} :: (\Eq\ $a$) => $a$ -> [$a$] -> \Bool\\
+\elem\ $a$ = \any\ (== $a$)
 
 }
 \HRule
@@ -163,7 +163,7 @@ igual a $a$, se o argumento estiver presente na lista, e \NULL\ em
 caso contrário.
 
   \progb{\elem ($a$, $l$) \{ \\
-   \hspace*{.2cm} \while\ ($l$ != \NULL \&\& $l$->\elem != $a$) $l$ = $l$->$r$;\\
+   \hspace*{.2cm} \while\ ($l$ != \NULL\ \&\& $l$->\elem\ != $a$) $l$ = $l$->$r$;\\
    \hspace*{.2cm} return $l$; \\
    \}
   }
@@ -174,10 +174,14 @@ caso contrário.
 Inserir um elemento no início de uma lista é uma operação de
 complexidade $O(1)$.
 
+\subsection{Versão funcional}
+
 A versão funcional cria uma nova lista, que tem como resto a lista
 fornecida como argumento, ou seja, é simplesmente igual a {\tt (:)}:
 
 \progb{\insert\ = (:)}
+
+\subsection{Versão imperativa}
 
 A versão imperativa aloca um novo registro, de tipo \ListaDeInteiros,
 para inserir um novo valor de tipo inteiro na lista que é fornecida
@@ -185,16 +189,36 @@ como argumento. A lista modificada, com a inserção do novo elemento no
 início, é retornada como resultado da operação.
 
 \progb{\insert ($a$, $l$) \{ \\
-         \hspace*{.2cm} 
-            $p$ = \malloc(\sizeof(\struct\ \ListaDeInteiros));\\
-            $p$->\elem = $a$;\\
-            $p$->$r$ = $l$;\\
-            return $p$;\\
+         \hspace*{.2cm} $p$ = \malloc(\sizeof(\struct\ \ListaDeInteiros));\\
+         \hspace*{.2cm} $p$->\elem\ = $a$;\\
+         \hspace*{.2cm} $p$->$r$ = $l$;\\
+         \hspace*{.2cm} return $p$;\\
        \}
       }
 
 \section{Remoção}
 \label{remocao-de-lista}
+
+Remover um elemento de uma lista é uma operação de complexidade
+$O(n)$, porque é necessário primeiro realizar uma operação de
+pesquisa. 
+
+\subsection{Versão funcional}
+
+A versão funcional cria uma nova lista, que não tem o elemento
+passado como parâmetro:
+
+\progb{
+\delete\  \hspace*{1.7cm} :: ($a$ -> $a$ -> \Bool) -> $a$ -> [$a$] -> [$a$]\\
+\delete\ \_ [] \hspace*{.2cm} = []\\
+\delete\ $a$ ($b$:$x$) \hspace*{.5cm} \\
+  \hspace*{.2cm} | $a$ == $b$ \hspace*{.2cm} = $x$\\
+  \hspace*{.2cm} | \otherwise\ = $b$ : \delete\ $a$ $x$
+}
+
+\subsection{Versão imperativa}
+
+
 
 
 \section{Pilha}
@@ -263,23 +287,23 @@ legibilidade, os tipos de todas as funções definidas. Veja Figura
 \begin{figure}
 
 \progb{
-module \Pilha\ (\Pilha, \vazia, \empilhar, \desempilhar, \topo, \estaVazia) where\\ \\
+module \Pilha\ (\Pilha, \vazia, \empilhar, \desempilhar, \topo, \estaVazia) where\\ \ \hspace*{.2cm} \\
 
-newtype \Pilha\ $a$ = \Pilha\ [$a$]\\ \\ 
+newtype \Pilha\ $a$ = \Pilha\ [$a$]\\ \ \hspace*{.2cm} \\ 
 
 \vazia:: \Pilha\ $a$\\
-\vazia\ = \Pilha []\\ \\
+\vazia\ = \Pilha []\\ \ \hspace*{.1cm} \\ \ \hspace*{.2cm} \\
 
 \empilhar:: $a$ -> \Pilha\ $a$ -> \Pilha\ $a$\\
-\empilhar\ \eelem\ (\Pilha\ $p$) = \Pilha\ ($e$:$p$)\\ \\
+\empilhar\ \eelem\ (\Pilha\ $p$) = \Pilha\ ($e$:$p$)\\ \ \hspace*{.2cm} \\
 
 \desempilhar:: \Pilha\ $a$ -> \Pilha\ $a$\\
 \desempilhar\ (\Pilha\ [])    = error "Função desempilhar chamada com pilha vazia"\\
-\desempilhar\ (\Pilha\ (\_:$p$)) = \Pilha\ $p$\\ \\
+\desempilhar\ (\Pilha\ (\_:$p$)) = \Pilha\ $p$\\ \ \hspace*{.2cm} \\
 
 \topo:: \Pilha\ $a$ -> $a$\\
 \topo\ (\Pilha\ [])   = error "Função topo chamada com pilha vazia"\\
-\topo\ (\Pilha\ (\eelem:\_)) = \eelem\\ \\
+\topo\ (\Pilha\ (\eelem:\_)) = \eelem\\ \ \hspace*{.2cm} \\ 
 
 \estaVazia:: \Pilha\ $a$ -> \Bool\\
 \estaVazia\ (\Pilha\ $p$) = \null\ $p$
@@ -306,7 +330,7 @@ campos do registro $r$ com o registro (\nome\ pode ser usado em vez de
 {\tt $r$.\nome}).
 
 \progb{
-  \vazia\ (\pilha) = \{ \pilha.\topo\ = -1; \}\\
+  \vazia\ (\pilha) = \{ \pilha.\topo\ = -1; \}\\ \ \hspace*{.2cm} \\
   \empilhar\ (\eelem, \pilha) \{ \\
       \hspace*{.2cm} with \pilha\ \{ \\
         \hspace*{1cm} \topo\ $\leftarrow$ \topo\ + 1;\\
@@ -316,7 +340,7 @@ campos do registro $r$ com o registro (\nome\ pode ser usado em vez de
   \desempilhar\ (\pilha) \{ \\
       \hspace*{.2cm} with \pilha\ \{ \topo\ $\leftarrow$ \topo\ - 1; \} \\
   \}\\
-  \topo\ (\pilha) \{ with \pilha\ \{ \return\ \elems[\topo]; \} \}\\
+  \topo\ (\pilha) \{ with \pilha\ \{ \return\ \elems[\topo]; \} \}\\ \ \hspace*{.2cm} \\
   \estaVazia\ (\pilha) \{ \return\ \pilha.\topo\ == -1; \}
  }
 
@@ -353,12 +377,12 @@ vazia).
 \newcommand{\entrar}{{\it entrar\/}}
 \newcommand{\inicio}{{\it início\/}}
 
-\progb{\vazia\ = ([],[])\\
-      \entrar\ $e$ (\frente,\tras) = \fila\ (\frente, e : \tras)\\
+\progb{\vazia\ = ([],[])\\ \ \hspace*{.2cm} \\
+      \entrar\ $e$ (\frente,\tras) = \fila\ (\frente, e : \tras)\\ \ \hspace*{.2cm} \\
       \fila\ ([], \tras) = (\reverse\ \tras, [])\\
-      \fila\ $f$        = $f$\\
-      \sair\ ($e$:\frente, \tras) = (\frente,\tras)\\
-      \estaVazia\ (\frente,\_) = \null\ \frente\\
+      \fila\ $f$        = $f$\\ \ \hspace*{.2cm} \\
+      \sair\ ($e$:\frente, \tras) = (\frente,\tras)\\ \ \hspace*{.2cm} \\
+      \estaVazia\ (\frente,\_) = \null\ \frente\\ \ \hspace*{.2cm} \\
       \inicio\ ($e$:\frente,\_) = $e$
      }
 
@@ -382,7 +406,7 @@ fila cheia. O operador {\tt \%} é usado para retornar o resto da
 divisão do primeiro operando pelo segundo.
 
 \progb{
-  \vazia\ (\fila) = \{ with \fila \{ \inicio\ = \fim\ = 0; \} \} \\
+  \vazia\ (\fila) = \{ with \fila \{ \inicio\ = \fim\ = 0; \} \} \\ \ \hspace*{.2cm} \\
   \entrar\ (\eelem, \fila) \{ \\
       \hspace*{.2cm} with \fila\ \{ \\
           \hspace*{1cm} \elems[\fim] $\leftarrow$ \eelem;\\
@@ -392,7 +416,7 @@ divisão do primeiro operando pelo segundo.
   \sair\ (\fila) \{ \\
       \hspace*{.2cm} with \fila\ \{ \inicio\ $\leftarrow$ (\inicio\ + 1) \% $n$;\\
   \}\\
-  \inicio\ (\fila) \{ with \fila\ \{ \return\ \elems[\inicio]; \} \}\\
+  \inicio\ (\fila) \{ with \fila\ \{ \return\ \elems[\inicio]; \} \}\\ \ \hspace*{.2cm} \\
   \estaVazia\ (\pilha) \{ with \fila\ \{ \return\ \inicio\ == \fim; \} \} 
  }
 
