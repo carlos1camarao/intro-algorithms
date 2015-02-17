@@ -32,8 +32,12 @@ de árvore binária:
 
 Em computação, uma árvore pode ser vista também como um grafo ---
 conjunto de vértices e arestas entre esses vértices --- sem ciclos e
-conexo (se não for conexto, seria uma floresta). No entanto, não vamos
-abordar grafos neste livro.
+conexo (se for acíclico mas não for conexo, é uma floresta). Um
+caminho de um vértice $a$ a um vértice $b$ é uma sequência de vértices
+adjacentes (conectados por uma aresta) que tem $a$ como primeiro e $b$
+como último vértice. Um ciclo é um caminho que inicia e termina no
+mesmo vértice, sem repetir passagem por uma mesma aresta. No entanto,
+não vamos abordar grafos neste livro.
 
 Em linguagens que provêem suporte ao uso de ponteiros mas não à
 definição e manipulação direta de tipos recursivos, a representação de
