@@ -1,0 +1,75 @@
+\section{Árvores}
+\label{arvores}
+
+\newcommand{\Tree}{{\it Tree\/}}
+\newcommand{\Leaf}{{\it Leaf\/}}
+\newcommand{\Node}{{\it Node\/}}
+\newcommand{\BTree}{{\it BTree\/}}
+\newcommand{\ArvoreBinariaDeInteiros}{{\it ÁrvoreBináriaDeInteiros\/}}
+\newcommand{\ArvoreDeInteiros}{{\it ÁrvoreDeInteiros\/}}
+\newcommand{\primogenito}{{\it primogênito\/}}
+\newcommand{\irmao}{{\it irmão\/}}
+\newcommand{\pai}{{\it pai\/}}
+\newcommand{\esq}{{\it esq\/}}
+\newcommand{\dir}{{\it dir\/}}
+
+A estrutura de dados básica pode ser vista como uma estrutura de dados
+recursiva, definida como i) vazia (ou uma folha) ou ii) um nodo
+contendo um elemento e um certo número de ramos (ou nodos), que contêm
+sub-árvores:
+
+  \[ \text{{\tt data \Tree\ $a$ = \Leaf\ | \Node\ $a$ [\Tree\ $a$]}} \]
+
+Os elementos podem também estar nas folhas, em vez de nos nodos
+internos:
+
+  \[ \text{{\tt data \Tree'\ $a$ = \Leaf\ $a$ | \Node\ [\Tree\ $a$]}} \]
+
+Se a árvore tem duas sub-árvores (possivelmente vazias), ela é chamada
+de árvore binária:
+
+  \[ \text{{\tt data \BTree\ $a$ = \Leaf\ $a$ | \Node\ (\Tree\ $a$) (\Tree\ $a$)}} \]
+
+Em computação, uma árvore pode ser vista também como um grafo ---
+conjunto de vértices e arestas entre esses vértices --- sem ciclos e
+conexo (se não for conexto, seria uma floresta). No entanto, não vamos
+abordar grafos neste livro.
+
+Em linguagens que provêem suporte ao uso de ponteiros mas não à
+definição e manipulação direta de tipos recursivos, a representação de
+árvores binárias pode ser feita com o uso de ponteiro como mostra o
+exemplo a seguir:
+
+  \progb{
+        \struct\ \ArvoreBinariaDeInteiros\ \{ \\
+        \hspace*{.2cm} int \eelem; \\
+        \hspace*{.2cm} \struct\ \ArvoreBinariaDeInteiros\ * $\esq,\dir$; \\
+        \}
+  }
+Os campos \esq\ e \dir\ de um nodo são ponteiros, possivelmente nulos,
+para sub-árvores.
+
+Para árvores não binárias, pode ser usada uma representação, que
+podemos chamar de {\em representação com
+  primogênito-irmão-e-pai\/}, como a seguir:
+
+  \progb{
+        \struct\ \ArvoreDeInteiros\ \{ \\
+        \hspace*{.2cm} int \eelem; \\
+        \hspace*{.2cm} \struct\ \ArvoreDeInteiros\ *\primogenito, \irmao, \pai; \\ \} }
+
+A árvore da Figura \ref{Arv1} é mostrada na Figura \ref{Rep-arv1}.
+
+\begin{figure}
+
+....
+
+\label{Arv1}
+\end{figure}
+
+\begin{figure}
+
+....
+
+\label{Rep-arv1}
+\end{figure}
