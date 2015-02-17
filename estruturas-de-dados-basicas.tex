@@ -36,7 +36,8 @@ com os construtores \Nil\ e \Cons, por {\tt \Cons\ 1 (\Cons\ 2
 Em linguagens como \C, um tipo lista distinto tem que ser definido
 para cada tipo distinto para os elementos, usando registros (chamados
 em \C\ de "estruturas", definidos com a palavra-chave \struct) e
-ponteiros. Por exemplo:
+ponteiros, formando uma estrutura de dados comumente chamada de {\em
+  lista encadeada}. Por exemplo:
 
 \newcommand{\eelem}{{\it elem\/}}
 \newcommand{\ListaDeInteiros}{{\it ListaDeInteiros\/}}
@@ -71,17 +72,17 @@ menos legível e mais sujeito a repetições e a ocorrências de erros.
 
 Em Haskell, o acesso a um valor $v$ de uma lista $x$ requer acesso a
 todos os elementos anteriores a $v$ em $x$. De fato, a representação
-de listas é feita por meio de ponteiros, mas a manipulação de
-ponteiros é gerada automaticamente, de acordo com o código Haskell
+de listas é feita em Haskell por meio de ponteiros, mas a manipulação
+de ponteiros é gerada automaticamente, de acordo com o código Haskell
 usado, em vez de ser feita diretamente pelo programador.
 
-O uso de arranjos é uma maneira alternativa de representar listas em
-uma linguagem (como \C) que não provê suporte a manipulação de valores
-de estruturas de dados recursivas como listas. Nesse caso, o uso de
-arranjos requer que se especifique a priori um número máximo de
-elementos.
+O uso de arranjos é uma maneira alternativa de representar listas,
+especialmente em uma linguagem (como \C) que não provê suporte a
+manipulação de valores de estruturas de dados recursivas como
+listas. Nesse caso, o uso de arranjos requer que se especifique a
+priori um número máximo de elementos.
 
-\section{Pesquisa}
+\subsection{Pesquisa}
 \label{pesquisa-em-lista}
 
 Em computação, {\em pesquisar\/} em geral significa determinar se um
@@ -94,7 +95,7 @@ Em ambos os casos apresentados abaixo, a pesquisa em uma lista de $n$
 elementos tem complexidade $O(n)$ no pior caso, pois envolve
 possivelmente comparação com cada elemento da lista.
 
-\subsection{Versão funcional}
+\subsubsection{Versão funcional}
 
 \newcommand{\map}{{\it map\/}}
 
@@ -154,7 +155,7 @@ importantes para definição de funções em Haskell):
 }
 \HRule
 
-\subsection{Versão imperativa}
+\subsubsection{Versão imperativa}
 
 A versão imperativa de \elem\ definida a seguir recebe um argumento em
 $a$ e um apontador para uma lista (de tipo \ListaDeInteiros), denotado
@@ -168,20 +169,20 @@ caso contrário.
    \}
   }
 
-\section{Inserção}
+\subsection{Inserção}
 \label{insercao-em-lista}
 
 Inserir um elemento no início de uma lista é uma operação de
 complexidade $O(1)$.
 
-\subsection{Versão funcional}
+\subsubsection{Versão funcional}
 
 A versão funcional cria uma nova lista, que tem como resto a lista
 fornecida como argumento, ou seja, é simplesmente igual a {\tt (:)}:
 
 \progb{\insert\ = (:)}
 
-\subsection{Versão imperativa}
+\subsubsection{Versão imperativa}
 
 A versão imperativa aloca um novo registro, de tipo \ListaDeInteiros,
 para inserir um novo valor de tipo inteiro na lista que é fornecida
@@ -196,18 +197,18 @@ início, é retornada como resultado da operação.
        \}
       }
 
-\section{Remoção}
+\subsection{Remoção}
 \label{remocao-de-lista}
 
 Remover um elemento de uma lista é uma operação de complexidade $O(n)$
 no pior caso, pois é necessário procurar o elemento a ser removido.
 
-Na versão imperativa, incluímos uma versão de listas duplamente
-encadeadas (Seção \ref{lista-duplamente-encadeada}, onde reescrevemos
-as funções \elem\ e \insert) para realizar a procura com chamada à
-função \elem\ seguida de chamada a \insert.
+A Seção \ref{lista-duplamente-encadeada} redefine o tipo de lista
+encadeada para uma versão de listas duplamente encadeadas, e reescreve
+as funções \elem\ e \insert, para definir \delete\ por meio de uma
+chamada à função \elem\ (seguida de chamada a \insert).
 
-\subsection{Versão funcional}
+\subsubsection{Versão funcional}
 
 A versão funcional cria uma nova lista, que não tem o elemento
 passado como parâmetro:
@@ -220,7 +221,7 @@ passado como parâmetro:
   \hspace*{.2cm} | \otherwise\ = $b$ : \delete\ $a$ $x$
 }
 
-\subsection{Versão imperativa}
+\subsubsection{Versão imperativa}
 
 \newcommand{\prev}{{\it prev\/}}
 
@@ -245,7 +246,7 @@ início da lista tanto como parâmetro quanto resultado da operação.
 
 \ldots \ldots .....
 
-\section{Pilha}
+\subsection{Pilha}
 \label{pilha}
 
 Uma estrutura de dados {\em Pilha\/} se caracteriza pelo fato de
@@ -267,7 +268,7 @@ pilha, e v) testar se pilha está vazia, pode ser implementada como a seguir.
 \newcommand{\pilha}{{\it pilha\/}}
 \newcommand{\Pilha}{{\it Pilha\/}}
 
-\subsection{Versão funcional}
+\subsubsection{Versão funcional}
 
 Em Haskell uma lista provê diretamente as operações de uma pilha:
 
@@ -337,7 +338,7 @@ newtype \Pilha\ $a$ = \Pilha\ [$a$]\\ \ \hspace*{.2cm} \\
 \caption{Tipo abstrato \Pilha\ em Haskell}
 \end{figure}
 
-\subsection{Versão imperativa}
+\subsubsection{Versão imperativa}
 
 Considerando \pilha\ como um registro com campos \topo\ e \elems,
 sendo \elems\ um arranjo de $n$ elementos --- indexado de $0$ a {\tt
@@ -368,7 +369,7 @@ campos do registro $r$ com o registro (\nome\ pode ser usado em vez de
   \estaVazia\ (\pilha) \{ \return\ \pilha.\topo\ == -1; \}
  }
 
-\section{Fila}
+\subsection{Fila}
 \label{fila}
 
 Em uma {\em fila} a inserção é feita de um lado e a remoção é feita do
@@ -381,7 +382,7 @@ elemento) na fila, iii) sair (tirar elemento) da fila, iv) obter
 elemento do início da fila, e v) testar se fila está vazia, pode ser
 implementada como a seguir.
 
-\subsection{Versão funcional}
+\subsubsection{Versão funcional}
 
 \newcommand{\frente}{{\it frente\/}}
 \newcommand{\tras}{{\it trás\/}}
@@ -410,7 +411,7 @@ vazia).
       \inicio\ ($e$:\frente,\_) = $e$
      }
 
-\subsection{Versão imperativa}
+\subsubsection{Versão imperativa}
 \label{fila-imperativa}
 
 \newcommand{\fim}{{\it fim\/}}
@@ -444,4 +445,6 @@ divisão do primeiro operando pelo segundo.
   \estaVazia\ (\pilha) \{ with \fila\ \{ \return\ \inicio\ == \fim; \} \} 
  }
 
+\input{arvores}
 
+\input{hash}
