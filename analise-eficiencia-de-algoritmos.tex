@@ -1,0 +1,107 @@
+\chapter{Análide da eficiência de algoritmos}
+\label{analise-eficiencia-de-algoritmos}
+
+Além da eficiência, algoritmos podem ser analisados quanto a
+facilidade de mostrar ou provar correção, simplicidade e
+generalidade. 
+
+Ao contrário da análise da eficiência, simplicidade e facilidade de
+mostrar correção são critérios bastante subjetivos. É bastante difícil
+estabelecer métricas para tais critérios. Generalidade, por sua vez,
+pode ser medida pelo tamanho do domínio da entrada do problema
+resolvido, mas há situações em que o desenvolvimento de um algoritmo
+mais geral é desnecessário (pouco vantajoso) ou difícil, e tal
+dificuldade ou necessidade é difícil de ser medida precisamente.
+
+O projeto de algoritmos envolve revisão e busca de melhorias, com o
+qual programadores devem se envolver. 
+
+Em geral, o projeto de algortimos envolve a adoção de soluções que
+favorecem um aspecto em detrimento de outro, e um aspecto que costuma
+ser bastante influente é o tempo disponível para desenvolvimento do
+programa. O desenvolvimento de algoritmos {\em ótimos\/} é uma questão
+relativa ao {\em problema\/} que está sendo resolvido e, mesmo
+restringindo ao aspecto de eficiência, para muitos problemas saber
+dizer qual é o algoritmo ótimo é difícil e muitas vezes não tem uma
+resposta conhecida. Vamos falar mais sobre esse assunto na seção
+{P-vs-NP}.
+
+% Anany Levitin cita \ref{Anany-Levitin-analysis-and-design-of-algs} a
+% seguinte observação de Saint-Exupéry (que ele tirou de citação feita
+% por Jon Bentley): ``Um projetista sabe que chegou à perfeição não
+% quando não há mais nada a incluir, mas quando não há mais nada a
+% remover''.
+
+A prova de correção de programas é uma área da ciência da computação
+que está em franca evolução, atualmente. O desenvolvimento de teorias
+de tipos \cite{Sørensen98lectureson}, baseadas nos chamados ``tipos
+dependentes'' \cite{Bove:2009:DTW,Nederpelt-Geuvers-2014}, tem
+evoluído bastante. Esse desenvolvimento tem estimulado trabalhos com
+os chamados ``assistentes de prova''
+\cite{Geuvers2009:Proof-assistants}. Esses programas e linguagens, no
+entanto, ainda requerem bastante treinamento e parecem ainda estar em
+processo de evolução, antes que possam ser mais amplamente
+usados. Atualmente, a correção da vasta maioria dos programas usados
+na prática não é demonstrada, mas sujeita a testes. Provas de correção
+e técnicas de teste de programas não fazem parte do escopo deste
+livro; no entanto, vamos usar provas de indução e definição de
+invariantes para mostrar informalmente a correção de programas.
+
+Como usualmente, não é feita neste livro nenhuma {\em validação dos
+  dados de entrada}, isto é, não é verificado que os dados de entrada
+realmente estão dentro dos limites estabelecidos no enunciado de um
+problema. Em programas usados na prática, essa verificação deve ser
+incluída (o enunciado do problema não deve estabelecer tais limites
+para os dados de entrada), mas em geral essa validação não envolve
+nenhum aspecto mais relevante para a tarefa de programação (apenas
+inclusão de testes para emissão de mensagens de erro no caso em que os
+dados de entrada não satisfaçam a esses testes).
+
+As seções a seguir apresentam alguns exemplos de problemas para os
+quais há vamos analisar a eficiência de um algoritmo simples que os
+resolve. O roteiro para análise da eficiência é o seguinte:
+
+\begin{enumerate}
+
+\item Determinar variável ($n$) que representa o tamanho dos dados de
+  entrada.
+
+\item Identificar operações que vão determinar a variação na
+  eficiência do programa durante a execução.
+
+\item Expresse o número de vezes que a operação é executada em função
+  de $n$, chamada de expressão-determinante-da-eficiência.
+
+\item Resolva ou simplifique a expressão-determinante-da-eficiência.
+
+\end{enumerate}
+
+No caso de um programa recursivo, a
+expressão-determinante-da-eficiência é em geral uma {\em relação de
+  recorrência}. Uma relação de recorrência é uma definição recursiva
+para a qual em geral existe uma solução não recursiva que a
+simplifique (especificando a mesma relação). No caso de um programa
+não recursivo, a expressão-determinante-da-eficiência é em geral um
+somatório, que em geral também pode ser simplificado.
+
+As seções seguintes apresentam exemplo de problemas simples e suas
+soluções, para os quais a eficiência é analisada usando o roteiro
+acima.
+
+\section{Maior Elemento}
+
+\section{Unicidade de Elementos}
+
+\section{Multiplicação de Matrizes}
+
+\section{Número de Dígitos}
+
+\section{Números de Fibonacci}
+
+
+
+
+
+
+
+
