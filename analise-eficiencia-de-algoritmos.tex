@@ -92,13 +92,78 @@ As seções seguintes apresentam exemplo de problemas simples e suas
 soluções, para os quais a eficiência é analisada usando o roteiro
 acima.
 
+\section{Número de Dígitos}
+\label{numero-de-digitos}
+
+O problema é determinar o número de dígitos de um número em uma dada
+base usada para representação desse número. O número e a base são
+dados de entrada.
+
+\subsection{Versão funcional}
+
+\newcommand{\numDigs}{{\it numDigs\/}}
+
+A versão funcional é apresentada em Haskell a seguir:
+
+\progb{
+\numDigs\ $x$ $b$\\
+  \hspace*{.2cm} | $x$ < $b$   = 1\\
+  \hspace*{.2cm} | \otherwise\ = 1 + \numDigs\ ($x$ `\ddiv` $b$)
+}
+
+A variável que representa o tamanho dos dados de entrada é igual a
+$n$.  A variação do tempo de execução $T(n)$ é dada por (considerando
+como $k$ uma constante igual ao tempo gasto pela operação de somar 1 a
+um valor qualquer mais o tempo gasto pela operação de comparar o
+argumento $x$ com $b$):
+
+ \[ \begin{array}{lll}
+       T(n) & = 0                 & \text{ se } n < b\\
+       T(n) & = T(n `\ddiv` b) + k & \text{ caso contrário}
+    \end{array}
+ \]
+Vamos considerar que $n$ é uma potência de $b$ --- isto é, $n = b^i$,
+para algum $i\geq 0$. Essa consideração é baseada na regra .... \ldots
+
+Para $i\geq b$, obtemos:  
+ \[ \begin{array}{ll}
+       T(b^i) & = T(b^{i-1}) + k \\
+              & = T(b^{i-2}) + (2 \times k) \\
+              & \ldots
+    \end{array}
+ \]
+Para $n=b^i$, obtemos $T(b^i) = T(b^0) + (i\times k) = i\times k$.
+Portanto, $T(n) = log_b (i\times k)$ e portanto $T(n) \asymp lg n$.
+
+\subsection{Versão imperativa}
+
+\newcommand{\numD}{{\it numD\/}}
+
+A versão imperativa é similar, usando um comando de repetição em vez
+de recursão:
+
+\progb{
+\numDigs\ ($n$,$b$) \{ \\
+  \hspace*{.2cm} \numD\ = 0;\\
+  \hspace*{.2cm}   \while\ $n$ > $b$ \{ \\
+       \hspace*{1cm} \numD\ = \numD\ + 1;\\
+         \hspace*{.2cm} $n$ = $n$ / $b$;\\
+  \hspace*{.2cm} \}
+\}
+}
+A expressão-determinante-da-eficiência é igual a $m \times \Theta(1)$,
+onde $m$ é o número de vezes que o comando de repetição é executado e
+$\Theta(1)$ expressa o tempo gasto nos comandos internos ao comando de
+repetição. Como a variável $n$ recebe, a cada repetição, o valor do
+quociente da divisão do valor de $n$ (anterior à atribuição) por $b$,
+obtemos: $T(n) \asymp m \asymp log_b n \asymp lg n$. Note que $T(n)
+\asymp lg n$ para qualquer base $b$.
+
 \section{Maior Elemento}
 
 \section{Unicidade de Elementos}
 
 \section{Multiplicação de Matrizes}
-
-\section{Número de Dígitos}
 
 \section{Números de Fibonacci}
 
