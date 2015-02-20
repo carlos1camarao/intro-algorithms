@@ -101,8 +101,7 @@
 \newcommand{\aand}{{\it and\/}}
 \newcommand{\any}{{\it any\/}}
 \newcommand{\all}{{\it all\/}}
-
-
+\newcommand{\ddiv}{{\it div\/}}
 
 % (Pseudo) C
 \newcommand{\with}{\tt with}
