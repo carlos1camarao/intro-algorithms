@@ -156,8 +156,15 @@ onde $m$ é o número de vezes que o comando de repetição é executado e
 $\Theta(1)$ expressa o tempo gasto nos comandos internos ao comando de
 repetição. Como a variável $n$ recebe, a cada repetição, o valor do
 quociente da divisão do valor de $n$ (anterior à atribuição) por $b$,
-obtemos: $T(n) \asymp m \asymp log_b n \asymp lg n$. Note que $T(n)
-\asymp lg n$ para qualquer base $b$.
+obtemos: $T(n) \asymp m \asymp log_b n \asymp lg n$. 
+
+Note que $T(n) \asymp lg n$ para qualquer base $b$.
+
+Note também que $T(n)$ (e o número de repetições no \while) aumenta
+logaritmicamente com um aumento (linear) no {\em valor\/} de $n$, mas
+aumenta linearmente com um aumento no número de dígitos de $n$ (o
+valor de $n$ aumenta exponencialmente com um aumento no número de
+dígitos de $n$).
 
 \section{Maior Elemento}
 
