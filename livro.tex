@@ -1,31 +1,66 @@
+%!TEX encoding = ISO-8859-1
 \documentclass[a4paper,10pt]{book}
 
 \usepackage{fancyheadings}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
-\usepackage{psfig}
-\usepackage{fancybox}
+\usepackage{graphicx}
+%\usepackage{fancybox}
 \usepackage{makeidx}
 \usepackage{subfigure}
-\usepackage{psboxit}
-\usepackage{color}
+\usepackage{indentfirst}
+\usepackage{xcolor}
 \usepackage[latin1]{inputenc}
 \usepackage[portuguese]{babel}
-%\usepackage[T1]{fontenc}
+\usepackage{comment}
 
+%\usepackage{hevea}
+%\usepackage{hevea-epsfbox-def}  
+
+\usepackage{listings}
+\lstloadlanguages{Haskell,[GNU]C++}
+
+\definecolor{codecolor}{rgb}{0.74, 0.83, 0.9}
+\definecolor{lightcyan}{rgb}{0.88, 1.0, 1.0}
+\definecolor{lightblue}{rgb}{0.68, 0.85, 0.9}
+\definecolor{myellow}{rgb}{0.99, 0.97, 0.37}
+\lstdefinestyle{gstyle}
+	{tabsize=2,
+	 backgroundcolor=\color{codecolor},
+	 frame=single,framerule=0pt,
+	 emphstyle=\color{blue}\normalfont\itshape,
+	 commentstyle=\color{red}\normalfont,
+	 columns=flexible,
+	 basicstyle=\color{black}\ttfamily,
+	 identifierstyle=\normalfont\itshape,
+	 xleftmargin=20pt,xrightmargin=0pt,
+	 keepspaces=false
+}
+
+\lstset{style=gstyle}
+
+\lstdefinelanguage[my]{Haskell}{morekeywords={data}}
+\lstnewenvironment{hask}[1]{\lstset{language=[my]Haskell}}{}
+\lstnewenvironment{alg}[2]{\lstset{language=[GNU]C++}}{}
+\lstMakeShortInline[language={[my]Haskell}]§
+\lstMakeShortInline[language={[GNU]C++}]±
+
+\newcommand{\inCode}[1]
+	{\begin{center}
+      \colorbox{codecolor}{{#1}}
+	\end{center}}
+
+%\usepackage[T1]{fontenc}
 %\selectlanguage{portuguese}
 
-\usepackage{hevea-epsfbox-def} 
-\usepackage{epsfig} 
-\usepackage{indentfirst}
 
-\htmlhead{\sffamily\bfseries{Introdução a Algoritmos}}
+%\htmlhead{\sffamily\bfseries{Introdução a Algoritmos}}
 
 \newcommand{\eqdef}{\overset{\text{def}}{=}}
 
-\newcommand{\graybox}[1]{\begin{minipage}{\textwidth}\psboxit{box 0.95 setgray fill}{
-  {\spbox{#1}}}\end{minipage}}
+%\newcommand{\graybox}[1]{\begin{minipage}{\textwidth}\psboxit{box 0.95 setgray fill}{
+ % {\spbox{#1}}}\end{minipage}}
 
 \makeindex
 
@@ -97,10 +132,16 @@ para fins não comerciais.
 \pagenumbering{roman}
 %\setcounter{page}{5}
 
-\tableofcontents
+%\renewcommand{\chaptername}{Capítulo}
+%\renewcommand{\tablename}{Tabela}
+%\renewcommand{\figurename}{Figura}
+
+%\renewcommand{\contentsname}{Sumário}
+
+%\tableofcontents
 
 \setcounter{secnumdepth}{-2}
-\input{prefacio}
+%\input{prefacio}
 
 \input{meta.keys}
 
@@ -110,17 +151,21 @@ para fins não comerciais.
 
 \input{introd}
 
-\input{complexidade}
+%\input{complexidade}
 
+<<<<<<< HEAD
+%\input{estruturas-de-dados-basicas}
+=======
 \input{analise-eficiencia-de-algoritmos}
 
 \input{estruturas-de-dados-basicas}
+>>>>>>> FETCH_HEAD
 
-\input{algoritmos-de-pesquisa}
+%\input{algoritmos-de-pesquisa}
 
-\input{algoritmos-de-ordenacao}
+%\input{algoritmos-de-ordenacao}
 
-\input{hash}
+%\input{hash}
 
 \pagebreak
 \thispagestyle{empty}
