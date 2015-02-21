@@ -1,25 +1,49 @@
+% !TEX encoding = ISO-8859-1
 \chapter{Introdução}
 \label{Introducao}
 
-Este livro provê uma introdução ao estudo de algoritmos. Ele apresenta
-uma introdução a estruturas de dados básicas e algoritmos de pesquisa
-e ordenação.
+Este livro provê uma introdução ao estudo de algoritmos, apresentando  introdução a estruturas de dados básicas, algoritmos de pesquisa
+e de ordenação e noções de análise de complexidade de algoritmos.
 
+\begin{comment}
 Vamos identificar neste livro algoritmo com função, no sentido de
 prover uma sequência de passos que associa a cada valor de (um
 conjunto de valores de) entrada um único valor de (um conjunto de
 valores de) saída.
+
+Acho que um algoritmo pode ser "visto" como uma definição de uma função, mas não "identificado" com uma função, já que para uma função podem existir diferentes possíveis "definições" ou algoritmos. Por isso, sugiro a forma abaixo.
+\end{comment}
+
+Um algoritmo pode ser visto como uma função, no sentido de que mapeia cada valor de de (um conjunto de valores de) entrada um único valor de (um conjunto de valores de) saída. 
+
+
+\begin{comment}
+Achei que ficava melhor juntar o que está escrito abaixo com o que estava no início da seção ordenácão por inserção, reescrevendo como eu sugiro a seguir.
+ que seria melhor juntar o que está dito abaixo com o que está Na minha opinião, não é essa a distinção entre função e algoritmo. Existem doi
 
 A diferença que existe entre o conceito usual de função é a notação
 usualmente empregada para especificação da sequência de passos. Em
 computação, é usual o emprego de uma notação ou linguagem {\em
   imperativa\/}, ao passo que usualmente definições de funções
 empregam uma notação mais {\em declarativa\/}, ou {\em funcional\/}.
+\end{comment}
+
+Um algoritmo pode ser descrito usando-se diferentes abordagens e notação. Neste livro, vamos descrever algoritmos tanto em \emph{notação funcional\/}  e em \emph{notação imperativa\/}. A descrição em notação funcional poderá ser desconsiderada em cursos que desejam abordar apenas o paradigma de programação imperativo, embora, na nossa opinião, a descrição funcional muitas vezes contribua para mehor compreensão da versão imperativa. A notação funcional utilizada aqui é a linguagem \Haskell\.  A notação imperativa é um pseudo-código semelhante às linguagens \C, \Pascal\ ou \Java.
+
+A notação funcional será explicada sempre que necessário, isto é,
+sempre que houver alguma possibilidade de dúvida. Uma descrição
+sucinta da linguagem Haskell é incluída no Apêndice \ref{Ap-Haskell},  que 
+deverá ser lido pelo leitor não familiarizado com essa linguagem. Descrições mais completas de Haskell podem ser
+encontradas, por exemplo, em \cite{PeytonJones92,Thompson99}.
 
 \section{Ordenação}
 
+<<<<<<< HEAD
+Considere o problema de ordenação, especificado
+=======
 \index{ordena\c{c}\~ao}
 Por exemplo, considere o problema de ordenação, especificado
+>>>>>>> FETCH_HEAD
 formalmente como a seguir (um problema computacional especifica a
 relação que deve existir entre a entrada e a saída):
 
@@ -33,6 +57,13 @@ $i=1,\ldots, n-1$.
 
 \subsection{Sobre Permutação} 
 
+<<<<<<< HEAD
+Uma permutação (ou arranjo) é uma redisposição dos elementos em uma certa sequência. Por exemplo, há 6 permutações distintas dos elementos
+1,2,3, que são: (1,2,3), (1,3,2), (2,1,3),
+(2,3,1), (3,1,2), (3,2,1).
+
+Outra denominação, usada no contexto de palavras, é {\em anagrama}. 
+=======
 \index{permuta\c{c}\~ao}
 Uma permutação (ou arranjo) é uma redisposição de (um conjunto ou
 sequência de) elementos em uma certa sequência (se contrapõe a uma
@@ -44,21 +75,29 @@ relevante). Por exemplo, há 6 permutações distintas dos elementos
 Outro nome, usado no contexto de palavras, é {\em anagrama}. 
 
 \index{anagrama}
+>>>>>>> FETCH_HEAD
 Um anagrama é o resultado de rearranjar as letras de uma palavra ou
-frase para produzir uma nova palavra ou frase, usando todas as letras
-originais exatamente uma vez. Por exemplo, "ovo" pode ser rearranjado
-para "voo".
+frase para produzir uma nova palavra ou frase, usando cada uma das letras
+originais exatamente uma vez. Por exemplo, "ovo" é um anagrama de "voo".
 
 Permutações ocorrem em diversas áreas da matemática e proeminentemente
-no estudo de algoritmos, particularmente de ordenação, em ciência da
-computação.
+no estudo de algoritmos, particularmente de algoritmos ordenação.
 
 O número de permutações de $n$ elementos distintos é igual ao fatorial
-de $n$ (usualmente escrito em matemática como $n!$), que é igual ao
-produto de todos os inteiros positivos menores ou iguais a $n$.
+de $n$ (usualmente escrito como $n!$), ou seja, o
+produto de todos os inteiros positivos menores ou iguais a $n$. 
+Para ver isso, observe que existem $n$ possíveis maneiras de escolher o primeiro elemento de uma permutação de $n$ elementos. Para cada possível escolha do primeiro elemento, temos $n-1$ possíveis maneiras de escolher o segundo elemento da permutação. Portanto, temos $n (n-1)$ maneiras de escolher os dois primeiros elementos. Então, temos $n-2$ maneiras de escolher o terceiro elemento da permutação, ou seja, temos $n(n-1)(n-2)$ possíveis maneiras de escolher os três primeiros elementos. E assim sucessivamente, até que reste apenas um último elemento.  Isso nos dá um total de possíveis permutações igual a $n!=n(n-1)\ldots 1$
 
 \section{Ordenação por Inserção}
 
+<<<<<<< HEAD
+Um possível algoritmo para solução do problema de ordenação
+especificado acima,  chamado de {\em ordenação por inserção\/}, é baseado no modo como um jogador usualmente ordena uma sequência de cartas de baralho.  Esse algoritmo é descrito a seguir.
+
+\begin{comment}
+Acho que os 2 parágrafos abaixo deveriam estar no início da introdução
+--
+=======
 \index{ordena\c{c}\~ao!por inser\c{c}\~ao}
 Um algoritmo ou função que resolve o problema de ordenação
 especificado acima, chamado de {\em ordenação por inserção\/}, é
@@ -67,6 +106,7 @@ usualmente ordena uma sequência de cartas recebidas (por exemplo, em
 um jogo de buraco).
 
 \index{Haskell}
+>>>>>>> FETCH_HEAD
 Neste livro, usamos sempre pseudo-códigos com notação funcional e
 imperativa para representar cada algoritmo. A notação funcional é a
 linguagem \Haskell\ e a notação imperativa é um pseudo-código
@@ -74,10 +114,13 @@ semelhante a \C, \Pascal\ ou \Java.
 
 O uso da notação funcional pode ser desconsiderado em cursos que
 desejam abordar apenas o paradigma de programação imperativo.
+\end{comment}
 
 \subsection{Versão funcional}
 \label{insertion-sort-func}
 
+<<<<<<< HEAD
+=======
 A notação funcional será explicada sempre que necessário, isto é,
 sempre que houver alguma possibilidade de dúvida. Uma descrição
 sucinta da linguagem Haskell é incluída no Apêndice \ref{Ap-Haskell}
@@ -86,14 +129,30 @@ sucinta da linguagem Haskell é incluída no Apêndice \ref{Ap-Haskell}
 encontradas, por exemplo, em
 \cite{PeytonJones92,Thompson99,O'Sullivan:2008:RWH,Lipovaca:2011:LYH}.
 
+>>>>>>> FETCH_HEAD
 \newcommand{\elem}{{\it elem\/}}
-\newcommand{\insert}{{\it insert\/}}
+\newcommand{\iinsert}{{\it insert\/}}
 \newcommand{\sort}{{\it sort\/}}
 \newcommand{\delete}{{\it delete\/}}
 \newcommand{\perm}{{\it is\_a\_permutation\_of\/}}
 \newcommand{\sorted}{{\it sorted\/}}
 \newcommand{\Pair}{{\it Pair\/}}
 
+<<<<<<< HEAD
+
+\lstset{emph=[1]{sort,insert}}
+\begin{hask}
+
+	sort []			= []
+	sort (a:x)	= insert a (sort x)
+	
+	insert a [] = []
+	insert a (b:x) 
+		| a <= b		  = a:(b:x)
+		| otherwise	  = b:insert a x
+\end{hask}
+
+=======
 \index{\sort}
 \index{\insert}
 \progb{
@@ -105,18 +164,24 @@ encontradas, por exemplo, em
           \hspace*{.2cm} | $a$ <= $b$  \hspace*{1.2cm} = $a$: ($b$ : $x$)\\
           \hspace*{.2cm} | \otherwise  \hspace*{.7cm} = $b$: \insert\ $a$ $x$
 }
+>>>>>>> FETCH_HEAD
 
 Explicações sobre a notação funcional (usada em Haskell):
 
 \begin{enumerate}
 
-\item $f$ $x$ (aplicação funcional --- a base da programação
-  funcional) é o mesmo que {\tt $f$($x$)} (mas melhor porque evita os
+\item §f x§ (aplicação funcional --- a base da programação
+  funcional) é o mesmo que §f(x)§ (mas melhor porque evita os
   parênteses).
 
+<<<<<<< HEAD
+\item §b:insert a x§\, é o mesmo que §b:(insert a x)§\,: a aplicação funcional tem precedência sobre o uso de
+  operadores binários.
+=======
 \item \index{aplica\c{c}\~ao funcional} {\tt $b$: \insert\ $a$ $x$} é
   o mesmo que {\tt $b$: (\insert\ $a$ $x$}): a aplicação funcional tem
   precedência sobre o uso de operadores binários.
+>>>>>>> FETCH_HEAD
 
 \item \index{operador!bin\'ario} O uso de um operador binário nada
   mais é do que uma variação sintática de (açúcar sintático para) uma
@@ -128,18 +193,33 @@ Explicações sobre a notação funcional (usada em Haskell):
   entre crases.  Exemplos:
 
   \begin{tabular}{lll} 
-    {\tt 2 + 3} & é equivalente a & {\tt (+) 2 3} \\ 
-    {\tt $b$ : $x$} & é equivalente a & {\tt (:) $b$ $x$} \\ 
-    $f$ $x$ $y$ & é equivalente a & {\tt $x$ `$f$` $y$} 
+    §2 + 3§ & é equivalente a & \lstinline$(+) 2 3$ \\ 
+    §b:x§     & é equivalente a & \lstinline$(:) b x$ \\ 
+    §f x y§   & é equivalente a & \lstinline$x `f` y$ 
   \end{tabular}
 
+<<<<<<< HEAD
+\item As funções §insert§ and §sort§ usam listas, um tipo recursivo, que
+  é um tipo de dado algébrico (chamado em Haskell de §data§)
+  parecido com o seguinte:
+=======
 \item \index{Tipo!recursivo} \index{\List}\index{Cons}\index{Nil} As
   funções \insert\ and \sort\ usam listas, um tipo recursivo, que é um
   tipo de dado algébrico (chamado em Haskell de {\tt data}) parecido
   com o seguinte:
+>>>>>>> FETCH_HEAD
 
-    \progb{\data\ \List\ $a$ = \Nil\ | \Cons\ $a$ (\List\ $a$)}
+	\inCode{§data List a = Nil | Cons a (List a)§}
 
+<<<<<<< HEAD
+ 
+  Um tipo de dado algébrico é a maneira como se definem somas (de
+  tipos, sendo que só podem existir somas disjuntas de tipos), que
+  modelam escolha (``ou'') de tipos de dados.
+
+  A declaração de §List§ acima especifica que um valor de tipo lista é
+  polimórfico (o uso da variável de tipo $a$ indica que §List§ é um
+=======
   \index{Tipo de dado!algébrico} Um tipo de dado algébrico é a maneira
   como se definem somas (de tipos, sendo que só podem existir somas
   disjuntas de tipos), que modelam escolha (``ou'') de tipos de dados.
@@ -147,22 +227,21 @@ Explicações sobre a notação funcional (usada em Haskell):
   \index{polimorfismo}\index{Tipo!polimórfico}
   A declaração de \List\ acima especifica que um valor de tipo lista é
   polimórfico (o uso da variável de tipo $a$ indica que \List\ é um
+>>>>>>> FETCH_HEAD
   construtor de tipos que pode ser aplicado a {\em qualquer\/} tipo
-  $t$, isto é, podemos ter qualquer instância \List\ $t$, para {\em
+  $t$, isto é, podemos ter qualquer instância §List§ $t$, para {\em
     qualquer\/} tipo $t$), e que uma lista (um valor de tipo
-  $\List\ t$, para algum tipo $t$) pode ser \Nil\ (uma lista vazia)
-  {\em ou\/} {\tt \Cons\ $v$ $x$}, uma lista (não vazia) formada por
+  §List t§, para algum tipo $t$) pode ser §Nil§ (uma lista vazia)
+  {\em ou\/} §Cons v x§, uma lista (não vazia) formada por
   um valor $v$ (cabeça da lista) e de um restante (ou rabo) da lista,
   $x$ (que deve ser do mesmo tipo da lista da qual é o restante).
 
   \index{Listas}\index{Cons}\index{Nil}
   O tipo de listas em Haskell (é parecido mas) difere ligeiramente do
-  tipo algébrico acima porque o construtor \Nil\ é escrito como {\tt
-    []} e o construtor \Cons\ é escrito como um operador binário {\tt
-    :}. Assim, em vez de escrever, {\tt \Cons\ 1 \Nil}, escreve-se em
-  Haskell {\tt 1:[]}. Além disso, pode-se escrever também {\tt
-    [1,2,3]} em vez de {\tt 1:2:3:[]} --- i.e.~em vez de {\tt
-    1:(2:(3:[]))}.
+  tipo algébrico acima porque o construtor §Nil§ é escrito como §[]§ e o construtor §Cons§ é escrito como um operador binário §(:)§. 
+  Assim, em vez de escrever, §Cons 1 Nil§, escreve-se em
+  Haskell §1:[]§. Além disso, pode-se escrever também §[1,2,3]§ 
+  em vez de §1:2:3:[]§ --- i.e.~em vez de §1:(2:(3:[]))§.
 
 \item \index{soma!disjunta} \index{currificação} Tipos de dados
   algébricos permitem definir somas (disjuntas) de tipos, que modelam
@@ -173,35 +252,55 @@ Explicações sobre a notação funcional (usada em Haskell):
 
   \index{\Pair} Por exemplo:
 
-  \progb{\data\ \Pair\ $a$ $b$ = \Pair\ $a$ $b$}
+  \inCode{§data Pair a b = Pair a b§}
 
-  define um construtor de tipos \Pair, que tem dois parâmetros que
+  define um construtor de tipos §Pair§, que tem dois parâmetros que
   podem ser instanciados para quaisquer tipos $t$ e $t'$: por exemplo,
-  \Pair\ \Int\ \Bool\ representa pares de valores de inteiros e
+  §Pair Int Bool§ representa pares de valores de inteiros e
   booleanos (o primeiro componente do par é um inteiro e o segundo um
-  valor booleano). É semelhante ao produto {\tt (\Int,\Bool)}. A
-  diferença é que valores do primeiro são construídos da forma {\tt
-    \Pair\ 1 \True} (especificando um valor inteiro e em seguida um
+  valor booleano). É semelhante ao produto §(Int, Bool)§. A
+  diferença é que valores do primeiro são construídos da forma
+  §Pair 1 True§ (especificando um valor inteiro e em seguida um
   valor booleano), ao passo que valores do segundo são construídos da
-  forma {\tt (1,\True)} (especificando, entre parânteses, primeiro um
+  forma §(1,True)§ (especificando, entre parânteses, primeiro um
   valor inteiro, seguido de uma vírgula, e depois um valor booleano).
 
 \end{enumerate}
 
-Para mostrar a correção de \sort, podemos usar predicados (funções de
-contra-domínio \Bool); vamos provar:
+\lstset{emph=[2]{perm,sorted,elem,delete}}
 
-  \[ \text{\it \sort\ $x$ = $y$ implica:} \]
+Para mostrar a correção de §sort§, podemos usar predicados (funções de
+contra-domínio §Bool§); vamos provar que §sort x = y§ implica: 
 
   \begin{enumerate}
 
-    \item \sorted\ $y$
-    \item $x$ `\perm` $y$
+    \item §sorted y§
+    \item §x `perm` y§
 
  \end{enumerate}
 
 Temos:
 
+<<<<<<< HEAD
+\begin{hask}
+
+	sorted []       =  True
+	sorted [a]      =  True
+	sorted (a:b:x)  = (a <= b) && sorted (b:x) 
+
+	[] `perm`  []		= True
+	(a:x) `perm` y	= elem a y && (x `perm` (delete a y)) 
+
+	a `elem` []			= False
+	a `elem` (b:x)	= (a == b) || (a `elem` x)
+ 
+	delete a []	= []
+	delete a (b:x)
+		| a==b 			= x
+		| otherwise	= b:delete a x
+ \end{hask}
+
+=======
 \index{\sorted}
 \index{\perm}
   \progb{
@@ -221,11 +320,24 @@ Temos:
            \hspace*{.2cm}| $a$==$b$     \hspace*{2cm}  = $x$ \\
            \hspace*{.2cm}| \otherwise\  \hspace*{0.7cm} = $b$: \delete\ $a$ $x$
   }
+>>>>>>> FETCH_HEAD
 
 Explicações sobre a notação funcional (usada em Haskell):
 
 \begin{enumerate}
 
+<<<<<<< HEAD
+\item §&&§ e §||§ são operadores binários lógicos de
+  conjunção e disjunção, respectivamente.
+
+\item A definição de §delete§ usa {\em guardas\/}, que são expressões
+  booleanas usadas na definição de funções; para cada chamada de
+  função, a primeira (na ordem textual) guarda cuja avaliação retorna
+  §True§ define o resultado da chamada da função, pela avaliação da
+  expressão associada a essa guarda (que segue o símbolo §=§). Por
+  exemplo, a guarda na definição de §delete§ é equivalente a:
+  §if a==b then x else b:delete a x§.
+=======
 \item \index{{\tt \&\&}}\index{conjunção}\index{disjunção}  % \index{{\tt ||}}
   {\tt \&\&} e {\tt ||} são operadores binários lógicos de conjunção e
   disjunção, respectivamente.
@@ -238,18 +350,19 @@ Explicações sobre a notação funcional (usada em Haskell):
   símbolo {\tt =}). Por exemplo, a guarda na definição de \delete\ é
   equivalente a: \iif\ $a$==$b$ \tthen\ $x$ \eelse\ $b$: \delete\ $a$
   $x$.
+>>>>>>> FETCH_HEAD
 
 \end{enumerate}
 
 Prova: O caso base sai diretamente e o caso indutivo é consequência
 dos seguintes lemas:
 
-Lema 1: Para todo $a,x$, 
-        {\tt \sorted ($x$)} implica {\tt \sorted(\insert\ $a$ $x$)}
+Lema 1: Para todo §a,x§, 
+        §sorted x§ implica §sorted(insert a x)§
 
-Lema 2: Para todo $a,x$, 
-        {\tt \sort\ $x$ \symbol{96}\perm\symbol{96} $x$} implica 
-        {\tt \insert\ $a$ (\sort\ $x$) \symbol{96}\perm\symbol{96} ($a$:$x$)}
+Lema 2: Para todo §a,x§, 
+        §sort x `perm` x§\, implica 
+        §insert a (sort x) `perm` (a:x)§
 
 % ... prova dos lemas?
 
@@ -260,14 +373,28 @@ A versão imperativa usa o próprio arranjo para a ordenação (nenhum
 outro arranjo ou estrutura de dados auxiliar) e a seguinte ideia:
 
   \begin{quotation}
-     insere {\tt $A$[$j$]} no arranjo ordenado de {\tt $A$[1]} até
-     {\tt $A$[$j$-1]}, de $j=2$ até o tamanho do arranjo
+     insere ±A[j]± no arranjo ordenado de ±A[1]± até
+     ±A[j-1]±, para ±j± de ±j=2± até o tamanho do arranjo
   \end{quotation}
 
 A ideia dá origem ao seguinte algoritmo, escrito em pseudo-código como
 (note que endentação no pseudo-código indica aninhamento na estrutura
 de blocos):
 
+<<<<<<< HEAD
+\begin{alg}
+
+
+sort(A) {
+	for j:=2 to length[A] do
+		key := A[j]
+		/* Insere A[j] no arranjo ordenado A[1..j-1] */ 
+		i := j-1
+		while (i > 0 && A[i]>key) do
+			A[i+1] := A[i]
+			i := i - 1
+			A[i+1] := key
+=======
 \newcommand{\key}{{\it key\/}}
 
 \index{\sort}
@@ -282,7 +409,9 @@ de blocos):
 \hspace*{2cm}        $i$ $\leftarrow$ $i$ - 1\\
 \hspace*{1cm}    $A$[$i$+1] $\leftarrow$ \key\\
 \}
+>>>>>>> FETCH_HEAD
 }
+\end{alg}
 
 \index{invariante}
 A correção do algoritmo advém de que o invariante, especificado
