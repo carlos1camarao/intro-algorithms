@@ -165,6 +165,41 @@ valor de $n$ aumenta exponencialmente com um aumento no número de
 dígitos de $n$).
 
 \section{Maior Elemento}
+\label{maior-elemento}
+
+Considere o problema de encontrar o maior elemento de uma lista. 
+
+A versão funcional apresentada abaixo simplesmente usa \foldl': 
+
+\progb{\maxElem\ :: \Ord\ $a$ => [$a$] -> $a$\\
+\maxElem\ ($a$:$x$) = \foldl' \max\ $a$ $x$ }
+
+A função \max, definida no prelúdio de Haskell, retorna o maior entre
+dois valores, passados como parâmetros:
+
+\progb{\max\ :: \Ord\ $a$ => $a$ -> $a$ -> $a$\\
+       \max\ $a$ $b$ \\
+         \hspace*{.2cm} | $a$ <= $b$  = $b$
+         \hspace*{.2cm} | \otherwise\ = $a$
+      }
+ 
+A função \foldl, aplicada a uma função binária $f$, um valor inicial
+$z$ e uma lista, reduz a lista usando a função $f$ da esquerda para a
+direita:
+
+  \[ \text{\tt{ \foldl\ $f$ $z$ [e_1, e_2, \ldots, e_n] == (\ldots (($z$ `$f$` $e_1$) `$f$` $e_2$) `$f$`\ldots) `$f$` $e_n$}} \]
+
+A função \foldl'\ se comporta de modo similar a \foldl, mas ``menos
+preguiçosa'': \foldl' $f$ força a avaliação de $f$, de modo que, {\tt
+  $z$ `$f$ $e_1$} seja avaliado antes de compor a expressão ($z$ `$f$`
+$e_1$) `$f$` $e_2$), e assim sucessivamente. Isso não altera a
+complexidade assintótica do tempo de execução, mas pode afetar
+bastante a eficiência o espaço necessário para execução......
+
+A complexidade é a mesma da pesquisa sequencial em uma lista: $O(n)$,
+no pior caso. ...... pois envolve possivelmente comparação com cada
+elemento da lista ...
+
 
 \section{Unicidade de Elementos}
 
