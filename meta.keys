@@ -82,16 +82,16 @@
 % Haskell, Agda
 \newcommand{\Prelude}{{\it Prelude\/}}
 \newcommand{\otherwise}{{\it otherwise\/}}
-\newcommand{\data}{{\tt data}}
+\newcommand{\data}{{\bf data}}
 \newcommand{\List}{{\it List\/}}
 \newcommand{\Nil}{{\it Nil\/}}
 \newcommand{\null}{{\it null\/}}
 \newcommand{\Cons}{{\it Cons\/}}
 \newcommand{\True}{{\it True\/}}
 \newcommand{\False}{{\it False\/}}
-\newcommand{\iif}{{\tt if}}
-\newcommand{\tthen}{{\tt then}}
-\newcommand{\eelse}{{\tt else}}
+\newcommand{\iif}{{\bf if}}
+\newcommand{\tthen}{{\bf then}}
+\newcommand{\eelse}{{\bf else}}
 \newcommand{\Bool}{{\it Bool\/}}
 \newcommand{\Int}{{\it Int\/}}
 
@@ -106,13 +106,13 @@
 \newcommand{\ddiv}{{\it div\/}}
 
 % (Pseudo) C
-\newcommand{\with}{\tt with}
-\newcommand{\for}{{\tt for}}
-\newcommand{\tto}{{\tt to}}
-\newcommand{\do}{{\tt do}}
-\newcommand{\while}{{\tt while}}
-\newcommand{\struct}{{\tt struct}}
-\newcommand{\return}{{\tt return}}
+\newcommand{\with}{\bf with}
+\newcommand{\for}{{\bf for}}
+\newcommand{\tto}{{\bf to}}
+\newcommand{\do}{{\bf do}}
+\newcommand{\while}{{\bf while}}
+\newcommand{\struct}{{\bf struct}}
+\newcommand{\return}{{\bf return}}
 \newcommand{\length}{{\it length\/}}
 \newcommand{\NULL}{{\it NULL\/}}
 
