@@ -18,17 +18,17 @@ recursiva, definida como i) vazia (ou uma folha) ou ii) um nodo
 contendo um elemento e um certo número de ramos (ou nodos), que contêm
 sub-árvores:
 
-  \[ \text{{\tt data \Tree\ $a$ = \Leaf\ | \Node\ $a$ [\Tree\ $a$]}} \]
+ \progb{\data\ \Tree\ $a$ = \Leaf\ | \Node\ $a$ [\Tree\ $a$]}
 
 Os elementos podem também estar nas folhas, em vez de nos nodos
 internos:
 
-  \[ \text{{\tt data \Tree'\ $a$ = \Leaf\ $a$ | \Node\ [\Tree\ $a$]}} \]
+  \progb{\data\ \Tree'\ $a$ = \Leaf\ $a$ | \Node\ [\Tree\ $a$]}
 
 Se a árvore tem duas sub-árvores (possivelmente vazias), ela é chamada
 de árvore binária:
 
-  \[ \text{{\tt data \BTree\ $a$ = \Leaf\ $a$ | \Node\ (\Tree\ $a$) (\Tree\ $a$)}} \]
+  \progb{\data\ \BTree\ $a$ = \Leaf\ $a$ | \Node\ (\Tree\ $a$) (\Tree\ $a$)}
 
 Em computação, uma árvore pode ser vista também como um grafo ---
 conjunto de vértices e arestas entre esses vértices --- sem ciclos e
@@ -66,14 +66,14 @@ A árvore da Figura \ref{Arv1} é mostrada na Figura \ref{Rep-arv1}.
 
 \begin{figure}
 
-....
-
+xxxx
+\caption{Árvore exemplo}
 \label{Arv1}
 \end{figure}
 
 \begin{figure}
 
-....
-
+yyyyy
+\caption{Representação da árvore exemplo por valor do tipo \ArvoreDeInteiros}
 \label{Rep-arv1}
 \end{figure}
