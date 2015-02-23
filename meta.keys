@@ -83,6 +83,9 @@
 \newcommand{\Prelude}{{\it Prelude\/}}
 \newcommand{\otherwise}{{\it otherwise\/}}
 \newcommand{\data}{{\bf data}}
+\newcommand{\module}{{\bf module}}
+\newcommand{\newtype}{{\bf newtype}}
+\newcommand{\where}{{\bf where}}
 \newcommand{\List}{{\it List\/}}
 \newcommand{\Nil}{{\it Nil\/}}
 \newcommand{\null}{{\it null\/}}
