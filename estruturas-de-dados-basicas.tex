@@ -356,14 +356,14 @@ campos do registro $r$ com o registro (\nome\ pode ser usado em vez de
 \progb{
   \vazia\ (\pilha) = \{ \pilha.\topo\ = -1; \}\\ \ \hspace*{.2cm} \\
   \empilhar\ (\eelem, \pilha) \{ \\
-      \hspace*{.2cm} with \pilha\  \\
+      \hspace*{.2cm} \with\ \pilha\  \\
         \hspace*{1cm} \topo\ $\leftarrow$ \topo\ + 1\\
         \hspace*{1cm} \elems[\topo] $\leftarrow$ \eelem\\
   \} \\ 
   \desempilhar\ (\pilha) \{ \\
-      \hspace*{.2cm} with \pilha\ \{ \topo\ $\leftarrow$ \topo\ - 1 \} \\
+      \hspace*{.2cm} \with\ \pilha\ \{ \topo\ $\leftarrow$ \topo\ - 1 \} \\
   \}\\
-  \topo\ (\pilha) \{ with \pilha\ \{ \return\ \elems[\topo] \} \}\\ \ \hspace*{.2cm} \\
+  \topo\ (\pilha) \{ \with\ \pilha\ \{ \return\ \elems[\topo] \} \}\\ \ \hspace*{.2cm} \\
   \estaVazia\ (\pilha) \{ \return\ \pilha.\topo\ == -1 \}
  }
 
@@ -429,17 +429,17 @@ fila cheia. O operador {\tt \%} é usado para retornar o resto da
 divisão do primeiro operando pelo segundo.
 
 \progb{
-  \vazia\ (\fila) \{ with \fila\ \{ \inicio\ = \fim\ = 0 \} \} \\ \ \hspace*{.2cm} \\
+  \vazia\ (\fila) \{ \with\ \fila\ \{ \inicio\ = \fim\ = 0 \} \} \\ \ \hspace*{.2cm} \\
   \entrar\ (\eelem, \fila) \{ \\
-      \hspace*{.2cm} with \fila\  \\
+      \hspace*{.2cm} \with\ \fila\  \\
           \hspace*{1cm} \elems[\fim] $\leftarrow$ \eelem\\
           \hspace*{1cm} \fim\ $\leftarrow$ (\fim\ + 1) \% $n$\\
   \} \\ 
   \sair\ (\fila) \{ \\
-      \hspace*{.2cm} with \fila\ \{ \inicio\ $\leftarrow$ (\inicio\ + 1) \% $n$ \}\\
+      \hspace*{.2cm} \with\ \fila\ \{ \inicio\ $\leftarrow$ (\inicio\ + 1) \% $n$ \}\\
   \}\\
-  \inicio\ (\fila) \{ with \fila\ \{ \return\ \elems[\inicio] \} \}\\ \ \hspace*{.2cm} \\
-  \estaVazia\ (\pilha) \{ with \fila\ \{ \return\ \inicio\ == \fim \} \} 
+  \inicio\ (\fila) \{ \with\ \fila\ \{ \return\ \elems[\inicio] \} \}\\ \ \hspace*{.2cm} \\
+  \estaVazia\ (\pilha) \{ \with\ \fila\ \{ \return\ \inicio\ == \fim \} \} 
  }
 
 \input{arvores}
