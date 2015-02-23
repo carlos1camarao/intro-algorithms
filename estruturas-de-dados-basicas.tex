@@ -163,9 +163,9 @@ pelo parâmetro $l$, e retorna um apontador para o elemento da lista
 igual a $a$, se o argumento estiver presente na lista, e \NULL\ em
 caso contrário.
 
-  \progb{\elem ($a$, $l$) \{ \\
-   \hspace*{.2cm} \while\ ($l$ != \NULL\ \&\& $l$->\elem\ != $a$) $l$ = $l$->$r$;\\
-   \hspace*{.2cm} return $l$; \\
+  \progb{\elem ($a$, $l$)  \\
+   \hspace*{.2cm} \while\ ($l$ != \NULL\ \&\& $l$->\elem\ != $a$) $l$ = $l$->$r$\\
+   \hspace*{.2cm} return $l$ \\
    \}
   }
 
@@ -190,10 +190,10 @@ como argumento. A lista modificada, com a inserção do novo elemento no
 início, é retornada como resultado da operação.
 
 \progb{\insert\ ($a$, $l$) \{ \\
-         \hspace*{.2cm} $p$ = \malloc(\sizeof(\struct\ \ListaDeInteiros));\\
-         \hspace*{.2cm} $p$->\elem\ = $a$;\\
-         \hspace*{.2cm} $p$->$r$ = $l$;\\
-         \hspace*{.2cm} return $p$;\\
+         \hspace*{.2cm} $p$ = \malloc(\sizeof(\struct\ \ListaDeInteiros))\\
+         \hspace*{.2cm} $p$->\elem\ = $a$\\
+         \hspace*{.2cm} $p$->$r$ = $l$\\
+         \hspace*{.2cm} return $p$\\
        \}
       }
 
@@ -357,14 +357,14 @@ campos do registro $r$ com o registro (\nome\ pode ser usado em vez de
   \vazia\ (\pilha) = \{ \pilha.\topo\ = -1; \}\\ \ \hspace*{.2cm} \\
   \empilhar\ (\eelem, \pilha) \{ \\
       \hspace*{.2cm} with \pilha\  \\
-        \hspace*{1cm} \topo\ $\leftarrow$ \topo\ + 1;\\
-        \hspace*{1cm} \elems[\topo] $\leftarrow$ \eelem;\\
+        \hspace*{1cm} \topo\ $\leftarrow$ \topo\ + 1\\
+        \hspace*{1cm} \elems[\topo] $\leftarrow$ \eelem\\
   \} \\ 
   \desempilhar\ (\pilha) \{ \\
-      \hspace*{.2cm} with \pilha\ \{ \topo\ $\leftarrow$ \topo\ - 1; \} \\
+      \hspace*{.2cm} with \pilha\ \{ \topo\ $\leftarrow$ \topo\ - 1 \} \\
   \}\\
-  \topo\ (\pilha) \{ with \pilha\ \{ \return\ \elems[\topo]; \} \}\\ \ \hspace*{.2cm} \\
-  \estaVazia\ (\pilha) \{ \return\ \pilha.\topo\ == -1; \}
+  \topo\ (\pilha) \{ with \pilha\ \{ \return\ \elems[\topo] \} \}\\ \ \hspace*{.2cm} \\
+  \estaVazia\ (\pilha) \{ \return\ \pilha.\topo\ == -1 \}
  }
 
 \subsection{Fila}
