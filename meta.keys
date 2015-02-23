@@ -16,11 +16,13 @@
 
 \newcommand{\progb}[1]{
   \normalfont\ttfamily 
-  \begin{center}
-  \mbox{\colorbox{yellow}{\mbox{\begin{tabbing}
-        #1
-  \end{tabbing}}}}
-  \end{center}
+   \textcolor{blue}{
+      \begin{center}    
+       \mbox{
+        \begin{tabbing}
+         #1
+        \end{tabbing}}
+      \end{center}}
   \normalfont}
 
 \newcommand{\xbox}[1]{\colorbox{yellow}{#1}}
