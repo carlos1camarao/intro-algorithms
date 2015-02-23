@@ -43,10 +43,9 @@ ponteiros, formando uma estrutura de dados comumente chamada de {\em
 \newcommand{\ListaDeInteiros}{{\it ListaDeInteiros\/}}
 
   \progb{
-        \struct\ \ListaDeInteiros\ \{ \\
+        \struct\ \ListaDeInteiros\  \\
         \hspace*{.2cm} int \eelem; \\
         \hspace*{.2cm} \struct\ \ListaDeInteiros\ * $r$; \\
-        \}
   }
 define um registro com dois campos, um campo de tipo {\tt int} e nome
 \eelem, e um campo de nome $r$ que é um ponteiro para valores do
@@ -57,13 +56,13 @@ elegante e legível e sujeita a erros. Por exemplo, simplesmente para
 criar um valor de tipo lista igual a {\tt [1,2,3]} em Haskell, é
 necessário código como o seguinte:
 
-\progb{\struct\ \ListaDeInteiros\ *$p$ = \malloc(\sizeof(\struct\ \ListaDeInteiros));\\
+\progb{\struct\ \ListaDeInteiros\ *$p$ = \malloc(\sizeof(\struct\ \ListaDeInteiros))\\
       $p$->\eelem\ = 1;
-      $p$->$r$ = \malloc(\sizeof(\struct\ \ListaDeInteiros));\\
+      $p$->$r$ = \malloc(\sizeof(\struct\ \ListaDeInteiros))\\
       $p$->$r$->\eelem\ = 2;
-      $p$->$r$->$r$ = \malloc(\sizeof(\struct\ \ListaDeInteiros));\\
+      $p$->$r$->$r$ = \malloc(\sizeof(\struct\ \ListaDeInteiros))\\
       $p$->$r$->$r$->\eelem\ = 3;
-      $p$->$r$->$r$->$r$ = \NULL;
+      $p$->$r$->$r$->$r$ = \NULL
      }
 
 A falta de suporte a manipulação de valores de tipos recursivos e
@@ -230,14 +229,14 @@ guardar ponteiro para o elemento a ser removido, e usa ponteiro para o
 início da lista tanto como parâmetro quanto resultado da operação.
 
 \progb{\delete\ ($a$, $l$) \{ \\
-    \hspace*{.2cm} \struct\ \ListaDeInteiros\ *\prev\ = \NULL,  *$p$ = $l$;\\
+    \hspace*{.2cm} \struct\ \ListaDeInteiros\ *\prev\ = \NULL,  *$p$ = $l$\\
     \hspace*{.2cm} \while\ ($p$ != \NULL \&\& $p$->\eelem\ != $a$)  \\
-       \hspace*{1cm} \prev\ = $p$; \\
-       \hspace*{1cm} $p$ = $p$->$r$;\\
+       \hspace*{1cm} \prev\ = $p$ \\
+       \hspace*{1cm} $p$ = $p$->$r$\\
     \hspace*{.2cm} \iif\ ($p$ != \NULL)\\
        \hspace*{1cm} \iif\ (\prev\ == \NULL)\\ 
-	  \hspace*{2cm} \return\ $l$->$r$;\\
-       \hspace*{1cm} \eelse\ \{ \prev->$r$ = $p$->$r$; \return\ $l$; \}
+	  \hspace*{2cm} \return\ $l$->$r$\\
+       \hspace*{1cm} \eelse\ \{ \prev->$r$ = $p$->$r$; \return\ $l$ \}
   }
 
 \subsection{Lista duplamente encadeada}
@@ -354,7 +353,7 @@ campos do registro $r$ com o registro (\nome\ pode ser usado em vez de
 {\tt $r$.\nome}).
 
 \progb{
-  \vazia\ (\pilha) = \{ \pilha.\topo\ = -1; \}\\ \ \hspace*{.2cm} \\
+  \vazia\ (\pilha) = \{ \pilha.\topo\ = -1 \}\\ \ \hspace*{.2cm} \\
   \empilhar\ (\eelem, \pilha) \{ \\
       \hspace*{.2cm} \with\ \pilha\  \\
         \hspace*{1cm} \topo\ $\leftarrow$ \topo\ + 1\\
