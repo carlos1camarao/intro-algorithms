@@ -125,7 +125,7 @@ A função \elem, de fato, faz parte do módulo \Prelude, importado
 automaticamente por todos os módulos (sem necessidade de comando ou
 cláusula explícita de importação). A definição de \elem\ no
 \Prelude\ é feita usando \any, que por sua vez usa \mmap\ e
-\or\ (\or\ usa \foldr), como a seguir (\mmap\ e \foldr\ são ferramentas
+\oor\ (\oor\ usa \foldr), como a seguir (\mmap\ e \foldr\ são ferramentas
 importantes para definição de funções em Haskell):
 
 \progb{
@@ -139,13 +139,13 @@ importantes para definição de funções em Haskell):
 \mmap\ $f$ ($a$:$x$) \hspace*{.1cm} = $f$ $a$ : \mmap\ $f$ $x$ \\ 
 \hspace*{.5cm}\ \\
 
-\aand, \or\   :: [\Bool] -> \Bool\\
+\aand, \oor\   :: [\Bool] -> \Bool\\
 \aand\        =  \foldr\ (\&\&) \True\\
-\or\          =  \foldr (||) \False\\ 
+\oor\          =  \foldr (||) \False\\ 
 \hspace*{.5cm} \\
 
 \any, \all\ :: ($a$ -> \Bool) -> [$a$] -> \Bool\\
-\any\ $p$   =  \or\ . \map\ $p$\\
+\any\ $p$   =  \oor\ . \map\ $p$\\
 \all\ $p$   =  \and\ . \map\ $p$\\ 
 \hspace*{.5cm}\ \\
 
