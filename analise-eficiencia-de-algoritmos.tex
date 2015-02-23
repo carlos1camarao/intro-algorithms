@@ -143,12 +143,11 @@ A versão imperativa é similar, usando um comando de repetição em vez
 de recursão:
 
 \progb{
-\numDigs\ ($n$,$b$) \{ \\
+\numDigs\ ($n$,$b$) \\
   \hspace*{.2cm} \numD\ = 0\\
   \hspace*{.2cm}   \while\ ($n$ > $b$) \\
        \hspace*{1cm} \numD\ = \numD\ + 1\\
-       \hspace*{1cm} $n$ = $n$ / $b$\\
-\}
+       \hspace*{1cm} $n$ = $n$ / $b$
 }
 A expressão-determinante-da-eficiência é igual a $m \times \Theta(1)$,
 onde $m$ é o número de vezes que o comando de repetição é executado e
