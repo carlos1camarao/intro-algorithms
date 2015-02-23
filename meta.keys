@@ -97,7 +97,7 @@
 
 \newcommand{\foldr}{{\it foldr\/}}
 \newcommand{\mmap}{{\it map\/}}
-\newcommand{\or}{{\it or\/}}
+\newcommand{\oor}{{\it or\/}}
 \newcommand{\aand}{{\it and\/}}
 \newcommand{\any}{{\it any\/}}
 \newcommand{\all}{{\it all\/}}
