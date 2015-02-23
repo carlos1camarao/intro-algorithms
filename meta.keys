@@ -109,7 +109,7 @@
 \newcommand{\ddiv}{{\it div\/}}
 
 % (Pseudo) C
-\newcommand{\with}{\bf with}
+\newcommand{\with}{{\bf with}}
 \newcommand{\for}{{\bf for}}
 \newcommand{\tto}{{\bf to}}
 \newcommand{\do}{{\bf do}}
