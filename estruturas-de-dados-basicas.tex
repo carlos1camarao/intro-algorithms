@@ -57,12 +57,9 @@ criar um valor de tipo lista igual a {\tt [1,2,3]} em Haskell, é
 necessário código como o seguinte:
 
 \progb{\struct\ \ListaDeInteiros\ *$p$ = \malloc(\sizeof(\struct\ \ListaDeInteiros))\\
-      $p$->\eelem\ = 1;
-      $p$->$r$ = \malloc(\sizeof(\struct\ \ListaDeInteiros))\\
-      $p$->$r$->\eelem\ = 2;
-      $p$->$r$->$r$ = \malloc(\sizeof(\struct\ \ListaDeInteiros))\\
-      $p$->$r$->$r$->\eelem\ = 3;
-      $p$->$r$->$r$->$r$ = \NULL
+      $p$->\eelem\ = 1;           \hspace*{2.5cm}  $p$->$r$ = \malloc(\sizeof(\struct\ \ListaDeInteiros))\\
+      $p$->$r$->\eelem\ = 2;      \hspace*{1.5cm} $p$->$r$->$r$ = \malloc(\sizeof(\struct\ \ListaDeInteiros))\\
+      $p$->$r$->$r$->\eelem\ = 3; \hspace*{.5cm} $p$->$r$->$r$->$r$ = \NULL
      }
 
 A falta de suporte a manipulação de valores de tipos recursivos e
@@ -188,12 +185,11 @@ para inserir um novo valor de tipo inteiro na lista que é fornecida
 como argumento. A lista modificada, com a inserção do novo elemento no
 início, é retornada como resultado da operação.
 
-\progb{\insert\ ($a$, $l$) \{ \\
+\progb{\insert\ ($a$, $l$)  \\
          \hspace*{.2cm} $p$ = \malloc(\sizeof(\struct\ \ListaDeInteiros))\\
          \hspace*{.2cm} $p$->\elem\ = $a$\\
          \hspace*{.2cm} $p$->$r$ = $l$\\
-         \hspace*{.2cm} return $p$\\
-       \}
+         \hspace*{.2cm} return $p$
       }
 
 \subsection{Remoção}
@@ -228,7 +224,7 @@ A versão imperativa não cria nova lista, usa ponteiro \prev\ para
 guardar ponteiro para o elemento a ser removido, e usa ponteiro para o
 início da lista tanto como parâmetro quanto resultado da operação.
 
-\progb{\delete\ ($a$, $l$) \{ \\
+\progb{\delete\ ($a$, $l$)  \\
     \hspace*{.2cm} \struct\ \ListaDeInteiros\ *\prev\ = \NULL,  *$p$ = $l$\\
     \hspace*{.2cm} \while\ ($p$ != \NULL \&\& $p$->\eelem\ != $a$)  \\
        \hspace*{1cm} \prev\ = $p$ \\
@@ -353,16 +349,14 @@ campos do registro $r$ com o registro (\nome\ pode ser usado em vez de
 {\tt $r$.\nome}).
 
 \progb{
-  \vazia\ (\pilha) = \{ \pilha.\topo\ = -1 \}\\ \ \hspace*{.2cm} \\
-  \empilhar\ (\eelem, \pilha) \{ \\
+  \vazia\ (\pilha) \{ \pilha.\topo\ = -1 \}\\ \ \hspace*{.2cm} \\
+  \empilhar\ (\eelem, \pilha) \\
       \hspace*{.2cm} \with\ \pilha\  \\
         \hspace*{1cm} \topo\ $\leftarrow$ \topo\ + 1\\
-        \hspace*{1cm} \elems[\topo] $\leftarrow$ \eelem\\
-  \} \\ 
-  \desempilhar\ (\pilha) \{ \\
-      \hspace*{.2cm} \with\ \pilha\ \{ \topo\ $\leftarrow$ \topo\ - 1 \} \\
-  \}\\
-  \topo\ (\pilha) \{ \with\ \pilha\ \{ \return\ \elems[\topo] \} \}\\ \ \hspace*{.2cm} \\
+        \hspace*{1cm} \elems[\topo] $\leftarrow$ \eelem\\ \ \hspace*{.2cm} \\
+  \desempilhar\ (\pilha) \\ 
+      \hspace*{.2cm} \with\ \pilha\ \{ \topo\ $\leftarrow$ \topo\ - 1 \} \\ \ \hspace*{.2cm} \\
+  \topo\ (\pilha) \{ \with\ \pilha\ \{ \return\ \elems[\topo] \} \}\\ \ \hspace*{.2cm} \\ 
   \estaVazia\ (\pilha) \{ \return\ \pilha.\topo\ == -1 \}
  }
 
@@ -429,16 +423,14 @@ divisão do primeiro operando pelo segundo.
 
 \progb{
   \vazia\ (\fila) \{ \with\ \fila\ \{ \inicio\ = \fim\ = 0 \} \} \\ \ \hspace*{.2cm} \\
-  \entrar\ (\eelem, \fila) \{ \\
+  \entrar\ (\eelem, \fila) \\
       \hspace*{.2cm} \with\ \fila\  \\
           \hspace*{1cm} \elems[\fim] $\leftarrow$ \eelem\\
-          \hspace*{1cm} \fim\ $\leftarrow$ (\fim\ + 1) \% $n$\\
-  \} \\ 
-  \sair\ (\fila) \{ \\
-      \hspace*{.2cm} \with\ \fila\ \{ \inicio\ $\leftarrow$ (\inicio\ + 1) \% $n$ \}\\
-  \}\\
+          \hspace*{1cm} \fim\ $\leftarrow$ (\fim\ + 1) \% $n$\\ \ \hspace*{.2cm} \\
+  \sair\ (\fila) \\
+      \hspace*{.2cm} \with\ \fila\ \{ \inicio\ $\leftarrow$ (\inicio\ + 1) \% $n$ \}\\ \ \hspace*{.2cm} \\
   \inicio\ (\fila) \{ \with\ \fila\ \{ \return\ \elems[\inicio] \} \}\\ \ \hspace*{.2cm} \\
-  \estaVazia\ (\pilha) \{ \with\ \fila\ \{ \return\ \inicio\ == \fim \} \} 
+  \estaVazia\ (\pilha) \{ \with\ \fila\ \{ \return\ \inicio\ == \fim\ \} \} 
  }
 
 \input{arvores}
