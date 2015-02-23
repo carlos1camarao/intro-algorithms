@@ -45,9 +45,9 @@ definição e manipulação direta de tipos recursivos, a representação de
 exemplo a seguir:
 
   \progb{
-        \struct\ \ArvoreBinariaDeInteiros\ \{ \\
-        \hspace*{.2cm} int \eelem; \\
-        \hspace*{.2cm} \struct\ \ArvoreBinariaDeInteiros\ * $\esq,\dir$; \\
+        \struct\ \ArvoreBinariaDeInteiros\  \\
+        \hspace*{.2cm} int \eelem \\
+        \hspace*{.2cm} \struct\ \ArvoreBinariaDeInteiros\ * $\esq,\dir$ \\
         \}
   }
 Os campos \esq\ e \dir\ de um nodo são ponteiros, possivelmente nulos,
@@ -58,9 +58,10 @@ podemos chamar de {\em representação com
   primogênito-irmão-e-pai\/}, como a seguir:
 
   \progb{
-        \struct\ \ArvoreDeInteiros\ \{ \\
+        \struct\ \ArvoreDeInteiros\  \\
         \hspace*{.2cm} int \eelem; \\
-        \hspace*{.2cm} \struct\ \ArvoreDeInteiros\ *\primogenito, \irmao, \pai; \\ \} }
+        \hspace*{.2cm} \struct\ \ArvoreDeInteiros\ *\primogenito, \irmao, \pai 
+        }
 
 A árvore da Figura \ref{Arv1} é mostrada na Figura \ref{Rep-arv1}.
 
