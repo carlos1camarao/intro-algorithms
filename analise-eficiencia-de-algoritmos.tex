@@ -145,10 +145,9 @@ de recursão:
 \progb{
 \numDigs\ ($n$,$b$) \{ \\
   \hspace*{.2cm} \numD\ = 0;\\
-  \hspace*{.2cm}   \while\ $n$ > $b$ \{ \\
+  \hspace*{.2cm}   \while\ ($n$ > $b$) \\
        \hspace*{1cm} \numD\ = \numD\ + 1;\\
-         \hspace*{.2cm} $n$ = $n$ / $b$;\\
-  \hspace*{.2cm} \}
+       \hspace*{1cm} $n$ = $n$ / $b$;\\
 \}
 }
 A expressão-determinante-da-eficiência é igual a $m \times \Theta(1)$,
