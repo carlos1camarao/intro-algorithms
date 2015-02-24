@@ -81,12 +81,17 @@ resolve. O roteiro para análise da eficiência é o seguinte:
 \end{enumerate}
 
 No caso de um programa recursivo, a
-expressão-determinante-da-eficiência é em geral uma {\em relação de
-  recorrência}. Uma relação de recorrência é uma definição recursiva
-para a qual em geral existe uma solução não recursiva que a
-simplifique (especificando a mesma relação). No caso de um programa
-não recursivo, a expressão-determinante-da-eficiência é em geral um
-somatório, que em geral também pode ser simplificado.
+expressão-determinante-da-eficiência é em geral uma expressão escrita
+em função de $T(n-1)$ ou outro argumento da função $T$ (de tempo de
+execução) menor que $n$, que expressa $T(n)$ de modo recursivo,
+criando o que é chamado de uma {\em relação de recorrência} (uma
+relação de recorrência é uma definição recursiva para a qual em geral
+existe uma solução não recursiva que a simplifique, que especifica a
+mesma relação). 
+
+No caso de um programa não recursivo, a
+expressão-determinante-da-eficiência é em geral um somatório, que em
+geral também pode ser simplificado.
 
 As seções seguintes apresentam exemplo de problemas simples e suas
 soluções, para os quais a eficiência é analisada usando o roteiro
@@ -199,20 +204,22 @@ complexidade assintótica do tempo de execução, mas pode afetar
 bastante a eficiência o espaço necessário para execução......
 
 A complexidade é a mesma da pesquisa sequencial em uma lista: $O(n)$,
-no pior caso. ...... pois envolve possivelmente comparação com cada
-elemento da lista ...
+no pior caso (onde $n$ é o tamanho da lista de elementos), pois
+envolve possivelmente comparação com cada elemento.
 
+A relação de recorrência é $T(n) = ..... $. A
+expressão-determinante-da-eficiência é ... 
+
+\item Identificar operações que vão determinar a variação na
+  eficiência do programa durante a execução.
+
+\item Expresse o número de vezes que a operação é executada em função
+  de $n$, chamada de expressão-determinante-da-eficiência.
+
+\item Resolva ou simplifique a expressão-determinante-da-eficiência.
 
 \section{Unicidade de Elementos}
 
 \section{Multiplicação de Matrizes}
 
 \section{Números de Fibonacci}
-
-
-
-
-
-
-
-
