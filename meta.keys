@@ -99,8 +99,10 @@
 \newcommand{\Int}{{\it Int\/}}
 
 \newcommand{\Eq}{{\it Eq\/}}
+\newcommand{\Ord}{{\it Ord\/}}
 
 \newcommand{\foldr}{{\it foldr\/}}
+\newcommand{\foldl}{{\it foldl\/}}
 \newcommand{\mmap}{{\it map\/}}
 \newcommand{\oor}{{\it or\/}}
 \newcommand{\aand}{{\it and\/}}
