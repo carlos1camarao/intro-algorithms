@@ -196,27 +196,63 @@ direita:
 
   \[ \text{\tt{ \foldl\ $f$ $z$ [$e_1$, $e_2$, \ldots, $e_n$] == (\ldots (($z$ `$f$` $e_1$) `$f$` $e_2$) `$f$`\ldots) `$f$` $e_n$}} \]
 
-A função \foldl'\ se comporta de modo similar a \foldl, mas ``menos
+A função \foldl'\ se comporta de modo similar a \foldl, mas é ``menos
 preguiçosa'': \foldl' $f$ força a avaliação de $f$, de modo que, {\tt
-  $z$ `$f$` $e_1$} seja avaliado antes de compor a expressão ($z$ `$f$`
-$e_1$) `$f$` $e_2$), e assim sucessivamente. Isso não altera a
-complexidade assintótica do tempo de execução, mas pode afetar
-bastante a eficiência o espaço necessário para execução......
+  $z$ `$f$` $e_1$} seja avaliado antes de compor a expressão ($z$
+`$f$` $e_1$) `$f$` $e_2$), e assim sucessivamente.  O uso de
+\foldl'\ é adequado quando a função $f$ é estrita (ou seja, quando $f$
+não é preguiçosa). 
 
-A complexidade é a mesma da pesquisa sequencial em uma lista: $O(n)$,
-no pior caso (onde $n$ é o tamanho da lista de elementos), pois
-envolve possivelmente comparação com cada elemento.
+\HRule
+{\em Nota\/}: 
+
+Uma função $f$ é dita estrita se (escrevendo sucintamente) $f\: \bot =
+\bot$, ou seja: quando o resultado de aplicar $f$ a um argumento que
+fica em ciclo infinito faz com que a chamada a $f$ fique em ciclo
+infinito. O valor $\bot$ é usado para indicar ``ciclo infinito'', e
+também ocorrência de erro devido a recursos, em quantidade finita,
+serem consumidos para avaliação, durante a execução. 
+
+Em Haskell, ao contrário da grande maioria das linguagens de
+programação, a estratégia de avaliação de expressões é ``preguiçosa''
+(em inglês, ``lazy''). Isso significa que o argumento para uma função
+não é avaliado quando a expressão é chamada, mas simplesmente
+substituído pelo parâmetro no corpo da função, para posterior
+avaliação, se necessário. Além disso, se for necessária, na estratégia
+de avaliação preguiçosa a avaliação do argumento só é feita uma única
+vez. Nas outras vezes em que o argumento for usado, é usado o valor
+resultante da avaliação feita na primeira vez. 
+
+Na maioria das linguagens de programação, a estratégia de avaliação de
+expressões é ``gulosa'' (em inglês, ``eager''). Nessa estratégia, o
+argumento é avaliado antes de uma chamada à função. Essa estratégia
+faz com que todas as funções sejam estritas.
+
+As diferenças resultantes do uso de estratégias de avaliação
+preguiçosa e gulosa estão fora do escopo deste livro. 
+
+No entanto, vale observar que o uso de \foldl' neste exemplo não
+altera a complexidade assintótica do tempo de execução, mas pode
+afetar bastante a eficiência o espaço necessário, e portanto da
+constante de proporcionalidade, da função que expressa o tempo de
+execução.
+
+\HRule
 
 A relação de recorrência é $T(n) = ..... $. A
 expressão-determinante-da-eficiência é ... 
 
-\item Identificar operações que vão determinar a variação na
+  Identificar operações que vão determinar a variação na
   eficiência do programa durante a execução.
 
-\item Expresse o número de vezes que a operação é executada em função
+  Expresse o número de vezes que a operação é executada em função
   de $n$, chamada de expressão-determinante-da-eficiência.
 
-\item Resolva ou simplifique a expressão-determinante-da-eficiência.
+  Resolva ou simplifique a expressão-determinante-da-eficiência.
+
+A complexidade é, assim, a mesma da pesquisa sequencial em uma lista:
+$O(n)$ no pior caso (onde $n$ é o tamanho da lista de elementos), pois
+envolve possivelmente comparação com cada elemento.
 
 \section{Unicidade de Elementos}
 
