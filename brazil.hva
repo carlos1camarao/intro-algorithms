@@ -1,0 +1,34 @@
+
+%%%% Hevea support for babel option 'portuguese'.
+
+%%%% Resets 
+%%%%    a) date format
+%%%%    b) names of various part descriptors (contentsname etc.)
+
+\newcommand{\brazil@babel}{
+\let\brazil@day\default@day%
+\let\brazil@month\default@month%
+\@ifundefined{theyear}{}{\def\today{\english@day\english@month,~\theyear}}%
+\def\prefacename{Pref\'acio}%
+\def\refname{Refer\^encias}%
+\def\abstractname{Resumo}%
+\def\bibname{Bibliografia}%
+\def\chaptername{Cap\'{\i}tulo}%
+\def\appendixname{Ap\^endice}%
+\def\contentsname{Conte\'udo}%
+\def\listfigurename{Lists de Figuras}%
+\def\listtablename{Lista de Tabelas}%
+\def\indexname{Indice}%
+\def\figurename{Figura}%
+\def\tablename{Tabela}%
+\def\partname{Parte}%
+\def\enclname{encl}%
+\def\ccname{cc}%
+\def\headtoname{Para}%
+\def\pagename{P\'agina}%
+\def\headpagename{P\'agina}%
+\def\seename{veja}%
+\def\alsoseename{veja também}%
+\def\footertext{Este documento foi traduzido de \LaTeX{} por
+\footahref{\heveaurl/index.html}{\hevea}.}%
+}

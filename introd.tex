@@ -6,11 +6,6 @@ Este livro provê uma introdução ao estudo de algoritmos, apresentando
 introdução a estruturas de dados básicas, algoritmos de pesquisa e de
 ordenação e noções de análise de complexidade de algoritmos.
 
-%Vamos identificar neste livro algoritmo com definição de função, no
-%sentido de prover uma sequência de passos que associa a cada valor de
-%(um conjunto de valores de) entrada um único valor de (um conjunto de
-%valores de) saída.
-
 Um algoritmo pode ser visto como uma função, no sentido de que mapeia
 cada valor de de (um conjunto de valores de) entrada um único valor de
 (um conjunto de valores de) saída.
@@ -55,9 +50,7 @@ por exemplo, em
 
 \index{ordena\c{c}\~ao}
 
-Considere o problema de ordenação, especificado Por exemplo, considere
-o problema de ordenação, especificado formalmente como a seguir (um
-problema computacional especifica a relação que deve existir entre a
+Considere o problema de ordenação, especificado formalmente como a seguir (um problema computacional especifica a relação que deve existir entre a
 entrada e a saída):
 
 \Entrada: sequência de elementos $S_0$.
@@ -72,25 +65,19 @@ $i=1,\ldots, n-1$.
 
 \index{permuta\c{c}\~ao}
 
-Uma permutação (ou arranjo) é uma redisposição dos elementos em uma
-certa sequência. Por exemplo, há 6 permutações distintas dos elementos
+Uma {\em permutação\/} é uma redisposição dos elementos em uma certa sequência. Por exemplo, existem 6 permutações distintas dos elementos
 1,2,3, que são: (1,2,3), (1,3,2), (2,1,3), (2,3,1), (3,1,2), (3,2,1).
 
+%O conceito de permutação (também chamado em matemática de ``arranjo'')
+%se distingue de uma {\em combinação}, na qual a ordem dos elementos
+%resultantes não é relevante. 
+
 Outra denominação, usada no contexto de palavras, é {\em anagrama}. 
-
-O conceito de permutação (também chamado em matemática de ``arranjo'')
-se distingue de uma {\em combinação}, na qual a ordem dos elementos
-resultantes não é relevante. 
-
-Outro nome usado para permutação no contexto de palavras é {\em
-  anagrama}.
-
-\index{anagrama}
-
 Um anagrama é o resultado de rearranjar as letras de uma palavra ou
 frase para produzir uma nova palavra ou frase, usando cada uma das
 letras originais exatamente uma vez. Por exemplo, "ovo" é um anagrama
 de "voo".
+\index{anagrama}
 
 Permutações ocorrem em diversas áreas da matemática e proeminentemente
 no estudo de algoritmos, particularmente de algoritmos ordenação.
@@ -102,67 +89,52 @@ que existem $n$ possíveis maneiras de escolher o primeiro elemento de
 uma permutação de $n$ elementos. Para cada possível escolha do
 primeiro elemento, temos $n-1$ possíveis maneiras de escolher o
 segundo elemento da permutação. Portanto, temos $n (n-1)$ maneiras de
-escolher os dois primeiros elementos. Então, temos $n-2$ maneiras de
-escolher o terceiro elemento da permutação, ou seja, temos
+escolher os dois primeiros elementos. Temos então $n-2$ maneiras de
+escolher o terceiro elemento da permutação, ou seja, 
 $n(n-1)(n-2)$ possíveis maneiras de escolher os três primeiros
 elementos. E assim sucessivamente, até que reste apenas um último
-elemento.  Isso nos dá um total de possíveis permutações igual a
-$n!=n(n-1)\ldots 1$
+elemento, o que nos dá um total de $n!=n(n-1)\ldots 1$ possíveis permutações distintas.
+
 
 \section{Ordenação por Inserção}
 
 \index{ordena\c{c}\~ao!por inser\c{c}\~ao}
-Um algoritmo ou função que resolve o problema de ordenação
+Um algoritmo para solução do problema de ordenação
 especificado acima, chamado de {\em ordenação por inserção\/}, é
 mostrado a seguir. Ele reflete o modo como um jogador de baralho
-usualmente ordena uma sequência de cartas recebidas (por exemplo, em
+usualmente ordena uma sequência de cartas em suas mãos (por exemplo, em
 um jogo de buraco).
 
 \subsection{Versão funcional}
 \label{insertion-sort-func}
 
-% \lstset{emph=[1]{sort,insert}}
-\progb{
-      \sort\ []       \hspace*{1cm} = []\\
-      \sort\ ($a$:$x$)\             = \insert\ $a$ (\sort\ $x$)\\
-      \hspace*{1cm}\\
-      \insert\ $a$ []       \hspace*{1cm} = []\\
-      \insert\ $a$ ($b$:$x$) \\ 
-          \hspace*{.2cm} | $a$ <= $b$  \hspace*{1.2cm} = $a$: ($b$ : $x$)\\
-          \hspace*{.2cm} | \otherwise  \hspace*{.7cm} = $b$: \insert\ $a$ $x$
-}
+\index{\inh{sort}}
+\index{\inh{insert}}
 
-%\begin{hask}
-%
-%	sort []			= []
-%	sort (a:x)	= insert a (sort x)
-%	
-%	insert a [] = []
-%	insert a (b:x) 
-%		| a <= b		  = a:(b:x)
-%		| otherwise	  = b:insert a x
-%\end{hask}
+\begin{center}
+\begin{tabular}{l}
+\begin{hask}{sort,insert}
+sort []			= []
+sort (a:x)	= insert a (sort x)
 
-\index{\sort}
-\index{\insert}
+insert a [] = []
+insert a (b:x) 
+   | a <= b		  = a:(b:x)
+   | otherwise	  = b:insert a x
+\end{hask}
+\end{tabular}
+\end{center}
+
 
 Explicações sobre a notação funcional (usada em Haskell):
 
 \begin{enumerate}
 
-\item \index{aplica\c{c}\~ao funcional} $f$ $x$ (aplicação funcional
-  --- a base da programação funcional) é o mesmo que {\tt $f$($x$)}
-  (mas melhor porque evita os parênteses).
+\item \index{aplica\c{c}\~ao funcional} \inh{f x} (aplicação funcional ---
+  a base da programação funcional) é o mesmo que §f(x)§ (mas melhor
+  porque evita os parênteses).
 
-%\item \index{aplica\c{c}\~ao funcional} §f x§ (aplicação funcional ---
-%  a base da programação funcional) é o mesmo que §f(x)§ (mas melhor
-%  porque evita os parênteses).
-
-\item {\tt $b$: \insert\ $a$ $x$} é o mesmo que {\tt $b$:
-  (\insert\ $a$ $x$}). A aplicação funcional tem precedência sobre o
-  uso de operadores binários.
-
-%\item §b:insert a x§\, é o mesmo que §b:(insert a x)§\,: a aplicação funcional tem precedência sobre o uso de
+\item \inh{b:insert a x}\, é o mesmo que \inh{b:(insert a x)}\,: a aplicação funcional tem precedência sobre o uso de
 %  operadores binários.
 
 \item \index{operador!bin\'ario} O uso de um operador binário nada
@@ -175,67 +147,43 @@ Explicações sobre a notação funcional (usada em Haskell):
   entre crases.  Exemplos:
 
   \begin{tabular}{lll} 
-    {\tt 2 + 3} & é equivalente a & {\tt (+) 2 3} \\ 
-    {\tt $b$ : $x$} & é equivalente a & {\tt (:) $b$ $x$} \\ 
-    $f$ $x$ $y$ & é equivalente a & {\tt $x$ `$f$` $y$} 
+    \inh{2 + 3} & é equivalente a & \inh{(+) 2 3} \\ 
+    \inh{b:x} & é equivalente a & \inh{(:) b x} \\ 
+    \inh{f x y} & é equivalente a & \inh{x `f` y} 
   \end{tabular}
 
-%  \begin{tabular}{lll} 
-%    §2 + 3§ & é equivalente a & \lstinline$(+) 2 3$ \\ 
-%    §b:x§     & é equivalente a & \lstinline$(:) b x$ \\ 
-%    §f x y§   & é equivalente a & \lstinline$x `f` y$ 
-%  \end{tabular}
-
-\item \index{Tipo!recursivo} \index{\List}\index{Cons}\index{Nil} As
-  funções \insert\ e \sort\ usam listas, um tipo recursivo, que é um
-  tipo de dado algébrico (chamado em Haskell de \data) parecido com o
+\item \index{Tipo!recursivo} \index{\inh{List}}\index{\inh{Cons}}\index{\inh{Ni}l} As
+  funções \inh{insert} e \inh{sort} usam listas, um tipo recursivo, que é um
+  tipo de dado algébrico (chamado em Haskell de \inh{data}) parecido com o
   seguinte:
 
-    \progb{\data\ \List\ $a$ = \Nil\ | \Cons\ $a$ (\List\ $a$)}
-
-%	\inCode{§data List a = Nil | Cons a (List a)§}
+\begin{center}
+\begin{tabular}{l}
+\begin{hask}{List,Nil,Cons}
+data List a = Nil | Cons a (List a)
+\end{hask}
+\end{tabular}
+\end{center}
 
   \index{Tipo de dado!algébrico} Um tipo de dado algébrico é a maneira
   como se definem somas (de tipos, sendo que só podem existir somas
   disjuntas de tipos), que modelam escolha (``ou'') de tipos de dados.
 
   \index{polimorfismo}\index{Tipo!polimórfico} A declaração de
-  \List\ acima especifica que um valor de tipo lista é polimórfico (o
-  uso da variável de tipo $a$ indica que \List\ é um construtor de
-  tipos que pode ser aplicado a {\em qualquer\/} tipo $t$, isto é,
-  podemos ter qualquer instância \List\ $t$, para {\em qualquer\/}
-  tipo $t$), e que uma lista (um valor de tipo $\List\ t$, para algum
-  tipo $t$) pode ser \Nil\ (uma lista vazia) {\em ou\/} {\tt
-    \Cons\ $v$ $x$}, uma lista (não vazia) formada por um valor $v$
-  (cabeça da lista) e de um restante (ou rabo) da lista, $x$ (que deve
+  \inh{List} acima especifica que um valor de tipo lista é polimórfico (o
+  uso da variável de tipo \inh{a} indica que \inh{List} é um construtor de
+  tipos que pode ser aplicado a {\em qualquer\/} tipo \inh{t}, isto é,
+  podemos ter qualquer instância \inh{List t}, para {\em qualquer\/}
+  tipo \inh{t}), e que uma lista (um valor de tipo \inh{List t}, para algum
+  tipo \inh{t}) pode ser \inh{Nil} (uma lista vazia) {\em ou\/} \inh{Cons v x}, uma lista (não vazia) formada por um valor \inh{v}
+  (cabeça da lista) e de um restante (ou rabo) da lista, \inh{x} (que deve
   ser do mesmo tipo da lista da qual é o restante).
 
-%  A declaração de §List§ acima especifica que um valor de tipo lista é
-%  polimórfico (o uso da variável de tipo $a$ indica que §List§ é um
-%  construtor de tipos que pode ser aplicado a {\em qualquer\/} tipo
-%  $t$, isto é, podemos ter qualquer instância §List§ $t$, para {\em
-%    qualquer\/} tipo $t$), e que uma lista (um valor de tipo §List t§,
-%  para algum tipo $t$) pode ser §Nil§ (uma lista vazia) {\em ou\/}
-%  §Cons v x§, uma lista (não vazia) formada por um valor $v$ (cabeça
-%  da lista) e de um restante (ou rabo) da lista, $x$ (que deve ser do
-%  mesmo tipo da lista da qual é o restante).
-
-  \index{Listas}\index{\Cons}\index{\Nil}
+  \index{Listas}\index{\inh{Cons}}\index{\inh{Nil}}
 
   O tipo de listas em Haskell (é parecido mas) difere ligeiramente do
-  tipo algébrico acima porque o construtor \Nil\ é escrito como {\tt
-    []} e o construtor \Cons\ é escrito como um operador binário {\tt
-    :}. Assim, em vez de escrever, {\tt \Cons\ 1 \Nil}, escreve-se em
-  Haskell {\tt 1:[]}. Além disso, pode-se escrever também {\tt
-    [1,2,3]} em vez de {\tt 1:2:3:[]} --- i.e.~em vez de {\tt
-    1:(2:(3:[]))}.
-
-%  O tipo de listas em Haskell (é parecido mas) difere ligeiramente do
-%  tipo algébrico acima porque o construtor §Nil§ é escrito como §[]§ e
-%  o construtor §Cons§ é escrito como um operador binário, o operador
-%  §(:)§.  Assim, em vez de escrever, §Cons 1 Nil§, escreve-se em
-%  Haskell §1:[]§. Além disso, pode-se escrever também §[1,2,3]§ em vez
-%  de §1:2:3:[]§ --- i.e.~em vez de §1:(2:(3:[]))§.
+  tipo algébrico acima porque o construtor \inh{Nil} é escrito como \inh{[]} e o construtor \inh{Cons} é escrito como um operador binário \inh{(:)}. Assim, em vez de escrever, \inh{Cons 1 Nil}, escreve-se em
+  Haskell \inh{1:[]}. Além disso, pode-se escrever também \inh{[1,2,3]} em vez de \inh{1:2:3:[]} --- i.e.~em vez de \inh{1:(2:(3:[]))}.
 
 \item \index{soma!disjunta} \index{currificação} Tipos de dados
   algébricos permitem definir somas (disjuntas) de tipos, que modelam
@@ -244,136 +192,93 @@ Explicações sobre a notação funcional (usada em Haskell):
   ``linearizados'' (também chamados de ``currificados'') ou produtos
   cartesianos (generalizados), também chamados de tuplas.
 
-  \index{\Pair} Por exemplo:
+  \index{\inh{Pair}} Por exemplo:
 
-  \progb{\data\ \Pair\ $a$ $b$ = \Pair\ $a$ $b$}
+\begin{center}
+\begin{tabular}{l}
+\begin{hask}{Pair}
+data Pair a b = Pair a b
+\end{hask}
+\end{tabular}
+\end{center}
 
-%  \inCode{§data Pair a b = Pair a b§}
-
-   define um construtor de tipos \Pair, que tem dois parâmetros que
-  podem ser instanciados para quaisquer tipos $t$ e $t'$: por exemplo,
-  \Pair\ \Int\ \Bool\ representa pares de valores de inteiros e
+   define um construtor de tipos \inh{Pair}, que tem dois parâmetros que
+  podem ser instanciados para quaisquer tipos \inh{t} e \inh{t'}: por exemplo,
+  \inh{Pair Int Bool} representa pares de valores de inteiros e
   booleanos (o primeiro componente do par é um inteiro e o segundo um
-  valor booleano). É semelhante ao produto {\tt (\Int,\Bool)}. A
-  diferença é que valores do primeiro são construídos da forma {\tt
-    \Pair\ 1 \True} (especificando um valor inteiro e em seguida um
+  valor booleano). É semelhante ao produto \inh{(Int,Bool)}. A
+  diferença é que valores do primeiro são construídos da forma \inh{Pair 1 True} (especificando um valor inteiro e em seguida um
   valor booleano), ao passo que valores do segundo são construídos da
-  forma {\tt (1,\True)} (especificando, entre parânteses, primeiro um
+  forma \inh{(1,True)} (especificando, entre parânteses, primeiro um
   valor inteiro, seguido de uma vírgula, e depois um valor booleano).
-
-%  define um construtor de tipos §Pair§, que tem dois parâmetros que
-%  podem ser instanciados para quaisquer tipos $t$ e $t'$: por exemplo,
-%  §Pair Int Bool§ representa pares de valores de inteiros e booleanos
-%  (o primeiro componente do par é um inteiro e o segundo um valor
-%  booleano). É semelhante ao produto §(Int, Bool)§. A diferença é que
-%  valores do primeiro são construídos da forma §Pair 1 True§
-%  (especificando um valor inteiro e em seguida um valor booleano), ao
-%  passo que valores do segundo são construídos da forma §(1,True)§
-%  (especificando, entre parânteses, primeiro um valor inteiro, seguido
-%  de uma vírgula, e depois um valor booleano).
 
 \end{enumerate}
 
-%\lstset{emph=[2]{perm,sorted,elem,delete}}
-
-Para mostrar a correção de \sort, podemos usar predicados (funções de
-contra-domínio \Bool); vamos provar:
-
-  \[ \text{\it \sort\ $x$ = $y$ implica:} \]
+Para mostrar a correção de \inh{sort}, podemos usar predicados (funções de
+contra-domínio \inh{Bool}); vamos provar que (\inh{sort x}) = \inh{y} implica:
 
   \begin{enumerate}
 
-    \item \sorted\ $y$
-    \item $x$ `\perm` $y$
+    \item \inh{sorted y}
+    \item \inh{x `perm` y}
 
- \end{enumerate}
-
-%Para mostrar a correção de §sort§, podemos usar predicados (funções de
-%contra-domínio §Bool§); vamos provar que §sort x = y§ implica: 
-%
-%  \begin{enumerate}
-%
-%    \item §sorted y§
-%    \item §x `perm` y§
-%
-% \end{enumerate}
-%
+\end{enumerate}
 
 Temos:
 
-  \progb{
-        \sorted\ []            \hspace*{2cm}= \True\\
-        \sorted\ [$a$]         \hspace*{1.7cm}= \True\\
-        \sorted\ ($a$:$b$:$x$) \hspace*{.1cm}= ($a$ <= $b$) \&\& \sorted\ ($b$:$x$) \\ 
-        \hspace*{1cm} \\  
-        [] \symbol{96}\perm\symbol{96} []         \hspace*{1.3cm} = \True\\
-        ($a$:$x$) \symbol{96}\perm\symbol{96} $y$ \hspace*{.1cm} = \elem\ $a$ $y$ \&\& 
-                                ($x$ \symbol{96}\perm\symbol{96} (\delete\ $a$ $y$)) \\
-        \hspace*{1cm} \\  
-        $a$ \symbol{96}\elem\symbol{96}\ []        \hspace*{1cm} = \False\\
-        $a$ \symbol{96}\elem\symbol{96}\ ($b$:$x$) \hspace*{.1cm}= ($a$ == $b$) || ($a$ \symbol{96}\elem\symbol{96} $x$)\\
-        \hspace*{1cm} \\  
-        \delete\ $a$ []         \hspace*{0.7cm} = []\\
-        \delete\ $a$ ($b$:$x$)\\
-           \hspace*{.2cm}| $a$==$b$     \hspace*{2cm}  = $x$ \\
-           \hspace*{.2cm}| \otherwise\  \hspace*{0.7cm} = $b$: \delete\ $a$ $x$
-  }
+ \index{\inh{sorted}}
+\index{\inh{perm}}
+\index{\inh{elem}}
+\index{\inh{delete}}
 
-%\begin{hask}
-%
-%	sorted []       =  True
-%	sorted [a]      =  True
-%	sorted (a:b:x)  = (a <= b) && sorted (b:x) 
-%
-%	[] `perm`  []		= True
-%	(a:x) `perm` y	= elem a y && (x `perm` (delete a y)) 
-%
-%	a `elem` []			= False
-%	a `elem` (b:x)	= (a == b) || (a `elem` x)
-% 
-%	delete a []	= []
-%	delete a (b:x)
-%		| a==b 			= x
-%		| otherwise	= b:delete a x
-% \end{hask}
+\begin{center}
+\begin{tabular}{l}
+\begin{hask}{sorted,perm,elem,delete}
+
+sorted []      =  True
+sorted [a]     =  True
+sorted (a:b:x) = (a <= b) && sorted (b:x) 
+
+[] `perm`  []  = True
+(a:x) `perm` y = elem a y && (x `perm` (delete a y)) 
+
+a `elem` []    = False
+a `elem` (b:x) = (a == b) || (a `elem` x)
+
+delete a [] = []
+delete a (b:x)
+   | a==b      = x
+   | otherwise = b:delete a x
+\end{hask}
+\end{tabular}
+\end{center}
 
 Explicações sobre a notação funcional (usada em Haskell):
 
 \begin{enumerate}
 
-\item {\tt \&\&} e {\tt ||} são operadores binários lógicos de
-  conjunção e disjunção, respectivamente.
+ \item \inh{&&} e \inh{||} são operadores binários lógicos de
+conjunção e disjunção, respectivamente.
 
-%\item §&&§ e §||§ são operadores binários lógicos de
-%  conjunção e disjunção, respectivamente.
-
-\item A definição de \delete\ usa {\em guardas\/}, que são expressões
+\item A definição de \inh{delete} usa {\em guardas\/}, que são expressões
   booleanas usadas na definição de funções; para cada chamada de
   função, a primeira (na ordem textual) guarda cuja avaliação retorna
   \True\ define o resultado da chamada da função, pela avaliação da
   expressão associada a essa guarda (que segue o símbolo {\tt =}). Por
-  exemplo, a guarda na definição de \delete\ é equivalente a:
-  \iif\ $a$==$b$ \tthen\ $x$ \eelse\ $b$: \delete\ $a$ $x$.
-
-%\item A definição de §delete§ usa {\em guardas\/}, que são expressões
-%  booleanas usadas na definição de funções; para cada chamada de
-%  função, a primeira (na ordem textual) guarda cuja avaliação retorna
-%  §True§ define o resultado da chamada da função, pela avaliação da
-%  expressão associada a essa guarda (que segue o símbolo §=§). Por
-%  exemplo, a guarda na definição de §delete§ é equivalente a:
-%  §if a==b then x else b:delete a x§.
+  exemplo, a guarda na definição de \inh{delete} é equivalente a:
+  \inh{if a==b then x else b:delete a x}.
 
 \end{enumerate}
 
 Prova: O caso base sai diretamente e o caso indutivo é consequência
 dos seguintes lemas:
 
-Lema 1: Para todo $a,x$, 
-        {\tt \sorted ($x$)} implica {\tt \sorted(\insert\ $a$ $x$)}
+Lema 1: Para todo \inh{a},\inh{x}, 
+        \inh{(sorted x)} implica \inh{(sorted (insert a x))}
 
-Lema 2: Para todo $a,x$, 
-        {\tt \sort\ $x$ \symbol{96}\perm\symbol{96} $x$} implica 
-        {\tt \insert\ $a$ (\sort\ $x$) \symbol{96}\perm\symbol{96} ($a$:$x$)}
+Lema 2: ????? Para todo \inh{a},\inh{x}, 
+        \inh{sort x `perm` x} implica 
+        \inh{insert a (sort x) `perm` (a:x)}
 
 %Lema 1: Para todo §a,x§, 
 %        §sorted x§ implica §sorted(insert a x)§
@@ -391,63 +296,44 @@ A versão imperativa usa o próprio arranjo para a ordenação (nenhum
 outro arranjo ou estrutura de dados auxiliar) e a seguinte ideia:
 
   \begin{quotation}
-     insere {\tt $A$[$j$]} no arranjo ordenado de {\tt $A$[1]} até
-     {\tt $A$[$j$-1]}, de $j=2$ até o tamanho do arranjo
-%     insere ±A[j]± no arranjo ordenado de ±A[1]± até
-%     ±A[j-1]±, para ±j± de ±j=2± até o tamanho do arranjo
+     insere \ina{A[j]} no arranjo ordenado de \ina{A[1]} até
+     \ina{A[j-1]}, de \ina{j=2} até o tamanho do arranjo
   \end{quotation}
 
 A ideia dá origem ao seguinte algoritmo, escrito em pseudo-código como
 (note que endentação no pseudo-código indica aninhamento na estrutura
 de blocos):
 
-\newcommand{\key}{{\it key\/}}
-
-\progb{
-\sort($A$) \\
-\hspace*{.5cm} \for\ j $\leftarrow$ 2 \tto\ \length[$A$] \do\\
-\hspace*{1cm}     \key\ $\leftarrow$ $A$[j]\\
-\hspace*{1cm}     /* \textcolor{magenta}{Insere $A$[$j$] no arranjo ordenado $A$[1..$j$-1]} */ \\
-\hspace*{1cm}     $i$ $\leftarrow$ $j$-1\\
-\hspace*{1cm}     \while\ ($i$ > 0 \&\& $A$[$i$]>\key) \do\\
-\hspace*{2cm}        $A$[$i$+1] $\leftarrow$ $A$[$i$]\\
-\hspace*{2cm}        $i$ $\leftarrow$ $i$ - 1\\
-\hspace*{1cm}    $A$[$i$+1] $\leftarrow$ \key
+\begin{center}
+\begin{tabular}{l}
+\begin{alg}
+sort(A) {
+   for j:=2 to length[A] do
+      key := A[j]
+      /* Insere A[j] no arranjo ordenado A[1..j-1] */ 
+      i := j-1
+      while (i > 0 && A[i]>key) do
+         A[i+1] := A[i]
+         i := i - 1
+         A[i+1] := key
 }
-
-%\begin{alg}
-%
-%sort(A) {
-%	for j:=2 to length[A] do
-%		key := A[j]
-%		/* Insere A[j] no arranjo ordenado A[1..j-1] */ 
-%		i := j-1
-%		while (i > 0 && A[i]>key) do
-%			A[i+1] := A[i]
-%			i := i - 1
-%			A[i+1] := key
-%}
-%\end{alg}
-
-\index{\sort}
+\end{alg}
+\end{tabular}
+\end{center}
+\index{\ina{sort}}
 \index{invariante}
+
 A correção do algoritmo advém de que o invariante, especificado
 bastante informalmente como:
 
   \begin{quotation}
-    --- no início da execução de cada iteração do comando \for, o
-    sub-arranjo {\tt $A$[1..$j$-1]} contém os elementos que estavam
+    --- no início da execução de cada iteração do comando \ina{for}, o
+    sub-arranjo \ina{A[1..j-1]} contém os elementos que estavam
     originalmente nesse sub-arranjo, mas de forma ordenada ---
   \end{quotation}
 
-%  \begin{quotation}
-%    --- no início da execução de cada iteração do comando \for, o
-%    sub-arranjo ±A[1..j-1]± contém os elementos que estavam
-%    originalmente nesse sub-arranjo, mas de forma ordenada ---
-%  \end{quotation}
-
 é verdadeiro no início (antes da execução da primeira iteração do
-\for), antes e após cada iteração, e no final, quando então a
+\ina{for}), antes e após cada iteração, e no final, quando então a
 terminação garante a correção do algoritmo (ordenamento de todo o
 arranjo).
 
@@ -460,4 +346,4 @@ conceitos principais usados para análise da complexidade (eficiência)
 de algoritmos, para que possamos analisar a complexidade de algoritmos
 (começando pela complexidade dos algoritmos apresentados neste
 capítulo).
-
+\end{document}

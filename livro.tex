@@ -1,90 +1,37 @@
 %!TEX encoding = ISO-8859-1
 \documentclass[a4paper,10pt]{book}
 
-\usepackage{fancyheadings}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{amsthm}
-\usepackage{graphicx}
-%\usepackage{fancybox}
-\usepackage{makeidx}
-\usepackage{subfigure}
-\usepackage{indentfirst}
-\usepackage{color}
-\usepackage[latin1]{inputenc}
-\usepackage[portuguese]{babel}
-\usepackage{comment}
+\usepackage[T1]{fontenc}             % font encoding
+\usepackage[brazil]{babel}           % language
+%\usepackage[portuguese]{babel}
+\usepackage[latin1]{inputenc}      % acentos
 
+\usepackage{amsmath,amssymb,amsthm}  % mathematics
+\usepackage{graphicx}                               % graphics
+\usepackage{color}                                     % cores
+\usepackage{indentfirst}  % indentation at paragraph beggining
+\usepackage{hyperref}     % for links in pdf
+\usepackage{makeidx}
+%\usepackage{subfigure}
+%\usepackage{comment}
+
+%-- colors --------------------------------------
+%\definecolor{bluencs}{rgb}{0.0, 0.53, 0.74}
+\definecolor{paleblue}{rgb}{0.74, 0.83, 0.9}
+%\definecolor{magnolia}{rgb}{0.97, 0.96, 1.0}
+\definecolor{darkgreen}{rgb}{0.0,0.5,0.0}
+\definecolor{brown}{rgb}{0.65,0.16,0.16}
+
+%-- hevea and page styling -------------------------
 \usepackage{hevea}
 \usepackage{hevea-epsfbox-def}  
+\usepackage{fancybox}
+\usepackage{fancyheadings}
+\usepackage{fancysection}            % hevea styling for sections
+\colorsections{185}
 
-%\usepackage{listings}
-
-%\lstdefinestyle{colors}{keywordstyle={\bf\color{blue}}, commentstyle={\em\color{magenta}}}
-%\lstnewenvironment{hask}
-%  {\setenvclass{lstlisting}{hask}\lstset{language=Pascal, style=colors}}
-%  {}
-
-%\lstloadlanguages{Haskell,[GNU]C++}
-
-%\definecolor{codecolor}{rgb}{0.74, 0.83, 0.9}
-%\definecolor{lightcyan}{rgb}{0.88, 1.0, 1.0}
-%\definecolor{lightblue}{rgb}{0.68, 0.85, 0.9}
-%\definecolor{myellow}{rgb}{0.99, 0.97, 0.37}
-%\lstdefinestyle{gstyle}
-%	{tabsize=2,
-%	 backgroundcolor=\color{codecolor},
-%	 frame=single,framerule=0pt,
-%	 emphstyle=\color{blue}\normalfont\itshape,
-%	 commentstyle=\color{red}\normalfont,
-%	 columns=flexible,
-%	 basicstyle=\color{black}\ttfamily,
-%	 identifierstyle=\normalfont\itshape,
-%	 xleftmargin=20pt,xrightmargin=0pt,
-%	 keepspaces=false
-%}
-%
-%\lstset{style=gstyle}
-
-%\newstyle{.clisting}{white-space:pre;
-%                     border-left:solid black;padding-left:4ex;margin-left:2ex;}
-
-%\lstdefinelanguage[my]{hask}{morekeywords={data}}
-%\lstnewenvironment{haskel}[1]{\lstset{language=[my]Haskell}}{}
-%\lstnewenvironment{alg}[2]{\lstset{language=[GNU]C++}}{}
-
-%\newcommand{\inCode}[1]
-%	{\begin{center}
-%      \colorbox{codecolor}{{#1}}
-%	\end{center}}
-
-%\usepackage[T1]{fontenc}
-%\selectlanguage{portuguese}
-
-\htmlhead{\sffamily\bfseries{Introdução a Algoritmos}}
-
-%\newcommand{\eqdef}{\overset{\text{def}}{=}}
-
-%\newcommand{\graybox}[1]{\begin{minipage}{\textwidth}\psboxit{box 0.95 setgray fill}{
- % {\spbox{#1}}}\end{minipage}}
-
-\makeindex
-
-\setcounter{tocdepth}{3}
-
-%----- text format parameters -----
-\setlength\textwidth{150mm}
-\setlength\textheight{241mm}
-\setlength\oddsidemargin{5.4mm}
-\setlength\evensidemargin{5.4mm}
-%\setlength\marginparsep{5mm}
-%\setlength\marginparwidth{15mm}
-\addtolength\voffset{-5mm}
-\addtolength\topmargin{-3mm}
-\addtolength\headsep{2mm}
-\setlength\footskip{10mm}
-
-%---------------- pagestyle ----------
+%--- page style ----------------------------------
+\setlength{\headheight}{15.2pt}
 \pagestyle{fancyplain}
 \addtolength\headwidth{\marginparsep}
 \renewcommand{\chaptermark}[1]
@@ -95,8 +42,83 @@
       {\fancyplain{}{\bfseries\rightmark}}
 \rhead[\fancyplain{}{\bfseries\leftmark}]
       {\fancyplain{}{\bfseries\thepage}}
-
 \cfoot{}
+
+%----- text format parameters -----
+\setlength\textwidth{150mm}
+\setlength\textheight{241mm}
+\setlength\oddsidemargin{5.4mm}
+\setlength\evensidemargin{5.4mm}
+\setlength\marginparsep{5mm}
+\setlength\marginparwidth{15mm}
+\addtolength\voffset{-5mm}
+\addtolength\topmargin{-3mm}
+\addtolength\headsep{2mm}
+\setlength\footskip{10mm}
+
+
+%- typesetting code -------------------------------
+\usepackage{listings}                                 
+
+% estilo default de typesetting de código
+\newstyle{.myclisting}{font-family:monospace;white-space:pre;margin:lex;padding:2ex;}
+
+% estilo para Haskell
+%OBS: a versao original de Haskell considera como 
+% keywords todas as definições do prelude.base
+\lstdefinestyle{mystyle}{basicstyle={\tt},
+backgroundcolor={\color{paleblue}},
+keywordstyle={\bf \color{black}},
+identifierstyle={\it \color{blue}},
+commentstyle={\rm \color{darkgreen}},
+emphstyle={\it \color{brown}},
+xleftmargin=0pt,xrightmargin=0pt,
+columns={fixed},
+keepspaces={true},
+showstringspaces=false,
+}
+
+% seta estilo global de lstlistings para uso por lstinline
+\lstset{style=mystyle}
+
+% listings e lstinline para Haskell 
+\lst@definelanguage{myHaskell}{language=Haskell,
+deletekeywords={sort,insert,List,Cons,Nil,Pair,delete}}
+
+\lstnewenvironment{hask}[1]{
+\setenvclass{lstlisting}{myclisting}
+\lstset{language={myHaskell},style=mystyle,emph={#1}}}
+{}
+
+\newcommand{\inh}{\lstinline[language=myHaskell]}
+
+% listings e lstinline para C 
+\lst@definelanguage{myAlg}{language={C++}}
+
+\lstnewenvironment{alg}[1]{
+\setenvclass{lstlisting}{myclisting}
+\lstset{language={myAlg},style=mystyle,emph={#1}}}
+{}
+
+\newcommand{\ina}{\lstinline[language=myAlg]}
+%-----------------------------------------------
+
+\setcounter{tocdepth}{3}
+
+%-- title------------------------------------------
+\title{\textsc{ {Introdução a Algoritmos}}\\
+%{\small release ##= version ##}}
+\author{Carlos Camarão\\
+{\small Universidade Federal de Minas Gerais}\\
+{\small Doutor em Ci\^encia da Computa\c{c}\~ao pela Universidade de Manchester, Inglaterra}\\
+{\small $\copyright$ 2015} }
+%\date{Febuary 25, 2015}
+\pagestyle{headings}
+
+\htmlhead{{\sc\bf \small Introdução a Algoritmos}:}
+
+\makeindex
+
 
 %----- lista de exercicios ---------------
 %\newenvironment{exerc}
@@ -104,39 +126,15 @@
 %    \begin{enumerate}
 %   }
 %   {\end{enumerate}}                    
-\renewcommand{\chaptername}{Capítulo}
-\renewcommand{\tablename}{Tabela}
-\renewcommand{\figurename}{Figura}
-\renewcommand{\contentsname}{Conteúdo}
 
 \begin{document}
 
-\pagestyle{empty}
-\begin{center}
-\begin{tabular}{c}
-\Huge{\sffamily\bfseries{Introdução a Algoritmos}}\\
-\end{tabular}
-\end{center}
-
-\begin{tabular}{l}
-{\Large{\sffamily\bfseries{Carlos Camarão}}} \\
-{\small Universidade Federal de Minas Gerais}\\
-{\small Doutor em Ci\^encia da Computa\c{c}\~ao pela Universidade de Manchester, Inglaterra} \\ \\
-\end{tabular}
-
-\begin{tabular}{l}
-Direitos exclusivos\\
-Copyright \copyright\ 2009 by Carlos Camar\~ao
-\end{tabular}
+\maketitle
 
 É permitida a duplicação ou reprodução, no todo ou em parte, sob
 quaisquer formas ou por quaisquer meios (eletrônico, mecânico,
 gravação, fotocópia, distribuição na Web ou outros), desde que seja
 para fins não comerciais.
-
-\pagestyle{fancy}
-\pagenumbering{roman}
-%\setcounter{page}{5}
 
 \tableofcontents
 
@@ -145,34 +143,34 @@ para fins não comerciais.
 
 \input{meta.keys}
 
-\pagestyle{fancy}
+%\pagestyle{fancy}
 \setcounter{secnumdepth}{10}
 \pagenumbering{arabic}
 
 \input{introd}
 
-\input{complexidade}
+%\input{complexidade}
 
-\input{estruturas-de-dados-basicas}
-\input{analise-eficiencia-de-algoritmos}
-\input{algoritmos-de-pesquisa}
+%\input{estruturas-de-dados-basicas}
+%\input{analise-eficiencia-de-algoritmos}
+%\input{algoritmos-de-pesquisa}
 
-\input{algoritmos-de-ordenacao}
+%\input{algoritmos-de-ordenacao}
 
-\input{hash}
+%\input{hash}
 
-\pagebreak
-\thispagestyle{empty}
-\pagebreak
-\pagestyle{fancyplain}
+%\pagebreak
+%\thispagestyle{empty}
+%\pagebreak
+%\pagestyle{fancyplain}
 
-\bibliographystyle{plain}
-\bibliography{livro}
+%\bibliographystyle{plain}
+%\bibliography{livro}
 
-\appendix
-\input{Haskell}
-\input{relacoes-de-recorrencia}
+%\appendix
+%\input{Haskell}
+%\input{relacoes-de-recorrencia}
 
-\printindex
+%\printindex
 
 \end{document}
