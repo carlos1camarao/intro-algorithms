@@ -15,3 +15,24 @@
 \newlabel{insertion-sort-func}{{1.2.1}{X}}
 \@@addtocsec{htoc}{sec11}{1}{\@print{1.2.2}\quad{}Versão imperativa{}}
 \newlabel{insertion-sort-imperativ}{{1.2.2}{X}}
+\@@addtocsec{htoc}{sec12}{-1}{\@print{Capítulo 2}\quad{}\colorbox{cyan}{Estruturas de Dados Básicas}{}}
+\newlabel{estruturas-de-dados-basicas}{{2}{X}}
+\@@addtocsec{htoc}{sec13}{0}{\@print{2.1}\quad{}Listas{}}
+\newlabel{listas}{{2.1}{X}}
+\@@addtocsec{htoc}{sec14}{1}{\@print{2.1.1}\quad{}Pesquisa{}}
+\newlabel{pesquisa-em-lista}{{2.1.1}{X}}
+\@@addtocsec{htoc}{sec15}{2}{\@print{2.1.1.1}\quad{}Versão funcional{}}
+\@@addtocsec{htoc}{sec16}{2}{\@print{2.1.1.2}\quad{}Versão imperativa{}}
+\@@addtocsec{htoc}{sec17}{1}{\@print{2.1.2}\quad{}Inserção{}}
+\newlabel{insercao-em-lista}{{2.1.2}{X}}
+\@@addtocsec{htoc}{sec18}{2}{\@print{2.1.2.1}\quad{}Versão funcional{}}
+\@@addtocsec{htoc}{sec19}{2}{\@print{2.1.2.2}\quad{}Versão imperativa{}}
+\@@addtocsec{htoc}{sec20}{1}{\@print{2.1.3}\quad{}Remoção{}}
+\newlabel{remocao-de-lista}{{2.1.3}{X}}
+\@@addtocsec{htoc}{sec21}{2}{\@print{2.1.3.1}\quad{}Versão funcional{}}
+\@@addtocsec{htoc}{sec22}{2}{\@print{2.1.3.2}\quad{}Versão imperativa{}}
+\@@addtocsec{htoc}{sec23}{1}{\@print{2.1.4}\quad{}Lista duplamente encadeada{}}
+\newlabel{lista-duplamente-encadeada}{{2.1.4}{X}}
+\@@addtocsec{htoc}{sec24}{1}{\@print{2.1.5}\quad{}Pilha{}}
+\newlabel{pilha}{{2.1.5}{X}}
+\@@addtocsec{htoc}{sec25}{2}{\@print{2.1.5.1}\quad{}Versão funcional{}}

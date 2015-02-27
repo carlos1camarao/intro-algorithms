@@ -16,11 +16,12 @@
 %\usepackage{comment}
 
 %-- colors --------------------------------------
-%\definecolor{bluencs}{rgb}{0.0, 0.53, 0.74}
+\definecolor{bluencs}{rgb}{0.0, 0.53, 0.74}
 \definecolor{paleblue}{rgb}{0.74, 0.83, 0.9}
 %\definecolor{magnolia}{rgb}{0.97, 0.96, 1.0}
 \definecolor{darkgreen}{rgb}{0.0,0.5,0.0}
 \definecolor{brown}{rgb}{0.65,0.16,0.16}
+\definecolor{ngray}{rgb}{0.86, 0.86, 0.86}
 
 %-- hevea and page styling -------------------------
 \usepackage{hevea}
@@ -38,10 +39,10 @@
              {\markboth{#1}{}}
 \renewcommand{\sectionmark}[1]
              {\markright{\thesection\ #1}}
-\lhead[\fancyplain{}{\bfseries\thepage}]
-      {\fancyplain{}{\bfseries\rightmark}}
-\rhead[\fancyplain{}{\bfseries\leftmark}]
-      {\fancyplain{}{\bfseries\thepage}}
+\lhead[\fancyplain{}{\sfseries\thepage}]
+     {\fancyplain{}{\sfseries\rightmark}}
+\rhead[\fancyplain{}{\sfseries\leftmark}]
+      {\fancyplain{}{\sfseries\thepage}}
 \cfoot{}
 
 %----- text format parameters -----
@@ -70,12 +71,18 @@
 backgroundcolor={\color{paleblue}},
 keywordstyle={\bf \color{black}},
 identifierstyle={\it \color{blue}},
-commentstyle={\rm \color{darkgreen}},
-emphstyle={\it \color{brown}},
+commentstyle={\rm \color{red}},
+emphstyle={\it \color{darkgreen}},
 xleftmargin=0pt,xrightmargin=0pt,
 columns={fixed},
 keepspaces={true},
 showstringspaces=false,
+xleftmargin=2pt,
+stepnumber=1,
+numbersep=5pt,
+numberstyle={\tt \footnotesize \color{white}},
+captionpos=b,
+escapechar=§
 }
 
 % seta estilo global de lstlistings para uso por lstinline
@@ -83,11 +90,13 @@ showstringspaces=false,
 
 % listings e lstinline para Haskell 
 \lst@definelanguage{myHaskell}{language=Haskell,
-deletekeywords={sort,insert,List,Cons,Nil,Pair,delete}}
+deletekeywords={List,Cons,Nil,Pair,%
+all,and,any,delete,elem,foldr,insert,map,or,sort}}
+{}
 
 \lstnewenvironment{hask}[1]{
 \setenvclass{lstlisting}{myclisting}
-\lstset{language={myHaskell},style=mystyle,emph={#1}}}
+\lstset{language={myHaskell},emph={#1}}}
 {}
 
 \newcommand{\inh}{\lstinline[language=myHaskell]}
@@ -97,8 +106,15 @@ deletekeywords={sort,insert,List,Cons,Nil,Pair,delete}}
 
 \lstnewenvironment{alg}[1]{
 \setenvclass{lstlisting}{myclisting}
-\lstset{language={myAlg},style=mystyle,emph={#1}}}
+\lstset{language={myAlg},emph={#1}}}
 {}
+
+% environment para algoritmo com linhas numeradas
+\lstnewenvironment{algno}[1]{
+\setenvclass{lstlisting}{myclisting}
+\lstset{language={myAlg},numbers=left,emph={#1}}}
+{}
+
 
 \newcommand{\ina}{\lstinline[language=myAlg]}
 %-----------------------------------------------
@@ -151,7 +167,7 @@ para fins não comerciais.
 
 %\input{complexidade}
 
-%\input{estruturas-de-dados-basicas}
+\input{estruturas-de-dados-basicas}
 %\input{analise-eficiencia-de-algoritmos}
 %\input{algoritmos-de-pesquisa}
 

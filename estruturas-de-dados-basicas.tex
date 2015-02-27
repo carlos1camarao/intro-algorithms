@@ -1,82 +1,67 @@
+%!TEX encoding = ISO-8859-1
 \chapter{\colorbox{cyan}{Estruturas de Dados Básicas}}
 \label{estruturas-de-dados-basicas}
 
-Este capítulo aborda listas e árvores e suas representações e
-operações básicas.
+Este capítulo aborda listas e árvores, suas representações em um computador e
+operações básicas sobre essas estruturas de dados.
 
 \section{Listas}
 \label{listas}
 
-Uma estrutura de dados básica em computação, chamada de lista, é
-definida recursivamente como a seguir.  Uma lista de elementos de
-determinado tipo $t$ é ou i) vazia ou ii) um elemento de tipo $t$ e um
-resto, sendo o resto também uma lista de tipo $t$.
+Uma lista é uma estrutura de dados comumente usada em computação e pode ser definida recursivamente como a seguir.  Uma lista de elementos de
+determinado tipo \inh{t} é ou i) {\em vazia} ou ii) constituída de um elemento de tipo \inh{t} e um uma lista de elementos do mesmo tipo \inh{t} (denominada {\em cauda} ou resto da lista).
 
 Em uma linguagem como Haskell, que provê suporte à definição de tipos
 de dados recursivos, o tipo lista pode ser definido como:
 
-  \[ \text{{\tt data \List\ $a$ = \Nil\ | \Cons\ $a$ (\List\ $a$)}} \]
+\begin{center}
+\begin{tabular}{l}
+\begin{hask}{List,Nil,Cons}
+data List a = Nil | Cons a (List a)
+\end{hask}
+\end{tabular}
+\end{center}
 
-Além de recursivo, \List\ $a$ é um tipo polimórfico: a variável de
-tipo $a$ pode ser instanciada para um tipo qualquer, permitindo assim
-a definição de listas com elementos de um tipo qualquer. 
+O tipo de dado \inh{\List a} é um tipo recursivo, sendo \inh{Nil} e \inh{Cons} os construtores de valores desse tipo. Além disso, \inh{\List a} é um tipo {\em polimórfico}: a variável de tipo \inh{a} pode ser instanciada para um tipo \inh{t} qualquer, permitindo assim a definição de listas com elementos de desse tipo \inh{t}. Por exemplo, \inh{(Cons 1 (Cons 2 (Cons 3 Nil)))} é uma lista de tipo \inh{List Int} e \inh{(Cons True (Cons False Nil))} tem tipo \inh{List Bool}. 
 
-Além disso, a linguagem Haskell provê suporte à criação de valores de
-tipo lista por meio do uso de uma notação especial para criação de
-listas, simplesmente colocando os elementos entre colchetes, separados
-por vírgulas --- por exemplo {\tt [1,2,3]} representa a lista {\tt
-  \Cons\ 1 (\Cons\ 2 (\Cons\ 3 \Nil))}.
+A linguagem Haskell provê uma notação especial para a criação de valores de tipo lista: \inh{[]}  é usado em lugar de \inh{Nil}, e o construtor infixado \inh{(:)}, associativo à direita, em lugar de \inh{Cons}. Por exemplo, a lista \inh{Cons 1 (Cons 2 (Cons 3 Nil))} seria representada como \inh{(1:2:3:[]}. 
+Além disso, uma lista pode ser representada simplesmente escrevendo-se os seus elementos da lista entre colchetes, separados por vírgulas. Ou seja, a lista \inh{\inh{(1:2:3:[]}} pode ser escrita, mais simplesmente, como \inh{[1,2,3]}. 
 
-De fato, {\tt []} é usado em vez de \Nil, e o construtor infixado {\tt
-  (:)}, associativo à direita, em vez de \Cons; por exemplo, {\tt 1 :
-  2 : 3 : []} denota o mesmo valor representado, pela definição acima,
-com os construtores \Nil\ e \Cons, por {\tt \Cons\ 1 (\Cons\ 2
-  (\Cons\ 3 \Nil))}.
+Em linguagens como \C, uma lista pode ser representada por meio de {\em registros} (também chamados de  "estruturas", em \C) e {\em ponteiros\/} (ou apontadores), tal como ilustrado no exemplo a seguir, que define uma lista de elementos de tipo \ina{int}. Linguagens como \C, que não provêm suporte para polimorfismo, requerem a definição de tipos lista distintos para cada tipo particular de elementos. 
 
-Em linguagens como \C, um tipo lista distinto tem que ser definido
-para cada tipo distinto para os elementos, usando registros (chamados
-em \C\ de "estruturas", definidos com a palavra-chave \struct) e
-ponteiros, formando uma estrutura de dados comumente chamada de {\em
-  lista encadeada}. Por exemplo:
+\begin{center}
+\begin{tabular}{l}
+\begin{alg}{ListaDeInteiros}
+struct ListaDeInteiros
+   int elem; 
+   struct ListaDeInteiros *r;
+\end{alg}
+\end{tabular}
+\end{center}
 
-\newcommand{\eelem}{{\it elem\/}}
-\newcommand{\ListaDeInteiros}{{\it ListaDeInteiros\/}}
+Uma definição de registro, em \C, é introduzida pela palavra-chave \ina{struct}, seguida do nome do registro -- neste caso, \ina{ListaDeInteiros}. O registro possui dois campos: um campo de tipo \ina{int} e nome \ina{elem}, e um campo de nome \ina{r}, que é um ponteiro para valores do próprio tipo \ina{ListaDeInteiros}. 
+ 
+A manipulação de valores de tipo lista em \C\ é bem mais trabalhosa. A falta de suporte para definição e uso de tipos recursivos e polimórficos torna a programação mais difícil e demorada e o código menos legível e mais sujeito a repetições e a ocorrências de erros. Por exemplo, para criar um valor de tipo \ina{ListaDeInteiros}, com os elementos \inh{1,2,3},  é necessário código como o seguinte:
+\index{\ina{ListaDeInteiros}}
 
-  \progb{
-        \struct\ \ListaDeInteiros\  \\
-        \hspace*{.2cm} int \eelem; \\
-        \hspace*{.2cm} \struct\ \ListaDeInteiros\ * $r$; \\
-  }
-define um registro com dois campos, um campo de tipo {\tt int} e nome
-\eelem, e um campo de nome $r$ que é um ponteiro para valores do
-próprio tipo \ListaDeInteiros.
+\begin{center}
+\begin{tabular}{l}
+\begin{alg}{ListaDeInteiros}
+struct ListaDeInteiros *p =
+   malloc(sizeof(struct ListaDeInteiros))
+   p->elem = 1;       p->r = malloc(sizeof(struct ListaDeInteiros))
+   p->r->elem = 2;    p->r->r = malloc(sizeof(struct ListaDeInteiros))
+   p->r->r->elem = 3; p->r->r->r = NULL
+\end{alg}
+\end{tabular}
+\end{center}
 
-A manipulação de valores de tipo lista em \C\ é mais trabalhosa, pouco
-elegante e legível e sujeita a erros. Por exemplo, simplesmente para
-criar um valor de tipo lista igual a {\tt [1,2,3]} em Haskell, é
-necessário código como o seguinte:
+Em \Haskell, o acesso a um valor \inh{v}, em uma lista \inh{x}, requer acesso a
+todos os elementos anteriores a \inh{v} em \inh{x}. De fato, a representação interna de listas definidas em \Haskell é feita por meio de ponteiros, mas a manipulação de ponteiros é gerada automaticamente pelo compilador da linguagem, de acordo com o código do programa, em vez de ser feita diretamente pelo programador.
 
-\progb{\struct\ \ListaDeInteiros\ *$p$ = \malloc(\sizeof(\struct\ \ListaDeInteiros))\\
-      $p$->\eelem\ = 1;           \hspace*{2.5cm}  $p$->$r$ = \malloc(\sizeof(\struct\ \ListaDeInteiros))\\
-      $p$->$r$->\eelem\ = 2;      \hspace*{1.5cm} $p$->$r$->$r$ = \malloc(\sizeof(\struct\ \ListaDeInteiros))\\
-      $p$->$r$->$r$->\eelem\ = 3; \hspace*{.5cm} $p$->$r$->$r$->$r$ = \NULL
-     }
-
-A falta de suporte a manipulação de valores de tipos recursivos e
-polimórficos torna a programação mais difícil e demorada e o código
-menos legível e mais sujeito a repetições e a ocorrências de erros.
-
-Em Haskell, o acesso a um valor $v$ de uma lista $x$ requer acesso a
-todos os elementos anteriores a $v$ em $x$. De fato, a representação
-de listas é feita em Haskell por meio de ponteiros, mas a manipulação
-de ponteiros é gerada automaticamente, de acordo com o código Haskell
-usado, em vez de ser feita diretamente pelo programador.
-
-O uso de arranjos é uma maneira alternativa de representar listas,
+Uma maneira alternativa de representar listas é por meio de {\em arranjos}, 
 especialmente em uma linguagem (como \C) que não provê suporte a
-manipulação de valores de estruturas de dados recursivas como
-listas. Nesse caso, o uso de arranjos requer que se especifique a
-priori um número máximo de elementos.
+manipulação de valores de estruturas de dados recursivas. Utilizando essa forma de representação, a lista fica limitada a um número máximo de elementos, já que a defição de uma arranjo requer que o número de elementos do mesmo seja especificado a priori.
 
 \subsection{Pesquisa}
 \label{pesquisa-em-lista}
@@ -88,82 +73,76 @@ remoção de elementos de listas, de acordo com a forma com que listas
 são representadas.
 
 Em ambos os casos apresentados abaixo, a pesquisa em uma lista de $n$
-elementos tem complexidade $O(n)$ no pior caso, pois envolve
-possivelmente comparação com cada elemento da lista.
+elementos tem complexidade $O(n)$ no pior caso, pois envolve, possivelmente, comparação com cada elemento da lista.
 
 \subsubsection{Versão funcional}
 
-\newcommand{\map}{{\it map\/}}
+A função \inh{elem}, que determina se um dado valor é elemento de uma lista dada, pode ser definida como a seguir:
+\index{\inh{elem}}
 
-A função \elem\ pode ser definida como a seguir:
+\begin{center}
+\begin{tabular}{l}
+\begin{hask}{elem}
+elem :: Eq a => a -> a -> Bool
+elem a []    = False
+elem a (b:x) = (a == b) || elem a x
+\end{hask}
+\end{tabular}
+\end{center}
 
-\progb{
-\elem\ \_ [] = \False\\
-\elem\ $a$ ($b$:$x$) \\
-  \hspace*{.2cm} | $a$ == $b$  \hspace*{.2cm} = \True\\
-  \hspace*{.2cm} | \otherwise\                = \elem\ $a$ $x$
-}
-
-O tipo de \elem\ é: {\tt \Eq\ $a$ => $a$ -> $a$ -> \Bool}.  
-
-Esse é um tipo {\em polimórfico restrito\/}, no qual a restrição (em
-inglês, {\em constraint\/}) \Eq\ $a$ indica que a variável de tipo $a$
+O tipo de \inh{elem}, em \Haskell, é um tipo {\em polimórfico restrito\/}: a restrição ({\em constraint\/}) (\inh{Eq a}) indica que a variável de tipo \inh{a}
 não pode ser instanciada para qualquer tipo, mas apenas para um tipo
-que é membro da classe de tipos \Eq, ou seja, no caso apenas para um
-tipo para o qual exista definida uma operação de igualdade para
-valores do tipo. É um erro de tipo chamar \elem\ com um valor para o
-qual não existe uma definição de igualdade definida.
+que é membro da classe de tipos \inh{Eq}, ou seja, no caso, apenas para um
+tipo para o qual exista definida uma operação de igualdade \inh{(==)}, para
+valores desse tipo. É um erro de tipo chamar a função \inh{elem} com um argumento de um tipo para o qual não é definida comparação de igualdade.
 
 \HRule
 {\em Nota\/}: 
 
-A função \elem, de fato, faz parte do módulo \Prelude, importado
-automaticamente por todos os módulos (sem necessidade de comando ou
-cláusula explícita de importação). A definição de \elem\ no
-\Prelude\ é feita usando \any, que por sua vez usa \mmap\ e
-\oor\ (\oor\ usa \foldr), como a seguir (\mmap\ e \foldr\ são ferramentas
-importantes para definição de funções em Haskell):
+A função \inh{elem}, de fato, faz parte do módulo \Prelude, importado
+automaticamente por todos os módulos de programas \Haskell, sem necessidade de comando ou cláusula explícita de importação. A definição de \inh{elem} no \Prelude\ é diferente da apresentada acima, e usa outras funções também definidas no \Prelude, como \inh{mmap} e \inh{foldr}, que são ferramentas importantes para definição de outras funções em Haskell. A definição de \inh{elem} contida no \Prelude\ é apresentada a seguir:
 
-\progb{
-\foldr\ \hspace*{2cm}  :: ($a$ -> $b$ -> $b$) -> $b$ -> [$a$] -> $b$\\
-\foldr\ $f$ $z$ []        \hspace*{.8cm} =  $z$\\
-\foldr\ $f$ $z$ ($a$:$x$) \hspace*{.1cm} =  $f$ $a$ (\foldr\ $f$ $z$ $x$)\\ 
-  \hspace*{.5cm} \\
+\begin{center}
+\begin{tabular}{l}
+\begin{hask}{foldr,mmap,and,or,any,all,elem}
+foldr  :: (a -> b -> b) -> b -> [a] -> b
+foldr f z []    =  z
+foldr f z (a:x) =  f a (foldr f z x) 
 
-\mmap\               \hspace*{2cm} :: ($a$ -> $b$) -> [$a$] -> [$b$]\\
-\mmap\ \_ []         \hspace*{.8cm} = []\\
-\mmap\ $f$ ($a$:$x$) \hspace*{.1cm} = $f$ $a$ : \mmap\ $f$ $x$ \\ 
-\hspace*{.5cm}\ \\
+mmap :: (a -> b) -> [a] -> [b]
+mmap §{\tt \_}§  []   = []
+mmap f (a:x) = f a : mmap f x 
 
-\aand, \oor\   :: [\Bool] -> \Bool\\
-\aand\        =  \foldr\ (\&\&) \True\\
-\oor\          =  \foldr\ (||) \False\\ 
-\hspace*{.5cm} \\
+and, or :: [Bool] -> Bool
+and =  foldr (&&) True
+or   =  foldr (||) False 
 
-\any, \all\ :: ($a$ -> \Bool) -> [$a$] -> \Bool\\
-\any\ $p$   =  \oor\ . \map\ $p$\\
-\all\ $p$   =  \aand\ . \map\ $p$\\ 
-\hspace*{.5cm}\ \\
+any, all :: (a -> Bool) -> [a] -> Bool
+any p =  or . map p
+all p =  and . map p 
 
-\elem\  \hspace*{.2cm} :: (\Eq\ $a$) => $a$ -> [$a$] -> \Bool\\
-\elem\ $a$ = \any\ (== $a$)
+elem :: (Eq a) => a -> [a] -> Bool
+elem a = any (== a)
+\end{hask}
+\end{tabular}
+\end{center}
 
-}
 \HRule
 
 \subsubsection{Versão imperativa}
 
-A versão imperativa de \elem\ definida a seguir recebe um argumento em
-$a$ e um apontador para uma lista (de tipo \ListaDeInteiros), denotado
-pelo parâmetro $l$, e retorna um apontador para o elemento da lista
-igual a $a$, se o argumento estiver presente na lista, e \NULL\ em
-caso contrário.
+A versão imperativa de \ina{elem} definida a seguir recebe como argumento o valor a ser pesquisado, denotado pelo parâmetro \ina{a}, juntamente com um apontador para uma lista (de tipo \ina{ListaDeInteiros}), denotado pelo parâmetro \ina{l}. O algoritmo retorna retorna um apontador para o elemento da lista \ina{l} que é igual a \ina{a}, caso o argumento esteja presente na lista, e retorna \ina{NULL} em caso contrário.
+\index{\ina{elem}}
 
-  \progb{\elem ($a$, $l$)  \\
-   \hspace*{.2cm} \while\ ($l$ != \NULL\ \&\& $l$->\elem\ != $a$) $l$ = $l$->$r$\\
-   \hspace*{.2cm} return $l$ \\
-   \}
-  }
+\begin{center}
+\begin{tabular}{l}
+\begin{alg}{elem}
+elem (a, l) 
+   while (l != NULL && l->elem != a) l = l->r
+   return l
+\end{alg}
+\end{tabular}
+\end{center}
 
 \subsection{Inserção}
 \label{insercao-em-lista}
@@ -173,24 +152,32 @@ complexidade $O(1)$.
 
 \subsubsection{Versão funcional}
 
-A versão funcional cria uma nova lista, que tem como resto a lista
-fornecida como argumento, ou seja, é simplesmente igual a {\tt (:)}:
+A inserção de um elemento no início da lista é feita simplesmente, por meio do construtor de lista \inh{(:)}, ou seja:
+\index{\inh{insert}}
 
-\progb{\insert\ = (:)}
+\begin{center}
+\begin{hask}{insert}
+insert = (:)
+\end{hask}
+\end{center}
 
 \subsubsection{Versão imperativa}
 
-A versão imperativa aloca um novo registro, de tipo \ListaDeInteiros,
-para inserir um novo valor de tipo inteiro na lista que é fornecida
-como argumento. A lista modificada, com a inserção do novo elemento no
-início, é retornada como resultado da operação.
+Na versão imperativa, é alocado um novo registro, de tipo \ina{ListaDeInteiros},
+para armazenar o novo valor a ser inserido na lista, sendo retornada a lista resultante dessa operação.
+\index{\ina{insert}}
 
-\progb{\insert\ ($a$, $l$)  \\
-         \hspace*{.2cm} $p$ = \malloc(\sizeof(\struct\ \ListaDeInteiros))\\
-         \hspace*{.2cm} $p$->\elem\ = $a$\\
-         \hspace*{.2cm} $p$->$r$ = $l$\\
-         \hspace*{.2cm} return $p$
-      }
+\begin{center}
+\begin{tabular}{l}
+\begin{alg}{insert}
+insert (a, l)
+   p = malloc(sizeof(struct ListaDeInteiros))
+   p->elem = a
+   p->r = l
+   return p
+\end{alg}
+\end{tabular}
+\end{center}
 
 \subsection{Remoção}
 \label{remocao-de-lista}
@@ -200,40 +187,47 @@ no pior caso, pois é necessário procurar o elemento a ser removido.
 
 A Seção \ref{lista-duplamente-encadeada} redefine o tipo de lista
 encadeada para uma versão de listas duplamente encadeadas, e reescreve
-as funções \elem\ e \insert, para definir \delete\ por meio de uma
-chamada à função \elem\ (seguida de chamada a \insert).
+as funções \ina{elem} e \ina{insert}, para definir \ina{delete} por meio de uma
+chamada à função \ina{elem}, seguida de chamada a \ina{insert}.
 
 \subsubsection{Versão funcional}
 
 A versão funcional cria uma nova lista, que não tem o elemento
 passado como parâmetro:
+\index{\inh{delete}}
 
-\progb{
-\delete\  \hspace*{1.7cm} :: ($a$ -> $a$ -> \Bool) -> $a$ -> [$a$] -> [$a$]\\
-\delete\ \_ [] \hspace*{.2cm} = []\\
-\delete\ $a$ ($b$:$x$) \hspace*{.5cm} \\
-  \hspace*{.2cm} | $a$ == $b$ \hspace*{.2cm} = $x$\\
-  \hspace*{.2cm} | \otherwise\ = $b$ : \delete\ $a$ $x$
-}
+\begin{center}
+\begin{tabular}{l}
+\begin{hask}{delete}
+delete :: Eq a => a -> [a] -> [a]
+delete §{\tt \_}§ [] = []
+delete a (b:x)
+   | a == b    = x
+   | otherwise = b:delete a x
+\end{hask}
+\end{tabular}
+\end{center}
 
 \subsubsection{Versão imperativa}
 
-\newcommand{\prev}{{\it prev\/}}
+A versão imperativa de \ina{delete}, apresentada a seguir, não cria uma nova lista: usa um ponteiro -- \ina{prev} -- para percorrer a lista até encontrar o elemento a ser removido e, quando este é encontrado, modifica a estrutura de encadeamento da lista, removendo este elemento. 
 
-A versão imperativa não cria nova lista, usa ponteiro \prev\ para
-guardar ponteiro para o elemento a ser removido, e usa ponteiro para o
-início da lista tanto como parâmetro quanto resultado da operação.
-
-\progb{\delete\ ($a$, $l$)  \\
-    \hspace*{.2cm} \struct\ \ListaDeInteiros\ *\prev\ = \NULL,  *$p$ = $l$\\
-    \hspace*{.2cm} \while\ ($p$ != \NULL \&\& $p$->\eelem\ != $a$)  \\
-       \hspace*{1cm} \prev\ = $p$ \\
-       \hspace*{1cm} $p$ = $p$->$r$\\
-    \hspace*{.2cm} \iif\ ($p$ != \NULL)\\
-       \hspace*{1cm} \iif\ (\prev\ == \NULL)\\ 
-	  \hspace*{2cm} \return\ $l$->$r$\\
-       \hspace*{1cm} \eelse\ \{ \prev->$r$ = $p$->$r$; \return\ $l$ \}
-  }
+\begin{center}
+\begin{tabular}{l}
+\begin{alg}{delete}
+delete (a, l) 
+   struct ListaDeInteiros *prev = NULL;  
+   *p = l
+   while (p != NULL && p->elem != a)
+      prev = p
+      p = p->r
+      if (prev == NULL) 
+         return l->r
+      else { prev->r = p->r; return l }
+\end{alg}
+\end{tabular}
+\end{center}
+             
 
 \subsection{Lista duplamente encadeada}
 \label{lista-duplamente-encadeada}
@@ -243,94 +237,74 @@ início da lista tanto como parâmetro quanto resultado da operação.
 \subsection{Pilha}
 \label{pilha}
 
-Uma estrutura de dados {\em Pilha\/} se caracteriza pelo fato de
-inserção, acesso e remoção de elementos serem feitos apenas em apenas
-um de seus lados (ou extremidades). Isso implica em uma política
-algumas vezes chamada de LIFO ({\em last-in first-out\/}: o último a
-ser inserido é o primeiro a ser removido da pilha.
-
-Uma pilha, com operações de i) criar pilha vazia, ii) empilhar
-elemento, iii) desempilhar elemento, iv) obter elemento do topo da
-pilha, e v) testar se pilha está vazia, pode ser implementada como a seguir.
-
-\newcommand{\vazia}{{\it vazia\/}}
-\newcommand{\empilhar}{{\it empilhar\/}}
-\newcommand{\desempilhar}{{\it desempilhar\/}}
-\newcommand{\topo}{{\it topo\/}}
-\newcommand{\estaVazia}{{\it estaVazia\/}}
-\newcommand{\elems}{{\it elems\/}}
-\newcommand{\pilha}{{\it pilha\/}}
-\newcommand{\Pilha}{{\it Pilha\/}}
+Uma estrutura de dados \ina{Pilha} caracteriza-se pelo fato de que as operações de inserção, acesso e remoção de elementos são feitas em apenas
+um de seus lados (ou extremidades). Essa política de uso é comumente  chamada LIFO (do inglês, {\em last-in first-out\/}: o último a ser inserido é o primeiro a ser removido da pilha. A implementação de uma \ina{Pilha} inclui as  com as operações: i) criar pilha vazia, ii) empilhar elemento, iii) desempilhar elemento, iv) obter elemento do topo da pilha, e v) testar se pilha está vazia. 
 
 \subsubsection{Versão funcional}
+\index{\inh{Pilha}}
+Em \Haskell, a implementação de \inh{Pilha} é obtida diretamente das operações definidas sobre listas, isto é:
 
-Em Haskell uma lista provê diretamente as operações de uma pilha:
-
-  \progb{\vazia\ = []\\
-        \empilhar\ = (:)\\
-        \desempilhar\ (\_:$x$) = $x$\\
-        \topo\ ($a$:\_) = $a$\\
-        \estaVazia\ = \null
-       }
+\begin{center}
+\begin{tabular}{l}
+\begin{hask}{vazia,empilhar,desempilhar,topo,estaVazia}
+vazia = []
+empilhar = (:)
+desempilhar (§{\tt \_}§:x) = x
+topo (a:§{\tt \_}§) = a
+estaVazia = null
+\end{hask}
+\end{tabular}
+\end{center}
                   
-Em geral, devemos procurar simplificar o código de nossos programas, e
-podemos não tratar casos de erro por motivos didáticos, mas em
-programas completos não podemos esquecer de tratar todos os casos
-possíveis para os dados de entrada. Um módulo em Haskell que trata
+Em geral, vamos procurar simplificar o código de nossos programas,
+não tratando casos de erro, na maioria das vezes, por motivos didáticos. Entretanto, em programas completos não podemos esquecer de tratar todos os casos possíveis para os dados de entrada. Um módulo em Haskell que trata
 todos esses casos possíveis para os dados de entrada das operações
-acima envolvendo uma pilha, é mostrado na Figura \ref{fig-Pilha}.
+acima é mostrado na Figura \ref{fig-Pilha}.
 
-O módulo \Pilha\ implementa o que é chamado em computação de um {\em
-  tipo abstrato de dados\/}, que é um tipo com operações de criação,
-modificação e consulta sobre valores desse tipo. Por exemplo,
-\vazia\ é uma (de fato, nesse caso a única) operação de criação,
-\empilhar\ e \desempilhar\ são operações de modificação, e \topo\ e
-\estaVazia\ são operações de consulta. 
+O módulo \inh{Pilha} implementa o que é chamado em computação de um {\em tipo abstrato de dados\/}, que é um tipo com operações de criação,
+modificação e consulta sobre valores desse tipo. Por exemplo, \inh{vazia} é uma operação de criação (nesse caso, a única);
+\inh{empilhar} e \inh{desempilhar} são operações de modificação; \inh{topo} e \inh{estaVazia} são operações de consulta. 
 
-O que caracteriza uma definição de um tipo abstrato de dados é o fato
-de as operações (para criação, modificação e consulta) sobre valores
-do tipo serem definidas e estarem em um trecho de programa (em geral,
-no módulo) onde o tipo foi definido, mas a representação não é
-conhecida para quem usa valores do tipo. Ou seja, um tipo abstrato
-pode ser considerado como um tipo em conjunto com todas as operações
-possíveis sobre valores desse tipo. Qualquer operação sobre um valor
-do tipo só pode ser realizada por meio dessas operações.
+Em uma definição de um tipo abstrato de dados, a definição de tipo e das operações (para criação, modificação e consulta) sobre valores
+do tipo devem ser contidas em um mesmo trecho de programa (em geral,
+um módulo), e a representação usada não é ``visível'' para quem usa valores do tipo. Ou seja, um tipo abstrato é constituído de um tipo, munido de um conjunto de operações sobre valores desse tipo. Qualquer outra operação sobre valores do tipo apenas pode ser implementada por meio dessas operações previamente definidas.
 
-Em Haskell, para definir um tipo abstrato pilha usamos um novo tipo,
-com um único construtor, que não é exportado pelo módulo em que o tipo
-é definido (o construtor de valores \Pilha\ não é exportado, apenas o
-construtor de tipos \Pilha). Também definimos, por questão de
-legibilidade, os tipos de todas as funções definidas. Veja Figura
-\ref{fig-Pilha}.
+Para definir um tipo abstrato \inh{Pilha}, em \Haskell, usamos uma definição de um novo tipo, introduzida pela palavra-chave \inh{newtype}. O tipo \inh{Pilha} possui um único construtor de valores \inh{mkPilha} (de mesmo nome do construtor de tipo). Esse mecanismo é usado para ocultar a representação do tipo abstrato: o construtor de  que não é exportado pelo módulo em que o tipo é definido: o construtor de valores \inh{mkPilha} não é exportado, apenas o construtor de tipos \inh{Pilha}. Para melhor legibilidade, definimos também o tipo de cada uma das funções. Veja Figura \ref{fig-Pilha}.
+\end{document}
 
 \begin{figure}
 
-\progb{
-\module\ \Pilha\ (\Pilha, \vazia, \empilhar, \desempilhar, \topo, \estaVazia) \where\\ \ \hspace*{.2cm} \\
+\begin{center}
+\begin{tabular}
+\begin{hask}{Pilha,vazia,empilhar,desempilhar,topo,estaVazia}
+module Pilha (Pilha, vazia, empilhar, desempilhar, topo, estaVazia) where
+   newtype Pilha a = mkPilha [a] 
 
-\newtype\ \Pilha\ $a$ = \Pilha\ [$a$]\\ \ \hspace*{.2cm} \\ 
+vazia :: Pilha $a
+vazia = mkPilha []
 
-\vazia:: \Pilha\ $a$\\
-\vazia\ = \Pilha []\\ \ \hspace*{.1cm} \\ \ \hspace*{.2cm} \\
+empilhar :: a -> Pilha a -> Pilha a
+empilhar e (mkPilha p) = Pilha (e:p)
 
-\empilhar:: $a$ -> \Pilha\ $a$ -> \Pilha\ $a$\\
-\empilhar\ \eelem\ (\Pilha\ $p$) = \Pilha\ ($e$:$p$)\\ \ \hspace*{.2cm} \\
+desempilhar :: Pilha a -> Pilha a
+desempilhar (mkPilha []) = error "Função desempilhar chamada com pilha vazia"
+desempilhar (mkPilha (§{\tt \_}§:p)) = mkPilha p
 
-\desempilhar:: \Pilha\ $a$ -> \Pilha\ $a$\\
-\desempilhar\ (\Pilha\ [])    = error "Função desempilhar chamada com pilha vazia"\\
-\desempilhar\ (\Pilha\ (\_:$p$)) = \Pilha\ $p$\\ \ \hspace*{.2cm} \\
+topo:: Pilha a -> a
+topo (mkPilha [])   = error "Função topo chamada com pilha vazia"
+topo (mkPilha (e:§{\tt \_}§)) = e 
 
-\topo:: \Pilha\ $a$ -> $a$\\
-\topo\ (\Pilha\ [])   = error "Função topo chamada com pilha vazia"\\
-\topo\ (\Pilha\ (\eelem:\_)) = \eelem\\ \ \hspace*{.2cm} \\ 
-
-\estaVazia:: \Pilha\ $a$ -> \Bool\\
-\estaVazia\ (\Pilha\ $p$) = \null\ $p$
-}
+estaVazia:: Pilha a -> Bool
+estaVazia (mkPilha $p$) = null p
+\end{hask}
+\end{tabular}
+\end{center}
 
 \label{fig-Pilha}
 \caption{Tipo abstrato \Pilha\ em Haskell}
 \end{figure}
+
+
 
 \subsubsection{Versão imperativa}
 

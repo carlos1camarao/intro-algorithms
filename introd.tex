@@ -114,17 +114,16 @@ um jogo de buraco).
 \begin{center}
 \begin{tabular}{l}
 \begin{hask}{sort,insert}
-sort []			= []
-sort (a:x)	= insert a (sort x)
+sort []    = []
+sort (a:x) = insert a (sort x)
 
 insert a [] = []
 insert a (b:x) 
-   | a <= b		  = a:(b:x)
-   | otherwise	  = b:insert a x
+   | a <= b    = a:(b:x)
+   | otherwise = b:insert a x
 \end{hask}
 \end{tabular}
 \end{center}
-
 
 Explicações sobre a notação funcional (usada em Haskell):
 
@@ -214,19 +213,28 @@ data Pair a b = Pair a b
 
 \end{enumerate}
 
-Para mostrar a correção de \inh{sort}, podemos usar predicados (funções de
-contra-domínio \inh{Bool}); vamos provar que (\inh{sort x}) = \inh{y} implica:
+Vamos mostrar que a definição de \inh{sort}, acima, é correta, isto é, que o resultado é uma permutação ordenada (em ordem não decrescente) da lista  original. Essa propriedade de correção pode ser expressa formalmente como
+\begin{center}
+\inh{sort x} = \inh{y}\;\; implica\;\; \inh{sorted y}\;\; e\;\; \inh{y `perm` x}
+\end{center}
+onde \inh{sorted} e \inh{perm} são os seguintes predicados (funções de
+contra-domínio \inh{Bool}) sobre listas: 
 
-  \begin{enumerate}
+\begin{itemize}
+  \item \inh{sorted :: [a] -> Bool} retorna \inh{True} se a lista dada como argumento está ordenada em ordem não decrescente, e retorna \inh{False} em caso contrário.
+  \item \inh{perm :: [a] -> [a] -> Bool} retorna \inh{True} se a lista dada como primeiro argumento é uma permutação da lista dada como segundo argumento, e retorna \inh{False} em caso contrário.
+\end{itemize}
 
-    \item \inh{sorted y}
-    \item \inh{x `perm` y}
+As definições desses predicados são apresentadas a seguir, onde \inh{perm} faz uso de duas outras funções: 
 
-\end{enumerate}
+\begin{itemize}
+\item \inh{elem :: a -> [a] -> Bool} retorna \inh{True} se a o valor dado como primeiro argumento ocorre na lista dada como segundo argumento, e retorna \inh{False} em caso contrário.
 
-Temos:
+  \item \inh{delete :: a -> [a] -> [a]} que retorna a lista obtida removendo-se, da lista dada como segundo argumento, a primeira ocorrência do valor dado como primeiro argumento, retornando a lista original caso este valor não ocorra na lista.
 
- \index{\inh{sorted}}
+\end{itemize}
+
+\index{\inh{sorted}}
 \index{\inh{perm}}
 \index{\inh{elem}}
 \index{\inh{delete}}
@@ -261,32 +269,25 @@ Explicações sobre a notação funcional (usada em Haskell):
 conjunção e disjunção, respectivamente.
 
 \item A definição de \inh{delete} usa {\em guardas\/}, que são expressões
-  booleanas usadas na definição de funções; para cada chamada de
+  booleanas usadas na definição de funções. Para cada chamada de
   função, a primeira (na ordem textual) guarda cuja avaliação retorna
-  \True\ define o resultado da chamada da função, pela avaliação da
+  \inh{True} define o resultado da chamada da função, pela avaliação da
   expressão associada a essa guarda (que segue o símbolo {\tt =}). Por
   exemplo, a guarda na definição de \inh{delete} é equivalente a:
   \inh{if a==b then x else b:delete a x}.
 
 \end{enumerate}
 
-Prova: O caso base sai diretamente e o caso indutivo é consequência
+\textbf{Prova da correção de \inh{sort}}: A prova é por indução sobre a estrutura de construção de listas (ou sobre o comprimento da lista). O caso base, correspondente à lista vazia, pode ser provado diretamente. O caso indutivo é obtido como consequência
 dos seguintes lemas:
-
-Lema 1: Para todo \inh{a},\inh{x}, 
+\begin{itemize}
+\item{Lema 1}: Para todo \inh{a},\inh{x}, 
         \inh{(sorted x)} implica \inh{(sorted (insert a x))}
 
-Lema 2: ????? Para todo \inh{a},\inh{x}, 
-        \inh{sort x `perm` x} implica 
-        \inh{insert a (sort x) `perm` (a:x)}
-
-%Lema 1: Para todo §a,x§, 
-%        §sorted x§ implica §sorted(insert a x)§
-%
-%Lema 2: Para todo §a,x§, 
-%        §sort x `perm` x§\, implica 
-%        §insert a (sort x) `perm` (a:x)§
-
+\item{Lema 2}: Para todo \inh{a},\inh{x}, 
+        \inh{(sort x) `perm` x} implica 
+        \inh{(insert a (sort x)) `perm` (a:x)}
+\end{itemize}
 % ... provas dos lemas?
 
 \subsection{Versão imperativa}
@@ -306,8 +307,8 @@ de blocos):
 
 \begin{center}
 \begin{tabular}{l}
-\begin{alg}
-sort(A) {
+\begin{alg}{sort}
+sort(A) 
    for j:=2 to length[A] do
       key := A[j]
       /* Insere A[j] no arranjo ordenado A[1..j-1] */ 
@@ -316,7 +317,6 @@ sort(A) {
          A[i+1] := A[i]
          i := i - 1
          A[i+1] := key
-}
 \end{alg}
 \end{tabular}
 \end{center}
@@ -346,4 +346,4 @@ conceitos principais usados para análise da complexidade (eficiência)
 de algoritmos, para que possamos analisar a complexidade de algoritmos
 (começando pela complexidade dos algoritmos apresentados neste
 capítulo).
-\end{document}
+

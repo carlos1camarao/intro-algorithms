@@ -16,6 +16,33 @@
 \tocitem \@locref{sec9}{\begin{@norefs}\@print{1.2}\quad{}Ordenação por Inserção{}\end{@norefs}}
 \begin{tocenv}
 \tocitem \@locref{sec10}{\begin{@norefs}\@print{1.2.1}\quad{}Versão funcional{}\end{@norefs}}
+\tocitem \@locref{sec11}{\begin{@norefs}\@print{1.2.2}\quad{}Versão imperativa{}\end{@norefs}}
+\end{tocenv}
+\end{tocenv}
+\tocitem \@locref{sec12}{\begin{@norefs}\@print{Capítulo 2}\quad{}\colorbox{cyan}{Estruturas de Dados Básicas}{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{sec13}{\begin{@norefs}\@print{2.1}\quad{}Listas{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{sec14}{\begin{@norefs}\@print{2.1.1}\quad{}Pesquisa{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{sec15}{\begin{@norefs}\@print{2.1.1.1}\quad{}Versão funcional{}\end{@norefs}}
+\tocitem \@locref{sec16}{\begin{@norefs}\@print{2.1.1.2}\quad{}Versão imperativa{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{sec17}{\begin{@norefs}\@print{2.1.2}\quad{}Inserção{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{sec18}{\begin{@norefs}\@print{2.1.2.1}\quad{}Versão funcional{}\end{@norefs}}
+\tocitem \@locref{sec19}{\begin{@norefs}\@print{2.1.2.2}\quad{}Versão imperativa{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{sec20}{\begin{@norefs}\@print{2.1.3}\quad{}Remoção{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{sec21}{\begin{@norefs}\@print{2.1.3.1}\quad{}Versão funcional{}\end{@norefs}}
+\tocitem \@locref{sec22}{\begin{@norefs}\@print{2.1.3.2}\quad{}Versão imperativa{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{sec23}{\begin{@norefs}\@print{2.1.4}\quad{}Lista duplamente encadeada{}\end{@norefs}}
+\tocitem \@locref{sec24}{\begin{@norefs}\@print{2.1.5}\quad{}Pilha{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{sec25}{\begin{@norefs}\@print{2.1.5.1}\quad{}Versão funcional{}\end{@norefs}}
+\end{tocenv}
 \end{tocenv}
 \end{tocenv}
 \end{tocenv}
