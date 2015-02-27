@@ -84,10 +84,20 @@ No caso de um programa recursivo, a
 expressão-determinante-da-eficiência é em geral uma expressão escrita
 em função de $T(n-1)$ ou outro argumento da função $T$ (de tempo de
 execução) menor que $n$, que expressa $T(n)$ de modo recursivo,
-criando o que é chamado de uma {\em relação de recorrência} (uma
-relação de recorrência é uma definição recursiva para a qual em geral
-existe uma solução não recursiva que a simplifique, que especifica a
-mesma relação). 
+criando o que é chamado de uma {\em relação de recorrência}.
+
+\begin{quotation}
+  {\em Uma relação de recorrência é uma definição recursiva para a
+    qual busca-se uma solução não recursiva que a simplifique, que
+    especifica a mesma relação.\/}
+\end{quotation}
+
+Note: Essa busca pode não ter sucesso, isto é, existem equações
+recursivas que não podem ser simplificadas para uma solução não
+recursiva (de fato, isto acontece com a maioria das equações
+recursivas). Mas as equações que expressam tempos de execução de
+pequenos programas em geral são bastante simples e podem de fato ser
+simplificadas para uma equação não recursiva.
 
 No caso de um programa não recursivo, a
 expressão-determinante-da-eficiência é em geral um somatório, que em
@@ -190,18 +200,30 @@ dois valores, passados como parâmetros:
          \hspace*{.2cm} | \otherwise\ = $a$
       }
  
-A função \foldl, aplicada a uma função binária $f$, um valor inicial
-$z$ e uma lista, reduz a lista usando a função $f$ da esquerda para a
-direita:
+A função \foldl\ é definida no prelúdio de Haskell como a seguir:
+
+\progb{
+\foldl\ $f$ $z$ [] \hspace*{1cm} = $z$\\
+\foldl\ $f$ $z$ ($a$:$x$) = \foldl\ $f$ ($f$ $z$ $a$) $x$
+}
+
+A função \foldl\, aplicada a uma função binária $f$, um valor inicial
+$z$ e uma lista, ``reduz'' (em geral, mas mais precisamente
+transforma) a lista usando a função $f$ da esquerda para a direita
+(daí o nome \foldl: o {\it l\/} é de {\em {\underline{l}eft\/}}, em
+português {\em esquerda\/}):
 
   \[ \text{\tt{ \foldl\ $f$ $z$ [$e_1$, $e_2$, \ldots, $e_n$] == (\ldots (($z$ `$f$` $e_1$) `$f$` $e_2$) `$f$`\ldots) `$f$` $e_n$}} \]
 
 A função \foldl'\ se comporta de modo similar a \foldl, mas é ``menos
 preguiçosa'': \foldl' $f$ força a avaliação de $f$, de modo que, {\tt
-  $z$ `$f$` $e_1$} seja avaliado antes de compor a expressão ($z$
-`$f$` $e_1$) `$f$` $e_2$), e assim sucessivamente.  O uso de
-\foldl'\ é adequado quando a função $f$ é estrita (ou seja, quando $f$
-não é preguiçosa).
+  $z$ `$f$` $e_1$} é avaliado antes que a expressão ($z$ `$f$` $e_1$)
+`$f$` $e_2$) seja formada, e assim sucessivamente. Com \foldl, toda a
+expressão {\tt (\ldots (($z$ `$f$` $e_1$) `$f$` $e_2$) `$f$`\ldots)
+  `$f$` $e_n$} é construída antes da avaliação de {\tt $z$ `$f$`
+  $e_1$}. O uso de \foldl'\ é adequado quando a função $f$ é estrita
+(ou seja, quando $f$ não é preguiçosa), ou, ainda, quando a avaliação
+de $z$ `$f$` $e_1$ requer a avaliação de $e_1$.
 
 \HRule
 {\em Nota\/}: 
@@ -218,10 +240,10 @@ programação, a estratégia de avaliação de expressões é ``preguiçosa''
 (em inglês, ``lazy''). Isso significa que o argumento para uma função
 não é avaliado quando a expressão é chamada, mas simplesmente
 substituído pelo parâmetro no corpo da função, para posterior
-avaliação, se necessário. Além disso, se for necessária, na estratégia
-de avaliação preguiçosa a avaliação do argumento só é feita uma única
-vez. Nas outras vezes em que o argumento for usado, é usado o valor
-resultante da avaliação feita na primeira vez. 
+avaliação, se necessário. Além disso, se for necessária, a avaliação
+do argumento só é feita uma única vez, na estratégia de avaliação
+preguiçosa; nas outras vezes em que o argumento for usado, é usado o
+valor resultante da avaliação feita na primeira vez.
 
 Na maioria das linguagens de programação, a estratégia de avaliação de
 expressões é ``gulosa'' (em inglês, ``eager''). Nessa estratégia, o
@@ -233,26 +255,62 @@ preguiçosa e gulosa estão fora do escopo deste livro.
 
 No entanto, vale observar que o uso de \foldl' neste exemplo não
 altera a complexidade assintótica do tempo de execução, mas pode
-afetar bastante a eficiência o espaço necessário, e portanto da
-constante de proporcionalidade, da função que expressa o tempo de
-execução.
+afetar bastante o espaço necessário e a constante de proporcionalidade
+da função que expressa o tempo de execução.
 
 \HRule
 
-A relação de recorrência é $T(n) = ..... $. A
-expressão-determinante-da-eficiência é ... 
+A relação de recorrência é 
 
-  Identificar operações que vão determinar a variação na
-  eficiência do programa durante a execução.
+ \begin{equation}
+    T(n) = T(n-1) + k 
+    \label{recorrencia1}
+ \end{equation}
+onde $n$ é o tamanho (número de elementos) da lista e $k$ é uma
+constante que expressa o tempo de execução da aplicação da função
+$\max$ a dois valores inteiros (informalmente, costuma-se dizer: ``$k$
+é o tempo de execução da função \max, quando na verdade se quer dizer
+o tempo de execução da aplicação da função a argumentos, que podem ser
+quaisquer). No caso base, temos $T(0) = 0$.
 
-  Expresse o número de vezes que a operação é executada em função
-  de $n$, chamada de expressão-determinante-da-eficiência.
+Essa relação de recorrência tem solução fácil. Vamos mostrar sua
+solução pelo {\em
+  método-de-substituição-para-eliminação-da-recursão\/} ilustrado a
+seguir. 
 
-  Resolva ou simplifique a expressão-determinante-da-eficiência.
+Temos: $T(n-1) = T(n-2) + k$. Substituindo $T(n-1)$ na relação de
+recorrência (\ref{recorrencia1}), obtemos: $T(n) = (T(n-2) + k) + k =
+T(n-2) + 2\times k$. É fácil ver que, para todo $i=1,\ldots,n$, temos:
+$T(n) = T(n-i) + i\times k$. Para $i=n$, temos: $T(n) = n\times k$ e,
+portanto, $T(n) = \Omega(n)$.
+
+
+Note que nem é preciso o método para concluir que $T(n) = n\times k$;
+basta raciocinar sobre a definição de $T$: 
+
+    \[ \begin{array}[t]{ll}
+         T(n) = 0          & \text{ se } n = 0\\
+         T(n) = T(n-1) + k & \text{ caso contrário}
+       \end{array}
+    \]
+
+A expressão que define $T(n)$ é igual a 0 quando $n$ é igual a 0
+aumenta de $k$ qundo $n$ aumenta de 1; ou seja, é uma definição de
+$n\times k$.
+
+O que chamamos de expressão-determinante-da-eficiência pode ser
+expresso por $T(n-1) + k$, ou (depois de resolvida a relação de
+recorrência) por $n\times k$.
 
 A complexidade é, assim, a mesma da pesquisa sequencial em uma lista:
-$O(n)$ no pior caso (onde $n$ é o tamanho da lista de elementos), pois
-envolve possivelmente comparação com cada elemento.
+$O(n)$ no pior caso. Informalmente, o raciocínio pode ser similar ao
+seguinte: o tempo de execução é $O(n)$ pois o custo das operações
+realizadas em chamada recursiva é constante ($O(1)$) e o número de
+chamadas recursivas é $O(n)$ (cresce linearmente com $n$).
+
+\subsection{Versão imperativa}
+
+\ldots parei aqui......
 
 \section{Unicidade de Elementos}
 
