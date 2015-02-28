@@ -10,7 +10,7 @@
 \usepackage{graphicx}                               % graphics
 \usepackage{color}                                     % cores
 \usepackage{indentfirst}  % indentation at paragraph beggining
-\usepackage{hyperref}     % for links in pdf
+\usepackage{hyperref}     % for links in pdf and webpage
 \usepackage{makeidx}
 %\usepackage{subfigure}
 %\usepackage{comment}
@@ -70,14 +70,13 @@
 \lstdefinestyle{mystyle}{basicstyle={\tt},
 backgroundcolor={\color{paleblue}},
 keywordstyle={\bf \color{black}},
-identifierstyle={\it \color{blue}},
-commentstyle={\rm \color{red}},
-emphstyle={\it \color{darkgreen}},
+identifierstyle={\color{blue}},
+commentstyle={\rm \it \color{red}},
+emphstyle={\color{darkgreen}},
 xleftmargin=0pt,xrightmargin=0pt,
 columns={fixed},
 keepspaces={true},
 showstringspaces=false,
-xleftmargin=2pt,
 stepnumber=1,
 numbersep=5pt,
 numberstyle={\tt \footnotesize \color{white}},
@@ -86,26 +85,27 @@ escapechar=§
 }
 
 % seta estilo global de lstlistings para uso por lstinline
+\setenvclass{lstlisting}{myclisting}
 \lstset{style=mystyle}
 
 % listings e lstinline para Haskell 
-\lst@definelanguage{myHaskell}{language=Haskell,
-deletekeywords={List,Cons,Nil,Pair,%
+\lst@definelanguage{myHaskell}{language=Haskell,%
+deletekeywords={List,Cons,Nil,Pair,Tree,Leaf,Node,%
 all,and,any,delete,elem,foldr,insert,map,or,sort}}
 {}
 
+
 \lstnewenvironment{hask}[1]{
-\setenvclass{lstlisting}{myclisting}
-\lstset{language={myHaskell},emph={#1}}}
+\lstset{language=myHaskell,emph={#1}}}
 {}
 
 \newcommand{\inh}{\lstinline[language=myHaskell]}
 
 % listings e lstinline para C 
-\lst@definelanguage{myAlg}{language={C++}}
+\lst@definelanguage{myAlg}{language={C++},%
+morekeywords={with}}
 
 \lstnewenvironment{alg}[1]{
-\setenvclass{lstlisting}{myclisting}
 \lstset{language={myAlg},emph={#1}}}
 {}
 
@@ -163,11 +163,12 @@ para fins não comerciais.
 \setcounter{secnumdepth}{10}
 \pagenumbering{arabic}
 
-\input{introd}
+%\input{introd}
 
 %\input{complexidade}
 
 \input{estruturas-de-dados-basicas}
+\input{arvores}
 %\input{analise-eficiencia-de-algoritmos}
 %\input{algoritmos-de-pesquisa}
 

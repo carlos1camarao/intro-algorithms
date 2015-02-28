@@ -1,12 +1,12 @@
 %!TEX encoding = ISO-8859-1
-\chapter{\colorbox{cyan}{Estruturas de Dados Básicas}}
+\chapter{Estruturas de Dados Básicas}
 \label{estruturas-de-dados-basicas}
 
 Este capítulo aborda listas e árvores, suas representações em um computador e
 operações básicas sobre essas estruturas de dados.
 
 \section{Listas}
-\label{listas}
+\label{sec-listas}
 
 Uma lista é uma estrutura de dados comumente usada em computação e pode ser definida recursivamente como a seguir.  Uma lista de elementos de
 determinado tipo \inh{t} é ou i) {\em vazia} ou ii) constituída de um elemento de tipo \inh{t} e um uma lista de elementos do mesmo tipo \inh{t} (denominada {\em cauda} ou resto da lista).
@@ -22,9 +22,9 @@ data List a = Nil | Cons a (List a)
 \end{tabular}
 \end{center}
 
-O tipo de dado \inh{\List a} é um tipo recursivo, sendo \inh{Nil} e \inh{Cons} os construtores de valores desse tipo. Além disso, \inh{\List a} é um tipo {\em polimórfico}: a variável de tipo \inh{a} pode ser instanciada para um tipo \inh{t} qualquer, permitindo assim a definição de listas com elementos de desse tipo \inh{t}. Por exemplo, \inh{(Cons 1 (Cons 2 (Cons 3 Nil)))} é uma lista de tipo \inh{List Int} e \inh{(Cons True (Cons False Nil))} tem tipo \inh{List Bool}. 
+O tipo de dado \inh{List a}\ é um tipo recursivo, sendo \inh{Nil} e \inh{Cons} os construtores de valores desse tipo. Além disso, \inh{List a}\ é um tipo {\em polimórfico}: a variável de tipo \inh{a} pode ser instanciada para um tipo \inh{t} qualquer, permitindo assim a definição de listas com elementos de desse tipo \inh{t}. Por exemplo, \inh{(Cons 1 (Cons 2 (Cons 3 Nil)))} é uma lista de tipo \inh{List Int} e \inh{(Cons True (Cons False Nil))} tem tipo \inh{List Bool}. 
 
-A linguagem Haskell provê uma notação especial para a criação de valores de tipo lista: \inh{[]}  é usado em lugar de \inh{Nil}, e o construtor infixado \inh{(:)}, associativo à direita, em lugar de \inh{Cons}. Por exemplo, a lista \inh{Cons 1 (Cons 2 (Cons 3 Nil))} seria representada como \inh{(1:2:3:[]}. 
+A linguagem Haskell provê uma notação especial para a criação de valores de tipo lista: \inh{[]}  é usado em lugar de \inh{Nil}, e o construtor infixado \inh{(:)}, associativo à direita, em lugar de \inh{Cons}. Por exemplo, a lista \inh{Cons 1 (Cons 2 (Cons 3 Nil))} seria representada como \inh{(1:2:3:[])}. 
 Além disso, uma lista pode ser representada simplesmente escrevendo-se os seus elementos da lista entre colchetes, separados por vírgulas. Ou seja, a lista \inh{\inh{(1:2:3:[]}} pode ser escrita, mais simplesmente, como \inh{[1,2,3]}. 
 
 Em linguagens como \C, uma lista pode ser representada por meio de {\em registros} (também chamados de  "estruturas", em \C) e {\em ponteiros\/} (ou apontadores), tal como ilustrado no exemplo a seguir, que define uma lista de elementos de tipo \ina{int}. Linguagens como \C, que não provêm suporte para polimorfismo, requerem a definição de tipos lista distintos para cada tipo particular de elementos. 
@@ -64,7 +64,7 @@ especialmente em uma linguagem (como \C) que não provê suporte a
 manipulação de valores de estruturas de dados recursivas. Utilizando essa forma de representação, a lista fica limitada a um número máximo de elementos, já que a defição de uma arranjo requer que o número de elementos do mesmo seja especificado a priori.
 
 \subsection{Pesquisa}
-\label{pesquisa-em-lista}
+\label{sec-pesquisa-em-lista}
 
 Em computação, {\em pesquisar\/} em geral significa determinar se um
 dado elemento está presente ou não em uma estrutura de dados. As
@@ -105,6 +105,7 @@ automaticamente por todos os módulos de programas \Haskell, sem necessidade de c
 \begin{center}
 \begin{tabular}{l}
 \begin{hask}{foldr,mmap,and,or,any,all,elem}
+
 foldr  :: (a -> b -> b) -> b -> [a] -> b
 foldr f z []    =  z
 foldr f z (a:x) =  f a (foldr f z x) 
@@ -145,7 +146,7 @@ elem (a, l)
 \end{center}
 
 \subsection{Inserção}
-\label{insercao-em-lista}
+\label{sec-insercao-em-lista}
 
 Inserir um elemento no início de uma lista é uma operação de
 complexidade $O(1)$.
@@ -185,7 +186,7 @@ insert (a, l)
 Remover um elemento de uma lista é uma operação de complexidade $O(n)$
 no pior caso, pois é necessário procurar o elemento a ser removido.
 
-A Seção \ref{lista-duplamente-encadeada} redefine o tipo de lista
+A Seção \ref{sec-lista-duplamente-encadeada} redefine o tipo de lista
 encadeada para uma versão de listas duplamente encadeadas, e reescreve
 as funções \ina{elem} e \ina{insert}, para definir \ina{delete} por meio de uma
 chamada à função \ina{elem}, seguida de chamada a \ina{insert}.
@@ -230,18 +231,19 @@ delete (a, l)
              
 
 \subsection{Lista duplamente encadeada}
-\label{lista-duplamente-encadeada}
+\label{sec-lista-duplamente-encadeada}
 
 \ldots \ldots .....
 
 \subsection{Pilha}
 \label{pilha}
+\index{pilha}
 
-Uma estrutura de dados \ina{Pilha} caracteriza-se pelo fato de que as operações de inserção, acesso e remoção de elementos são feitas em apenas
-um de seus lados (ou extremidades). Essa política de uso é comumente  chamada LIFO (do inglês, {\em last-in first-out\/}: o último a ser inserido é o primeiro a ser removido da pilha. A implementação de uma \ina{Pilha} inclui as  com as operações: i) criar pilha vazia, ii) empilhar elemento, iii) desempilhar elemento, iv) obter elemento do topo da pilha, e v) testar se pilha está vazia. 
+Uma estrutura de dados {\em Pilha} caracteriza-se pelo fato de que as operações de inserção, acesso e remoção de elementos são feitas em apenas
+um de seus lados (ou extremidades). Essa política de uso é comumente  chamada LIFO (do inglês, {\em last-in first-out\/}: o último a ser inserido é o primeiro a ser removido da pilha. Discutimos, a seguir, a implementação de uma Pilha, com as operações: i) criar pilha vazia, ii) empilhar elemento, iii) desempilhar elemento, iv) obter elemento do topo da pilha, e v) testar se pilha está vazia. É fácil ver que a ordem de complexidade de tempo de cada uma dessas operações é $O(1)$.
 
 \subsubsection{Versão funcional}
-\index{\inh{Pilha}}
+\index{pilha}
 Em \Haskell, a implementação de \inh{Pilha} é obtida diretamente das operações definidas sobre listas, isto é:
 
 \begin{center}
@@ -257,9 +259,7 @@ estaVazia = null
 \end{center}
                   
 Em geral, vamos procurar simplificar o código de nossos programas,
-não tratando casos de erro, na maioria das vezes, por motivos didáticos. Entretanto, em programas completos não podemos esquecer de tratar todos os casos possíveis para os dados de entrada. Um módulo em Haskell que trata
-todos esses casos possíveis para os dados de entrada das operações
-acima é mostrado na Figura \ref{fig-Pilha}.
+não tratando casos de erro, por motivos didáticos. Entretanto, em programas completos, não podemos esquecer de tratar todos os casos possíveis para os dados de entrada. O módulo \href{figPilha}{Tipo abstrato Pilha}, a seguir, implementa esse tipo abstrato, considerando todos esses casos possíveis para os dados de entrada das operações.
 
 O módulo \inh{Pilha} implementa o que é chamado em computação de um {\em tipo abstrato de dados\/}, que é um tipo com operações de criação,
 modificação e consulta sobre valores desse tipo. Por exemplo, \inh{vazia} é uma operação de criação (nesse caso, a única);
@@ -269,143 +269,138 @@ Em uma definição de um tipo abstrato de dados, a definição de tipo e das operaçõ
 do tipo devem ser contidas em um mesmo trecho de programa (em geral,
 um módulo), e a representação usada não é ``visível'' para quem usa valores do tipo. Ou seja, um tipo abstrato é constituído de um tipo, munido de um conjunto de operações sobre valores desse tipo. Qualquer outra operação sobre valores do tipo apenas pode ser implementada por meio dessas operações previamente definidas.
 
-Para definir um tipo abstrato \inh{Pilha}, em \Haskell, usamos uma definição de um novo tipo, introduzida pela palavra-chave \inh{newtype}. O tipo \inh{Pilha} possui um único construtor de valores \inh{mkPilha} (de mesmo nome do construtor de tipo). Esse mecanismo é usado para ocultar a representação do tipo abstrato: o construtor de  que não é exportado pelo módulo em que o tipo é definido: o construtor de valores \inh{mkPilha} não é exportado, apenas o construtor de tipos \inh{Pilha}. Para melhor legibilidade, definimos também o tipo de cada uma das funções. Veja Figura \ref{fig-Pilha}.
-\end{document}
-
-\begin{figure}
+Para definir um tipo abstrato \inh{Pilha}, em \Haskell, usamos uma definição de um novo tipo, introduzida pela palavra-chave \inh{newtype}. O tipo \inh{Pilha} possui um único construtor de valores \inh{mkPilha} (de mesmo nome do construtor de tipo). Esse mecanismo é usado para ocultar a representação do tipo abstrato: o construtor de  que não é exportado pelo módulo em que o tipo é definido: o construtor de valores \inh{mkPilha} não é exportado, apenas o construtor de tipos \inh{Pilha}. Para melhor legibilidade, definimos também o tipo de cada uma das funções. Veja o código a seguir.
+\index{\inh{Pilha}}
 
 \begin{center}
-\begin{tabular}
-\begin{hask}{Pilha,vazia,empilhar,desempilhar,topo,estaVazia}
+\begin{tabular}{l}
+\begin{lstlisting}[language={myHaskell},%
+emph={Pilha,vazia,empilhar,desempilhar,topo,estaVazia},
+caption={Tipo abstrato Pilha},%
+label={figPilha}]
+
 module Pilha (Pilha, vazia, empilhar, desempilhar, topo, estaVazia) where
    newtype Pilha a = mkPilha [a] 
 
-vazia :: Pilha $a
-vazia = mkPilha []
+   vazia :: Pilha $a
+   vazia = mkPilha []
+   
+   empilhar :: a -> Pilha a -> Pilha a
+   empilhar e (mkPilha p) = Pilha (e:p)
 
-empilhar :: a -> Pilha a -> Pilha a
-empilhar e (mkPilha p) = Pilha (e:p)
+   desempilhar :: Pilha a -> Pilha a
+   desempilhar (mkPilha [])    = error "Função desempilhar chamada com pilha vazia"
+   desempilhar (mkPilha (§{\tt \_}§:p)) = mkPilha p
 
-desempilhar :: Pilha a -> Pilha a
-desempilhar (mkPilha []) = error "Função desempilhar chamada com pilha vazia"
-desempilhar (mkPilha (§{\tt \_}§:p)) = mkPilha p
+   topo:: Pilha a -> a
+   topo (mkPilha [])    = error "Função topo chamada com pilha vazia"
+   topo (mkPilha (e:§{\tt \_}§)) = e 
+  
+   estaVazia:: Pilha a -> Bool
+   estaVazia (mkPilha p) = null p
+\end{lstlisting}
+\end{tabular}
+\end{center}
 
-topo:: Pilha a -> a
-topo (mkPilha [])   = error "Função topo chamada com pilha vazia"
-topo (mkPilha (e:§{\tt \_}§)) = e 
+\subsubsection{Versão imperativa}
+\index{pilha}
+Na versão imperativa,  consideramos uma \ina{pilha} representada como um registro com dois campos: \in{topo} e \ina{elems}, sendo \ina{elems}\ um arranjo de $n$ elementos (indexado de $0$ a {\tt $n$-1}), e \ina{topo}\ uma variável inteira, que indica o índice do último elemento inserido. As operações sobre a \ina{pilha} podem ser implementadas como a seguir (desconsiderando-se os casos de erro: desempilhar de uma pilha vazia e empilhar em uma pilha cheia).
 
-estaVazia:: Pilha a -> Bool
-estaVazia (mkPilha $p$) = null p
+\begin{center}
+\begin{tabular}{l}
+\begin{alg}{vazia,empilhar,desempilhar,topo,estaVazia}
+vazia (pilha) { pilha.topo = -1 }
+
+empilhar (e, pilha) 
+   with pilha { topo = topo + 1; elems[topo] = e }
+
+desempilhar (pilha) 
+   with pilha { topo = topo - 1 }
+   
+topo (pilha)
+   with pilha { return elems[topo] }  
+  
+estaVazia (pilha) { return pilha.topo == -1 }
+\end{alg}
+\end{tabular}
+\end{center}
+
+O comando \ina{with}, usado no código acima, serve para tornar visíveis os nomes de campos de um registro: \ina{with r} evita que se tenha que prefixar os nomes dos campos do registro ina{r} com o nome do registro.
+% (\nome\ pode ser usado em vez de {\tt $r$.\nome}).
+
+\subsection{Fila}
+\label{sec-fila}
+\index{fila}
+Em uma {\em Fila}, a inserção é feita de um lado e a remoção é feita do
+lado oposto da estrutura de dados -- política de uso algumas
+vezes chamada de FIFO ({\em first-in first-out\/}: o primeiro a ser
+inserido é o primeiro a ser removido da fila.
+
+
+Uma fila, com operações de i) criar fila vazia, ii) entrar (inserir
+elemento) na fila, iii) sair (tirar elemento) da fila, iv) obter
+primeiro elemento da fila, e v) testar se fila está vazia, pode ser
+implementada como se mostra a seguir.
+
+\subsubsection{Versão funcional}
+\index{fila}
+Não é eficiente fazer acesso ao último elemento de uma lista em
+Haskell. Por isso, a implementação padrão de filas por meio de listas usa 
+duas listas, \inh{frente} e \inh{tras}: elementos entram na lista \inh{tras} e saem da lista \inh{frente}. A função \inh{fila} é usada na definição de \inh{entrar}, para garantir o invariante de que, se \inh{frente} está vazia, então \inh{tras} está vazia (e, portanto, a fila está vazia).
+
+\begin{center}
+\begin{tabular}{l}
+\begin{hask}{fila,vazia,entrar,sair,estaVazia,primeiro}
+vazia = ([],[])
+
+entrar e (frente,tras) = fila (frente, e:tras)
+
+fila ([], tras) = (reverse tras, [])
+fila f          = f
+
+sair (e:frente, tras) = (frente,tras)
+
+primeiro (e:frente,§{\tt\_}§) = e
+
+estaVazia (frente,§{\tt \_}§)  = null frente
 \end{hask}
 \end{tabular}
 \end{center}
 
-\label{fig-Pilha}
-\caption{Tipo abstrato \Pilha\ em Haskell}
-\end{figure}
-
-
-
-\subsubsection{Versão imperativa}
-
-Considerando \pilha\ como um registro com campos \topo\ e \elems,
-sendo \elems\ um arranjo de $n$ elementos --- indexado de $0$ a {\tt
-  $n$-1} --- e \topo\ uma variável inteira que indica o índice do
-último elemento inserido, as operações em uma pilha podem ser
-implementadas como a seguir (desconsiderando casos de erro:
-desempilhar de uma pilha vazia e empilhar em uma pilha cheia).
-
-\newcommand{\nome}{{\it nome\/}}
-
-O comando \with\ serve para tornar os nomes de campos de um registro
-visíveis: \with\ $r$ evita que se tenha que prefixar os nomes dos
-campos do registro $r$ com o registro (\nome\ pode ser usado em vez de
-{\tt $r$.\nome}).
-
-\progb{
-  \vazia\ (\pilha) \{ \pilha.\topo\ = -1 \}\\ \ \hspace*{.2cm} \\
-  \empilhar\ (\eelem, \pilha) \\
-      \hspace*{.2cm} \with\ \pilha\  \\
-        \hspace*{1cm} \topo\ $\leftarrow$ \topo\ + 1\\
-        \hspace*{1cm} \elems[\topo] $\leftarrow$ \eelem\\ \ \hspace*{.2cm} \\
-  \desempilhar\ (\pilha) \\ 
-      \hspace*{.2cm} \with\ \pilha\ \{ \topo\ $\leftarrow$ \topo\ - 1 \} \\ \ \hspace*{.2cm} \\
-  \topo\ (\pilha) \{ \with\ \pilha\ \{ \return\ \elems[\topo] \} \}\\ \ \hspace*{.2cm} \\ 
-  \estaVazia\ (\pilha) \{ \return\ \pilha.\topo\ == -1 \}
- }
-
-\subsection{Fila}
-\label{fila}
-
-Em uma {\em fila} a inserção é feita de um lado e a remoção é feita do
-outro lado da estrutura de dados. Isso implica em uma política algumas
-vezes chamada de FIFO ({\em first-in first-out\/}: o primeiro a ser
-inserido é o primeiro a ser removido da fila.
-
-Uma fila, com operações de i) criar fila vazia, ii) entrar (inserir
-elemento) na fila, iii) sair (tirar elemento) da fila, iv) obter
-elemento do início da fila, e v) testar se fila está vazia, pode ser
-implementada como a seguir.
-
-\subsubsection{Versão funcional}
-
-\newcommand{\frente}{{\it frente\/}}
-\newcommand{\tras}{{\it trás\/}}
-\newcommand{\fila}{{\it fila\/}}
-
-Não é eficiente fazer acesso ao último elemento de uma lista em
-Haskell. A implementação padrão de filas por meio de listas usa assim
-duas listas, \frente\ e \tras. Elementos entram na lista \tras\ e saem
-na lista \frente.
-
-A função \fila\ é usada para garantir o invariante de que se
-\frente\ está vazia, então \tras\ está vazia (e portanto a fila está
-vazia).
-
-\newcommand{\reverse}{{\it reverse\/}}
-\newcommand{\sair}{{\it sair\/}}
-\newcommand{\entrar}{{\it entrar\/}}
-\newcommand{\inicio}{{\it início\/}}
-
-\progb{\vazia\ = ([],[])\\ \ \hspace*{.2cm} \\
-      \entrar\ $e$ (\frente,\tras) = \fila\ (\frente, $e$ : \tras)\\ \ \hspace*{.2cm} \\
-      \fila\ ([], \tras) = (\reverse\ \tras, [])\\
-      \fila\ $f$        = $f$\\ \ \hspace*{.2cm} \\
-      \sair\ ($e$:\frente, \tras) = (\frente,\tras)\\ \ \hspace*{.2cm} \\
-      \estaVazia\ (\frente,\_) = \null\ \frente\\ \ \hspace*{.2cm} \\
-      \inicio\ ($e$:\frente,\_) = $e$
-     }
+% faltou discutir a ordem de complexidade das operações
 
 \subsubsection{Versão imperativa}
 \label{fila-imperativa}
+\index{fila}
 
-\newcommand{\fim}{{\it fim\/}}
+Na versão imperativa,  consideramos uma \ina{fila} como um registro com campos \ina{inicio}, \ina{fim} e \ina{elems}, sendo \ina{elems} um arranjo de $n$ elementos (indexado de {\tt 0} a {\tt $n$-1}).  Os índices do primeiro e do último elementos inseridos na fila são armazenados respectivamente nas variáveis \ina{inicio} e \ina{fim}. 
 
-Considerando \fila\ como um registro com campos \inicio, \fim\ e
-\elems, sendo \elems\ um arranjo de $n$ elementos --- indexado de $0$
-a {\tt $n$-1}.  Os índices do primeiro e do último elementos inseridos
-são armazenados respectivamente nas variáveis \inicio\ e \fim. 
-
-A fila está vazia quando {\tt \inicio\ == \fim}. A fila está cheia
-quando {\tt \inicio\ == \fim\ + 1}, isto é, a fila é circular: o
+A fila está vazia quando \ina{inicio == fim}. A fila está cheia
+quando \ina{inicio == fim + 1}, isto é, a fila é circular: o
 índice {\tt 0} segue o índice {\tt $n$-1}. 
 
 As operações em uma fila podem ser implementadas como a seguir,
-desconsiderando casos de erro: sair de uma fila vazia e entrar em uma
-fila cheia. O operador {\tt \%} é usado para retornar o resto da
+desconsiderando-se casos de erro: sair de uma fila vazia e entrar em uma
+fila cheia. O operador {\tt \%}, usado na implementação, retorna o resto da
 divisão do primeiro operando pelo segundo.
 
-\progb{
-  \vazia\ (\fila) \{ \with\ \fila\ \{ \inicio\ = \fim\ = 0 \} \} \\ \ \hspace*{.2cm} \\
-  \entrar\ (\eelem, \fila) \\
-      \hspace*{.2cm} \with\ \fila\  \\
-          \hspace*{1cm} \elems[\fim] $\leftarrow$ \eelem\\
-          \hspace*{1cm} \fim\ $\leftarrow$ (\fim\ + 1) \% $n$\\ \ \hspace*{.2cm} \\
-  \sair\ (\fila) \\
-      \hspace*{.2cm} \with\ \fila\ \{ \inicio\ $\leftarrow$ (\inicio\ + 1) \% $n$ \}\\ \ \hspace*{.2cm} \\
-  \inicio\ (\fila) \{ \with\ \fila\ \{ \return\ \elems[\inicio] \} \}\\ \ \hspace*{.2cm} \\
-  \estaVazia\ (\pilha) \{ \with\ \fila\ \{ \return\ \inicio\ == \fim\ \} \} 
- }
+\begin{center}
+\begin{tabular}{l}
+\begin{alg}{fila,vazia,entrar,sair,estaVazia,primeiro}
+vazia (fila) { with fila { inicio = fim = 0 } } 
+ 
+entrar (e, fila)
+   with fila
+      elems[fim] = e
+      fim = (fim + 1) §{\tt \%}§ n
+      
+sair (fila) { with fila { inicio = (inicio + 1) §{\tt \%}§ n } }
+   
+primeiro (fila) { return fila.elems[inicio] }
 
-\input{arvores}
+estaVazia (fila) { with fila { return inicio == fim } } 
+\end{alg}
+\end{tabular}
+\end{center} 
+
 

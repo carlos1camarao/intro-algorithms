@@ -1,38 +1,36 @@
-\@@addtocsec{htoc}{sec2}{-1}{\colorbox{cyan}{Prefácio}{}}
+\@@addtocsec{htoc}{sec2}{-1}{Prefácio{}}
 \@@addtocsec{htoc}{sec3}{1}{Conteúdo e Organização do Livro{}}
 \@@addtocsec{htoc}{sec4}{1}{Recursos Adicionais{}}
 \@@addtocsec{htoc}{sec5}{1}{Pré-requisitos{}}
-\@@addtocsec{htoc}{sec6}{-1}{\@print{Capítulo 1}\quad{}\colorbox{cyan}{Introdução}{}}
-\newlabel{Introducao}{{1}{X}}
-\citation{PeytonJones92}
-\citation{Thompson99}
-\citation{O'Sullivan:2008:RWH}
-\citation{Lipovaca:2011:LYH}
-\@@addtocsec{htoc}{sec7}{0}{\@print{1.1}\quad{}Ordenação{}}
-\@@addtocsec{htoc}{sec8}{1}{\@print{1.1.1}\quad{}Sobre Permutação{}}
-\@@addtocsec{htoc}{sec9}{0}{\@print{1.2}\quad{}Ordenação por Inserção{}}
-\@@addtocsec{htoc}{sec10}{1}{\@print{1.2.1}\quad{}Versão funcional{}}
-\newlabel{insertion-sort-func}{{1.2.1}{X}}
-\@@addtocsec{htoc}{sec11}{1}{\@print{1.2.2}\quad{}Versão imperativa{}}
-\newlabel{insertion-sort-imperativ}{{1.2.2}{X}}
-\@@addtocsec{htoc}{sec12}{-1}{\@print{Capítulo 2}\quad{}\colorbox{cyan}{Estruturas de Dados Básicas}{}}
-\newlabel{estruturas-de-dados-basicas}{{2}{X}}
-\@@addtocsec{htoc}{sec13}{0}{\@print{2.1}\quad{}Listas{}}
-\newlabel{listas}{{2.1}{X}}
-\@@addtocsec{htoc}{sec14}{1}{\@print{2.1.1}\quad{}Pesquisa{}}
-\newlabel{pesquisa-em-lista}{{2.1.1}{X}}
-\@@addtocsec{htoc}{sec15}{2}{\@print{2.1.1.1}\quad{}Versão funcional{}}
-\@@addtocsec{htoc}{sec16}{2}{\@print{2.1.1.2}\quad{}Versão imperativa{}}
-\@@addtocsec{htoc}{sec17}{1}{\@print{2.1.2}\quad{}Inserção{}}
-\newlabel{insercao-em-lista}{{2.1.2}{X}}
-\@@addtocsec{htoc}{sec18}{2}{\@print{2.1.2.1}\quad{}Versão funcional{}}
-\@@addtocsec{htoc}{sec19}{2}{\@print{2.1.2.2}\quad{}Versão imperativa{}}
-\@@addtocsec{htoc}{sec20}{1}{\@print{2.1.3}\quad{}Remoção{}}
-\newlabel{remocao-de-lista}{{2.1.3}{X}}
-\@@addtocsec{htoc}{sec21}{2}{\@print{2.1.3.1}\quad{}Versão funcional{}}
-\@@addtocsec{htoc}{sec22}{2}{\@print{2.1.3.2}\quad{}Versão imperativa{}}
-\@@addtocsec{htoc}{sec23}{1}{\@print{2.1.4}\quad{}Lista duplamente encadeada{}}
-\newlabel{lista-duplamente-encadeada}{{2.1.4}{X}}
-\@@addtocsec{htoc}{sec24}{1}{\@print{2.1.5}\quad{}Pilha{}}
-\newlabel{pilha}{{2.1.5}{X}}
-\@@addtocsec{htoc}{sec25}{2}{\@print{2.1.5.1}\quad{}Versão funcional{}}
+\@@addtocsec{htoc}{sec6}{-1}{\@print{Capítulo 1}\quad{}Estruturas de Dados Básicas{}}
+\newlabel{estruturas-de-dados-basicas}{{1}{X}}
+\@@addtocsec{htoc}{sec7}{0}{\@print{1.1}\quad{}Listas{}}
+\newlabel{sec-listas}{{1.1}{X}}
+\@@addtocsec{htoc}{sec8}{1}{\@print{1.1.1}\quad{}Pesquisa{}}
+\newlabel{sec-pesquisa-em-lista}{{1.1.1}{X}}
+\@@addtocsec{htoc}{sec9}{2}{\@print{1.1.1.1}\quad{}Versão funcional{}}
+\@@addtocsec{htoc}{sec10}{2}{\@print{1.1.1.2}\quad{}Versão imperativa{}}
+\@@addtocsec{htoc}{sec11}{1}{\@print{1.1.2}\quad{}Inserção{}}
+\newlabel{sec-insercao-em-lista}{{1.1.2}{X}}
+\@@addtocsec{htoc}{sec12}{2}{\@print{1.1.2.1}\quad{}Versão funcional{}}
+\@@addtocsec{htoc}{sec13}{2}{\@print{1.1.2.2}\quad{}Versão imperativa{}}
+\@@addtocsec{htoc}{sec14}{1}{\@print{1.1.3}\quad{}Remoção{}}
+\newlabel{remocao-de-lista}{{1.1.3}{X}}
+\@@addtocsec{htoc}{sec15}{2}{\@print{1.1.3.1}\quad{}Versão funcional{}}
+\@@addtocsec{htoc}{sec16}{2}{\@print{1.1.3.2}\quad{}Versão imperativa{}}
+\@@addtocsec{htoc}{sec17}{1}{\@print{1.1.4}\quad{}Lista duplamente encadeada{}}
+\newlabel{sec-lista-duplamente-encadeada}{{1.1.4}{X}}
+\@@addtocsec{htoc}{sec18}{1}{\@print{1.1.5}\quad{}Pilha{}}
+\newlabel{pilha}{{1.1.5}{X}}
+\@@addtocsec{htoc}{sec19}{2}{\@print{1.1.5.1}\quad{}Versão funcional{}}
+\newlabel{figPilha}{{1.1}{X}}
+\@@addtocsec{htoc}{sec20}{2}{\@print{1.1.5.2}\quad{}Versão imperativa{}}
+\@@addtocsec{htoc}{sec21}{1}{\@print{1.1.6}\quad{}Fila{}}
+\newlabel{sec-fila}{{1.1.6}{X}}
+\@@addtocsec{htoc}{sec22}{2}{\@print{1.1.6.1}\quad{}Versão funcional{}}
+\@@addtocsec{htoc}{sec23}{2}{\@print{1.1.6.2}\quad{}Versão imperativa{}}
+\newlabel{fila-imperativa}{{1.1.6.2}{X}}
+\@@addtocsec{htoc}{sec24}{0}{\@print{1.2}\quad{}Árvores{}}
+\newlabel{arvores}{{1.2}{X}}
+\newlabel{Arv1}{{1.1}{X}}
+\newlabel{Rep-arv1}{{1.2}{X}}

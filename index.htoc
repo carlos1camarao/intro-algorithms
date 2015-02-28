@@ -1,5 +1,5 @@
 \begin{tocenv}
-\tocitem \@locref{sec2}{\begin{@norefs}\colorbox{cyan}{Prefácio}{}\end{@norefs}}
+\tocitem \@locref{sec2}{\begin{@norefs}Prefácio{}\end{@norefs}}
 \begin{tocenv}
 \begin{tocenv}
 \tocitem \@locref{sec3}{\begin{@norefs}Conteúdo e Organização do Livro{}\end{@norefs}}
@@ -7,42 +7,37 @@
 \tocitem \@locref{sec5}{\begin{@norefs}Pré-requisitos{}\end{@norefs}}
 \end{tocenv}
 \end{tocenv}
-\tocitem \@locref{sec6}{\begin{@norefs}\@print{Capítulo 1}\quad{}\colorbox{cyan}{Introdução}{}\end{@norefs}}
+\tocitem \@locref{sec6}{\begin{@norefs}\@print{Capítulo 1}\quad{}Estruturas de Dados Básicas{}\end{@norefs}}
 \begin{tocenv}
-\tocitem \@locref{sec7}{\begin{@norefs}\@print{1.1}\quad{}Ordenação{}\end{@norefs}}
+\tocitem \@locref{sec7}{\begin{@norefs}\@print{1.1}\quad{}Listas{}\end{@norefs}}
 \begin{tocenv}
-\tocitem \@locref{sec8}{\begin{@norefs}\@print{1.1.1}\quad{}Sobre Permutação{}\end{@norefs}}
+\tocitem \@locref{sec8}{\begin{@norefs}\@print{1.1.1}\quad{}Pesquisa{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{sec9}{\begin{@norefs}\@print{1.1.1.1}\quad{}Versão funcional{}\end{@norefs}}
+\tocitem \@locref{sec10}{\begin{@norefs}\@print{1.1.1.2}\quad{}Versão imperativa{}\end{@norefs}}
 \end{tocenv}
-\tocitem \@locref{sec9}{\begin{@norefs}\@print{1.2}\quad{}Ordenação por Inserção{}\end{@norefs}}
+\tocitem \@locref{sec11}{\begin{@norefs}\@print{1.1.2}\quad{}Inserção{}\end{@norefs}}
 \begin{tocenv}
-\tocitem \@locref{sec10}{\begin{@norefs}\@print{1.2.1}\quad{}Versão funcional{}\end{@norefs}}
-\tocitem \@locref{sec11}{\begin{@norefs}\@print{1.2.2}\quad{}Versão imperativa{}\end{@norefs}}
+\tocitem \@locref{sec12}{\begin{@norefs}\@print{1.1.2.1}\quad{}Versão funcional{}\end{@norefs}}
+\tocitem \@locref{sec13}{\begin{@norefs}\@print{1.1.2.2}\quad{}Versão imperativa{}\end{@norefs}}
 \end{tocenv}
+\tocitem \@locref{sec14}{\begin{@norefs}\@print{1.1.3}\quad{}Remoção{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{sec15}{\begin{@norefs}\@print{1.1.3.1}\quad{}Versão funcional{}\end{@norefs}}
+\tocitem \@locref{sec16}{\begin{@norefs}\@print{1.1.3.2}\quad{}Versão imperativa{}\end{@norefs}}
 \end{tocenv}
-\tocitem \@locref{sec12}{\begin{@norefs}\@print{Capítulo 2}\quad{}\colorbox{cyan}{Estruturas de Dados Básicas}{}\end{@norefs}}
+\tocitem \@locref{sec17}{\begin{@norefs}\@print{1.1.4}\quad{}Lista duplamente encadeada{}\end{@norefs}}
+\tocitem \@locref{sec18}{\begin{@norefs}\@print{1.1.5}\quad{}Pilha{}\end{@norefs}}
 \begin{tocenv}
-\tocitem \@locref{sec13}{\begin{@norefs}\@print{2.1}\quad{}Listas{}\end{@norefs}}
-\begin{tocenv}
-\tocitem \@locref{sec14}{\begin{@norefs}\@print{2.1.1}\quad{}Pesquisa{}\end{@norefs}}
-\begin{tocenv}
-\tocitem \@locref{sec15}{\begin{@norefs}\@print{2.1.1.1}\quad{}Versão funcional{}\end{@norefs}}
-\tocitem \@locref{sec16}{\begin{@norefs}\@print{2.1.1.2}\quad{}Versão imperativa{}\end{@norefs}}
+\tocitem \@locref{sec19}{\begin{@norefs}\@print{1.1.5.1}\quad{}Versão funcional{}\end{@norefs}}
+\tocitem \@locref{sec20}{\begin{@norefs}\@print{1.1.5.2}\quad{}Versão imperativa{}\end{@norefs}}
 \end{tocenv}
-\tocitem \@locref{sec17}{\begin{@norefs}\@print{2.1.2}\quad{}Inserção{}\end{@norefs}}
+\tocitem \@locref{sec21}{\begin{@norefs}\@print{1.1.6}\quad{}Fila{}\end{@norefs}}
 \begin{tocenv}
-\tocitem \@locref{sec18}{\begin{@norefs}\@print{2.1.2.1}\quad{}Versão funcional{}\end{@norefs}}
-\tocitem \@locref{sec19}{\begin{@norefs}\@print{2.1.2.2}\quad{}Versão imperativa{}\end{@norefs}}
-\end{tocenv}
-\tocitem \@locref{sec20}{\begin{@norefs}\@print{2.1.3}\quad{}Remoção{}\end{@norefs}}
-\begin{tocenv}
-\tocitem \@locref{sec21}{\begin{@norefs}\@print{2.1.3.1}\quad{}Versão funcional{}\end{@norefs}}
-\tocitem \@locref{sec22}{\begin{@norefs}\@print{2.1.3.2}\quad{}Versão imperativa{}\end{@norefs}}
-\end{tocenv}
-\tocitem \@locref{sec23}{\begin{@norefs}\@print{2.1.4}\quad{}Lista duplamente encadeada{}\end{@norefs}}
-\tocitem \@locref{sec24}{\begin{@norefs}\@print{2.1.5}\quad{}Pilha{}\end{@norefs}}
-\begin{tocenv}
-\tocitem \@locref{sec25}{\begin{@norefs}\@print{2.1.5.1}\quad{}Versão funcional{}\end{@norefs}}
+\tocitem \@locref{sec22}{\begin{@norefs}\@print{1.1.6.1}\quad{}Versão funcional{}\end{@norefs}}
+\tocitem \@locref{sec23}{\begin{@norefs}\@print{1.1.6.2}\quad{}Versão imperativa{}\end{@norefs}}
 \end{tocenv}
 \end{tocenv}
+\tocitem \@locref{sec24}{\begin{@norefs}\@print{1.2}\quad{}Árvores{}\end{@norefs}}
 \end{tocenv}
 \end{tocenv}
