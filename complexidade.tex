@@ -1,45 +1,29 @@
-\chapter{\colorbox{cyan}{Complexidade}}
+ %!TEX encoding = ISO-8859-1
+\chapter{Complexidade}
 \label{Complexidade}
 
-Programas de computadores estão sendo usados em diversas aplicações,
-que estão expandindo sua atuação cada vez mais e para áreas cada vez
-mais diversas. Além disso, a ciência da computação vem influenciando
-as mais diversas áreas científicas, como a lógica, a matemática, a
+Programas de computador estão sendo usados cada vez mais, nas 
+mais diversas áeras. Além disso, a ciência da computação tem contribuído e influenciado inúmeras áreas científicas, como a lógica, a matemática, a
 física etc.
 
-A ciência da computação se preocupa não só com a correção de
+Em computação, não nos preocupamos apenas com a correção de
 algoritmos --- o fato de que um algoritmo computa o resultado
-especificado ou esperado para cada instância dos dados de entrada ---
-mas também com a sua eficiência, ou {\em complexidade}. Eficiência se
-mede usualmente pelo tempo gasto na execução de um programa, mas pode
-alternativamente ser baseada em uma medida do espaço (quantidade de
-memória).
+especificado, para cada instância dos dados de entrada ---
+mas também nos precupamos com a sua eficiência, ou {\em complexidade}. A A eficiência de um algoritmo refere-se, usualmente, ao tempo gasto na execução do mesmo, mas pode também ser referente ao espaço, ou quantidade de memória, usado durante a sua execução.
 
-A eficiência ou complexidade é em geral medida como uma função de uma
-medida que especifica o tamanho da entrada. Em geral um algoritmo
-eficiente é um algoritmo cujo tempo e espaço gastos na execução não
-aumentam muito com o aumento do tamanho da entrada.
-
-Em geral, problemas difíceis de serem resolvidos eficientemente são
-aqueles para os quais os algoritmos conhecidos e usados gastam um
-tempo de execução cuja variação com o tamanho da entrada não é
-polinomial (não tem como limite superior um polinômio, $n^k$, onde $n$
+A eficiência, ou complexidade, de um algoritmo é medida como 
+uma função de uma medida que especifica o tamanho da entrada. 
+Dizemos que o tempo de execução de um algoritmo tem ordem de complexidade {\em polinomial}, se a variação do seu tempo de execução com o tamanho $n$ da entrada é limitado superiormente por uma função polinomial $n^k$, onde $k$ é um valor constante, que independe de $n$. Existem problemas -- considerados {\em difíceis} -- para os quais nenhum dos algoritmos conhecidos para sua solução tem tempo de execução de complexidade polinomial.  Algoritmos conhecidos para esses problemas difíceis têm ordem de complexidade {\em exponencial}, ou seja, tempo de execução limitado superiormente por uma função $k^n$, onde $n$
 é o tamanho da entrada e $k$ é um valor constante, que independe de
-$n$), e sim exponencial (ou seja, a variação do tempo de execução com
-o tamanho da entrada é uma função do tipo $k^n$, onde $k$ é uma
-constante, como veremos em geral $k=2$). Algoritmos de complexidade
-exponencial (isto é, cujo tempo de execução aumenta exponencialmnte
-com o aumento do tamanho da entrada) são ditos {\em intratáveis\/}.
+$n$. 
+
 
 \section{Complexidade de Fun\c{c}\~oes}
 \label{complexidade-de-funcoes}
 
-O tempo de execução de um algoritmo sequencial é a soma dos tempos de
-execução de cada passo executado (no caso de um algoritmo imperativo,
-cada comando executado). Cada passo pode ser executado um certo número
-$k$ de vezes, e essa soma considera então, para cada passo, o produto
-$k\times c$, onde $c$ é uma medida do tempo gasto para execução do
-passo uma única vez.
+O tempo de execução de um algoritmo é medido em termo do número de passos de execução do algoritmo. Cada passo de execução corresponde a uma instrução ou operação atômica, relevante no problema em questão, e que é executada em um intervalo de tempo constante. Por exemplo, o tempo de execução de um algoritmo de comparação, tal como o apresentado na Seção \ref{sec-ordenacao-insercao}, pode ser medido como o número de comparações entre elementos da sequência, até que a sequência seja ordenada. Essa maneira de medir o tempo de execução abstrai do tempo específico gasto para execução de um passo, permitindo a comparação de eficiência de algoritmos independentemente da máquina em que são executados.
+
+O tempo de execucão de uma sequência de $k$ passos é a soma dos tempos de execução de cada passos, ou, mais simplesmente, o número tde passos $k$. A execução de determinadas construções usadas na definição de algoritmos, como comandos de repetição ou chamadas de funções recursivas, resultam na execução de uma determinada sequência de passos repetidas vezes. Se uma sequência de $k$ passos é executada $n$ vezes, o tempo total de execução é, naturalmente, $n\times k$.
 
 Na maioria das vezes, estamos interessados em determinar o tempo de
 execução do algoritmo para o {\em pior caso\/} de uma entrada de certo
@@ -50,40 +34,30 @@ frequentemente o pior caso representa valor próximo do caso médio, e
 iv) em geral, o {\em caso médio\/} é mais difícil de ser analisado,
 envolvendo técnicas de análise de probabilidades.
 
-A análise de complexidade envolve em geral considerar apenas o termo
-mais significativo de uma soma de termos que expressa uma função sobre
-o tamanho da entrada (em geral usa-se os números naturais como medida
-desse tamanho). Por exemplo, se a função que expressa a variação do
-tempo de execução com o tamanho da entrada é expressa como $f(n) =
-an^2 + bn + c$, onde $a,b,c$ são constantes, dizemos que a função tem
+Além disso, em geral estamos interessados em determinar como se comporta a função de complexidade de um algoritmo à medida que a entrada tende para tamanhos muiro grandes. Por exemplo, se a função que expressa a variação do
+tempo de execução com o tamanho da entrada é $f(n) =
+an^2 + bn + c$, onde $a,b,c$ são constantes, dizemos que essa função tem
 ordem de complexidade $n^2$, que é o termo mais significativo do
-polinômio $f$. Os termos de menor ordem no polinômio são relativamente
-pouco significantes para valores de $n$ grandes, e também ignora-se as
-constantes (ignoram-se todos os termos de menor ordem e ignora-se
-também a constante $a$ do termo de maior ordem), pelo mesmo motivo de
-ser relativamente pouco significante para valores grandes. Dizemos
-então que $f$ é uma função de complexidade quadrática (o termo de
-maior ordem no polinômio que define a complexidade é $n^2$).
+polinômio $f$. Isso porque os termos de menor ordem no polinômio são relativamente pouco significantes para valores de $n$ grandes. Além disso, ignora-se também a constante $a$ do termo de maior ordem, pelo mesmo motivo de ser relativamente pouco significante para valores grandes. Dizemos
+que essa função $f$ é de complexidade quadrática (o termo de
+maior ordem no polinômio que define a complexidade é $n^2$). Em outras palavras, estamos interessados no comportamento {\em assintótico\/} da função de complexidade do algooritmo, conforme é explicado na seção a seguir. 
 
 \section{Eficiência assintótica}
 \label{eficiencia-assintotica}
 
-Ao considerar a variação da eficiência de acordo com tamanhos de
-entrada grandes, fazemos simplificações para estudar a eficiência ou
-complexidade de algoritmos, e chamamos a complexidade de {\em
-  assintótica\/}. Usualmente, considera-se algoritmos mais eficientes
-que outros considerando a complexidade assintótica.
+%Ao considerar a variação da eficiência de acordo com tamanhos de
+%entrada grandes, fazemos simplificações para estudar a eficiência ou
+%complexidade de algoritmos, e chamamos a complexidade de {\em
+%  assintótica\/}. Usualmente, considera-se algoritmos mais eficientes
+%que outros considerando a complexidade assintótica.
 
-A notação geralmente usada na descrição da complexidade assintótica de
-algoritmos e programas é apresentada a seguir.
+A notação geralmente usada na descrição da {\em complexidade assintótica\/}  de algoritmos e programas é apresentada a seguir.
 
 \subsection{Notação $\Theta$}
 \label{Notacao-Theta}
 
-Considera-se o tamanho da entrada como um valor natural (i.e.~o
-domínio de funções de complexidade é igual ao conjunto dos naturais,
-$\mathbb{N}$) e o contra-domínio é o conjunto dos números reais
-positivos ($\mathbb{R}^+$). 
+O tamanho da entrada de um algoritmo é medido como um número natural natural -- i.e.~o domínio de funções de complexidade é igual ao conjunto dos naturais, $\mathbb{N}$) e o contra-domínio é o conjunto dos números reais
+positivos ($\mathbb{R}^+$. 
 
 Seguimos a terminologia usual, que usa $f(n)$ (digamos, por exemplo,
 $lg n$) para se referir na verdade à função $f$ (em notação de
@@ -116,7 +90,7 @@ Por exemplo, temos:
 
 \begin{enumerate}
 
-\item $an^2 - bn \asymp n^2$, para quaisquer determinadas constantes
+\item $an^2 - bn \asymp n^2$, para quaisquer constantes
       $a,b$.
 
       Para mostrar isso, devemos determinar $c_1,c_2,n_0$ tais que $0
@@ -142,14 +116,13 @@ Por exemplo, temos:
 \end{enumerate}
 
 $\Theta(1)$ é usualmente usado em vez de $\Theta(n^0)$,
-considerando-se claro pelo contexto a variável que está-se
-considerando como medida do tamanho da entrada.
+considerando-se claro, pelo contexto a variável usada como medida do tamanho da entrada.
 
 \section{Notação $O$}
 \label{Notacao-O}
 
 A notação $\Theta$ limita assintoticamente uma função por limites
-superior e inferior. A notação $O$ usa estabelece apenas um limite
+superior e inferior. A notação $O$ estabelece apenas um limite
 superior:
 
 \[ \begin{array}{ll}
@@ -174,31 +147,27 @@ implicação inversa não é verdadeira.
 Por exemplo, $an + b \preceq n^2$ mas $an + b \npreceq \Theta(n^2)$.
 
 Usando a notação $O$ podemos frequentemente ter uma boa ideia do
-limite superior para o tempo de execução de um programa pela inspecção
+limite superior para o tempo de execução de um programa, pela inspecção
 de sua estrutura de repetição.  Por exemplo, o aninhamento duplo do
-programa imperativo de ordenação por inserção indica um limite
-superior $O(n^2)$ para o pior caso do tempo de execução, uma vez que o
+programa imperativo de ordenação por inserção, apresentado na Seção \ref{sec-ordenacao-insercao}, indica um limite
+superior $O(n^2)$ para o pior caso do tempo de execução. O
 custo de cada comando interno ao comando \while\ é $O(1)$, as
-repetições \for\ e \while\ são controladas pelos índices $i$, $j$ que
+repetições \for\ e \while\ são controladas pelos índices $i$ e $j$, que
 variam no máximo até $n$, e a repetição mais interna é executada no
 máximo uma vez para cada par de $n^2$ valores $(i,j)$.
 
-Note que a notação $O$ fornece um limite superior, e portanto é válida
+Note que a notação $O$ fornece um limite superior e, portanto, é válida
 para qualquer entrada. Isso não ocorre com a notação $\Theta$, uma vez
 que podem existir entradas para as quais o algoritmo se comporta mais
-eficientemente do que no caso do limite inferior. Por exemplo,
-$O(n^2)$ é válido para qualquer entrada do algoritmo de ordenação por
-inserção (é um limite superior), mas existem entradas
-(especificamente, se a entrada já está ordenada) para as quais o tempo
-de execução é linear, dado por $\Theta(n)$. 
+eficientemente. Por exemplo, $O(n^2)$ é válido para qualquer entrada do algoritmo de ordenação por inserção (é um limite superior), mas existem entradas para as quais o tempo de execução é linear, dado por $\Theta(n)$, especificamente, se a entrada já está ordenada. 
 
 Dizer que o tempo de execução do algoritmo de ordenação por inserção é
 $O(n^2)$ significa, portanto, que existe uma função $f$, em $O(n^2)$,
 tal que, para qualquer entrada e qualquer $n$, o tempo de execução do
-programa para essa entrada é limitado a $f(n)$ (não significa que o
+programa para essa entrada é limitado a $f(n)$ -- não significa que a
 variação do tempo de execução do algoritmo para uma entrada particular
 varia quadraticamente com o tamanho da entrada, mas que pode variar no
-máximo quadraticamente com o tamanho da entrada).
+máximo quadraticamente com o tamanho da entrada.
 
 \section{Notação $\Omega$}
 \label{Notacao-Omega}
@@ -245,8 +214,7 @@ um nome. Por exemplo, $an^2 + bn + c$ pode ser expressa como $an^2 +
 $\Theta(n)$, no caso $bn + c$. Continuando nesse sentido, $an^2 +
 \Theta(n)$ pode ser expressa como $\Theta(n^2)$. 
 
-Essas abreviações são usadas para evitar ter que escrever funções que
-correspondem a termos de menor grau em fórmulas.
+Essas abreviações são usadas para evitar ter que escrever em fórmulas funções que correspondem a termos de menor grau.
 
 Como exemplo de uso de notação assintótica, temos: $O(2^{O(lg
   n)})=n^{O(1)}$.  O uso da notação $O$ nessa fórmula expressa
@@ -427,27 +395,27 @@ lg n \rfloor \preceq n$.
 
 Suponha $k\geq 1$, $a > 0$ e $b > 1$ constantes.
 
-%\newcommand{\sin}{{\it sin\/}}
+
+\newcommand{\hsC}{\hspace*{1.8cm}}
 
 \[ \begin{array}{|c|c|c|c|c|c|c|}
-v        & w        & \Theta & O & \Omega & o & \omega \\ \hline\hline
-(lg n)^k & n^a      &         &  &        &   &        \\ \hline
-n^k      & b^n      &         &  &        &   &        \\ \hline
+v           & w            & \Theta & O      & \Omega & o &   \omega \\ \hline\hline
+(lg n)^k & n^a        &  \hsC    & \hsC & \hsC      & \hsC  &  \hsC \\ \hline
+n^k       & b^n        &         &  &        &   &        \\ \hline
 \sqrt n  & n^{sin n} &         &  &        &   &        \\ \hline
-2^n      & 2^{n/2}   &         &  &        &   &        \\ \hline
-n^{lg b}  & b^{lg n}  &         &  &        &   &        \\ \hline
-lg (n!)  & lg (n^n) &         &  &        &   &        
+2^n       & 2^{n/2}  &         &  &        &   &        \\ \hline
+n^{lg b} & b^{lg n}  &         &  &        &   &        \\ \hline
+lg (n!)    & lg (n^n)  &         &  &        &   &        
     \end{array}
 \]
 
 Resposta (baseada em \cite{Minko-Markov-2013}):
 
 \[ \begin{array}{|c|c|c|c|c|c|c|}
-    v        & w      & \Theta & O      & \Omega  & o       & \omega\\ \hline
-                                                                        \hline
+    v        & w      & \Theta & O      & \Omega  & o       & \omega\\ \hline\hline
 (lg n)^k & n^a        &       & {\tt *} &         & {\tt *} &     \\ \hline
 n^k      & b^n        &       & {\tt *} &         & {\tt *} &     \\ \hline
-\sqrt n  & n^{\sin\ n} &        &         &         &         &     \\ \hline
+\sqrt n  & n^{\sin\ n} & \hsC    & \hsC & \hsC      & \hsC  &  \hsC \\ \hline
 2^n      & 2^{n/2}     &       &         & {\tt *} &         & {\tt *} \\ \hline
 n^{lg b}  & b^{lg n}    & {\tt *} & {\tt *} & {\tt *} &        &        \\ \hline
 lg (n!)  & lg (n^n) &          & {\tt *} &        & {\tt *} &        
@@ -536,7 +504,7 @@ lg^* 2^{2^{2^{2^2}}} & = \ldots     & = 5 & \\
 
 Ou seja, $lg^*$ cresce {\em muito\/} lentamente. Só poderíamos
 escrever o próximo valor ($ n_6 = 2^{2^{2^{2^{2^2}}}} $) usando
-exponenciação ($ n_5 = 2^{2^{2^{2^2}}} $ tem 19729 dígitos, mas $n_6$
+exponenciação: $ n_5 = 2^{2^{2^{2^2}}} $ tem 19729 dígitos, mas $n_6$
 tem um número de dígitos extraordinário, ``maior do que o número de
 átomos ($\approx 10^{82}$) que se estima existir no universo que
 podemos observar'' (i.e.~o universo que se expande até 90 e poucos
