@@ -1,12 +1,12 @@
 %!TEX encoding = ISO-8859-1
 \chapter{Estruturas de Dados Básicas}
-\label{estruturas-de-dados-basicas}
+\label{ch:estruturas-de-dados-basicas}
 
 Este capítulo aborda listas e árvores, suas representações em um computador e
 operações básicas sobre essas estruturas de dados.
 
 \section{Listas}
-\label{sec-listas}
+\label{sec:listas}
 
 Uma lista é uma estrutura de dados comumente usada em computação e pode ser definida recursivamente como a seguir.  Uma lista de elementos de
 determinado tipo \inh{t} é ou i) {\em vazia} ou ii) constituída de um elemento de tipo \inh{t} e um uma lista de elementos do mesmo tipo \inh{t} (denominada {\em cauda} ou resto da lista).
@@ -64,7 +64,7 @@ especialmente em uma linguagem (como \C) que não provê suporte a
 manipulação de valores de estruturas de dados recursivas. Utilizando essa forma de representação, a lista fica limitada a um número máximo de elementos, já que a defição de uma arranjo requer que o número de elementos do mesmo seja especificado a priori.
 
 \subsection{Pesquisa}
-\label{sec-pesquisa-em-lista}
+\label{sec:pesquisa-em-lista}
 
 Em computação, {\em pesquisar\/} em geral significa determinar se um
 dado elemento está presente ou não em uma estrutura de dados. As
@@ -146,7 +146,7 @@ elem (a, l)
 \end{center}
 
 \subsection{Inserção}
-\label{sec-insercao-em-lista}
+\label{sec:insercao-em-lista}
 
 Inserir um elemento no início de uma lista é uma operação de
 complexidade $O(1)$.
@@ -181,12 +181,12 @@ insert (a, l)
 \end{center}
 
 \subsection{Remoção}
-\label{remocao-de-lista}
+\label{sec:remocao-de-lista}
 
 Remover um elemento de uma lista é uma operação de complexidade $O(n)$
 no pior caso, pois é necessário procurar o elemento a ser removido.
 
-A Seção \ref{sec-lista-duplamente-encadeada} redefine o tipo de lista
+A Seção \ref{sec:lista-duplamente-encadeada} redefine o tipo de lista
 encadeada para uma versão de listas duplamente encadeadas, e reescreve
 as funções \ina{elem} e \ina{insert}, para definir \ina{delete} por meio de uma
 chamada à função \ina{elem}, seguida de chamada a \ina{insert}.
@@ -231,12 +231,12 @@ delete (a, l)
              
 
 \subsection{Lista duplamente encadeada}
-\label{sec-lista-duplamente-encadeada}
+\label{sec:lista-duplamente-encadeada}
 
 \ldots \ldots .....
 
 \subsection{Pilha}
-\label{pilha}
+\label{sec:pilha}
 \index{pilha}
 
 Uma estrutura de dados {\em Pilha} caracteriza-se pelo fato de que as operações de inserção, acesso e remoção de elementos são feitas em apenas
@@ -329,7 +329,7 @@ O comando \ina{with}, usado no código acima, serve para tornar visíveis os nomes
 % (\nome\ pode ser usado em vez de {\tt $r$.\nome}).
 
 \subsection{Fila}
-\label{sec-fila}
+\label{sec:fila}
 \index{fila}
 Em uma {\em Fila}, a inserção é feita de um lado e a remoção é feita do
 lado oposto da estrutura de dados -- política de uso algumas
@@ -370,7 +370,7 @@ estaVazia (frente,§{\tt \_}§)  = null frente
 % faltou discutir a ordem de complexidade das operações
 
 \subsubsection{Versão imperativa}
-\label{fila-imperativa}
+\label{sec:fila-imperativa}
 \index{fila}
 
 Na versão imperativa,  consideramos uma \ina{fila} como um registro com campos \ina{inicio}, \ina{fim} e \ina{elems}, sendo \ina{elems} um arranjo de $n$ elementos (indexado de {\tt 0} a {\tt $n$-1}).  Os índices do primeiro e do último elementos inseridos na fila são armazenados respectivamente nas variáveis \ina{inicio} e \ina{fim}. 

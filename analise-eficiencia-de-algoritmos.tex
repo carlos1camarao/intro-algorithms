@@ -1,15 +1,14 @@
-\chapter{\colorbox{cyan}{Análise da eficiência de algoritmos}}
-\label{analise-eficiencia-de-algoritmos}
+%!TEX encoding = ISO-8859-1
+\chapter{Análise da eficiência de algoritmos}
+\label{ch:analise-eficiencia-de-algoritmos}
 
 Esse capítulo apresenta um roteiro para análise da eficiência de
-algoritmos e apresenta exemplos simples de problemas e de soluções
+algoritmos, juntamente com exemplos simples de problemas e suas soluções,
 usando esse roteiro.
 
 Além da eficiência, algoritmos podem ser analisados quanto a
 facilidade de mostrar ou provar correção, simplicidade e
-generalidade. 
-
-Ao contrário da análise da eficiência, simplicidade e facilidade de
+generalidade. Ao contrário da análise da eficiência, simplicidade e facilidade de
 mostrar correção são critérios bastante subjetivos. É bastante difícil
 estabelecer métricas para tais critérios. Generalidade, por sua vez,
 pode ser medida pelo tamanho do domínio da entrada do problema
@@ -17,18 +16,18 @@ resolvido, mas há situações em que o desenvolvimento de um algoritmo
 mais geral é desnecessário (pouco vantajoso) ou difícil, e tal
 dificuldade ou necessidade é difícil de ser medida precisamente.
 
-O projeto de algoritmos envolve revisão e busca de melhorias, com o
-qual programadores devem se envolver. 
+%O projeto de algoritmos envolve revisão e busca de melhorias, com o
+%qual programadores devem se envolver. 
 
 Em geral, o projeto de algortimos envolve a adoção de soluções que
-favorecem um aspecto em detrimento de outro, e um aspecto que costuma
+favorecem um aspecto, em detrimento de outro. Um aspecto que costuma
 ser bastante influente é o tempo disponível para desenvolvimento do
 programa. O desenvolvimento de algoritmos {\em ótimos\/} é uma questão
-relativa ao {\em problema\/} que está sendo resolvido e, mesmo
+relativa ao {\em problema\/} que está sendo resolvido. Mesmo
 restringindo ao aspecto de eficiência, para muitos problemas saber
 dizer qual é o algoritmo ótimo é difícil e muitas vezes não tem uma
-resposta conhecida. Vamos falar mais sobre esse assunto na seção
-{P-vs-NP}.
+resposta conhecida. Vamos falar mais sobre esse assunto na Seção
+{sec-P-vs-NP}.
 
 % Anany Levitin cita \ref{Anany-Levitin-analysis-and-design-of-algs} a
 % seguinte observação de Saint-Exupéry (que ele tirou de citação feita
@@ -36,6 +35,7 @@ resposta conhecida. Vamos falar mais sobre esse assunto na seção
 % quando não há mais nada a incluir, mas quando não há mais nada a
 % remover''.
 
+%- OBS: colocar o parágrafo a seguir como NOTA
 A prova de correção de programas é uma área da ciência da computação
 que está em franca evolução, atualmente. O desenvolvimento de teorias
 de tipos \cite{Sorensen98lectureson}, baseadas nos chamados ``tipos
@@ -50,41 +50,33 @@ na prática não é demonstrada, mas sujeita a testes. Provas de correção
 e técnicas de teste de programas não fazem parte do escopo deste
 livro; no entanto, vamos usar provas de indução e definição de
 invariantes para mostrar informalmente a correção de programas.
+%----------------------------------------------------
 
-Como usualmente, não é feita neste livro nenhuma {\em validação dos
-  dados de entrada}, isto é, não é verificado que os dados de entrada
+Como usualmente, vamos em geral omitir a {\em validação dos
+  dados de entrada}, isto é, não verificar se os dados de entrada
 realmente estão dentro dos limites estabelecidos no enunciado de um
 problema. Em programas usados na prática, essa verificação deve ser
-incluída (o enunciado do problema não deve estabelecer tais limites
-para os dados de entrada), mas em geral essa validação não envolve
-nenhum aspecto mais relevante para a tarefa de programação (apenas
+incluída mas, em geral, essa validação não envolve nenhum aspecto mais relevante para a tarefa de programação, envolvendo apenas a
 inclusão de testes para emissão de mensagens de erro no caso em que os
-dados de entrada não satisfaçam a esses testes).
+dados de entrada não satisfaçam a esses testes.
 
-As seções a seguir apresentam alguns exemplos de problemas para os
-quais há vamos analisar a eficiência de um algoritmo simples que os
-resolve. O roteiro para análise da eficiência é o seguinte:
+As seções a seguir apresentam alguns exemplos de problemas e algoritmos simples para solução desses problemas, seguidos da análise de eficiência desses algoritmos. O roteiro para análise da eficiência é o seguinte:
 
 \begin{enumerate}
 
-\item Determinar variável ($n$) que representa o tamanho dos dados de
+\item Determinar a variável ($n$) que representa o tamanho dos dados de
   entrada.
 
-\item Identificar operações que vão determinar a variação na
+\item Identificar operações que são relevantes para determinar a 
   eficiência do programa durante a execução.
 
-\item Expresse o número de vezes que a operação é executada em função
-  de $n$, chamada de expressão-determinante-da-eficiência.
+\item Expressar o número de vezes que essas operações são executadas, em função de $n$, chamada de expressão-determinante-da-eficiência.
 
-\item Resolva ou simplifique a expressão-determinante-da-eficiência.
+\item Resolver ou simplificar a expressão-determinante-da-eficiência.
 
 \end{enumerate}
 
-No caso de um programa recursivo, a
-expressão-determinante-da-eficiência é em geral uma expressão escrita
-em função de $T(n-1)$ ou outro argumento da função $T$ (de tempo de
-execução) menor que $n$, que expressa $T(n)$ de modo recursivo,
-criando o que é chamado de uma {\em relação de recorrência}.
+No caso de um programa recursivo, a expressão-determinante-da-eficiência é, em geral, também definida recursivamente. Isto é, o tempo de execução do algoritmo para uma entrada de tamanho $n$ -- $T(n)$ -- é escrito em termos de $T(n-1)$, ou em termos de $T(k)$, para algum $k<n$. Dizemos, nesse caso, que $T(n)$ é definido por uma {\em relação de recorrência}.
 
 \begin{quotation}
   {\em Uma relação de recorrência é uma definição recursiva para a
@@ -92,146 +84,154 @@ criando o que é chamado de uma {\em relação de recorrência}.
     especifica a mesma relação.\/}
 \end{quotation}
 
-Note: Essa busca pode não ter sucesso, isto é, existem equações
-recursivas que não podem ser simplificadas para uma solução não
-recursiva (de fato, isto acontece com a maioria das equações
-recursivas). Mas as equações que expressam tempos de execução de
-pequenos programas em geral são bastante simples e podem de fato ser
-simplificadas para uma equação não recursiva.
+Existem inúmeras equações recursivas para as quais não podemos encontrar uma solução não recursiva (de fato, isto acontece com a maioria das equações recursivas). Entretanto, para os problemas com os quais vamos lidar a seguir, as equações recursivas que expressam o tempos de execução de algoritmos para solução desses problemas podem ser resolvidas de maneira bastante simples. 
 
 No caso de um programa não recursivo, a
-expressão-determinante-da-eficiência é em geral um somatório, que em
-geral também pode ser simplificado.
-
-As seções seguintes apresentam exemplo de problemas simples e suas
-soluções, para os quais a eficiência é analisada usando o roteiro
-acima.
+expressão-determinante-da-eficiência é em geral um somatório, que muitas vezes também pode ser simplificado.
 
 \section{Número de Dígitos}
-\label{numero-de-digitos}
+\label{sec:numero-de-digitos}
 
-O problema é determinar o número de dígitos de um número em uma dada
-base usada para representação desse número. O número e a base são
-dados de entrada.
+Dado um número inteiro não negativo \inh{n}, escrito em uma determinada base \inh{b}, queremos determinar o número de dígitos usados na representação desse número. 
 
 \subsection{Versão funcional}
-
-\newcommand{\numDigs}{{\it numDigs\/}}
+\label{sec:numero-de-digitos-fun}
 
 A versão funcional é apresentada em Haskell a seguir:
 
-\progb{
-\numDigs\ $x$ $b$\\
-  \hspace*{.2cm} | $x$ < $b$   = 1\\
-  \hspace*{.2cm} | \otherwise\ = 1 + \numDigs\ ($x$ `\ddiv` $b$)
-}
+\begin{center}
+\begin{tabular}{l}
+\begin{hask}{numDigs}
+numDigs n b
+   | n < b     = 1
+   | otherwise = 1 + numDigs (n `div` b)
+\end{hask}
+\end{tabular}
+\end{center}
 
-A variável que representa o tamanho dos dados de entrada é igual a
-$n$.  A variação do tempo de execução $T(n)$ é dada por (considerando
-como $k$ uma constante igual ao tempo gasto pela operação de somar 1 a
-um valor qualquer mais o tempo gasto pela operação de comparar o
-argumento $x$ com $b$):
+A variável que representa o tamanho dos dados de entrada é igual a \inh{n}. Para análise de eficiência do algoritmo, podemos considerar que o tempo de execução de cada uma das operações de somar 1 a um valor qualquer, comparar dois valores numéricos (\inh{n < b}) e a  divisão inteira entre dois numeros (\inh{n `div` b}) é constante. Em outras palavras, o tempo de execução de cada passo recursivo na avaliação de \inh{numDigs n b} é executado em tempo constante $k$. Assim, a função de tempo de execução $T(n)$ é dada por: 
+ 
 
- \[ \begin{array}{lll}
-       T(n) & = 0                  & \text{ se } n < b\\
-       T(n) & = T(n `\ddiv` b) + k & \text{ caso contrário}
-    \end{array}
- \]
-Vamos considerar que $n$ é uma potência de $b$ --- isto é, $n = b^i$,
-para algum $i\geq 0$. Essa consideração é baseada na regra .... \ldots
+     \begin{align} \label{eq:TnumDigs1}
+       T(n) &= k                                 & &\text{se  $n < b$}  \nonumber\\
+       T(n) &= T(n \inh{`div`} b) + k  & &\text{caso contrário} 
+     \end{align}
 
-Para $i\geq b$, obtemos:  
- \[ \begin{array}{ll}
-       T(b^i) & = T(b^{i-1}) + k \\
-              & = T(b^{i-2}) + (2 \times k) \\
-              & \ldots
-    \end{array}
- \]
-Para $n=b^i$, obtemos $T(b^i) = T(b^0) + (i\times k) = i\times k$.
-Portanto, $T(n) = log_b (i\times k)$ e portanto $T(n) \asymp lg n$.
+Para obter uma solução para a relação de recorrência acima, observe que, para  qualquer número inteiro $n>0$, representado em uma base $b$ com $d$ dígitos, temos que $b^{d-1} \leq n < b^d$. Tomando o logaritmo na base $b$, obtemos $d-1 \leq  \log _b\left(n\right) < d$. Tomando o {\em floor\/}, obtemos: $\lfloor\log _b\left(n\right)\rfloor = d-1$, ou seja, $d=\lfloor\log _b\left(n\right)\rfloor +1$. Isso nos permite considerar, para o cálculo da solução da relação de recorrência, que $n = b^d$, para algum inteiro $d>0$. Substituindo $n=b^d$ na relação de recorrência \eqref{eq:TnumDigs1}, obtemos (naturalmente, temos $T(b^0)=0$, pois nenhum número é escrito com 0 dígitos): 
+
+     \begin{align} \label{eq:TnumDigs2}
+       T(b^0) &= 0        \nonumber \\              
+       T(b^d) & = T(b^{d-1}) + k 
+    \end{align}
+  
+Vamos obter a solução para essa relação de recorrência pelo {\em método-de-substituição-para-eliminação-da-recursão}. Esse método consiste em aplicar substituições sucessivas, conforme a equação recursiva de $T(n)$, até obter que seja obtida expressão envolvendo apenas o caso base (neste caso $b^0$). Para $n\geq b$, obtemos:  
+
+ \begin{align*} \label{eq:TnumDigs3}
+       T(b^d) &= T(b^{d-1}) + k) & &  \\
+                  &= T(b^{d-2}) + (2 \times k) & & \text{\{ substituindo $T(b^{d-1}) = T(b^{d-2}) + k$ \}} \\
+                  &= T(b^{d-3}) + (3 \times k) & & \text{\{ substituindo $T(b^{d-2}) = T(b^{d-3}) + k$ \}} \\
+                  & \vdots & & \\
+                  &= T(b^{1}) + ((d-1) \times k) & & \\
+                  &= T(b^0) + (d \times k)  & & \text{\{ substituindo $T(b^{1}) = T(b^0) + k$ \}} \\
+                  &=  d \times k   & & \text{\{ substituindo $T(b^0) = 0$ \}}
+    \end{align*}
+ 
+Portanto, $T(n) = d \times k = (\lfloor\log _b\left(n\right)\rfloor+1) \times k$, isto é, $T(n) = \Theta(\lg\left(n\right))$ (Note que $T(n) =\Theta(\lg\left(n\right))$ para qualquer base $b$).
 
 \subsection{Versão imperativa}
-
-\newcommand{\numD}{{\it numD\/}}
+\label{sec:numero-de-digitos-imp}
 
 A versão imperativa é similar, usando um comando de repetição em vez
 de recursão:
 
-\progb{
-\numDigs\ ($n$,$b$) \\
-  \hspace*{.2cm} \numD\ = 0\\
-  \hspace*{.2cm}   \while\ ($n$ > $b$) \\
-       \hspace*{1cm} \numD\ = \numD\ + 1\\
-       \hspace*{1cm} $n$ = $n$ / $b$
-}
-A expressão-determinante-da-eficiência é igual a $m \times \Theta(1)$,
-onde $m$ é o número de vezes que o comando de repetição é executado e
-$\Theta(1)$ expressa o tempo gasto nos comandos internos ao comando de
-repetição. Como a variável $n$ recebe, a cada repetição, o valor do
-quociente da divisão do valor de $n$ (anterior à atribuição) por $b$,
-obtemos: $T(n) \asymp m \asymp log_b n \asymp lg n$. 
+\begin{center}
+\begin{tabular}{l}
+\begin{alg}{numDigs}
+numDigs (n,b)
+   numD = 1
+   while (n > b)
+      numD = numD + 1
+      n = n / b
+\end{alg}
+\end{tabular}
+\end{center}
 
-Note que $T(n) \asymp lg n$ para qualquer base $b$.
+Novamente, consideramos que as operações básicas envolvidas (atribuição, somar 1 e divisão inteira) são executadas em tempo constante, ou seja, em tempo $\Theta(1)$. O tempo de execução do algoritmo pode ser calculado como o tempo de execução do comando \ina{while}, ou seja, 
+$m \times \Theta(1)$, onde $m$ é o número de vezes que é avaliada a comparação \ina{(n > b)}. Em cada iteração do \ina{while}, o valor da variável $n$ é sucessivamente dividido por $b$, até que $n\geq b$. Ou seja, em cada iteração, o valor de $n$ é um número representado, na base $b$, com 1 dígito a menos do que o número de dígitos da representação de do valor de $n$ na iteração anterior. Portanto, o número de iterações do \ina{while} é igual ao número de dígitos da representação de $n$ na base $b$. Então, temos que  
+$T(n) = d \times \Theta(1) = (\lfloor\log_b\left(n\right)\rfloor +1) \times \Theta(1)$, ou seja, $T(n) = \Theta(\lg\left(n\right))$. 
 
-Note também que $T(n)$ (e o número de repetições no \while) aumenta
+Note que $T(n)$ (o número de repetições do \ina{while}) aumenta
 logaritmicamente com um aumento (linear) no {\em valor\/} de $n$, mas
 aumenta linearmente com um aumento no número de dígitos de $n$ (o
 valor de $n$ aumenta exponencialmente com um aumento no número de
 dígitos de $n$).
 
 \section{Maior Elemento}
-\label{maior-elemento}
+\label{sec:maior-elemento}
 
-\newcommand{\maxElem}{{\it maxElem\/}}
+Dada uma lista de valores, determinar o valor máximo dessa lista. 
 
-Considere o problema de encontrar o maior elemento de uma lista. 
+\subsection{Versão funcional}
+\label{sec:maior-elemento-fun}
 
-A versão funcional apresentada abaixo simplesmente usa \foldl': 
+A versão funcional apresentada abaixo simplesmente usa \inh{foldl}: 
 
-\progb{\maxElem\ :: \Ord\ $a$ => [$a$] -> $a$\\
-\maxElem\ ($a$:$x$) = \foldl' \max\ $a$ $x$ }
+\begin{center}
+\begin{tabular}{l}
+\begin{hask}{maxElem}
+maxElem :: Ord a => [a] -> a
+maxElem (a:x) = foldl' `max` a x
+\end{hask}
+\end{tabular}
+\end{center}
 
-A função \max, definida no prelúdio de Haskell, retorna o maior entre
+A função \inh{max}, definida no prelúdio de Haskell, retorna o maior entre
 dois valores, passados como parâmetros:
 
-\progb{\max\ :: \Ord\ $a$ => $a$ -> $a$ -> $a$\\
-       \max\ $a$ $b$ \\
-         \hspace*{.2cm} | $a$ <= $b$  = $b$
-         \hspace*{.2cm} | \otherwise\ = $a$
-      }
- 
-A função \foldl\ é definida no prelúdio de Haskell como a seguir:
+\begin{center}
+\begin{tabular}{l}
+\begin{hask}{max}
+max :: Ord a => a -> a -> a
+max a b
+   | a <= b    = b
+   | otherwise = a
+\end{hask}
+\end{tabular}
+\end{center}
+    
+A função \inh{foldl} é definida no prelúdio de Haskell como a seguir:
 
-\progb{
-\foldl\ $f$ $z$ [] \hspace*{1cm} = $z$\\
-\foldl\ $f$ $z$ ($a$:$x$) = \foldl\ $f$ ($f$ $z$ $a$) $x$
-}
+\begin{center}
+\begin{tabular}{l}
+\begin{hask}{foldl}
+foldl f z []    = z
+foldl f z (a:x) = foldl f (f z a) x
+\end{hask}
+\end{tabular}
+\end{center}
 
-A função \foldl\, aplicada a uma função binária $f$, um valor inicial
-$z$ e uma lista, ``reduz'' (em geral, mas mais precisamente
-transforma) a lista usando a função $f$ da esquerda para a direita
-(daí o nome \foldl: o {\it l\/} é de {\em {\underline{l}eft\/}}, em
-português {\em esquerda\/}):
+A função \inh{foldl}, aplicada a uma função binária \inh{f}, um valor inicial
+\inh{z} e uma lista, ``reduz'' (mais precisamente, transforma) a lista, usando a função \inh{f}, da esquerda para a direita (daí o nome \inh{foldl}: o {\bf \tt l}\ é de {\em {\underline{l}eft\/}}, em português {\em esquerda\/}):
 
-  \[ \text{\tt{ \foldl\ $f$ $z$ [$e_1$, $e_2$, \ldots, $e_n$] == (\ldots (($z$ `$f$` $e_1$) `$f$` $e_2$) `$f$`\ldots) `$f$` $e_n$}} \]
+\begin{center}
+\begin{tabular}{l}
+\begin{hask}{foldl}
+foldl f z [§$e_1$, $e_2$, \ldots, $e_n$§] == (§\ldots§ ((z `f` §$e_1$§) `f` §$e_2$§) `f` §\ldots§) `f` §$e_n$§
+\end{hask}
+\end{tabular}
+\end{center}
 
-A função \foldl'\ se comporta de modo similar a \foldl, mas é ``menos
-preguiçosa'': \foldl' $f$ força a avaliação de $f$, de modo que, {\tt
-  $z$ `$f$` $e_1$} é avaliado antes que a expressão ($z$ `$f$` $e_1$)
-`$f$` $e_2$) seja formada, e assim sucessivamente. Com \foldl, toda a
-expressão {\tt (\ldots (($z$ `$f$` $e_1$) `$f$` $e_2$) `$f$`\ldots)
-  `$f$` $e_n$} é construída antes da avaliação de {\tt $z$ `$f$`
-  $e_1$}. O uso de \foldl'\ é adequado quando a função $f$ é estrita
-(ou seja, quando $f$ não é preguiçosa), ou, ainda, quando a avaliação
-de $z$ `$f$` $e_1$ requer a avaliação de $e_1$.
+A função \inh{foldl'} se comporta de modo similar a \inh{foldl}, mas é ``menos
+preguiçosa'': \inh{(foldl' f)}\, força a avaliação de \inh{f}, de modo que, \inh{(z `f` §$e_1$§)}\, é avaliado antes que a expressão \inh{((z `f` §$e_1$§)
+`f` §$e_2$§)}\, seja formada, e assim sucessivamente. Com \inh{foldl}, toda a
+expressão \inh{(§\ldots§ ((z `f` §$e_1$§) `f` §$e_2$§) `f` §\ldots§) `f` §$e_n$§)}\, é construída antes da avaliação de \inh{(z `f` §$e_1$§)}. O uso de \inh{foldl'}\ é adequado quando a função \inh{f}\, é estrita
+(ou seja, quando \inh{f}\, não é preguiçosa), ou, ainda, quando a avaliação
+de \inh{(z `f` §$e_1$§)}\, requer a avaliação de $e_1$.
 
 \HRule
 {\em Nota\/}: 
 
-Uma função $f$ é dita estrita se (escrevendo sucintamente) $f\: \bot =
-\bot$, ou seja: quando o resultado de aplicar $f$ a um argumento que
-fica em ciclo infinito faz com que a chamada a $f$ fique em ciclo
-infinito. O valor $\bot$ é usado para indicar ``ciclo infinito'', e
+Uma função \inh{f} é dita estrita se (escrevendo sucintamente) \inh{f §$\bot$§ = §$\bot$§}, ou seja: quando o resultado de aplicar \inh{f} a um argumento que fica em ciclo infinito faz com que a chamada a \inh{f} fique em ciclo infinito. O valor $\bot$ é usado para indicar ``ciclo infinito'', e
 também ocorrência de erro devido a recursos, em quantidade finita,
 serem consumidos para avaliação, durante a execução. 
 
@@ -253,63 +253,50 @@ faz com que todas as funções sejam estritas.
 As diferenças resultantes do uso de estratégias de avaliação
 preguiçosa e gulosa estão fora do escopo deste livro. 
 
-No entanto, vale observar que o uso de \foldl' neste exemplo não
+No entanto, vale observar que o uso de \inh{foldl'}\, neste exemplo não
 altera a complexidade assintótica do tempo de execução, mas pode
 afetar bastante o espaço necessário e a constante de proporcionalidade
 da função que expressa o tempo de execução.
 
 \HRule
 
-A relação de recorrência é 
+Na análise de complexidade da função \inh{maxElem}, o tamanho da entrada $n$ é o número de elementos da lista dada como argumento. A operação relevante para determinar a complexidade do tempo de execução de \inh{maxElem}\, é a avaliação da expressão \inh{x `max` y}, que determina o máximo entre dois valores \inh{x}\, e \inh{y}. Considerando que o tempo gasto para dessa expressão é constante -- igual a $k$ --  a relação de recorrência que define o tempo de execução de \inh{maxElem}\, é: 
 
- \begin{equation}
-    T(n) = T(n-1) + k 
-    \label{recorrencia1}
- \end{equation}
-onde $n$ é o tamanho (número de elementos) da lista e $k$ é uma
-constante que expressa o tempo de execução da aplicação da função
-$\max$ a dois valores inteiros (informalmente, costuma-se dizer: ``$k$
-é o tempo de execução da função \max, quando na verdade se quer dizer
-o tempo de execução da aplicação da função a argumentos, que podem ser
-quaisquer). No caso base, temos $T(0) = 0$.
+\begin{align} \label{eq:TmaxElem}
+    T(0) &= 0                 \nonumber\\
+    T(n) &= T(n-1) + k   
+ \end{align}
 
-Essa relação de recorrência tem solução fácil. Vamos mostrar sua
-solução pelo {\em
-  método-de-substituição-para-eliminação-da-recursão\/} ilustrado a
-seguir. 
+Essa relação de recorrência tem solução fácil, e pode ser obtida pelo {\em
+  método-de-substituição-para-eliminação-da-recursão} (assim como solução da relação de recorrência \ref{eq:TnumDigs2}). Para $n>0$, temos:
+  
+	\begin{align*}
+	T(n) &= T(n-1) + k \\
+		 &= T(n-2) + 2 \times k \\
+		 &= T(n-3) + 3\times  k  \\
+		 &\ldots & & \\
+		 &= T(1) + (n-1) \times k  \\
+		 &= T(0) + n \times k  \\
+		 &= n \times k
+	\end{align*}      
 
-Temos: $T(n-1) = T(n-2) + k$. Substituindo $T(n-1)$ na relação de
-recorrência (\ref{recorrencia1}), obtemos: $T(n) = (T(n-2) + k) + k =
-T(n-2) + 2\times k$. É fácil ver que, para todo $i=1,\ldots,n$, temos:
-$T(n) = T(n-i) + i\times k$. Para $i=n$, temos: $T(n) = n\times k$ e,
-portanto, $T(n) = \Omega(n)$.
+%Temos: $T(n-1) = T(n-2) + k$. Substituindo $T(n-1)$ na relação de
+%recorrência (\ref{recorrencia1}), obtemos: $T(n) = (T(n-2) + k) + k =
+%T(n-2) + 2\times k$. É fácil ver que, para todo $i=1,\ldots,n$, temos:
+%$T(n) = T(n-i) + i\times k$. Para $i=n$, temos: $T(n) = n\times k$ e,
+%portanto, $T(n) = \Omega(n)$.
 
+Note que, neste caso, podemos concluir que $T(n) = n \times k$ simplesmente raciocinando sobre a definição de $T(n)$: a expressão que define $T(n)$ é igual a 0, quando $n$ é igual a 0, e aumenta de $k$ quando $n$ aumenta de 1; ou seja, é uma definição de $n\times k$. Portanto, \inh{maxElem} tem complexidade de tempo $\Theta(n)$.
 
-Note que nem é preciso o método para concluir que $T(n) = n\times k$;
-basta raciocinar sobre a definição de $T$: 
-
-    \[ \begin{array}[t]{ll}
-         T(n) = 0          & \text{ se } n = 0\\
-         T(n) = T(n-1) + k & \text{ caso contrário}
-       \end{array}
-    \]
-
-A expressão que define $T(n)$ é igual a 0 quando $n$ é igual a 0
-aumenta de $k$ qundo $n$ aumenta de 1; ou seja, é uma definição de
-$n\times k$.
-
-O que chamamos de expressão-determinante-da-eficiência pode ser
-expresso por $T(n-1) + k$, ou (depois de resolvida a relação de
-recorrência) por $n\times k$.
-
-A complexidade é, assim, a mesma da pesquisa sequencial em uma lista:
-$O(n)$ no pior caso. Informalmente, o raciocínio pode ser similar ao
-seguinte: o tempo de execução é $O(n)$ pois o custo das operações
-realizadas em chamada recursiva é constante ($O(1)$) e o número de
-chamadas recursivas é $O(n)$ (cresce linearmente com $n$).
+%Note que a complexidade de \inh{maxElem}\, é a mesma da pesquisa sequencial em uma lista, no pior caso ($O(n)$). Informalmente, o raciocínio pode ser similar ao
+%seguinte: o tempo de execução é $O(n)$ pois o custo das operações
+%realizadas em chamada recursiva é constante ($O(1)$) e o número de
+%chamadas recursivas é $O(n)$ (cresce linearmente com $n$).
 
 \subsection{Versão imperativa}
+\label{sec:maior-elemento-imp}
 
+ \end{document}
 \ldots parei aqui......
 
 \section{Unicidade de Elementos}

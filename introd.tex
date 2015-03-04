@@ -1,6 +1,6 @@
 % !TEX encoding = ISO-8859-1
 \chapter{Introdução}
-\label{Introducao}
+\label{ch:Introducao}
 
 Este livro provê uma introdução ao estudo de algoritmos, apresentando
 introdução a estruturas de dados básicas, algoritmos de pesquisa e de
@@ -32,14 +32,14 @@ ponto-e-vírgula.
 
 A notação funcional será explicada sempre que necessário, isto é,
 sempre que houver alguma possibilidade de dúvida. Uma descrição
-sucinta da linguagem Haskell é incluída no Apêndice \ref{Ap-Haskell},
+sucinta da linguagem Haskell é incluída no Apêndice \ref{app:Ap-Haskell},
 que deverá ser lido pelo leitor não familiarizado com essa
 linguagem. Descrições mais completas de Haskell podem ser encontradas,
 por exemplo, em
 \cite{PeytonJones92,Thompson99,O'Sullivan:2008:RWH,Lipovaca:2011:LYH}.
 
 \section{Ordenação}
-\label{sec-ordenacao}
+\label{sec:ordenacao}
 \index{ordena\c{c}\~ao}
 
 Considere o problema de ordenação, especificado formalmente como a seguir (um problema computacional especifica a relação que deve existir entre a
@@ -54,7 +54,7 @@ Uma sequência $a_1, \ldots, a_n$ é ordenada se $a_i \leq a_{i+1}$ para
 $i=1,\ldots, n-1$.
 
 \subsection{Sobre Permutação} 
-\label{sec-permutacao} 
+\label{sec:permutacao} 
 
 \index{permuta\c{c}\~ao}
 
@@ -90,7 +90,7 @@ elemento, o que nos dá um total de $n!=n(n-1)\ldots 1$ possíveis permutações dis
 
 
 \section{Ordenação por Inserção}
-\label{sec-ordenacao-insercao}
+\label{sec:ordenacao-insercao}
 
 \index{ordena\c{c}\~ao!por inser\c{c}\~ao}
 Um algoritmo para solução do problema de ordenação
@@ -100,7 +100,7 @@ usualmente ordena uma sequência de cartas em suas mãos (por exemplo, em
 um jogo de buraco).
 
 \subsection{Versão funcional}
-\label{insertion-sort-func}
+\label{sec:insertion-sort-func}
 
 \index{\inh{sort}}
 \index{\inh{insert}}
@@ -285,7 +285,7 @@ dos seguintes lemas:
 % ... provas dos lemas?
 
 \subsection{Versão imperativa}
-\label{insertion-sort-imperativ}
+\label{sec:insertion-sort-imperativ}
 
 A versão imperativa usa o próprio arranjo para a ordenação (nenhum
 outro arranjo ou estrutura de dados auxiliar) e a seguinte ideia:

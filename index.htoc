@@ -1,71 +1,18 @@
 \begin{tocenv}
-\tocitem \@locref{sec2}{\begin{@norefs}Prefácio{}\end{@norefs}}
+\tocitem \@locref{sec2}{\begin{@norefs}\@print{Capítulo 1}\quad{}Complexidade{}\end{@norefs}}
 \begin{tocenv}
+\tocitem \@locref{sec3}{\begin{@norefs}\@print{1.1}\quad{}Complexidade de Fun\c{c}\~oes{}\end{@norefs}}
+\tocitem \@locref{sec4}{\begin{@norefs}\@print{1.2}\quad{}Eficiência assintótica{}\end{@norefs}}
 \begin{tocenv}
-\tocitem \@locref{sec3}{\begin{@norefs}Conteúdo e Organização do Livro{}\end{@norefs}}
-\tocitem \@locref{sec4}{\begin{@norefs}Recursos Adicionais{}\end{@norefs}}
-\tocitem \@locref{sec5}{\begin{@norefs}Pré-requisitos{}\end{@norefs}}
+\tocitem \@locref{sec5}{\begin{@norefs}\@print{1.2.1}\quad{}Notação $\Theta${}\end{@norefs}}
 \end{tocenv}
-\end{tocenv}
-\tocitem \@locref{sec6}{\begin{@norefs}\@print{Capítulo 1}\quad{}Introdução{}\end{@norefs}}
-\begin{tocenv}
-\tocitem \@locref{sec7}{\begin{@norefs}\@print{1.1}\quad{}Ordenação{}\end{@norefs}}
-\begin{tocenv}
-\tocitem \@locref{sec8}{\begin{@norefs}\@print{1.1.1}\quad{}Sobre Permutação{}\end{@norefs}}
-\end{tocenv}
-\tocitem \@locref{sec9}{\begin{@norefs}\@print{1.2}\quad{}Ordenação por Inserção{}\end{@norefs}}
-\begin{tocenv}
-\tocitem \@locref{sec10}{\begin{@norefs}\@print{1.2.1}\quad{}Versão funcional{}\end{@norefs}}
-\tocitem \@locref{sec11}{\begin{@norefs}\@print{1.2.2}\quad{}Versão imperativa{}\end{@norefs}}
-\end{tocenv}
-\end{tocenv}
-\tocitem \@locref{sec12}{\begin{@norefs}\@print{Capítulo 2}\quad{}Complexidade{}\end{@norefs}}
-\begin{tocenv}
-\tocitem \@locref{sec13}{\begin{@norefs}\@print{2.1}\quad{}Complexidade de Fun\c{c}\~oes{}\end{@norefs}}
-\tocitem \@locref{sec14}{\begin{@norefs}\@print{2.2}\quad{}Eficiência assintótica{}\end{@norefs}}
-\begin{tocenv}
-\tocitem \@locref{sec15}{\begin{@norefs}\@print{2.2.1}\quad{}Notação $\Theta${}\end{@norefs}}
-\end{tocenv}
-\tocitem \@locref{sec16}{\begin{@norefs}\@print{2.3}\quad{}Notação $O${}\end{@norefs}}
-\tocitem \@locref{sec17}{\begin{@norefs}\@print{2.4}\quad{}Notação $\Omega${}\end{@norefs}}
-\tocitem \@locref{sec18}{\begin{@norefs}\@print{2.5}\quad{}Uso de notação assintótica em fórmulas{}\end{@norefs}}
-\tocitem \@locref{sec19}{\begin{@norefs}\@print{2.6}\quad{}Notações $o$, $\omega${}\end{@norefs}}
-\tocitem \@locref{sec20}{\begin{@norefs}\@print{2.7}\quad{}Propriedades de Relações assintóticas{}\end{@norefs}}
-\tocitem \@locref{sec21}{\begin{@norefs}\@print{2.8}\quad{}Complexidade polinomial, exponencial e logarítmica{}\end{@norefs}}
-\tocitem \@locref{sec22}{\begin{@norefs}\@print{2.9}\quad{}Exercícios Resolvidos{}\end{@norefs}}
-\tocitem \@locref{sec23}{\begin{@norefs}\@print{2.10}\quad{}Exercícios{}\end{@norefs}}
-\end{tocenv}
-\tocitem \@locref{sec24}{\begin{@norefs}\@print{Capítulo 3}\quad{}Estruturas de Dados Básicas{}\end{@norefs}}
-\begin{tocenv}
-\tocitem \@locref{sec25}{\begin{@norefs}\@print{3.1}\quad{}Listas{}\end{@norefs}}
-\begin{tocenv}
-\tocitem \@locref{sec26}{\begin{@norefs}\@print{3.1.1}\quad{}Pesquisa{}\end{@norefs}}
-\begin{tocenv}
-\tocitem \@locref{sec27}{\begin{@norefs}\@print{3.1.1.1}\quad{}Versão funcional{}\end{@norefs}}
-\tocitem \@locref{sec28}{\begin{@norefs}\@print{3.1.1.2}\quad{}Versão imperativa{}\end{@norefs}}
-\end{tocenv}
-\tocitem \@locref{sec29}{\begin{@norefs}\@print{3.1.2}\quad{}Inserção{}\end{@norefs}}
-\begin{tocenv}
-\tocitem \@locref{sec30}{\begin{@norefs}\@print{3.1.2.1}\quad{}Versão funcional{}\end{@norefs}}
-\tocitem \@locref{sec31}{\begin{@norefs}\@print{3.1.2.2}\quad{}Versão imperativa{}\end{@norefs}}
-\end{tocenv}
-\tocitem \@locref{sec32}{\begin{@norefs}\@print{3.1.3}\quad{}Remoção{}\end{@norefs}}
-\begin{tocenv}
-\tocitem \@locref{sec33}{\begin{@norefs}\@print{3.1.3.1}\quad{}Versão funcional{}\end{@norefs}}
-\tocitem \@locref{sec34}{\begin{@norefs}\@print{3.1.3.2}\quad{}Versão imperativa{}\end{@norefs}}
-\end{tocenv}
-\tocitem \@locref{sec35}{\begin{@norefs}\@print{3.1.4}\quad{}Lista duplamente encadeada{}\end{@norefs}}
-\tocitem \@locref{sec36}{\begin{@norefs}\@print{3.1.5}\quad{}Pilha{}\end{@norefs}}
-\begin{tocenv}
-\tocitem \@locref{sec37}{\begin{@norefs}\@print{3.1.5.1}\quad{}Versão funcional{}\end{@norefs}}
-\tocitem \@locref{sec38}{\begin{@norefs}\@print{3.1.5.2}\quad{}Versão imperativa{}\end{@norefs}}
-\end{tocenv}
-\tocitem \@locref{sec39}{\begin{@norefs}\@print{3.1.6}\quad{}Fila{}\end{@norefs}}
-\begin{tocenv}
-\tocitem \@locref{sec40}{\begin{@norefs}\@print{3.1.6.1}\quad{}Versão funcional{}\end{@norefs}}
-\tocitem \@locref{sec41}{\begin{@norefs}\@print{3.1.6.2}\quad{}Versão imperativa{}\end{@norefs}}
-\end{tocenv}
-\end{tocenv}
-\tocitem \@locref{sec42}{\begin{@norefs}\@print{3.2}\quad{}Árvores{}\end{@norefs}}
+\tocitem \@locref{sec6}{\begin{@norefs}\@print{1.3}\quad{}Notação $O${}\end{@norefs}}
+\tocitem \@locref{sec7}{\begin{@norefs}\@print{1.4}\quad{}Notação $\Omega${}\end{@norefs}}
+\tocitem \@locref{sec8}{\begin{@norefs}\@print{1.5}\quad{}Uso de notação assintótica em fórmulas{}\end{@norefs}}
+\tocitem \@locref{sec9}{\begin{@norefs}\@print{1.6}\quad{}Notações $o$, $\omega${}\end{@norefs}}
+\tocitem \@locref{sec10}{\begin{@norefs}\@print{1.7}\quad{}Propriedades de Relações assintóticas{}\end{@norefs}}
+\tocitem \@locref{sec11}{\begin{@norefs}\@print{1.8}\quad{}Complexidade polinomial, exponencial e logarítmica{}\end{@norefs}}
+\tocitem \@locref{sec12}{\begin{@norefs}\@print{1.9}\quad{}Exercícios Resolvidos{}\end{@norefs}}
+\tocitem \@locref{sec13}{\begin{@norefs}\@print{1.10}\quad{}Exercícios{}\end{@norefs}}
 \end{tocenv}
 \end{tocenv}

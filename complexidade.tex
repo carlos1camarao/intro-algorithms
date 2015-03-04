@@ -1,6 +1,6 @@
  %!TEX encoding = ISO-8859-1
 \chapter{Complexidade}
-\label{Complexidade}
+\label{ch:Complexidade}
 
 Programas de computador estão sendo usados cada vez mais, nas 
 mais diversas áeras. Além disso, a ciência da computação tem contribuído e influenciado inúmeras áreas científicas, como a lógica, a matemática, a
@@ -19,9 +19,9 @@ $n$.
 
 
 \section{Complexidade de Fun\c{c}\~oes}
-\label{complexidade-de-funcoes}
+\label{sec:complexidade-de-funcoes}
 
-O tempo de execução de um algoritmo é medido em termo do número de passos de execução do algoritmo. Cada passo de execução corresponde a uma instrução ou operação atômica, relevante no problema em questão, e que é executada em um intervalo de tempo constante. Por exemplo, o tempo de execução de um algoritmo de comparação, tal como o apresentado na Seção \ref{sec-ordenacao-insercao}, pode ser medido como o número de comparações entre elementos da sequência, até que a sequência seja ordenada. Essa maneira de medir o tempo de execução abstrai do tempo específico gasto para execução de um passo, permitindo a comparação de eficiência de algoritmos independentemente da máquina em que são executados.
+O tempo de execução de um algoritmo é medido em termo do número de passos de execução do algoritmo. Cada passo de execução corresponde a uma instrução ou operação atômica, relevante no problema em questão, e que é executada em um intervalo de tempo constante. Por exemplo, o tempo de execução de um algoritmo de comparação, tal como o apresentado na Seção \ref{sec:ordenacao-insercao}, pode ser medido como o número de comparações entre elementos da sequência, até que a sequência seja ordenada. Essa maneira de medir o tempo de execução abstrai do tempo específico gasto para execução de um passo, permitindo a comparação de eficiência de algoritmos independentemente da máquina em que são executados.
 
 O tempo de execucão de uma sequência de $k$ passos é a soma dos tempos de execução de cada passos, ou, mais simplesmente, o número tde passos $k$. A execução de determinadas construções usadas na definição de algoritmos, como comandos de repetição ou chamadas de funções recursivas, resultam na execução de uma determinada sequência de passos repetidas vezes. Se uma sequência de $k$ passos é executada $n$ vezes, o tempo total de execução é, naturalmente, $n\times k$.
 
@@ -43,7 +43,7 @@ que essa função $f$ é de complexidade quadrática (o termo de
 maior ordem no polinômio que define a complexidade é $n^2$). Em outras palavras, estamos interessados no comportamento {\em assintótico\/} da função de complexidade do algooritmo, conforme é explicado na seção a seguir. 
 
 \section{Eficiência assintótica}
-\label{eficiencia-assintotica}
+\label{sec:eficiencia-assintotica}
 
 %Ao considerar a variação da eficiência de acordo com tamanhos de
 %entrada grandes, fazemos simplificações para estudar a eficiência ou
@@ -54,7 +54,7 @@ maior ordem no polinômio que define a complexidade é $n^2$). Em outras palavras,
 A notação geralmente usada na descrição da {\em complexidade assintótica\/}  de algoritmos e programas é apresentada a seguir.
 
 \subsection{Notação $\Theta$}
-\label{Notacao-Theta}
+\label{sec:Notacao-Theta}
 
 O tamanho da entrada de um algoritmo é medido como um número natural natural -- i.e.~o domínio de funções de complexidade é igual ao conjunto dos naturais, $\mathbb{N}$) e o contra-domínio é o conjunto dos números reais
 positivos ($\mathbb{R}^+$. 
@@ -119,7 +119,7 @@ $\Theta(1)$ é usualmente usado em vez de $\Theta(n^0)$,
 considerando-se claro, pelo contexto a variável usada como medida do tamanho da entrada.
 
 \section{Notação $O$}
-\label{Notacao-O}
+\label{sec:Notacao-O}
 
 A notação $\Theta$ limita assintoticamente uma função por limites
 superior e inferior. A notação $O$ estabelece apenas um limite
@@ -149,7 +149,7 @@ Por exemplo, $an + b \preceq n^2$ mas $an + b \npreceq \Theta(n^2)$.
 Usando a notação $O$ podemos frequentemente ter uma boa ideia do
 limite superior para o tempo de execução de um programa, pela inspecção
 de sua estrutura de repetição.  Por exemplo, o aninhamento duplo do
-programa imperativo de ordenação por inserção, apresentado na Seção \ref{sec-ordenacao-insercao}, indica um limite
+programa imperativo de ordenação por inserção, apresentado na Seção \ref{sec:ordenacao-insercao}, indica um limite
 superior $O(n^2)$ para o pior caso do tempo de execução. O
 custo de cada comando interno ao comando \while\ é $O(1)$, as
 repetições \for\ e \while\ são controladas pelos índices $i$ e $j$, que
@@ -170,7 +170,7 @@ varia quadraticamente com o tamanho da entrada, mas que pode variar no
 máximo quadraticamente com o tamanho da entrada.
 
 \section{Notação $\Omega$}
-\label{Notacao-Omega}
+\label{sec:Notacao-Omega}
 
 A notação $\Omega$ limita assintoticamente uma função por um limite
 inferior:
@@ -202,7 +202,7 @@ melhor caso neste livro, e a notação $\Omega$ terá assim aplicação
 limitada, sendo usada mais como complementação à notação $O$.
 
 \section{Uso de notação assintótica em fórmulas}
-\label{uso-notacao-assintotica}
+\label{sec:uso-notacao-assintotica}
 
 Em equações do tipo $n = O(n^2)$, a notação $O$ significa $n \in
 O(n^2)$. 
@@ -223,7 +223,7 @@ para qualquer constante $c$, temos: $n^c \asymp 2^{c lg n}$, e $O(2^{O(lg
   n)})=n^{O(1)}$ é outra forma de expressar essa igualdade.
 
 \section{Notações $o$, $\omega$}
-\label{Notacao-o}
+\label{sec:Notacao-o}
 
 Define-se $o(g(n))$ para indicar que trata-se de uma aproximação
 assintótica estrita:
@@ -263,7 +263,7 @@ Por exemplo, para qualquer $a>0$, $an^2 \succ n$ mas $an^2 \nsucc
 n^2$.
 
 \section{Propriedades de Relações assintóticas}
-\label{Propriedades-de-relacoes-assintoticas}
+\label{sec:Propriedades-de-relacoes-assintoticas}
 
 Para todas as relações $R$ iguais a $\asymp$, $\preceq$, $\succeq$,
 $\prec$, $\succ$, a seguinte transitividade ocorre:
@@ -296,7 +296,7 @@ analogamente para ($\asymp$ e $\Theta$, assintoticamente igual),
 $\Omega$, assintoticamente maior ou igual a).
 
 \section{Complexidade polinomial, exponencial e logarítmica}
-\label{Complexidade-polinomial-exponencial-logaritmica}
+\label{sec:Complexidade-polinomial-exponencial-logaritmica}
 
 Um polinômio de grau $k$, sendo $k$ inteiro não negativo, é uma função
 da forma:
@@ -330,17 +330,16 @@ $lg lg k$ é abreviação de $lg (lg k)$, e $lg$ tem pouca precedência
 
 Para quaisquer constantes inteiras $a,b$, se $a>1$ temos:
 
-  \[ \begin{array}{l}
-       \llim_{n\rightarrow\!\infty} \frac{n^b}{a^n} = 0 % \label{expxpoli}
-            \\
-            \llim_{n\rightarrow\!\infty} \frac{lg^b n}{n^a} = 0 % \label{lgxpoli}
-     \end{array}
-  \]
-A primeira equação indica que toda função exponencial com uma base
-maior que 1 cresce mais rapidamente que qualquer função polinomial.
+  \begin{align} 
+       \llim_{n\rightarrow\!\infty} \frac{n^b}{a^n} &= 0 \label{expxpoli}  \\
+            \llim_{n\rightarrow\!\infty} \frac{lg^b n}{n^a} &= 0 \label{exlxpoli}
+     \end{align}
 
-A segunda equação (que vale também se $a=1$) indica que toda função
-logarítmica cresce mais lentamente que qualquer função polinomial.
+A equação \ref{expxpoli} indica que toda função exponencial 
+com uma base maior que 1 cresce mais rapidamente que qualquer função polinomial.
+
+A segunda equação \ref{exlxpoli} (que vale também se $a=1$) indica 
+que toda função logarítmica cresce mais lentamente que qualquer função polinomial.
 
 %Lembre-se:
 
@@ -565,7 +564,8 @@ obtemos
   $\lim_{n\rightarrow\!\infty} \frac{(\frac{1}{n \times (ln 2) \times k})}{1}$, 
 que é igual a 0. Ou seja, para todo $k>0$ temos:
   \begin{equation}  
-    \lim_{n\rightarrow\!\infty} \frac{(lg n)}{n^k} = 0 \label{lim-poli-sobre-exp}
+    \lim_{n\rightarrow\!\infty} \frac{(lg n)}{n^k} = 0 
+               \label{eq:lim-poli-sobre-exp}
   \end{equation} 
 
 Para mostrar que a derivada de $ln$ é a função inversa (i.e.~$(ln n)'= \frac{1}{n}$),
@@ -599,7 +599,7 @@ teremos sempre $lg^* n$ menor que $lg(lg(lg n))$.
 \item[7] $lg (lg n) \prec \sqrt{lg n}$
 
 Com $lg n = m$ obtemos $lg m \prec m^{\frac{1}{2}}$, que é
-consequência de (\ref{lim-poli-sobre-exp}).
+consequência de (\ref{eq:lim-poli-sobre-exp}).
 
 \item[8] $\sqrt{lg n} \prec lg n$
 
