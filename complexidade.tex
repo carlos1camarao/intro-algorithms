@@ -40,10 +40,11 @@ an^2 + bn + c$, onde $a,b,c$ são constantes, dizemos que essa função tem
 ordem de complexidade $n^2$, que é o termo mais significativo do
 polinômio $f$. Isso porque os termos de menor ordem no polinômio são relativamente pouco significantes para valores de $n$ grandes. Além disso, ignora-se também a constante $a$ do termo de maior ordem, pelo mesmo motivo de ser relativamente pouco significante para valores grandes. Dizemos
 que essa função $f$ é de complexidade quadrática (o termo de
-maior ordem no polinômio que define a complexidade é $n^2$). Em outras palavras, estamos interessados no comportamento {\em assintótico\/} da função de complexidade do algooritmo, conforme é explicado na seção a seguir. 
+maior ordem no polinômio que define a complexidade é $n^2$). Em outras palavras, estamos interessados no comportamento {\em assintótico\/} da função de complexidade do algooritmo. A notação geralmente usada paradescrever a {\em complexidade assintótica\/} de algoritmos é apresentada a seguir.
 
-\section{Eficiência assintótica}
-\label{sec:eficiencia-assintotica}
+
+%\section{Eficiência assintótica}
+%\label{sec:eficiencia-assintotica}
 
 %Ao considerar a variação da eficiência de acordo com tamanhos de
 %entrada grandes, fazemos simplificações para estudar a eficiência ou
@@ -51,9 +52,8 @@ maior ordem no polinômio que define a complexidade é $n^2$). Em outras palavras,
 %  assintótica\/}. Usualmente, considera-se algoritmos mais eficientes
 %que outros considerando a complexidade assintótica.
 
-A notação geralmente usada na descrição da {\em complexidade assintótica\/}  de algoritmos e programas é apresentada a seguir.
 
-\subsection{Notação $\Theta$}
+\section{Notação $\Theta$}
 \label{sec:Notacao-Theta}
 
 O tamanho da entrada de um algoritmo é medido como um número natural natural -- i.e.~o domínio de funções de complexidade é igual ao conjunto dos naturais, $\mathbb{N}$) e o contra-domínio é o conjunto dos números reais
@@ -70,15 +70,22 @@ $\lambda$-calculus, à função $\lambda n \rightarrow lg n$). Temos:
 \]
 
 Em palavras, $f(n)$ é membro de $\Theta(g(n))$ se $f(n)$ sempre está
-entre $c_1g(n)$ e $c_2g(n)$, para alguns $c_1, c_2$, para $n$
-suficientemente grande (i.e.~a partir de algum $n_0$). 
+entre $c_1g(n)$ e $c_2g(n)$, para determinados $c_1,c_2$, e para $n$
+suficientemente grande (i.e.~a partir de algum $n_0$). Isso é ilustrado na Figura \ref{fig:big-O}(a). 
 
-\ldots Gráfico? 
+
+\begin{figure}
+\label{fig:big-O}
+\begin{center}
+\imgsrc[width=700]{lvimages/fig-bigO.jpg}
+\end{center}
+\caption{Big-$\Theta$, Big-O, Big-$\Omega$ notations}
+\end{figure}
+
 
 Como $\Theta(g(n))$ é um conjunto, o correto seria escrever $f(n) \in
 \Theta(g(n))$, mas é usual escrever $f(n) = \Theta(g(n))$, um abuso de
 notação, que simplifica a notação. 
-
 Escrevemos também $f(n) \asymp g(n)$ (seguindo Minko Markov
 \cite{Minko-Markov-2013}) como sinônimo de $f(n) = \Theta(g(n))$.
 
@@ -133,7 +140,7 @@ superior:
 
 Em palavras, $f(n)$ é membro de $O(g(n))$ se $f(n)$ sempre é menor ou
 igual a $cg(n)$, para algum $c$, e para $n$ suficientemente grande
-(i.e.~a partir de algum $n_0$).
+(i.e.~a partir de algum $n_0$). A Figura \ref{fig:big-O}(b) ilustra essa definição. 
  
 Assim como na notação $\Theta$, usa-se $f(n) = O(g(n))$ em vez de
 $f(n) \in O(g(n))$. 
@@ -183,7 +190,7 @@ inferior:
 
 Em palavras, $f(n)$ é membro de $\Omega(g(n))$ se $f(n)$ sempre é
 maior ou igual a $cg(n)$, para algum $c$, e para todo $n$
-suficientemente grande.
+suficientemente grande. Isso é ilustrado na Figura \ref{fig:big-O}(c)
 
 Assim como na notação $\Theta$, usa-se $f(n) = \Omega(g(n))$ em vez de
 $f(n) \in \Omega(g(n))$.

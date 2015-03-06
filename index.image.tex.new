@@ -1,0 +1,144 @@
+\newif\ifimagen\imagentrue
+\documentclass[a4paper,10pt]{book}
+\usepackage[T1]{fontenc}\usepackage[brazil]{babel}\usepackage[latin1]{inputenc}\usepackage{amsmath,amssymb,amsthm}\usepackage{graphics}\usepackage{color}\usepackage{indentfirst}\usepackage{hyperref}\usepackage{makeidx}\definecolor{bluencs}{rgb}{0.0, 0.53, 0.74}\definecolor{paleblue}{rgb}{0.74, 0.83, 0.9}\definecolor{darkgreen}{rgb}{0.0,0.5,0.0}\definecolor{brown}{rgb}{0.65,0.16,0.16}\definecolor{ngray}{rgb}{0.86, 0.86, 0.86}\usepackage{hevea}\usepackage{hevea-epsfbox-def}\usepackage{fancybox}\usepackage{fancyheadings}\usepackage{fancysection}\definecolor{visited}{hsv}{#1,1,.4}\definecolor{link}{hsv}{#1,1,.7}\definecolor{hover}{hsv}{#1,.4,1}\definecolor{title}{hsv}{#1,1,.7}\definecolor{titlemain}{hsv}{#1,1,.7}\definecolor{titlerest}{hsv}{#1,1,.7}\definecolor{part}{hsv}{#1, 1, .8}\definecolor{chapter}{hsv}{#1, .8, .9}\definecolor{section}{hsv}{#1, .6, 1}\definecolor{subsection}{hsv}{#1, .5, 1}\definecolor{subsubsection}{hsv}{#1, .4, 1}\definecolor{paragraph}{hsv}{#1, .2, 1}\renewcommand{\chaptermark}[1]
+             {\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]
+             {\markright{\thesection\ #1}}
+\usepackage{listings}\newcommand{\inh}{\lstinline[language=myHaskell]}
+\newcommand{\ina}{\lstinline[language=myAlg]}
+\setcounter{tocdepth}{3}
+
+\pagestyle{empty}
+\thispagestyle{empty}
+\begin{document}
+\setcounter{secnumdepth}{-2}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\newcommand{\prog}[1]{
+  \normalfont\ttfamily 
+  \begin{center}\begin{tabular}{l}
+       #1
+  \end{tabular} \end{center}
+  \normalfont}
+\newcommand{\proga}[1]{
+ \normalfont\ttfamily 
+  \begin{tabbing}
+        #1
+   \end{tabbing}
+ \normalfont}
+\newcommand{\progb}[1]{
+  \normalfont\ttfamily 
+   \textcolor{blue}{
+      \begin{center}    
+       \mbox{
+        \begin{tabbing}
+         #1
+        \end{tabbing}}
+      \end{center}}
+  \normalfont}
+\newcommand{\xbox}[1]{\colorbox{yellow}{#1}}
+\newcommand{\progbb}[1]{
+  \normalfont\ttfamily 
+  \begin{center}
+  \fbox{\shadowbox{\parbox{\textwidth}{\begin{tabbing}
+        #1
+  \end{tabbing}}}}
+  \end{center}
+  \normalfont}
+\newcommand{\progc}[1]{
+  \normalfont\ttfamily 
+  \begin{center}
+  \parbox{\textwidth}{\begin{tabbing}
+        #1
+  \end{tabbing}}
+  \end{center}
+  \normalfont}
+\newcommand{\progcc}[1]{
+  \normalfont\ttfamily 
+  \begin{center}
+  \fbox{\begin{tabular}{p{4cm}}
+        #1
+  \end{tabular}}
+  \end{center}
+  \normalfont}
+\newcommand{\progaa}[1]{
+  \normalfont\ttfamily 
+  \begin{center}\begin{tabular}{ll}
+       #1
+  \end{tabular} \end{center}
+  \normalfont}
+\newcommand{\progaaa}[1]{
+  \normalfont\ttfamily 
+  \begin{center}\begin{tabular}{lll}
+       #1
+  \end{tabular} \end{center}
+  \normalfont}
+\newcommand{\C}{{\tt C}}
+\newcommand{\Haskell}{{\tt Haskell}}
+\newcommand{\Pascal}{{\tt Pascal}}
+\newcommand{\Java}{{\tt Java}}
+\newcommand{\FILE}{{\tt FILE}}
+\newcommand{\Entrada}{{\bf Entrada}}
+\newcommand{\Saida}{{\bf Sa\'{\i}da}}
+\newcommand{\Prelude}{{\it Prelude\/}}
+\newcommand{\otherwise}{{\it otherwise\/}}
+\newcommand{\data}{{\bf data}}
+\newcommand{\module}{{\bf module}}
+\newcommand{\newtype}{{\bf newtype}}
+\newcommand{\where}{{\bf where}}
+\newcommand{\List}{{\it List\/}}
+\newcommand{\Nil}{{\it Nil\/}}
+\newcommand{\null}{{\it null\/}}
+\newcommand{\Cons}{{\it Cons\/}}
+\newcommand{\True}{{\it True\/}}
+\newcommand{\False}{{\it False\/}}
+\newcommand{\iif}{{\bf if}}
+\newcommand{\tthen}{{\bf then}}
+\newcommand{\eelse}{{\bf else}}
+\newcommand{\Bool}{{\it Bool\/}}
+\newcommand{\Int}{{\it Int\/}}
+\newcommand{\Eq}{{\it Eq\/}}
+\newcommand{\Ord}{{\it Ord\/}}
+\newcommand{\foldr}{{\it foldr\/}}
+\newcommand{\foldl}{{\it foldl\/}}
+\newcommand{\mmap}{{\it map\/}}
+\newcommand{\oor}{{\it or\/}}
+\newcommand{\aand}{{\it and\/}}
+\newcommand{\any}{{\it any\/}}
+\newcommand{\all}{{\it all\/}}
+\newcommand{\ddiv}{{\it div\/}}
+\newcommand{\with}{{\bf with}}
+\newcommand{\for}{{\bf for}}
+\newcommand{\tto}{{\bf to}}
+\newcommand{\do}{{\bf do}}
+\newcommand{\while}{{\bf while}}
+\newcommand{\struct}{{\bf struct}}
+\newcommand{\return}{{\bf return}}
+\newcommand{\length}{{\it length\/}}
+\newcommand{\NULL}{{\it NULL\/}}
+\newcommand{\stdio}{{\it stdio\/}}
+\newcommand{\stdlib}{{\it stdlib\/}}
+\newcommand{\scanf}{{\it scanf\/}}
+\newcommand{\fscanf}{{\it fscanf\/}}
+\newcommand{\printf}{{\it printf\/}}
+\newcommand{\fprintf}{{\it fprintf\/}}
+\newcommand{\ggets}{{\it gets\/}}
+\newcommand{\fgets}{{\it fgets\/}}
+\newcommand{\fopen}{{\it fopen\/}}
+\newcommand{\fclose}{{\it fclose\/}}
+\newcommand{\fflush}{{\it fflush\/}}
+\newcommand{\fread}{{\it fread\/}}
+\newcommand{\fwrite}{{\it fwrite\/}}
+\newcommand{\feof}{{\it feof\/}}
+\newcommand{\main}{{\it main\/}}
+\newcommand{\malloc}{{\it malloc\/}}
+\newcommand{\sizeof}{{\it sizeof\/}}
+\newtheorem{Lema}{Lema}
+\newcommand{\cf}[3]{
+  \ensuremath{\{ #1 \}\: #2\: \{ #3 \}}
+}
+\newcommand{\llim}{{\it lim\/}}
+\setcounter{secnumdepth}{10}
+\includegraphics[width=0.7\linewidth]{./lvimages/fig-bigO.jpg}
+\clearpage% page: 0
+%Options: 
+\end{document}
