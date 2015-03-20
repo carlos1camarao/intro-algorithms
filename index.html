@@ -49,26 +49,26 @@ td p{margin:0px;}
 .lstlisting{font-family:monospace;white-space:pre;margin-right:auto;margin-left:0pt;text-align:left}
 .myclisting{font-family:monospace;white-space:pre;margin:lex;padding:2ex;}
 body{background-color:white}
-a:link{color:#0076B2;text-decoration:underline;}
-a:visited{color:#004366;text-decoration:underline;}
-a:hover{color:black;text-decoration:none;background-color:#99DCFF}
-.title{padding:1ex;background-color:#0076B2}
-.titlemain{padding:1ex;background-color:#0076B2}
-.titlerest{padding:1ex;background-color:#0076B2}
-.part{padding:1ex;background-color:#0087CC}
-.section{padding:.5ex;background-color:#66CBFF}
-.subsection{padding:0.3ex;background-color:#7FD4FF}
-.subsubsection{padding:0.5ex;background-color:#99DCFF}
-.paragraph{padding:0.5ex;background-color:#CCEEFF}
-.chapter{padding:0.5ex;background-color:#2DA8E5}
-.fmarginpar{border:solid thin #7FD4FF; width:20%; text-align:left}
-.ffootnoterule{border:none;margin:1em auto 1em 0px;width:50%;background-color:#0087CC}
-.ftoc1{list-style:none;margin:0ex 1ex;padding:0ex 1ex;border-left:1ex solid #0087CC}
-.ftoc2{list-style:none;margin:1ex 1ex;padding:0ex 1ex;border-left:1ex solid #2DA8E5}
-.ftoc3{list-style:none;margin:0ex 1ex;padding:0ex 1ex;border-left:1ex solid #66CBFF}
-.ftoc4{list-style:none;margin:0ex 1ex;padding:0ex 1ex;border-left:1ex solid #7FD4FF}
-.ftoc5{list-style:none;margin:0ex 1ex;padding:0ex 1ex;border-left:1ex solid #99DCFF}
-.ftoc6{list-style:none;margin:0ex 1ex;padding:0ex 1ex;border-left:1ex solid #CCEEFF}
+a:link{color:#0059B2;text-decoration:underline;}
+a:visited{color:#003366;text-decoration:underline;}
+a:hover{color:black;text-decoration:none;background-color:#99CCFF}
+.title{padding:1ex;background-color:#0059B2}
+.titlemain{padding:1ex;background-color:#0059B2}
+.titlerest{padding:1ex;background-color:#0059B2}
+.part{padding:1ex;background-color:#0066CC}
+.section{padding:.5ex;background-color:#66B2FF}
+.subsection{padding:0.3ex;background-color:#7FBFFF}
+.subsubsection{padding:0.5ex;background-color:#99CCFF}
+.paragraph{padding:0.5ex;background-color:#CCE5FF}
+.chapter{padding:0.5ex;background-color:#2D89E5}
+.fmarginpar{border:solid thin #7FBFFF; width:20%; text-align:left}
+.ffootnoterule{border:none;margin:1em auto 1em 0px;width:50%;background-color:#0066CC}
+.ftoc1{list-style:none;margin:0ex 1ex;padding:0ex 1ex;border-left:1ex solid #0066CC}
+.ftoc2{list-style:none;margin:1ex 1ex;padding:0ex 1ex;border-left:1ex solid #2D89E5}
+.ftoc3{list-style:none;margin:0ex 1ex;padding:0ex 1ex;border-left:1ex solid #66B2FF}
+.ftoc4{list-style:none;margin:0ex 1ex;padding:0ex 1ex;border-left:1ex solid #7FBFFF}
+.ftoc5{list-style:none;margin:0ex 1ex;padding:0ex 1ex;border-left:1ex solid #99CCFF}
+.ftoc6{list-style:none;margin:0ex 1ex;padding:0ex 1ex;border-left:1ex solid #CCE5FF}
 </style>
 <title> Introdução a Algoritmos 
 
@@ -88,25 +88,281 @@ quaisquer formas ou por quaisquer meios (eletrônico, mecânico,
 gravação, fotocópia, distribuição na Web ou outros), desde que seja
 para fins não comerciais.</p><!--TOC chapter id=sec1 Conteúdo-->
 <h1 id="sec1" class="chapter">Conteúdo</h1><!--SEC END --><ul class="ftoc1"><li class="li-toc">
-<a href="#sec2">Capítulo 1  Complexidade</a>
+<a href="#sec2">Capítulo 1  Introdução</a>
 <ul class="ftoc2"><li class="li-toc">
-<a href="#sec3">1.1  Complexidade de Funções</a>
-</li><li class="li-toc"><a href="#sec4">1.2  Eficiência assintótica</a>
+<a href="#sec3">1.1  Ordenação</a>
 <ul class="ftoc3"><li class="li-toc">
-<a href="#sec5">1.2.1  Notação &#X398;</a>
+<a href="#sec4">1.1.1  Sobre Permutação</a>
 </li></ul>
-</li><li class="li-toc"><a href="#sec6">1.3  Notação <span style="font-style:italic">O</span></a>
-</li><li class="li-toc"><a href="#sec7">1.4  Notação &#X3A9;</a>
-</li><li class="li-toc"><a href="#sec8">1.5  Uso de notação assintótica em fórmulas</a>
-</li><li class="li-toc"><a href="#sec9">1.6  Notações <span style="font-style:italic">o</span>, &#X3C9;</a>
-</li><li class="li-toc"><a href="#sec10">1.7  Propriedades de Relações assintóticas</a>
-</li><li class="li-toc"><a href="#sec11">1.8  Complexidade polinomial, exponencial e logarítmica</a>
-</li><li class="li-toc"><a href="#sec12">1.9  Exercícios Resolvidos</a>
-</li><li class="li-toc"><a href="#sec13">1.10  Exercícios</a>
+</li><li class="li-toc"><a href="#sec5">1.2  Ordenação por Inserção</a>
+<ul class="ftoc3"><li class="li-toc">
+<a href="#sec6">1.2.1  Versão funcional</a>
+</li><li class="li-toc"><a href="#sec7">1.2.2  Versão imperativa</a>
 </li></ul>
 </li></ul>
-<!--TOC chapter id=sec2 Complexidade-->
-<h1 id="sec2" class="chapter">Capítulo 1  Complexidade</h1><!--SEC END --><p>
+</li><li class="li-toc"><a href="#sec8">Capítulo 2  Complexidade</a>
+<ul class="ftoc2"><li class="li-toc">
+<a href="#sec9">2.1  Complexidade de Funções</a>
+</li><li class="li-toc"><a href="#sec10">2.2  Notação &#X398;</a>
+</li><li class="li-toc"><a href="#sec11">2.3  Notação <span style="font-style:italic">O</span></a>
+</li><li class="li-toc"><a href="#sec12">2.4  Notação &#X3A9;</a>
+</li><li class="li-toc"><a href="#sec13">2.5  Uso de notação assintótica em fórmulas</a>
+</li><li class="li-toc"><a href="#sec14">2.6  Notações <span style="font-style:italic">o</span>, &#X3C9;</a>
+</li><li class="li-toc"><a href="#sec15">2.7  Propriedades de Relações assintóticas</a>
+</li><li class="li-toc"><a href="#sec16">2.8  Complexidade polinomial, exponencial e logarítmica</a>
+</li><li class="li-toc"><a href="#sec17">2.9  Exercícios Resolvidos</a>
+</li><li class="li-toc"><a href="#sec18">2.10  Exercícios</a>
+</li></ul>
+</li><li class="li-toc"><a href="#sec19">Capítulo 3  Estruturas de Dados Básicas</a>
+<ul class="ftoc2"><li class="li-toc">
+<a href="#sec20">3.1  Listas</a>
+<ul class="ftoc3"><li class="li-toc">
+<a href="#sec21">3.1.1  Pesquisa</a>
+<ul class="ftoc4"><li class="li-toc">
+<a href="#sec22">3.1.1.1  Versão funcional</a>
+</li><li class="li-toc"><a href="#sec23">3.1.1.2  Versão imperativa</a>
+</li></ul>
+</li><li class="li-toc"><a href="#sec24">3.1.2  Inserção</a>
+<ul class="ftoc4"><li class="li-toc">
+<a href="#sec25">3.1.2.1  Versão funcional</a>
+</li><li class="li-toc"><a href="#sec26">3.1.2.2  Versão imperativa</a>
+</li></ul>
+</li><li class="li-toc"><a href="#sec27">3.1.3  Remoção</a>
+<ul class="ftoc4"><li class="li-toc">
+<a href="#sec28">3.1.3.1  Versão funcional</a>
+</li><li class="li-toc"><a href="#sec29">3.1.3.2  Versão imperativa</a>
+</li></ul>
+</li><li class="li-toc"><a href="#sec30">3.1.4  Lista duplamente encadeada</a>
+</li><li class="li-toc"><a href="#sec31">3.1.5  Pilha</a>
+<ul class="ftoc4"><li class="li-toc">
+<a href="#sec32">3.1.5.1  Versão funcional</a>
+</li><li class="li-toc"><a href="#sec33">3.1.5.2  Versão imperativa</a>
+</li></ul>
+</li><li class="li-toc"><a href="#sec34">3.1.6  Fila</a>
+<ul class="ftoc4"><li class="li-toc">
+<a href="#sec35">3.1.6.1  Versão funcional</a>
+</li><li class="li-toc"><a href="#sec36">3.1.6.2  Versão imperativa</a>
+</li></ul>
+</li></ul>
+</li><li class="li-toc"><a href="#sec37">3.2  Árvores</a>
+</li></ul>
+</li></ul>
+<!--TOC chapter id=sec2 Introdução-->
+<h1 id="sec2" class="chapter">Capítulo 1  Introdução</h1><!--SEC END --><p>
+<a id="ch:Introducao"></a></p><p>Este livro provê uma introdução ao estudo de algoritmos, apresentando
+introdução a estruturas de dados básicas, algoritmos de pesquisa e de
+ordenação e noções de análise de complexidade de algoritmos.</p><p>Um algoritmo pode ser visto como uma função, no sentido de que mapeia
+cada valor de de (um conjunto de valores de) entrada um único valor de
+(um conjunto de valores de) saída.</p><p>A diferença que existe entre o conceito usual de função é a notação
+usualmente empregada para especificação da sequência de passos. Em
+computação, é usual o emprego de uma notação ou linguagem <em>imperativa</em>, ao passo que usualmente definições de funções
+empregam uma notação mais <em>declarativa</em>, ou <em>funcional</em>.</p><p>Um algoritmo pode ser descrito usando-se diferentes abordagens e
+notação. Neste livro, vamos descrever algoritmos tanto em
+<em>notação funcional</em> quanto em <em>notação imperativa</em>. A
+descrição em notação funcional poderá ser desconsiderada em cursos que
+desejam abordar apenas o paradigma de programação imperativo. No
+entanto, a descrição funcional muitas vezes contribui para melhor
+compreensão da versão imperativa. A notação funcional utilizada aqui é
+a linguagem <span style="font-family:monospace">Haskell</span>&#X226; notação imperativa é um pseudo-código
+semelhante às linguagens <span style="font-family:monospace">C</span>, <span style="font-family:monospace">Pascal</span> ou <span style="font-family:monospace">Java</span>. Usamos endentação para
+indicar aninhamento no pseudo-código, sendo comandos, assim como
+campos internos em definições de tipos, separados por mudança de
+linha, em vez de serem usadas chaves com comandos terminados por
+ponto-e-vírgula.</p><p>A notação funcional será explicada sempre que necessário, isto é,
+sempre que houver alguma possibilidade de dúvida. Uma descrição
+sucinta da linguagem Haskell é incluída no Apêndice <a href="#app%3AAp-Haskell">??</a>,
+que deverá ser lido pelo leitor não familiarizado com essa
+linguagem. Descrições mais completas de Haskell podem ser encontradas,
+por exemplo, em
+[<a href="#PeytonJones92"></a>, <a href="#Thompson99"></a>, <a href="#O%27Sullivan%3A2008%3ARWH"></a>, <a href="#Lipovaca%3A2011%3ALYH"></a>].</p>
+<!--TOC section id=sec3 Ordenação-->
+<h2 id="sec3" class="section">1.1  Ordenação</h2><!--SEC END --><p>
+<a id="sec:ordenacao"></a>
+<a id="hevea_default0"></a></p><p>Considere o problema de ordenação, especificado formalmente como a seguir (um problema computacional especifica a relação que deve existir entre a
+entrada e a saída):</p><p><span style="font-weight:bold">Entrada</span>: sequência de elementos <span style="font-style:italic">S</span><sub>0</sub>.</p><p><span style="font-weight:bold">Saída</span>: sequência de elementos ordenada <span style="font-style:italic">S</span> tal que <span style="font-style:italic">S</span> é uma
+permutação de <span style="font-style:italic">S</span><sub>0</sub>.</p><p>Uma sequência <span style="font-style:italic">a</span><sub>1</sub>, &#X2026;, <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub> é ordenada se <span style="font-style:italic">a</span><sub><span style="font-style:italic">i</span></sub> &#X2264; <span style="font-style:italic">a</span><sub><span style="font-style:italic">i</span>+1</sub> para
+<span style="font-style:italic">i</span>=1,&#X2026;, <span style="font-style:italic">n</span>&#X2212;1.</p>
+<!--TOC subsection id=sec4 Sobre Permutação-->
+<h3 id="sec4" class="subsection">1.1.1  Sobre Permutação</h3><!--SEC END --><p> 
+<a id="sec:permutacao"></a> </p><p><a id="hevea_default1"></a></p><p>Uma <em>permutação</em> é uma redisposição dos elementos em uma certa sequência. Por exemplo, existem 6 permutações distintas dos elementos
+1,2,3, que são: (1,2,3), (1,3,2), (2,1,3), (2,3,1), (3,1,2), (3,2,1).</p><p>Outra denominação, usada no contexto de palavras, é <em>anagrama</em>. 
+Um anagrama é o resultado de rearranjar as letras de uma palavra ou
+frase para produzir uma nova palavra ou frase, usando cada uma das
+letras originais exatamente uma vez. Por exemplo, "ovo" é um anagrama
+de "voo".
+<a id="hevea_default2"></a></p><p>Permutações ocorrem em diversas áreas da matemática e proeminentemente
+no estudo de algoritmos, particularmente de algoritmos ordenação.</p><p>O número de permutações de <span style="font-style:italic">n</span> elementos distintos é igual ao fatorial
+de <span style="font-style:italic">n</span> (usualmente escrito como <span style="font-style:italic">n</span>!), ou seja, o produto de todos os
+inteiros positivos menores ou iguais a <span style="font-style:italic">n</span>. Para ver isso, observe
+que existem <span style="font-style:italic">n</span> possíveis maneiras de escolher o primeiro elemento de
+uma permutação de <span style="font-style:italic">n</span> elementos. Para cada possível escolha do
+primeiro elemento, temos <span style="font-style:italic">n</span>&#X2212;1 possíveis maneiras de escolher o
+segundo elemento da permutação. Portanto, temos <span style="font-style:italic">n</span> (<span style="font-style:italic">n</span>&#X2212;1) maneiras de
+escolher os dois primeiros elementos. Temos então <span style="font-style:italic">n</span>&#X2212;2 maneiras de
+escolher o terceiro elemento da permutação, ou seja, 
+<span style="font-style:italic">n</span>(<span style="font-style:italic">n</span>&#X2212;1)(<span style="font-style:italic">n</span>&#X2212;2) possíveis maneiras de escolher os três primeiros
+elementos. E assim sucessivamente, até que reste apenas um último
+elemento, o que nos dá um total de <span style="font-style:italic">n</span>!=<span style="font-style:italic">n</span>(<span style="font-style:italic">n</span>&#X2212;1)&#X2026; 1 possíveis permutações distintas.</p>
+<!--TOC section id=sec5 Ordenação por Inserção-->
+<h2 id="sec5" class="section">1.2  Ordenação por Inserção</h2><!--SEC END --><p>
+<a id="sec:ordenacao-insercao"></a></p><p><a id="hevea_default3"></a>
+Um algoritmo para solução do problema de ordenação
+especificado acima, chamado de <em>ordenação por inserção</em>, é
+mostrado a seguir. Ele reflete o modo como um jogador de baralho
+usualmente ordena uma sequência de cartas em suas mãos (por exemplo, em
+um jogo de buraco).</p>
+<!--TOC subsection id=sec6 Versão funcional-->
+<h3 id="sec6" class="subsection">1.2.1  Versão funcional</h3><!--SEC END --><p>
+<a id="sec:insertion-sort-func"></a></p><p><a id="hevea_default4"></a>
+<a id="hevea_default5"></a></p><div class="center">
+<table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" >
+<table class="lstframe" style="padding:1ex;background-color:#BCD3E5;"><tr><td class="myclisting"><span style="color:#007F00">sort</span> []    = []
+<span style="color:#007F00">sort</span> (<span style="color:blue">a</span>:<span style="color:blue">x</span>) = <span style="color:#007F00">insert</span> <span style="color:blue">a</span> (<span style="color:#007F00">sort</span> <span style="color:blue">x</span>)
+
+<span style="color:#007F00">insert</span> <span style="color:blue">a</span> [] = []
+<span style="color:#007F00">insert</span> <span style="color:blue">a</span> (<span style="color:blue">b</span>:<span style="color:blue">x</span>)
+   | <span style="color:blue">a</span> &lt;= <span style="color:blue">b</span>    = <span style="color:blue">a</span>:(<span style="color:blue">b</span>:<span style="color:blue">x</span>)
+   | <span style="font-weight:bold"><span style="color:black">otherwise</span></span> = <span style="color:blue">b</span>:<span style="color:#007F00">insert</span> <span style="color:blue">a</span> <span style="color:blue">x</span></td></tr>
+</table></td></tr>
+</table>
+</div><p>Explicações sobre a notação funcional (usada em Haskell):</p><ol class="enumerate" type=1><li class="li-enumerate"><a id="hevea_default6"></a> <code><span style="color:blue">f</span></code><code> </code><code><span style="color:blue">x</span></code> (aplicação funcional &#X2014;
+a base da programação funcional) é o mesmo que §f(x)§ (mas melhor
+porque evita os parênteses).</li><li class="li-enumerate"><code><span style="color:blue">b</span></code><code>:</code><code><span style="color:blue">insert</span></code><code> </code><code><span style="color:blue">a</span></code><code> </code><code><span style="color:blue">x</span></code>  é o mesmo que <code><span style="color:blue">b</span></code><code>:(</code><code><span style="color:blue">insert</span></code><code> </code><code><span style="color:blue">a</span></code><code> </code><code><span style="color:blue">x</span></code><code>)</code> : a aplicação funcional tem precedência sobre o uso de
+</li><li class="li-enumerate"><a id="hevea_default7"></a> O uso de um operador binário nada
+mais é do que uma variação sintática de (açúcar sintático para) uma
+aplicação funcional; o uso de um operador binário pode ser
+transformado em uma aplicação funcional, e vice-versa. Para
+transformar um operador binário em uma aplicação funcional, basta
+colocar o operador entre parênteses, e para transformar uma
+aplicação funcional em um operador, basta colocar o nome da função
+entre crases. Exemplos:<table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" > <code>2 + 3</code></td><td style="text-align:left;white-space:nowrap" >é equivalente a</td><td style="text-align:left;white-space:nowrap" ><code>(+) 2 3</code> </td></tr>
+<tr><td style="text-align:left;white-space:nowrap" > <code><span style="color:blue">b</span></code><code>:</code><code><span style="color:blue">x</span></code></td><td style="text-align:left;white-space:nowrap" >é equivalente a</td><td style="text-align:left;white-space:nowrap" ><code>(:) </code><code><span style="color:blue">b</span></code><code> </code><code><span style="color:blue">x</span></code> </td></tr>
+<tr><td style="text-align:left;white-space:nowrap" > <code><span style="color:blue">f</span></code><code> </code><code><span style="color:blue">x</span></code><code> </code><code><span style="color:blue">y</span></code></td><td style="text-align:left;white-space:nowrap" >é equivalente a</td><td style="text-align:left;white-space:nowrap" ><code><span style="color:blue">x</span></code><code> `</code><code><span style="color:blue">f</span></code><code>` </code><code><span style="color:blue">y</span></code> 
+</td></tr>
+</table></li><li class="li-enumerate"><a id="hevea_default8"></a> <a id="hevea_default9"></a><a id="hevea_default10"></a><a id="hevea_default11"></a> As
+funções <code><span style="color:blue">insert</span></code> e <code><span style="color:blue">sort</span></code> usam listas, um tipo recursivo, que é um
+tipo de dado algébrico (chamado em Haskell de <code><span style="font-weight:bold"><span style="color:black">data</span></span></code>) parecido com o
+seguinte:<div class="center">
+<table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" >
+<table class="lstframe" style="padding:1ex;background-color:#BCD3E5;"><tr><td class="myclisting"><span style="font-weight:bold"><span style="color:black">data</span></span> <span style="color:#007F00">List</span> <span style="color:blue">a</span> = <span style="color:#007F00">Nil</span> | <span style="color:#007F00">Cons</span> <span style="color:blue">a</span> (<span style="color:#007F00">List</span> <span style="color:blue">a</span>)</td></tr>
+</table></td></tr>
+</table>
+</div><p><a id="hevea_default12"></a> Um tipo de dado algébrico é a maneira
+como se definem somas (de tipos, sendo que só podem existir somas
+disjuntas de tipos), que modelam escolha (&#X201C;ou&#X201D;) de tipos de dados.</p><p><a id="hevea_default13"></a><a id="hevea_default14"></a> A declaração de
+<code><span style="color:blue">List</span></code> acima especifica que um valor de tipo lista é polimórfico (o
+uso da variável de tipo <code><span style="color:blue">a</span></code> indica que <code><span style="color:blue">List</span></code> é um construtor de
+tipos que pode ser aplicado a <em>qualquer</em> tipo <code><span style="color:blue">t</span></code>, isto é,
+podemos ter qualquer instância <code><span style="color:blue">List</span></code><code> </code><code><span style="color:blue">t</span></code>, para <em>qualquer</em>
+tipo <code><span style="color:blue">t</span></code>), e que uma lista (um valor de tipo <code><span style="color:blue">List</span></code><code> </code><code><span style="color:blue">t</span></code>, para algum
+tipo <code><span style="color:blue">t</span></code>) pode ser <code><span style="color:blue">Nil</span></code> (uma lista vazia) <em>ou</em> <code><span style="color:blue">Cons</span></code><code> </code><code><span style="color:blue">v</span></code><code> </code><code><span style="color:blue">x</span></code>, uma lista (não vazia) formada por um valor <code><span style="color:blue">v</span></code>
+(cabeça da lista) e de um restante (ou rabo) da lista, <code><span style="color:blue">x</span></code> (que deve
+ser do mesmo tipo da lista da qual é o restante).</p><p><a id="hevea_default15"></a><a id="hevea_default16"></a><a id="hevea_default17"></a></p><p>O tipo de listas em Haskell (é parecido mas) difere ligeiramente do
+tipo algébrico acima porque o construtor <code><span style="color:blue">Nil</span></code> é escrito como <code>[]</code> e o construtor <code><span style="color:blue">Cons</span></code> é escrito como um operador binário <code>(:)</code>. Assim, em vez de escrever, <code><span style="color:blue">Cons</span></code><code> 1 </code><code><span style="color:blue">Nil</span></code>, escreve-se em
+Haskell <code>1:[]</code>. Além disso, pode-se escrever também <code>[1,2,3]</code> em vez de <code>1:2:3:[]</code> &#X2014; i.e. em vez de <code>1:(2:(3:[]))</code>.</p></li><li class="li-enumerate"><a id="hevea_default18"></a> <a id="hevea_default19"></a> Tipos de dados
+algébricos permitem definir somas (disjuntas) de tipos, que modelam
+escolha (&#X201C;ou&#X201D;) de tipos de dados. Para definir produtos de tipos,
+podemos usar tipos algébricos, que permitem produtos
+&#X201C;linearizados&#X201D; (também chamados de &#X201C;currificados&#X201D;) ou produtos
+cartesianos (generalizados), também chamados de tuplas.<p><a id="hevea_default20"></a> Por exemplo:</p><div class="center">
+<table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" >
+<table class="lstframe" style="padding:1ex;background-color:#BCD3E5;"><tr><td class="myclisting"><span style="font-weight:bold"><span style="color:black">data</span></span> <span style="color:#007F00">Pair</span> <span style="color:blue">a</span> <span style="color:blue">b</span> = <span style="color:#007F00">Pair</span> <span style="color:blue">a</span> <span style="color:blue">b</span></td></tr>
+</table></td></tr>
+</table>
+</div><p>define um construtor de tipos <code><span style="color:blue">Pair</span></code>, que tem dois parâmetros que
+podem ser instanciados para quaisquer tipos <code><span style="color:blue">t</span></code> e <code><span style="color:blue">t</span></code><code>'</code>: por exemplo,
+<code><span style="color:blue">Pair</span></code><code> </code><code><span style="font-weight:bold"><span style="color:black">Int</span></span></code><code> </code><code><span style="font-weight:bold"><span style="color:black">Bool</span></span></code> representa pares de valores de inteiros e
+booleanos (o primeiro componente do par é um inteiro e o segundo um
+valor booleano). É semelhante ao produto <code>(</code><code><span style="font-weight:bold"><span style="color:black">Int</span></span></code><code>,</code><code><span style="font-weight:bold"><span style="color:black">Bool</span></span></code><code>)</code>. A
+diferença é que valores do primeiro são construídos da forma <code><span style="color:blue">Pair</span></code><code> 1 </code><code><span style="font-weight:bold"><span style="color:black">True</span></span></code> (especificando um valor inteiro e em seguida um
+valor booleano), ao passo que valores do segundo são construídos da
+forma <code>(1,</code><code><span style="font-weight:bold"><span style="color:black">True</span></span></code><code>)</code> (especificando, entre parânteses, primeiro um
+valor inteiro, seguido de uma vírgula, e depois um valor booleano).</p></li></ol><p>Vamos mostrar que a definição de <code><span style="color:blue">sort</span></code>, acima, é correta, isto é, que o resultado é uma permutação ordenada (em ordem não decrescente) da lista original. Essa propriedade de correção pode ser expressa formalmente como
+</p><div class="center">
+<code><span style="color:blue">sort</span></code><code> </code><code><span style="color:blue">x</span></code> = <code><span style="color:blue">y</span></code>   implica   <code><span style="color:blue">sorted</span></code><code> </code><code><span style="color:blue">y</span></code>   e   <code><span style="color:blue">y</span></code><code> `</code><code><span style="color:blue">perm</span></code><code>` </code><code><span style="color:blue">x</span></code>
+</div><p>
+onde <code><span style="color:blue">sorted</span></code> e <code><span style="color:blue">perm</span></code> são os seguintes predicados (funções de
+contra-domínio <code><span style="font-weight:bold"><span style="color:black">Bool</span></span></code>) sobre listas: </p><ul class="itemize"><li class="li-itemize">
+<code><span style="color:blue">sorted</span></code><code> :: [</code><code><span style="color:blue">a</span></code><code>] -&gt; </code><code><span style="font-weight:bold"><span style="color:black">Bool</span></span></code> retorna <code><span style="font-weight:bold"><span style="color:black">True</span></span></code> se a lista dada como argumento está ordenada em ordem não decrescente, e retorna <code><span style="font-weight:bold"><span style="color:black">False</span></span></code> em caso contrário.
+</li><li class="li-itemize"><code><span style="color:blue">perm</span></code><code> :: [</code><code><span style="color:blue">a</span></code><code>] -&gt; [</code><code><span style="color:blue">a</span></code><code>] -&gt; </code><code><span style="font-weight:bold"><span style="color:black">Bool</span></span></code> retorna <code><span style="font-weight:bold"><span style="color:black">True</span></span></code> se a lista dada como primeiro argumento é uma permutação da lista dada como segundo argumento, e retorna <code><span style="font-weight:bold"><span style="color:black">False</span></span></code> em caso contrário.
+</li></ul><p>As definições desses predicados são apresentadas a seguir, onde <code><span style="color:blue">perm</span></code> faz uso de duas outras funções: </p><ul class="itemize"><li class="li-itemize">
+<code><span style="color:blue">elem</span></code><code> :: </code><code><span style="color:blue">a</span></code><code> -&gt; [</code><code><span style="color:blue">a</span></code><code>] -&gt; </code><code><span style="font-weight:bold"><span style="color:black">Bool</span></span></code> retorna <code><span style="font-weight:bold"><span style="color:black">True</span></span></code> se a o valor dado como primeiro argumento ocorre na lista dada como segundo argumento, e retorna <code><span style="font-weight:bold"><span style="color:black">False</span></span></code> em caso contrário.</li><li class="li-itemize"><code><span style="color:blue">delete</span></code><code> :: </code><code><span style="color:blue">a</span></code><code> -&gt; [</code><code><span style="color:blue">a</span></code><code>] -&gt; [</code><code><span style="color:blue">a</span></code><code>]</code> que retorna a lista obtida removendo-se, da lista dada como segundo argumento, a primeira ocorrência do valor dado como primeiro argumento, retornando a lista original caso este valor não ocorra na lista.</li></ul><p><a id="hevea_default21"></a>
+<a id="hevea_default22"></a>
+<a id="hevea_default23"></a>
+<a id="hevea_default24"></a></p><div class="center">
+<table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" >
+<table class="lstframe" style="padding:1ex;background-color:#BCD3E5;"><tr><td class="myclisting">
+<span style="color:#007F00">sorted</span> []      =  <span style="font-weight:bold"><span style="color:black">True</span></span>
+<span style="color:#007F00">sorted</span> [<span style="color:blue">a</span>]     =  <span style="font-weight:bold"><span style="color:black">True</span></span>
+<span style="color:#007F00">sorted</span> (<span style="color:blue">a</span>:<span style="color:blue">b</span>:<span style="color:blue">x</span>) = (<span style="color:blue">a</span> &lt;= <span style="color:blue">b</span>) &amp;&amp; <span style="color:#007F00">sorted</span> (<span style="color:blue">b</span>:<span style="color:blue">x</span>)
+
+[] `<span style="color:#007F00">perm</span>`  []  = <span style="font-weight:bold"><span style="color:black">True</span></span>
+(<span style="color:blue">a</span>:<span style="color:blue">x</span>) `<span style="color:#007F00">perm</span>` <span style="color:blue">y</span> = <span style="color:#007F00">elem</span> <span style="color:blue">a</span> <span style="color:blue">y</span> &amp;&amp; (<span style="color:blue">x</span> `<span style="color:#007F00">perm</span>` (<span style="color:#007F00">delete</span> <span style="color:blue">a</span> <span style="color:blue">y</span>))
+
+<span style="color:blue">a</span> `<span style="color:#007F00">elem</span>` []    = <span style="font-weight:bold"><span style="color:black">False</span></span>
+<span style="color:blue">a</span> `<span style="color:#007F00">elem</span>` (<span style="color:blue">b</span>:<span style="color:blue">x</span>) = (<span style="color:blue">a</span> == <span style="color:blue">b</span>) || (<span style="color:blue">a</span> `<span style="color:#007F00">elem</span>` <span style="color:blue">x</span>)
+
+<span style="color:#007F00">delete</span> <span style="color:blue">a</span> [] = []
+<span style="color:#007F00">delete</span> <span style="color:blue">a</span> (<span style="color:blue">b</span>:<span style="color:blue">x</span>)
+   | <span style="color:blue">a</span>==<span style="color:blue">b</span>      = <span style="color:blue">x</span>
+   | <span style="font-weight:bold"><span style="color:black">otherwise</span></span> = <span style="color:blue">b</span>:<span style="color:#007F00">delete</span> <span style="color:blue">a</span> <span style="color:blue">x</span></td></tr>
+</table></td></tr>
+</table>
+</div><p>Explicações sobre a notação funcional (usada em Haskell):</p><ol class="enumerate" type=1><li class="li-enumerate"><code>&amp;&amp;</code> e <code>||</code> são operadores binários lógicos de
+conjunção e disjunção, respectivamente.</li><li class="li-enumerate">A definição de <code><span style="color:blue">delete</span></code> usa <em>guardas</em>, que são expressões
+booleanas usadas na definição de funções. Para cada chamada de
+função, a primeira (na ordem textual) guarda cuja avaliação retorna
+<code><span style="font-weight:bold"><span style="color:black">True</span></span></code> define o resultado da chamada da função, pela avaliação da
+expressão associada a essa guarda (que segue o símbolo <span style="font-family:monospace">=</span>). Por
+exemplo, a guarda na definição de <code><span style="color:blue">delete</span></code> é equivalente a:
+<code><span style="font-weight:bold"><span style="color:black">if</span></span></code><code> </code><code><span style="color:blue">a</span></code><code>==</code><code><span style="color:blue">b</span></code><code> </code><code><span style="font-weight:bold"><span style="color:black">then</span></span></code><code> </code><code><span style="color:blue">x</span></code><code> </code><code><span style="font-weight:bold"><span style="color:black">else</span></span></code><code> </code><code><span style="color:blue">b</span></code><code>:</code><code><span style="color:blue">delete</span></code><code> </code><code><span style="color:blue">a</span></code><code> </code><code><span style="color:blue">x</span></code>.</li></ol><p><span style="font-weight:bold">Prova da correção de </span><code><span style="font-weight:bold"><span style="color:blue">sort</span></span></code>: A prova é por indução sobre a estrutura de construção de listas (ou sobre o comprimento da lista). O caso base, correspondente à lista vazia, pode ser provado diretamente. O caso indutivo é obtido como consequência
+dos seguintes lemas:
+</p><ul class="itemize"><li class="li-itemize">
+Lema 1: Para todo <code><span style="color:blue">a</span></code>,<code><span style="color:blue">x</span></code>, 
+<code>(</code><code><span style="color:blue">sorted</span></code><code> </code><code><span style="color:blue">x</span></code><code>)</code> implica <code>(</code><code><span style="color:blue">sorted</span></code><code> (</code><code><span style="color:blue">insert</span></code><code> </code><code><span style="color:blue">a</span></code><code> </code><code><span style="color:blue">x</span></code><code>))</code></li><li class="li-itemize">Lema 2: Para todo <code><span style="color:blue">a</span></code>,<code><span style="color:blue">x</span></code>, 
+<code>(</code><code><span style="color:blue">sort</span></code><code> </code><code><span style="color:blue">x</span></code><code>) `</code><code><span style="color:blue">perm</span></code><code>` </code><code><span style="color:blue">x</span></code> implica 
+<code>(</code><code><span style="color:blue">insert</span></code><code> </code><code><span style="color:blue">a</span></code><code> (</code><code><span style="color:blue">sort</span></code><code> </code><code><span style="color:blue">x</span></code><code>)) `</code><code><span style="color:blue">perm</span></code><code>` (</code><code><span style="color:blue">a</span></code><code>:</code><code><span style="color:blue">x</span></code><code>)</code>
+</li></ul>
+<!--TOC subsection id=sec7 Versão imperativa-->
+<h3 id="sec7" class="subsection">1.2.2  Versão imperativa</h3><!--SEC END --><p>
+<a id="sec:insertion-sort-imperativ"></a></p><p>A versão imperativa usa o próprio arranjo para a ordenação (nenhum
+outro arranjo ou estrutura de dados auxiliar) e a seguinte ideia:</p><blockquote class="quotation">
+insere <code><span style="color:blue">A</span></code><code>[</code><code><span style="color:blue">j</span></code><code>]</code> no arranjo ordenado de <code><span style="color:blue">A</span></code><code>[1]</code> até
+<code><span style="color:blue">A</span></code><code>[</code><code><span style="color:blue">j</span></code><code>-1]</code>, de <code><span style="color:blue">j</span></code><code>=2</code> até o tamanho do arranjo
+</blockquote><p>A ideia dá origem ao seguinte algoritmo, escrito em pseudo-código como
+(note que endentação no pseudo-código indica aninhamento na estrutura
+de blocos):</p><div class="center">
+<table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" >
+<table class="lstframe" style="padding:1ex;background-color:#BCD3E5;"><tr><td class="myclisting"><span style="color:#007F00">sort</span>(<span style="color:blue">A</span>)
+   <span style="font-weight:bold"><span style="color:black">for</span></span> <span style="color:blue">j</span>:=2 <span style="color:blue">to</span> <span style="color:blue">length</span>[<span style="color:blue">A</span>] <span style="font-weight:bold"><span style="color:black">do</span></span>
+      <span style="color:blue">key</span> := <span style="color:blue">A</span>[<span style="color:blue">j</span>]
+      <span style="font-style:italic"><span style="color:red">/* Insere A[j] no arranjo ordenado A[1..j-1] */</span></span>
+      <span style="color:blue">i</span> := <span style="color:blue">j</span>-1
+      <span style="font-weight:bold"><span style="color:black">while</span></span> (<span style="color:blue">i</span> &gt; 0 &amp;&amp; <span style="color:blue">A</span>[<span style="color:blue">i</span>]&gt;<span style="color:blue">key</span>) <span style="font-weight:bold"><span style="color:black">do</span></span>
+         <span style="color:blue">A</span>[<span style="color:blue">i</span>+1] := <span style="color:blue">A</span>[<span style="color:blue">i</span>]
+         <span style="color:blue">i</span> := <span style="color:blue">i</span> - 1
+         <span style="color:blue">A</span>[<span style="color:blue">i</span>+1] := <span style="color:blue">key</span></td></tr>
+</table></td></tr>
+</table>
+</div><p>
+<a id="hevea_default25"></a>
+<a id="hevea_default26"></a></p><p>A correção do algoritmo advém de que o invariante, especificado
+bastante informalmente como:</p><blockquote class="quotation">
+&#X2014; no início da execução de cada iteração do comando <code><span style="font-weight:bold"><span style="color:black">for</span></span></code>, o
+sub-arranjo <code><span style="color:blue">A</span></code><code>[1..</code><code><span style="color:blue">j</span></code><code>-1]</code> contém os elementos que estavam
+originalmente nesse sub-arranjo, mas de forma ordenada &#X2014;
+</blockquote><p>é verdadeiro no início (antes da execução da primeira iteração do
+<code><span style="font-weight:bold"><span style="color:black">for</span></span></code>), antes e após cada iteração, e no final, quando então a
+terminação garante a correção do algoritmo (ordenamento de todo o
+arranjo).</p><p>É importante observar que a transformação dessa prova informal em uma
+prova formal é relativamente muito mais difícil do que no caso
+funcional.</p><p>No próximo capítulo vamos introduzir introduzir a notação e os
+conceitos principais usados para análise da complexidade (eficiência)
+de algoritmos, para que possamos analisar a complexidade de algoritmos
+(começando pela complexidade dos algoritmos apresentados neste
+capítulo).</p>
+<!--TOC chapter id=sec8 Complexidade-->
+<h1 id="sec8" class="chapter">Capítulo 2  Complexidade</h1><!--SEC END --><p>
 <a id="ch:Complexidade"></a></p><p>Programas de computador estão sendo usados cada vez mais, nas 
 mais diversas áeras. Além disso, a ciência da computação tem contribuído e influenciado inúmeras áreas científicas, como a lógica, a matemática, a
 física etc.</p><p>Em computação, não nos preocupamos apenas com a correção de
@@ -117,9 +373,9 @@ uma função de uma medida que especifica o tamanho da entrada.
 Dizemos que o tempo de execução de um algoritmo tem ordem de complexidade <em>polinomial</em>, se a variação do seu tempo de execução com o tamanho <span style="font-style:italic">n</span> da entrada é limitado superiormente por uma função polinomial <span style="font-style:italic">n</span><sup><span style="font-style:italic">k</span></sup>, onde <span style="font-style:italic">k</span> é um valor constante, que independe de <span style="font-style:italic">n</span>. Existem problemas &#X2013; considerados <em>difíceis</em> &#X2013; para os quais nenhum dos algoritmos conhecidos para sua solução tem tempo de execução de complexidade polinomial. Algoritmos conhecidos para esses problemas difíceis têm ordem de complexidade <em>exponencial</em>, ou seja, tempo de execução limitado superiormente por uma função <span style="font-style:italic">k</span><sup><span style="font-style:italic">n</span></sup>, onde <span style="font-style:italic">n</span>
 é o tamanho da entrada e <span style="font-style:italic">k</span> é um valor constante, que independe de
 <span style="font-style:italic">n</span>. </p>
-<!--TOC section id=sec3 Complexidade de Funções-->
-<h2 id="sec3" class="section">1.1  Complexidade de Funções</h2><!--SEC END --><p>
-<a id="sec:complexidade-de-funcoes"></a></p><p>O tempo de execução de um algoritmo é medido em termo do número de passos de execução do algoritmo. Cada passo de execução corresponde a uma instrução ou operação atômica, relevante no problema em questão, e que é executada em um intervalo de tempo constante. Por exemplo, o tempo de execução de um algoritmo de comparação, tal como o apresentado na Seção <a href="#sec%3Aordenacao-insercao">??</a>, pode ser medido como o número de comparações entre elementos da sequência, até que a sequência seja ordenada. Essa maneira de medir o tempo de execução abstrai do tempo específico gasto para execução de um passo, permitindo a comparação de eficiência de algoritmos independentemente da máquina em que são executados.</p><p>O tempo de execucão de uma sequência de <span style="font-style:italic">k</span> passos é a soma dos tempos de execução de cada passos, ou, mais simplesmente, o número tde passos <span style="font-style:italic">k</span>. A execução de determinadas construções usadas na definição de algoritmos, como comandos de repetição ou chamadas de funções recursivas, resultam na execução de uma determinada sequência de passos repetidas vezes. Se uma sequência de <span style="font-style:italic">k</span> passos é executada <span style="font-style:italic">n</span> vezes, o tempo total de execução é, naturalmente, <span style="font-style:italic">n</span>× <span style="font-style:italic">k</span>.</p><p>Na maioria das vezes, estamos interessados em determinar o tempo de
+<!--TOC section id=sec9 Complexidade de Funções-->
+<h2 id="sec9" class="section">2.1  Complexidade de Funções</h2><!--SEC END --><p>
+<a id="sec:complexidade-de-funcoes"></a></p><p>O tempo de execução de um algoritmo é medido em termo do número de passos de execução do algoritmo. Cada passo de execução corresponde a uma instrução ou operação atômica, relevante no problema em questão, e que é executada em um intervalo de tempo constante. Por exemplo, o tempo de execução de um algoritmo de comparação, tal como o apresentado na Seção <a href="#sec%3Aordenacao-insercao">1.2</a>, pode ser medido como o número de comparações entre elementos da sequência, até que a sequência seja ordenada. Essa maneira de medir o tempo de execução abstrai do tempo específico gasto para execução de um passo, permitindo a comparação de eficiência de algoritmos independentemente da máquina em que são executados.</p><p>O tempo de execucão de uma sequência de <span style="font-style:italic">k</span> passos é a soma dos tempos de execução de cada passos, ou, mais simplesmente, o número tde passos <span style="font-style:italic">k</span>. A execução de determinadas construções usadas na definição de algoritmos, como comandos de repetição ou chamadas de funções recursivas, resultam na execução de uma determinada sequência de passos repetidas vezes. Se uma sequência de <span style="font-style:italic">k</span> passos é executada <span style="font-style:italic">n</span> vezes, o tempo total de execução é, naturalmente, <span style="font-style:italic">n</span>× <span style="font-style:italic">k</span>.</p><p>Na maioria das vezes, estamos interessados em determinar o tempo de
 execução do algoritmo para o <em>pior caso</em> de uma entrada de certo
 tamanho. Isso é devido ao fato de que i) o pior caso é um limite
 superior (que nunca poderá ser ultrapassado), ii) para muitos
@@ -132,12 +388,9 @@ tempo de execução com o tamanho da entrada é <span style="font-style:italic">f</
 ordem de complexidade <span style="font-style:italic">n</span><sup>2</sup>, que é o termo mais significativo do
 polinômio <span style="font-style:italic">f</span>. Isso porque os termos de menor ordem no polinômio são relativamente pouco significantes para valores de <span style="font-style:italic">n</span> grandes. Além disso, ignora-se também a constante <span style="font-style:italic">a</span> do termo de maior ordem, pelo mesmo motivo de ser relativamente pouco significante para valores grandes. Dizemos
 que essa função <span style="font-style:italic">f</span> é de complexidade quadrática (o termo de
-maior ordem no polinômio que define a complexidade é <span style="font-style:italic">n</span><sup>2</sup>). Em outras palavras, estamos interessados no comportamento <em>assintótico</em> da função de complexidade do algooritmo, conforme é explicado na seção a seguir. </p>
-<!--TOC section id=sec4 Eficiência assintótica-->
-<h2 id="sec4" class="section">1.2  Eficiência assintótica</h2><!--SEC END --><p>
-<a id="sec:eficiencia-assintotica"></a></p><p>A notação geralmente usada na descrição da <em>complexidade assintótica</em> de algoritmos e programas é apresentada a seguir.</p>
-<!--TOC subsection id=sec5 Notação &#X398;-->
-<h3 id="sec5" class="subsection">1.2.1  Notação &#X398;</h3><!--SEC END --><p>
+maior ordem no polinômio que define a complexidade é <span style="font-style:italic">n</span><sup>2</sup>). Em outras palavras, estamos interessados no comportamento <em>assintótico</em> da função de complexidade do algooritmo. A notação geralmente usada paradescrever a <em>complexidade assintótica</em> de algoritmos é apresentada a seguir.</p>
+<!--TOC section id=sec10 Notação &#X398;-->
+<h2 id="sec10" class="section">2.2  Notação &#X398;</h2><!--SEC END --><p>
 <a id="sec:Notacao-Theta"></a></p><p>O tamanho da entrada de um algoritmo é medido como um número natural natural &#X2013; i.e. o domínio de funções de complexidade é igual ao conjunto dos naturais, &#X2115;) e o contra-domínio é o conjunto dos números reais
 positivos (&#X211D;<sup>+</sup>. </p><p>Seguimos a terminologia usual, que usa <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) (digamos, por exemplo,
 <span style="font-style:italic">lg</span> <span style="font-style:italic">n</span>) para se referir na verdade à função <span style="font-style:italic">f</span> (em notação de
@@ -146,10 +399,18 @@ positivos (&#X211D;<sup>+</sup>. </p><p>Seguimos a terminologia usual, que usa <
 </td></tr>
 </table></td></tr>
 </table><p>Em palavras, <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) é membro de &#X398;(<span style="font-style:italic">g</span>(<span style="font-style:italic">n</span>)) se <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) sempre está
-entre <span style="font-style:italic">c</span><sub>1</sub><span style="font-style:italic">g</span>(<span style="font-style:italic">n</span>) e <span style="font-style:italic">c</span><sub>2</sub><span style="font-style:italic">g</span>(<span style="font-style:italic">n</span>), para alguns <span style="font-style:italic">c</span><sub>1</sub>, <span style="font-style:italic">c</span><sub>2</sub>, para <span style="font-style:italic">n</span>
-suficientemente grande (i.e. a partir de algum <span style="font-style:italic">n</span><sub>0</sub>). </p><p>&#X2026;Gráfico? </p><p>Como &#X398;(<span style="font-style:italic">g</span>(<span style="font-style:italic">n</span>)) é um conjunto, o correto seria escrever <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) &#X2208;
+entre <span style="font-style:italic">c</span><sub>1</sub><span style="font-style:italic">g</span>(<span style="font-style:italic">n</span>) e <span style="font-style:italic">c</span><sub>2</sub><span style="font-style:italic">g</span>(<span style="font-style:italic">n</span>), para determinados <span style="font-style:italic">c</span><sub>1</sub>,<span style="font-style:italic">c</span><sub>2</sub>, e para <span style="font-style:italic">n</span>
+suficientemente grande (i.e. a partir de algum <span style="font-style:italic">n</span><sub>0</sub>). Isso é ilustrado na Figura <a href="#fig%3Abig-O">2.2</a>(a). </p><blockquote class="figure"><div class="center"><hr style="width:80%;height:2"></div>
+<a id="fig:big-O"></a>
+<div class="center">
+<img src="lvimages/fig-bigO.jpg" width=700>
+</div>
+<div class="caption"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="vertical-align:top;text-align:left;" >Figura 2.1: Big-&#X398;, Big-O, Big-&#X3A9; notations</td></tr>
+</table></div>
+<div class="center"><hr style="width:80%;height:2"></div></blockquote><p>Como &#X398;(<span style="font-style:italic">g</span>(<span style="font-style:italic">n</span>)) é um conjunto, o correto seria escrever <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) &#X2208;
 &#X398;(<span style="font-style:italic">g</span>(<span style="font-style:italic">n</span>)), mas é usual escrever <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) = &#X398;(<span style="font-style:italic">g</span>(<span style="font-style:italic">n</span>)), um abuso de
-notação, que simplifica a notação. </p><p>Escrevemos também <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) &#X224D; <span style="font-style:italic">g</span>(<span style="font-style:italic">n</span>) (seguindo Minko Markov
+notação, que simplifica a notação. 
+Escrevemos também <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) &#X224D; <span style="font-style:italic">g</span>(<span style="font-style:italic">n</span>) (seguindo Minko Markov
 [<a href="#Minko-Markov-2013"></a>]) como sinônimo de <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) = &#X398;(<span style="font-style:italic">g</span>(<span style="font-style:italic">n</span>)).</p><p>Por exemplo, temos:</p><ol class="enumerate" type=1><li class="li-enumerate"><span style="font-style:italic">an</span><sup>2</sup> &#X2212; <span style="font-style:italic">bn</span> &#X224D; <span style="font-style:italic">n</span><sup>2</sup>, para quaisquer constantes
 <span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>.<p>Para mostrar isso, devemos determinar <span style="font-style:italic">c</span><sub>1</sub>,<span style="font-style:italic">c</span><sub>2</sub>,<span style="font-style:italic">n</span><sub>0</sub> tais que 0
 &#X2264; <span style="font-style:italic">c</span><sub>1</sub>(<span style="font-style:italic">n</span><sup>2</sup>) &#X2264; <span style="font-style:italic">an</span><sup>2</sup> &#X2212; <span style="font-style:italic">bn</span> &#X2264; <span style="font-style:italic">c</span><sub>2</sub>(<span style="font-style:italic">n</span><sup>2</sup>), para <span style="font-style:italic">n</span>&#X2264; <span style="font-style:italic">n</span><sub>0</sub>.
@@ -165,8 +426,8 @@ acontece.</p></li><li class="li-enumerate"><span style="font-style:italic">an</s
 suficientemente grande, ou seja, <span style="font-style:italic">c</span><sub>2</sub> &#X2264; <span style="font-style:italic">an</span>, o que não
 acontece.</p></li></ol><p>&#X398;(1) é usualmente usado em vez de &#X398;(<span style="font-style:italic">n</span><sup>0</sup>),
 considerando-se claro, pelo contexto a variável usada como medida do tamanho da entrada.</p>
-<!--TOC section id=sec6 Notação <span style="font-style:italic">O</span>-->
-<h2 id="sec6" class="section">1.3  Notação <span style="font-style:italic">O</span></h2><!--SEC END --><p>
+<!--TOC section id=sec11 Notação <span style="font-style:italic">O</span>-->
+<h2 id="sec11" class="section">2.3  Notação <span style="font-style:italic">O</span></h2><!--SEC END --><p>
 <a id="sec:Notacao-O"></a></p><p>A notação &#X398; limita assintoticamente uma função por limites
 superior e inferior. A notação <span style="font-style:italic">O</span> estabelece apenas um limite
 superior:</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" >     <span style="font-style:italic">O</span>(<span style="font-style:italic">g</span>(<span style="font-style:italic">n</span>)) = { <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) :</td><td style="text-align:left;white-space:nowrap" > existem  <span style="font-style:italic">c</span>, <span style="font-style:italic">n</span><sub>0</sub>  positivos tais que  </td></tr>
@@ -175,13 +436,13 @@ superior:</p><table class="display dcenter"><tr style="vertical-align:middle"><t
 </table></td></tr>
 </table><p>Em palavras, <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) é membro de <span style="font-style:italic">O</span>(<span style="font-style:italic">g</span>(<span style="font-style:italic">n</span>)) se <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) sempre é menor ou
 igual a <span style="font-style:italic">cg</span>(<span style="font-style:italic">n</span>), para algum <span style="font-style:italic">c</span>, e para <span style="font-style:italic">n</span> suficientemente grande
-(i.e. a partir de algum <span style="font-style:italic">n</span><sub>0</sub>).</p><p>Assim como na notação &#X398;, usa-se <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) = <span style="font-style:italic">O</span>(<span style="font-style:italic">g</span>(<span style="font-style:italic">n</span>)) em vez de
+(i.e. a partir de algum <span style="font-style:italic">n</span><sub>0</sub>). A Figura <a href="#fig%3Abig-O">2.2</a>(b) ilustra essa definição. </p><p>Assim como na notação &#X398;, usa-se <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) = <span style="font-style:italic">O</span>(<span style="font-style:italic">g</span>(<span style="font-style:italic">n</span>)) em vez de
 <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) &#X2208; <span style="font-style:italic">O</span>(<span style="font-style:italic">g</span>(<span style="font-style:italic">n</span>)). </p><p>Escrevemos também <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) &#X227C; <span style="font-style:italic">g</span>(<span style="font-style:italic">n</span>) como sinônimo de <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) =
 <span style="font-style:italic">O</span>(<span style="font-style:italic">g</span>(<span style="font-style:italic">n</span>)) (seguindo Minko Markov [<a href="#Minko-Markov-2013"></a>]).</p><p>Note que <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) &#X224D; <span style="font-style:italic">g</span>(<span style="font-style:italic">n</span>) implica <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) &#X227C; <span style="font-style:italic">g</span>(<span style="font-style:italic">n</span>), mas a
 implicação inversa não é verdadeira.</p><p>Por exemplo, <span style="font-style:italic">an</span> + <span style="font-style:italic">b</span> &#X227C; <span style="font-style:italic">n</span><sup>2</sup> mas <span style="font-style:italic">an</span> + <span style="font-style:italic">b</span> &#X22E0; &#X398;(<span style="font-style:italic">n</span><sup>2</sup>).</p><p>Usando a notação <span style="font-style:italic">O</span> podemos frequentemente ter uma boa ideia do
 limite superior para o tempo de execução de um programa, pela inspecção
 de sua estrutura de repetição. Por exemplo, o aninhamento duplo do
-programa imperativo de ordenação por inserção, apresentado na Seção <a href="#sec%3Aordenacao-insercao">??</a>, indica um limite
+programa imperativo de ordenação por inserção, apresentado na Seção <a href="#sec%3Aordenacao-insercao">1.2</a>, indica um limite
 superior <span style="font-style:italic">O</span>(<span style="font-style:italic">n</span><sup>2</sup>) para o pior caso do tempo de execução. O
 custo de cada comando interno ao comando <span style="font-weight:bold">while</span> é <span style="font-style:italic">O</span>(1), as
 repetições <span style="font-weight:bold">for</span> e <span style="font-weight:bold">while</span> são controladas pelos índices <span style="font-style:italic">i</span> e <span style="font-style:italic">j</span>, que
@@ -196,8 +457,8 @@ programa para essa entrada é limitado a <span style="font-style:italic">f</span>
 variação do tempo de execução do algoritmo para uma entrada particular
 varia quadraticamente com o tamanho da entrada, mas que pode variar no
 máximo quadraticamente com o tamanho da entrada.</p>
-<!--TOC section id=sec7 Notação &#X3A9;-->
-<h2 id="sec7" class="section">1.4  Notação &#X3A9;</h2><!--SEC END --><p>
+<!--TOC section id=sec12 Notação &#X3A9;-->
+<h2 id="sec12" class="section">2.4  Notação &#X3A9;</h2><!--SEC END --><p>
 <a id="sec:Notacao-Omega"></a></p><p>A notação &#X3A9; limita assintoticamente uma função por um limite
 inferior:</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" >     &#X3A9;(<span style="font-style:italic">g</span>(<span style="font-style:italic">n</span>)) = { <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) :</td><td style="text-align:left;white-space:nowrap" > existem  <span style="font-style:italic">c</span>, <span style="font-style:italic">n</span><sub>0</sub>  positivos tais que  </td></tr>
 <tr><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" ><span style="font-style:italic">cg</span>(<span style="font-style:italic">n</span>) &#X2264; <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>)  para  <span style="font-style:italic">n</span>&#X2265; <span style="font-style:italic">n</span><sub>0</sub> 
@@ -205,7 +466,7 @@ inferior:</p><table class="display dcenter"><tr style="vertical-align:middle"><t
 </table></td></tr>
 </table><p>Em palavras, <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) é membro de &#X3A9;(<span style="font-style:italic">g</span>(<span style="font-style:italic">n</span>)) se <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) sempre é
 maior ou igual a <span style="font-style:italic">cg</span>(<span style="font-style:italic">n</span>), para algum <span style="font-style:italic">c</span>, e para todo <span style="font-style:italic">n</span>
-suficientemente grande.</p><p>Assim como na notação &#X398;, usa-se <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) = &#X3A9;(<span style="font-style:italic">g</span>(<span style="font-style:italic">n</span>)) em vez de
+suficientemente grande. Isso é ilustrado na Figura <a href="#fig%3Abig-O">2.2</a>(c)</p><p>Assim como na notação &#X398;, usa-se <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) = &#X3A9;(<span style="font-style:italic">g</span>(<span style="font-style:italic">n</span>)) em vez de
 <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) &#X2208; &#X3A9;(<span style="font-style:italic">g</span>(<span style="font-style:italic">n</span>)).</p><p>Escrevemos também <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) &#X227D; <span style="font-style:italic">g</span>(<span style="font-style:italic">n</span>) como sinônimo de <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) =
 &#X3A9;(<span style="font-style:italic">g</span>(<span style="font-style:italic">n</span>)) (seguindo Minko Markov [<a href="#Minko-Markov-2013"></a>]).</p><p>Das definições, é fácil ver que, para quaisquer funções <span style="font-style:italic">f</span>,<span style="font-style:italic">g</span>, temos
 <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) &#X224D; <span style="font-style:italic">g</span>(<span style="font-style:italic">n</span>) se e somente se <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) &#X227C; <span style="font-style:italic">g</span>(<span style="font-style:italic">n</span>) e <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) &#X227D;
@@ -214,8 +475,8 @@ análise do comportamento do algoritmo para o melhor caso dos dados de
 entrada. Não consideraremos análises de comportamento de algoritmos no
 melhor caso neste livro, e a notação &#X3A9; terá assim aplicação
 limitada, sendo usada mais como complementação à notação <span style="font-style:italic">O</span>.</p>
-<!--TOC section id=sec8 Uso de notação assintótica em fórmulas-->
-<h2 id="sec8" class="section">1.5  Uso de notação assintótica em fórmulas</h2><!--SEC END --><p>
+<!--TOC section id=sec13 Uso de notação assintótica em fórmulas-->
+<h2 id="sec13" class="section">2.5  Uso de notação assintótica em fórmulas</h2><!--SEC END --><p>
 <a id="sec:uso-notacao-assintotica"></a></p><p>Em equações do tipo <span style="font-style:italic">n</span> = <span style="font-style:italic">O</span>(<span style="font-style:italic">n</span><sup>2</sup>), a notação <span style="font-style:italic">O</span> significa <span style="font-style:italic">n</span> &#X2208;
 <span style="font-style:italic">O</span>(<span style="font-style:italic">n</span><sup>2</sup>). </p><p>Em geral, no entanto, a ocorrência da notação assintótica expressa uma
 função qualquer, anônima, para a qual não há interesse em especificar
@@ -227,8 +488,8 @@ um nome. Por exemplo, <span style="font-style:italic">an</span><sup>2</sup> + <s
 supressão de constantes. Note que <span style="font-style:italic">n</span> &#X227C; 2<sup><span style="font-style:italic">lg</span> <span style="font-style:italic">n</span></sup>, e portanto,
 para qualquer constante <span style="font-style:italic">c</span>, temos: <span style="font-style:italic">n</span><sup><span style="font-style:italic">c</span></sup> &#X224D; 2<sup><span style="font-style:italic">c</span> <span style="font-style:italic">lg</span> <span style="font-style:italic">n</span></sup>, e <span style="font-style:italic">O</span>(2<sup><span style="font-style:italic">O</span>(<span style="font-style:italic">lg</span>
 <span style="font-style:italic">n</span>)</sup>)=<span style="font-style:italic">n</span><sup><span style="font-style:italic">O</span>(1)</sup> é outra forma de expressar essa igualdade.</p>
-<!--TOC section id=sec9 Notações <span style="font-style:italic">o</span>, &#X3C9;-->
-<h2 id="sec9" class="section">1.6  Notações <span style="font-style:italic">o</span>, &#X3C9;</h2><!--SEC END --><p>
+<!--TOC section id=sec14 Notações <span style="font-style:italic">o</span>, &#X3C9;-->
+<h2 id="sec14" class="section">2.6  Notações <span style="font-style:italic">o</span>, &#X3C9;</h2><!--SEC END --><p>
 <a id="sec:Notacao-o"></a></p><p>Define-se <span style="font-style:italic">o</span>(<span style="font-style:italic">g</span>(<span style="font-style:italic">n</span>)) para indicar que trata-se de uma aproximação
 assintótica estrita:</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" >     <span style="font-style:italic">o</span>(<span style="font-style:italic">g</span>(<span style="font-style:italic">n</span>)) = { <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) :</td><td style="text-align:left;white-space:nowrap" > para todo  <span style="font-style:italic">c</span>  positivo existe  <span style="font-style:italic">n</span><sub>0</sub>  positivo tal que  </td></tr>
 <tr><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" ><span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) &lt; <span style="font-style:italic">cg</span>(<span style="font-style:italic">n</span>)  para  <span style="font-style:italic">n</span>&#X2265; <span style="font-style:italic">n</span><sub>0</sub> 
@@ -255,8 +516,8 @@ está para <span style="font-style:italic">O</span>):</p><table class="display dc
 e <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) &#X227A; <span style="font-style:italic">g</span>(<span style="font-style:italic">n</span>) como sinônimo de <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) = &#X3C9;(<span style="font-style:italic">g</span>(<span style="font-style:italic">n</span>)) (seguindo
 Minko Markov [<a href="#Minko-Markov-2013"></a>]).</p><p>Por exemplo, para qualquer <span style="font-style:italic">a</span>&gt;0, <span style="font-style:italic">an</span><sup>2</sup> &#X227B; <span style="font-style:italic">n</span> mas <span style="font-style:italic">an</span><sup>2</sup> &#X2281;
 <span style="font-style:italic">n</span><sup>2</sup>.</p>
-<!--TOC section id=sec10 Propriedades de Relações assintóticas-->
-<h2 id="sec10" class="section">1.7  Propriedades de Relações assintóticas</h2><!--SEC END --><p>
+<!--TOC section id=sec15 Propriedades de Relações assintóticas-->
+<h2 id="sec15" class="section">2.7  Propriedades de Relações assintóticas</h2><!--SEC END --><p>
 <a id="sec:Propriedades-de-relacoes-assintoticas"></a></p><p>Para todas as relações <span style="font-style:italic">R</span> iguais a &#X224D;, &#X227C;, &#X227D;,
 &#X227A;, &#X227B;, a seguinte transitividade ocorre:</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) <span style="font-style:italic">R</span> <span style="font-style:italic">g</span>(<span style="font-style:italic">n</span>), <span style="font-style:italic">g</span>(<span style="font-style:italic">n</span>) <span style="font-style:italic">R</span> <span style="font-style:italic">h</span>(<span style="font-style:italic">n</span>)  implicam  <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) <span style="font-style:italic">R</span> <span style="font-style:italic">h</span>(<span style="font-style:italic">n</span>) </td></tr>
 </table><p>Ocorre também reflexividade para <span style="font-style:italic">R</span> = &#X224D;, &#X227C;, &#X227D;:</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) <span style="font-style:italic">R</span> <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>) </td></tr>
@@ -273,8 +534,8 @@ assintoticamente maior que <span style="font-style:italic">g</span> se <span sty
 analogamente para (&#X224D; e &#X398;, assintoticamente igual),
 (&#X227C; e <span style="font-style:italic">O</span>, assintoticamente menor ou igual a) e (&#X227D; e
 &#X3A9;, assintoticamente maior ou igual a).</p>
-<!--TOC section id=sec11 Complexidade polinomial, exponencial e logarítmica-->
-<h2 id="sec11" class="section">1.8  Complexidade polinomial, exponencial e logarítmica</h2><!--SEC END --><p>
+<!--TOC section id=sec16 Complexidade polinomial, exponencial e logarítmica-->
+<h2 id="sec16" class="section">2.8  Complexidade polinomial, exponencial e logarítmica</h2><!--SEC END --><p>
 <a id="sec:Complexidade-polinomial-exponencial-logaritmica"></a></p><p>Um polinômio de grau <span style="font-style:italic">k</span>, sendo <span style="font-style:italic">k</span> inteiro não negativo, é uma função
 da forma:</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">k</span></td></tr>
 <tr><td class="dcell" style="text-align:center"><span style="font-size:xx-large">&#X2211;</span></td></tr>
@@ -314,8 +575,8 @@ inteiras <span style="font-style:italic">a</span>,<span style="font-style:italic
 </table><p>A equação <a href="#expxpoli">1</a> indica que toda função exponencial 
 com uma base maior que 1 cresce mais rapidamente que qualquer função polinomial.</p><p>A segunda equação <a href="#exlxpoli">2</a> (que vale também se <span style="font-style:italic">a</span>=1) indica 
 que toda função logarítmica cresce mais lentamente que qualquer função polinomial.</p>
-<!--TOC section id=sec12 Exercícios Resolvidos-->
-<h2 id="sec12" class="section">1.9  Exercícios Resolvidos</h2><!--SEC END --><ol class="enumerate" type=1><li class="li-enumerate">2<sup><span style="font-style:italic">n</span>+1</sup> &#X227C; 2<sup><span style="font-style:italic">n</span></sup> ? <p>Resposta: Sim. Pois 2<sup><span style="font-style:italic">n</span>+1</sup> = 2*2<sup><span style="font-style:italic">n</span></sup>. Constantes não interferem na
+<!--TOC section id=sec17 Exercícios Resolvidos-->
+<h2 id="sec17" class="section">2.9  Exercícios Resolvidos</h2><!--SEC END --><ol class="enumerate" type=1><li class="li-enumerate">2<sup><span style="font-style:italic">n</span>+1</sup> &#X227C; 2<sup><span style="font-style:italic">n</span></sup> ? <p>Resposta: Sim. Pois 2<sup><span style="font-style:italic">n</span>+1</sup> = 2*2<sup><span style="font-style:italic">n</span></sup>. Constantes não interferem na
 ordem de complexidade (na definição de <span style="font-style:italic">O</span>, basta escolher a constante
 <span style="font-style:italic">c</span> adequadamente, neste caso podemos escolher qualquer <span style="font-style:italic">c</span>&#X2265; 2).</p></li><li class="li-enumerate">2<sup>2<span style="font-style:italic">n</span></sup> &#X227C; 2<sup><span style="font-style:italic">n</span></sup> ? <p>Resposta: Não.</p><p>Suponha que sim. Deveríamos ter então <span style="font-style:italic">c</span>,<span style="font-style:italic">n</span><sub>0</sub> tais que 0&#X2264; 2<sup>(2<span style="font-style:italic">n</span>)</sup>
 &#X2264; <span style="font-style:italic">c</span>2<sup><span style="font-style:italic">n</span></sup>, para <span style="font-style:italic">n</span>&#X2265; <span style="font-style:italic">n</span><sub>0</sub>. Dividindo por 2<sup><span style="font-style:italic">n</span></sup> &#X2014; note:
@@ -528,8 +789,333 @@ Obtemos o resultado usando (<a href="#lgprec">5</a>).</p></dd><dt class="dt-desc
 <span style="font-style:italic">n</span> <span style="font-style:italic">lg</span> <span style="font-style:italic">n</span> &#X227A; <span style="font-style:italic">lg</span> (2<sup><span style="font-style:italic">n</span></sup>), o que é verdadeiro.
 Obtemos o resultado usando (<a href="#lgprec">5</a>).</p></dd><dt class="dt-description"><span style="font-weight:bold">29</span></dt><dd class="dd-description"> 2<sup>2<sup><span style="font-style:italic">n</span></sup></sup> &#X227A; 2<sup>2<sup><span style="font-style:italic">n</span>+1</sup></sup><p>Temos: 2<sup><span style="font-style:italic">n</span>+1</sup> = 2 × 2<sup><span style="font-style:italic">n</span></sup> e portanto 2<sup>2<sup><span style="font-style:italic">n</span>+1</sup></sup> = 2<sup>2×
 2<sup><span style="font-style:italic">n</span></sup></sup> = 2<sup>2<sup><span style="font-style:italic">n</span></sup></sup> × 2<sup>2<sup><span style="font-style:italic">n</span></sup></sup>.</p></dd></dl></li></ol>
-<!--TOC section id=sec13 Exercícios-->
-<h2 id="sec13" class="section">1.10  Exercícios</h2><!--SEC END --><!--CUT END -->
+<!--TOC section id=sec18 Exercícios-->
+<h2 id="sec18" class="section">2.10  Exercícios</h2><!--SEC END -->
+<!--TOC chapter id=sec19 Estruturas de Dados Básicas-->
+<h1 id="sec19" class="chapter">Capítulo 3  Estruturas de Dados Básicas</h1><!--SEC END --><p>
+<a id="ch:estruturas-de-dados-basicas"></a></p><p>Este capítulo aborda listas e árvores, suas representações em um computador e
+operações básicas sobre essas estruturas de dados.</p>
+<!--TOC section id=sec20 Listas-->
+<h2 id="sec20" class="section">3.1  Listas</h2><!--SEC END --><p>
+<a id="sec:listas"></a></p><p>Uma lista é uma estrutura de dados comumente usada em computação e pode ser definida recursivamente como a seguir. Uma lista de elementos de
+determinado tipo <code><span style="color:blue">t</span></code> é ou i) <em>vazia</em> ou ii) constituída de um elemento de tipo <code><span style="color:blue">t</span></code> e um uma lista de elementos do mesmo tipo <code><span style="color:blue">t</span></code> (denominada <em>cauda</em> ou resto da lista).</p><p>Em uma linguagem como Haskell, que provê suporte à definição de tipos
+de dados recursivos, o tipo lista pode ser definido como:</p><div class="center">
+<table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" >
+<table class="lstframe" style="padding:1ex;background-color:#BCD3E5;"><tr><td class="myclisting"><span style="font-weight:bold"><span style="color:black">data</span></span> <span style="color:#007F00">List</span> <span style="color:blue">a</span> = <span style="color:#007F00">Nil</span> | <span style="color:#007F00">Cons</span> <span style="color:blue">a</span> (<span style="color:#007F00">List</span> <span style="color:blue">a</span>)</td></tr>
+</table></td></tr>
+</table>
+</div><p>O tipo de dado <code><span style="color:blue">List</span></code><code> </code><code><span style="color:blue">a</span></code> é um tipo recursivo, sendo <code><span style="color:blue">Nil</span></code> e <code><span style="color:blue">Cons</span></code> os construtores de valores desse tipo. Além disso, <code><span style="color:blue">List</span></code><code> </code><code><span style="color:blue">a</span></code> é um tipo <em>polimórfico</em>: a variável de tipo <code><span style="color:blue">a</span></code> pode ser instanciada para um tipo <code><span style="color:blue">t</span></code> qualquer, permitindo assim a definição de listas com elementos de desse tipo <code><span style="color:blue">t</span></code>. Por exemplo, <code>(</code><code><span style="color:blue">Cons</span></code><code> 1 (</code><code><span style="color:blue">Cons</span></code><code> 2 (</code><code><span style="color:blue">Cons</span></code><code> 3 </code><code><span style="color:blue">Nil</span></code><code>)))</code> é uma lista de tipo <code><span style="color:blue">List</span></code><code> </code><code><span style="font-weight:bold"><span style="color:black">Int</span></span></code> e <code>(</code><code><span style="color:blue">Cons</span></code><code> </code><code><span style="font-weight:bold"><span style="color:black">True</span></span></code><code> (</code><code><span style="color:blue">Cons</span></code><code> </code><code><span style="font-weight:bold"><span style="color:black">False</span></span></code><code> </code><code><span style="color:blue">Nil</span></code><code>))</code> tem tipo <code><span style="color:blue">List</span></code><code> </code><code><span style="font-weight:bold"><span style="color:black">Bool</span></span></code>. </p><p>A linguagem Haskell provê uma notação especial para a criação de valores de tipo lista: <code>[]</code> é usado em lugar de <code><span style="color:blue">Nil</span></code>, e o construtor infixado <code>(:)</code>, associativo à direita, em lugar de <code><span style="color:blue">Cons</span></code>. Por exemplo, a lista <code><span style="color:blue">Cons</span></code><code> 1 (</code><code><span style="color:blue">Cons</span></code><code> 2 (</code><code><span style="color:blue">Cons</span></code><code> 3 </code><code><span style="color:blue">Nil</span></code><code>))</code> seria representada como <code>(1:2:3:[])</code>. 
+Além disso, uma lista pode ser representada simplesmente escrevendo-se os seus elementos da lista entre colchetes, separados por vírgulas. Ou seja, a lista <code>\</code><code><span style="color:blue">inh</span></code><code>{(1:2:3:[]}</code> pode ser escrita, mais simplesmente, como <code>[1,2,3]</code>. </p><p>Em linguagens como <span style="font-family:monospace">C</span>, uma lista pode ser representada por meio de <em>registros</em> (também chamados de "estruturas", em <span style="font-family:monospace">C</span>) e <em>ponteiros</em> (ou apontadores), tal como ilustrado no exemplo a seguir, que define uma lista de elementos de tipo <code><span style="font-weight:bold"><span style="color:black">int</span></span></code>. Linguagens como <span style="font-family:monospace">C</span>, que não provêm suporte para polimorfismo, requerem a definição de tipos lista distintos para cada tipo particular de elementos. </p><div class="center">
+<table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" >
+<table class="lstframe" style="padding:1ex;background-color:#BCD3E5;"><tr><td class="myclisting"><span style="font-weight:bold"><span style="color:black">struct</span></span> <span style="color:#007F00">ListaDeInteiros</span>
+   <span style="font-weight:bold"><span style="color:black">int</span></span> <span style="color:blue">elem</span>;
+   <span style="font-weight:bold"><span style="color:black">struct</span></span> <span style="color:#007F00">ListaDeInteiros</span> *<span style="color:blue">r</span>;</td></tr>
+</table></td></tr>
+</table>
+</div><p>Uma definição de registro, em <span style="font-family:monospace">C</span>, é introduzida pela palavra-chave <code><span style="font-weight:bold"><span style="color:black">struct</span></span></code>, seguida do nome do registro &#X2013; neste caso, <code><span style="color:blue">ListaDeInteiros</span></code>. O registro possui dois campos: um campo de tipo <code><span style="font-weight:bold"><span style="color:black">int</span></span></code> e nome <code><span style="color:blue">elem</span></code>, e um campo de nome <code><span style="color:blue">r</span></code>, que é um ponteiro para valores do próprio tipo <code><span style="color:blue">ListaDeInteiros</span></code>. </p><p>A manipulação de valores de tipo lista em <span style="font-family:monospace">C</span> é bem mais trabalhosa. A falta de suporte para definição e uso de tipos recursivos e polimórficos torna a programação mais difícil e demorada e o código menos legível e mais sujeito a repetições e a ocorrências de erros. Por exemplo, para criar um valor de tipo <code><span style="color:blue">ListaDeInteiros</span></code>, com os elementos <code>1,2,3</code>, é necessário código como o seguinte:
+<a id="hevea_default27"></a></p><div class="center">
+<table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" >
+<table class="lstframe" style="padding:1ex;background-color:#BCD3E5;"><tr><td class="myclisting"><span style="font-weight:bold"><span style="color:black">struct</span></span> <span style="color:#007F00">ListaDeInteiros</span> *<span style="color:blue">p</span> =
+   <span style="color:blue">malloc</span>(<span style="font-weight:bold"><span style="color:black">sizeof</span></span>(<span style="font-weight:bold"><span style="color:black">struct</span></span> <span style="color:#007F00">ListaDeInteiros</span>))
+   <span style="color:blue">p</span>-&gt;<span style="color:blue">elem</span> = 1;       <span style="color:blue">p</span>-&gt;<span style="color:blue">r</span> = <span style="color:blue">malloc</span>(<span style="font-weight:bold"><span style="color:black">sizeof</span></span>(<span style="font-weight:bold"><span style="color:black">struct</span></span> <span style="color:#007F00">ListaDeInteiros</span>))
+   <span style="color:blue">p</span>-&gt;<span style="color:blue">r</span>-&gt;<span style="color:blue">elem</span> = 2;    <span style="color:blue">p</span>-&gt;<span style="color:blue">r</span>-&gt;<span style="color:blue">r</span> = <span style="color:blue">malloc</span>(<span style="font-weight:bold"><span style="color:black">sizeof</span></span>(<span style="font-weight:bold"><span style="color:black">struct</span></span> <span style="color:#007F00">ListaDeInteiros</span>))
+   <span style="color:blue">p</span>-&gt;<span style="color:blue">r</span>-&gt;<span style="color:blue">r</span>-&gt;<span style="color:blue">elem</span> = 3; <span style="color:blue">p</span>-&gt;<span style="color:blue">r</span>-&gt;<span style="color:blue">r</span>-&gt;<span style="color:blue">r</span> = <span style="color:blue">NULL</span></td></tr>
+</table></td></tr>
+</table>
+</div><p>Em <span style="font-family:monospace">Haskell</span>, o acesso a um valor <code><span style="color:blue">v</span></code>, em uma lista <code><span style="color:blue">x</span></code>, requer acesso a
+todos os elementos anteriores a <code><span style="color:blue">v</span></code> em <code><span style="color:blue">x</span></code>. De fato, a representação interna de listas definidas em <span style="font-family:monospace">Haskell</span>é feita por meio de ponteiros, mas a manipulação de ponteiros é gerada automaticamente pelo compilador da linguagem, de acordo com o código do programa, em vez de ser feita diretamente pelo programador.</p><p>Uma maneira alternativa de representar listas é por meio de <em>arranjos</em>, 
+especialmente em uma linguagem (como <span style="font-family:monospace">C</span>) que não provê suporte a
+manipulação de valores de estruturas de dados recursivas. Utilizando essa forma de representação, a lista fica limitada a um número máximo de elementos, já que a defição de uma arranjo requer que o número de elementos do mesmo seja especificado a priori.</p>
+<!--TOC subsection id=sec21 Pesquisa-->
+<h3 id="sec21" class="subsection">3.1.1  Pesquisa</h3><!--SEC END --><p>
+<a id="sec:pesquisa-em-lista"></a></p><p>Em computação, <em>pesquisar</em> em geral significa determinar se um
+dado elemento está presente ou não em uma estrutura de dados. As
+subseções seguintes tratam de operações de pesquisa, inserção e
+remoção de elementos de listas, de acordo com a forma com que listas
+são representadas.</p><p>Em ambos os casos apresentados abaixo, a pesquisa em uma lista de <span style="font-style:italic">n</span>
+elementos tem complexidade <span style="font-style:italic">O</span>(<span style="font-style:italic">n</span>) no pior caso, pois envolve, possivelmente, comparação com cada elemento da lista.</p>
+<!--TOC subsubsection id=sec22 Versão funcional-->
+<h4 id="sec22" class="subsubsection">3.1.1.1  Versão funcional</h4><!--SEC END --><p>A função <code><span style="color:blue">elem</span></code>, que determina se um dado valor é elemento de uma lista dada, pode ser definida como a seguir:
+<a id="hevea_default28"></a></p><div class="center">
+<table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" >
+<table class="lstframe" style="padding:1ex;background-color:#BCD3E5;"><tr><td class="myclisting"><span style="color:#007F00">elem</span> :: <span style="font-weight:bold"><span style="color:black">Eq</span></span> <span style="color:blue">a</span> =&gt; <span style="color:blue">a</span> -&gt; <span style="color:blue">a</span> -&gt; <span style="font-weight:bold"><span style="color:black">Bool</span></span>
+<span style="color:#007F00">elem</span> <span style="color:blue">a</span> []    = <span style="font-weight:bold"><span style="color:black">False</span></span>
+<span style="color:#007F00">elem</span> <span style="color:blue">a</span> (<span style="color:blue">b</span>:<span style="color:blue">x</span>) = (<span style="color:blue">a</span> == <span style="color:blue">b</span>) || <span style="color:#007F00">elem</span> <span style="color:blue">a</span> <span style="color:blue">x</span></td></tr>
+</table></td></tr>
+</table>
+</div><p>O tipo de <code><span style="color:blue">elem</span></code>, em <span style="font-family:monospace">Haskell</span>, é um tipo <em>polimórfico restrito</em>: a restrição (<em>constraint</em>) (<code><span style="font-weight:bold"><span style="color:black">Eq</span></span></code><code> </code><code><span style="color:blue">a</span></code>) indica que a variável de tipo <code><span style="color:blue">a</span></code>
+não pode ser instanciada para qualquer tipo, mas apenas para um tipo
+que é membro da classe de tipos <code><span style="font-weight:bold"><span style="color:black">Eq</span></span></code>, ou seja, no caso, apenas para um
+tipo para o qual exista definida uma operação de igualdade <code>(==)</code>, para
+valores desse tipo. É um erro de tipo chamar a função <code><span style="color:blue">elem</span></code> com um argumento de um tipo para o qual não é definida comparação de igualdade.</p><hr style="height:2"><p><em>Nota</em>: </p><p>A função <code><span style="color:blue">elem</span></code>, de fato, faz parte do módulo <span style="font-style:italic">Prelude</span>, importado
+automaticamente por todos os módulos de programas <span style="font-family:monospace">Haskell</span>, sem necessidade de comando ou cláusula explícita de importação. A definição de <code><span style="color:blue">elem</span></code> no <span style="font-style:italic">Prelude</span> é diferente da apresentada acima, e usa outras funções também definidas no <span style="font-style:italic">Prelude</span>, como <code><span style="color:blue">mmap</span></code> e <code><span style="color:blue">foldr</span></code>, que são ferramentas importantes para definição de outras funções em Haskell. A definição de <code><span style="color:blue">elem</span></code> contida no <span style="font-style:italic">Prelude</span> é apresentada a seguir:</p><div class="center">
+<table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" >
+<table class="lstframe" style="padding:1ex;background-color:#BCD3E5;"><tr><td class="myclisting">
+<span style="color:#007F00">foldr</span>  :: (<span style="color:blue">a</span> -&gt; <span style="color:blue">b</span> -&gt; <span style="color:blue">b</span>) -&gt; <span style="color:blue">b</span> -&gt; [<span style="color:blue">a</span>] -&gt; <span style="color:blue">b</span>
+<span style="color:#007F00">foldr</span> <span style="color:blue">f</span> <span style="color:blue">z</span> []    =  <span style="color:blue">z</span>
+<span style="color:#007F00">foldr</span> <span style="color:blue">f</span> <span style="color:blue">z</span> (<span style="color:blue">a</span>:<span style="color:blue">x</span>) =  <span style="color:blue">f</span> <span style="color:blue">a</span> (<span style="color:#007F00">foldr</span> <span style="color:blue">f</span> <span style="color:blue">z</span> <span style="color:blue">x</span>)
+
+<span style="color:#007F00">mmap</span> :: (<span style="color:blue">a</span> -&gt; <span style="color:blue">b</span>) -&gt; [<span style="color:blue">a</span>] -&gt; [<span style="color:blue">b</span>]
+<span style="color:#007F00">mmap</span> _  []   = []
+<span style="color:#007F00">mmap</span> <span style="color:blue">f</span> (<span style="color:blue">a</span>:<span style="color:blue">x</span>) = <span style="color:blue">f</span> <span style="color:blue">a</span> : <span style="color:#007F00">mmap</span> <span style="color:blue">f</span> <span style="color:blue">x</span>
+
+<span style="color:#007F00">and</span>, <span style="color:#007F00">or</span> :: [<span style="font-weight:bold"><span style="color:black">Bool</span></span>] -&gt; <span style="font-weight:bold"><span style="color:black">Bool</span></span>
+<span style="color:#007F00">and</span> =  <span style="color:#007F00">foldr</span> (&amp;&amp;) <span style="font-weight:bold"><span style="color:black">True</span></span>
+<span style="color:#007F00">or</span>   =  <span style="color:#007F00">foldr</span> (||) <span style="font-weight:bold"><span style="color:black">False</span></span>
+
+<span style="color:#007F00">any</span>, <span style="color:#007F00">all</span> :: (<span style="color:blue">a</span> -&gt; <span style="font-weight:bold"><span style="color:black">Bool</span></span>) -&gt; [<span style="color:blue">a</span>] -&gt; <span style="font-weight:bold"><span style="color:black">Bool</span></span>
+<span style="color:#007F00">any</span> <span style="color:blue">p</span> =  <span style="color:#007F00">or</span> . <span style="color:blue">map</span> <span style="color:blue">p</span>
+<span style="color:#007F00">all</span> <span style="color:blue">p</span> =  <span style="color:#007F00">and</span> . <span style="color:blue">map</span> <span style="color:blue">p</span>
+
+<span style="color:#007F00">elem</span> :: (<span style="font-weight:bold"><span style="color:black">Eq</span></span> <span style="color:blue">a</span>) =&gt; <span style="color:blue">a</span> -&gt; [<span style="color:blue">a</span>] -&gt; <span style="font-weight:bold"><span style="color:black">Bool</span></span>
+<span style="color:#007F00">elem</span> <span style="color:blue">a</span> = <span style="color:#007F00">any</span> (== <span style="color:blue">a</span>)</td></tr>
+</table></td></tr>
+</table>
+</div><hr style="height:2">
+<!--TOC subsubsection id=sec23 Versão imperativa-->
+<h4 id="sec23" class="subsubsection">3.1.1.2  Versão imperativa</h4><!--SEC END --><p>A versão imperativa de <code><span style="color:blue">elem</span></code> definida a seguir recebe como argumento o valor a ser pesquisado, denotado pelo parâmetro <code><span style="color:blue">a</span></code>, juntamente com um apontador para uma lista (de tipo <code><span style="color:blue">ListaDeInteiros</span></code>), denotado pelo parâmetro <code><span style="color:blue">l</span></code>. O algoritmo retorna retorna um apontador para o elemento da lista <code><span style="color:blue">l</span></code> que é igual a <code><span style="color:blue">a</span></code>, caso o argumento esteja presente na lista, e retorna <code><span style="color:blue">NULL</span></code> em caso contrário.
+<a id="hevea_default29"></a></p><div class="center">
+<table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" >
+<table class="lstframe" style="padding:1ex;background-color:#BCD3E5;"><tr><td class="myclisting"><span style="color:#007F00">elem</span> (<span style="color:blue">a</span>, <span style="color:blue">l</span>)
+   <span style="font-weight:bold"><span style="color:black">while</span></span> (<span style="color:blue">l</span> != <span style="color:blue">NULL</span> &amp;&amp; <span style="color:blue">l</span>-&gt;<span style="color:#007F00">elem</span> != <span style="color:blue">a</span>) <span style="color:blue">l</span> = <span style="color:blue">l</span>-&gt;<span style="color:blue">r</span>
+   <span style="font-weight:bold"><span style="color:black">return</span></span> <span style="color:blue">l</span></td></tr>
+</table></td></tr>
+</table>
+</div>
+<!--TOC subsection id=sec24 Inserção-->
+<h3 id="sec24" class="subsection">3.1.2  Inserção</h3><!--SEC END --><p>
+<a id="sec:insercao-em-lista"></a></p><p>Inserir um elemento no início de uma lista é uma operação de
+complexidade <span style="font-style:italic">O</span>(1).</p>
+<!--TOC subsubsection id=sec25 Versão funcional-->
+<h4 id="sec25" class="subsubsection">3.1.2.1  Versão funcional</h4><!--SEC END --><p>A inserção de um elemento no início da lista é feita simplesmente, por meio do construtor de lista <code>(:)</code>, ou seja:
+<a id="hevea_default30"></a></p><div class="center">
+
+<table class="lstframe" style="padding:1ex;background-color:#BCD3E5;"><tr><td class="myclisting"><span style="color:#007F00">insert</span> = (:)</td></tr>
+</table></div>
+<!--TOC subsubsection id=sec26 Versão imperativa-->
+<h4 id="sec26" class="subsubsection">3.1.2.2  Versão imperativa</h4><!--SEC END --><p>Na versão imperativa, é alocado um novo registro, de tipo <code><span style="color:blue">ListaDeInteiros</span></code>,
+para armazenar o novo valor a ser inserido na lista, sendo retornada a lista resultante dessa operação.
+<a id="hevea_default31"></a></p><div class="center">
+<table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" >
+<table class="lstframe" style="padding:1ex;background-color:#BCD3E5;"><tr><td class="myclisting"><span style="color:#007F00">insert</span> (<span style="color:blue">a</span>, <span style="color:blue">l</span>)
+   <span style="color:blue">p</span> = <span style="color:blue">malloc</span>(<span style="font-weight:bold"><span style="color:black">sizeof</span></span>(<span style="font-weight:bold"><span style="color:black">struct</span></span> <span style="color:blue">ListaDeInteiros</span>))
+   <span style="color:blue">p</span>-&gt;<span style="color:blue">elem</span> = <span style="color:blue">a</span>
+   <span style="color:blue">p</span>-&gt;<span style="color:blue">r</span> = <span style="color:blue">l</span>
+   <span style="font-weight:bold"><span style="color:black">return</span></span> <span style="color:blue">p</span></td></tr>
+</table></td></tr>
+</table>
+</div>
+<!--TOC subsection id=sec27 Remoção-->
+<h3 id="sec27" class="subsection">3.1.3  Remoção</h3><!--SEC END --><p>
+<a id="sec:remocao-de-lista"></a></p><p>Remover um elemento de uma lista é uma operação de complexidade <span style="font-style:italic">O</span>(<span style="font-style:italic">n</span>)
+no pior caso, pois é necessário procurar o elemento a ser removido.</p><p>A Seção <a href="#sec%3Alista-duplamente-encadeada">3.1.4</a> redefine o tipo de lista
+encadeada para uma versão de listas duplamente encadeadas, e reescreve
+as funções <code><span style="color:blue">elem</span></code> e <code><span style="color:blue">insert</span></code>, para definir <code><span style="font-weight:bold"><span style="color:black">delete</span></span></code> por meio de uma
+chamada à função <code><span style="color:blue">elem</span></code>, seguida de chamada a <code><span style="color:blue">insert</span></code>.</p>
+<!--TOC subsubsection id=sec28 Versão funcional-->
+<h4 id="sec28" class="subsubsection">3.1.3.1  Versão funcional</h4><!--SEC END --><p>A versão funcional cria uma nova lista, que não tem o elemento
+passado como parâmetro:
+<a id="hevea_default32"></a></p><div class="center">
+<table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" >
+<table class="lstframe" style="padding:1ex;background-color:#BCD3E5;"><tr><td class="myclisting"><span style="color:#007F00">delete</span> :: <span style="font-weight:bold"><span style="color:black">Eq</span></span> <span style="color:blue">a</span> =&gt; <span style="color:blue">a</span> -&gt; [<span style="color:blue">a</span>] -&gt; [<span style="color:blue">a</span>]
+<span style="color:#007F00">delete</span> _ [] = []
+<span style="color:#007F00">delete</span> <span style="color:blue">a</span> (<span style="color:blue">b</span>:<span style="color:blue">x</span>)
+   | <span style="color:blue">a</span> == <span style="color:blue">b</span>    = <span style="color:blue">x</span>
+   | <span style="font-weight:bold"><span style="color:black">otherwise</span></span> = <span style="color:blue">b</span>:<span style="color:#007F00">delete</span> <span style="color:blue">a</span> <span style="color:blue">x</span></td></tr>
+</table></td></tr>
+</table>
+</div>
+<!--TOC subsubsection id=sec29 Versão imperativa-->
+<h4 id="sec29" class="subsubsection">3.1.3.2  Versão imperativa</h4><!--SEC END --><p>A versão imperativa de <code><span style="font-weight:bold"><span style="color:black">delete</span></span></code>, apresentada a seguir, não cria uma nova lista: usa um ponteiro &#X2013; <code><span style="color:blue">prev</span></code> &#X2013; para percorrer a lista até encontrar o elemento a ser removido e, quando este é encontrado, modifica a estrutura de encadeamento da lista, removendo este elemento. </p><div class="center">
+<table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" >
+<table class="lstframe" style="padding:1ex;background-color:#BCD3E5;"><tr><td class="myclisting"><span style="color:#007F00">delete</span> (<span style="color:blue">a</span>, <span style="color:blue">l</span>)
+   <span style="font-weight:bold"><span style="color:black">struct</span></span> <span style="color:blue">ListaDeInteiros</span> *<span style="color:blue">prev</span> = <span style="color:blue">NULL</span>;
+   *<span style="color:blue">p</span> = <span style="color:blue">l</span>
+   <span style="font-weight:bold"><span style="color:black">while</span></span> (<span style="color:blue">p</span> != <span style="color:blue">NULL</span> &amp;&amp; <span style="color:blue">p</span>-&gt;<span style="color:blue">elem</span> != <span style="color:blue">a</span>)
+      <span style="color:blue">prev</span> = <span style="color:blue">p</span>
+      <span style="color:blue">p</span> = <span style="color:blue">p</span>-&gt;<span style="color:blue">r</span>
+      <span style="font-weight:bold"><span style="color:black">if</span></span> (<span style="color:blue">prev</span> == <span style="color:blue">NULL</span>)
+         <span style="font-weight:bold"><span style="color:black">return</span></span> <span style="color:blue">l</span>-&gt;<span style="color:blue">r</span>
+      <span style="font-weight:bold"><span style="color:black">else</span></span> { <span style="color:blue">prev</span>-&gt;<span style="color:blue">r</span> = <span style="color:blue">p</span>-&gt;<span style="color:blue">r</span>; <span style="font-weight:bold"><span style="color:black">return</span></span> <span style="color:blue">l</span> }</td></tr>
+</table></td></tr>
+</table>
+</div>
+<!--TOC subsection id=sec30 Lista duplamente encadeada-->
+<h3 id="sec30" class="subsection">3.1.4  Lista duplamente encadeada</h3><!--SEC END --><p>
+<a id="sec:lista-duplamente-encadeada"></a></p><p>&#X2026;&#X2026;.....</p>
+<!--TOC subsection id=sec31 Pilha-->
+<h3 id="sec31" class="subsection">3.1.5  Pilha</h3><!--SEC END --><p>
+<a id="sec:pilha"></a>
+<a id="hevea_default33"></a></p><p>Uma estrutura de dados <em>Pilha</em> caracteriza-se pelo fato de que as operações de inserção, acesso e remoção de elementos são feitas em apenas
+um de seus lados (ou extremidades). Essa política de uso é comumente chamada LIFO (do inglês, <em>last-in first-out</em>: o último a ser inserido é o primeiro a ser removido da pilha. Discutimos, a seguir, a implementação de uma Pilha, com as operações: i) criar pilha vazia, ii) empilhar elemento, iii) desempilhar elemento, iv) obter elemento do topo da pilha, e v) testar se pilha está vazia. É fácil ver que a ordem de complexidade de tempo de cada uma dessas operações é <span style="font-style:italic">O</span>(1).</p>
+<!--TOC subsubsection id=sec32 Versão funcional-->
+<h4 id="sec32" class="subsubsection">3.1.5.1  Versão funcional</h4><!--SEC END --><p>
+<a id="hevea_default34"></a>
+Em <span style="font-family:monospace">Haskell</span>, a implementação de <code><span style="color:blue">Pilha</span></code> é obtida diretamente das operações definidas sobre listas, isto é:</p><div class="center">
+<table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" >
+<table class="lstframe" style="padding:1ex;background-color:#BCD3E5;"><tr><td class="myclisting"><span style="color:#007F00">vazia</span> = []
+<span style="color:#007F00">empilhar</span> = (:)
+<span style="color:#007F00">desempilhar</span> (_:<span style="color:blue">x</span>) = <span style="color:blue">x</span>
+<span style="color:#007F00">topo</span> (<span style="color:blue">a</span>:_) = <span style="color:blue">a</span>
+<span style="color:#007F00">estaVazia</span> = <span style="font-weight:bold"><span style="color:black">null</span></span></td></tr>
+</table></td></tr>
+</table>
+</div><p>Em geral, vamos procurar simplificar o código de nossos programas,
+não tratando casos de erro, por motivos didáticos. Entretanto, em programas completos, não podemos esquecer de tratar todos os casos possíveis para os dados de entrada. O módulo <a href="figPilha">Tipo abstrato Pilha</a>, a seguir, implementa esse tipo abstrato, considerando todos esses casos possíveis para os dados de entrada das operações.</p><p>O módulo <code><span style="color:blue">Pilha</span></code> implementa o que é chamado em computação de um <em>tipo abstrato de dados</em>, que é um tipo com operações de criação,
+modificação e consulta sobre valores desse tipo. Por exemplo, <code><span style="color:blue">vazia</span></code> é uma operação de criação (nesse caso, a única);
+<code><span style="color:blue">empilhar</span></code> e <code><span style="color:blue">desempilhar</span></code> são operações de modificação; <code><span style="color:blue">topo</span></code> e <code><span style="color:blue">estaVazia</span></code> são operações de consulta. </p><p>Em uma definição de um tipo abstrato de dados, a definição de tipo e das operações (para criação, modificação e consulta) sobre valores
+do tipo devem ser contidas em um mesmo trecho de programa (em geral,
+um módulo), e a representação usada não é &#X201C;visível&#X201D; para quem usa valores do tipo. Ou seja, um tipo abstrato é constituído de um tipo, munido de um conjunto de operações sobre valores desse tipo. Qualquer outra operação sobre valores do tipo apenas pode ser implementada por meio dessas operações previamente definidas.</p><p>Para definir um tipo abstrato <code><span style="color:blue">Pilha</span></code>, em <span style="font-family:monospace">Haskell</span>, usamos uma definição de um novo tipo, introduzida pela palavra-chave <code><span style="font-weight:bold"><span style="color:black">newtype</span></span></code>. O tipo <code><span style="color:blue">Pilha</span></code> possui um único construtor de valores <code><span style="color:blue">mkPilha</span></code> (de mesmo nome do construtor de tipo). Esse mecanismo é usado para ocultar a representação do tipo abstrato: o construtor de que não é exportado pelo módulo em que o tipo é definido: o construtor de valores <code><span style="color:blue">mkPilha</span></code> não é exportado, apenas o construtor de tipos <code><span style="color:blue">Pilha</span></code>. Para melhor legibilidade, definimos também o tipo de cada uma das funções. Veja o código a seguir.
+<a id="hevea_default35"></a></p><div class="center">
+<table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" ><div class="center">Listing 3.1: <a id="figPilha"></a>Tipo abstrato Pilha</div><br>
+<table class="lstframe" style="padding:1ex;background-color:#BCD3E5;"><tr><td class="myclisting">
+<span style="font-weight:bold"><span style="color:black">module</span></span> <span style="color:#007F00">Pilha</span> (<span style="color:#007F00">Pilha</span>, <span style="color:#007F00">vazia</span>, <span style="color:#007F00">empilhar</span>, <span style="color:#007F00">desempilhar</span>, <span style="color:#007F00">topo</span>, <span style="color:#007F00">estaVazia</span>) <span style="font-weight:bold"><span style="color:black">where</span></span>
+   <span style="font-weight:bold"><span style="color:black">newtype</span></span> <span style="color:#007F00">Pilha</span> <span style="color:blue">a</span> = <span style="color:blue">mkPilha</span> [<span style="color:blue">a</span>]
+
+   <span style="color:#007F00">vazia</span> :: <span style="color:#007F00">Pilha</span> <span style="color:blue">$a</span>
+   <span style="color:#007F00">vazia</span> = <span style="color:blue">mkPilha</span> []
+
+   <span style="color:#007F00">empilhar</span> :: <span style="color:blue">a</span> -&gt; <span style="color:#007F00">Pilha</span> <span style="color:blue">a</span> -&gt; <span style="color:#007F00">Pilha</span> <span style="color:blue">a</span>
+   <span style="color:#007F00">empilhar</span> <span style="color:blue">e</span> (<span style="color:blue">mkPilha</span> <span style="color:blue">p</span>) = <span style="color:#007F00">Pilha</span> (<span style="color:blue">e</span>:<span style="color:blue">p</span>)
+
+   <span style="color:#007F00">desempilhar</span> :: <span style="color:#007F00">Pilha</span> <span style="color:blue">a</span> -&gt; <span style="color:#007F00">Pilha</span> <span style="color:blue">a</span>
+   <span style="color:#007F00">desempilhar</span> (<span style="color:blue">mkPilha</span> [])    = <span style="font-weight:bold"><span style="color:black">error</span></span> "Função desempilhar chamada com pilha vazia"
+   <span style="color:#007F00">desempilhar</span> (<span style="color:blue">mkPilha</span> (_:<span style="color:blue">p</span>)) = <span style="color:blue">mkPilha</span> <span style="color:blue">p</span>
+
+   <span style="color:#007F00">topo</span>:: <span style="color:#007F00">Pilha</span> <span style="color:blue">a</span> -&gt; <span style="color:blue">a</span>
+   <span style="color:#007F00">topo</span> (<span style="color:blue">mkPilha</span> [])    = <span style="font-weight:bold"><span style="color:black">error</span></span> "Função topo chamada com pilha vazia"
+   <span style="color:#007F00">topo</span> (<span style="color:blue">mkPilha</span> (<span style="color:blue">e</span>:_)) = <span style="color:blue">e</span>
+
+   <span style="color:#007F00">estaVazia</span>:: <span style="color:#007F00">Pilha</span> <span style="color:blue">a</span> -&gt; <span style="font-weight:bold"><span style="color:black">Bool</span></span>
+   <span style="color:#007F00">estaVazia</span> (<span style="color:blue">mkPilha</span> <span style="color:blue">p</span>) = <span style="font-weight:bold"><span style="color:black">null</span></span> <span style="color:blue">p</span></td></tr>
+</table></td></tr>
+</table>
+</div>
+<!--TOC subsubsection id=sec33 Versão imperativa-->
+<h4 id="sec33" class="subsubsection">3.1.5.2  Versão imperativa</h4><!--SEC END --><p>
+<a id="hevea_default36"></a>
+Na versão imperativa, consideramos uma <code><span style="color:blue">pilha</span></code> representada como um registro com dois campos: &#X2208;topo e <code><span style="color:blue">elems</span></code>, sendo <code><span style="color:blue">elems</span></code> um arranjo de <span style="font-style:italic">n</span> elementos (indexado de 0 a <span style="font-style:italic">n</span><span style="font-family:monospace">-1</span>), e <code><span style="color:blue">topo</span></code> uma variável inteira, que indica o índice do último elemento inserido. As operações sobre a <code><span style="color:blue">pilha</span></code> podem ser implementadas como a seguir (desconsiderando-se os casos de erro: desempilhar de uma pilha vazia e empilhar em uma pilha cheia).</p><div class="center">
+<table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" >
+<table class="lstframe" style="padding:1ex;background-color:#BCD3E5;"><tr><td class="myclisting"><span style="color:#007F00">vazia</span> (<span style="color:blue">pilha</span>) { <span style="color:blue">pilha</span>.<span style="color:#007F00">topo</span> = -1 }
+
+<span style="color:#007F00">empilhar</span> (<span style="color:blue">e</span>, <span style="color:blue">pilha</span>)
+   <span style="font-weight:bold"><span style="color:black">with</span></span> <span style="color:blue">pilha</span> { <span style="color:#007F00">topo</span> = <span style="color:#007F00">topo</span> + 1; <span style="color:blue">elems</span>[<span style="color:#007F00">topo</span>] = <span style="color:blue">e</span> }
+
+<span style="color:#007F00">desempilhar</span> (<span style="color:blue">pilha</span>)
+   <span style="font-weight:bold"><span style="color:black">with</span></span> <span style="color:blue">pilha</span> { <span style="color:#007F00">topo</span> = <span style="color:#007F00">topo</span> - 1 }
+
+<span style="color:#007F00">topo</span> (<span style="color:blue">pilha</span>)
+   <span style="font-weight:bold"><span style="color:black">with</span></span> <span style="color:blue">pilha</span> { <span style="font-weight:bold"><span style="color:black">return</span></span> <span style="color:blue">elems</span>[<span style="color:#007F00">topo</span>] }
+
+<span style="color:#007F00">estaVazia</span> (<span style="color:blue">pilha</span>) { <span style="font-weight:bold"><span style="color:black">return</span></span> <span style="color:blue">pilha</span>.<span style="color:#007F00">topo</span> == -1 }</td></tr>
+</table></td></tr>
+</table>
+</div><p>O comando <code><span style="font-weight:bold"><span style="color:black">with</span></span></code>, usado no código acima, serve para tornar visíveis os nomes de campos de um registro: <code><span style="font-weight:bold"><span style="color:black">with</span></span></code><code> </code><code><span style="color:blue">r</span></code> evita que se tenha que prefixar os nomes dos campos do registro inar com o nome do registro.
+</p>
+<!--TOC subsection id=sec34 Fila-->
+<h3 id="sec34" class="subsection">3.1.6  Fila</h3><!--SEC END --><p>
+<a id="sec:fila"></a>
+<a id="hevea_default37"></a>
+Em uma <em>Fila</em>, a inserção é feita de um lado e a remoção é feita do
+lado oposto da estrutura de dados &#X2013; política de uso algumas
+vezes chamada de FIFO (<em>first-in first-out</em>: o primeiro a ser
+inserido é o primeiro a ser removido da fila.</p><p>Uma fila, com operações de i) criar fila vazia, ii) entrar (inserir
+elemento) na fila, iii) sair (tirar elemento) da fila, iv) obter
+primeiro elemento da fila, e v) testar se fila está vazia, pode ser
+implementada como se mostra a seguir.</p>
+<!--TOC subsubsection id=sec35 Versão funcional-->
+<h4 id="sec35" class="subsubsection">3.1.6.1  Versão funcional</h4><!--SEC END --><p>
+<a id="hevea_default38"></a>
+Não é eficiente fazer acesso ao último elemento de uma lista em
+Haskell. Por isso, a implementação padrão de filas por meio de listas usa 
+duas listas, <code><span style="color:blue">frente</span></code> e <code><span style="color:blue">tras</span></code>: elementos entram na lista <code><span style="color:blue">tras</span></code> e saem da lista <code><span style="color:blue">frente</span></code>. A função <code><span style="color:blue">fila</span></code> é usada na definição de <code><span style="color:blue">entrar</span></code>, para garantir o invariante de que, se <code><span style="color:blue">frente</span></code> está vazia, então <code><span style="color:blue">tras</span></code> está vazia (e, portanto, a fila está vazia).</p><div class="center">
+<table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" >
+<table class="lstframe" style="padding:1ex;background-color:#BCD3E5;"><tr><td class="myclisting"><span style="color:#007F00">vazia</span> = ([],[])
+
+<span style="color:#007F00">entrar</span> <span style="color:blue">e</span> (<span style="color:blue">frente</span>,<span style="color:blue">tras</span>) = <span style="color:#007F00">fila</span> (<span style="color:blue">frente</span>, <span style="color:blue">e</span>:<span style="color:blue">tras</span>)
+
+<span style="color:#007F00">fila</span> ([], <span style="color:blue">tras</span>) = (<span style="font-weight:bold"><span style="color:black">reverse</span></span> <span style="color:blue">tras</span>, [])
+<span style="color:#007F00">fila</span> <span style="color:blue">f</span>          = <span style="color:blue">f</span>
+
+<span style="color:#007F00">sair</span> (<span style="color:blue">e</span>:<span style="color:blue">frente</span>, <span style="color:blue">tras</span>) = (<span style="color:blue">frente</span>,<span style="color:blue">tras</span>)
+
+<span style="color:#007F00">primeiro</span> (<span style="color:blue">e</span>:<span style="color:blue">frente</span>,_) = <span style="color:blue">e</span>
+
+<span style="color:#007F00">estaVazia</span> (<span style="color:blue">frente</span>,_)  = <span style="font-weight:bold"><span style="color:black">null</span></span> <span style="color:blue">frente</span></td></tr>
+</table></td></tr>
+</table>
+</div>
+<!--TOC subsubsection id=sec36 Versão imperativa-->
+<h4 id="sec36" class="subsubsection">3.1.6.2  Versão imperativa</h4><!--SEC END --><p>
+<a id="sec:fila-imperativa"></a>
+<a id="hevea_default39"></a></p><p>Na versão imperativa, consideramos uma <code><span style="color:blue">fila</span></code> como um registro com campos <code><span style="color:blue">inicio</span></code>, <code><span style="color:blue">fim</span></code> e <code><span style="color:blue">elems</span></code>, sendo <code><span style="color:blue">elems</span></code> um arranjo de <span style="font-style:italic">n</span> elementos (indexado de <span style="font-family:monospace">0</span> a <span style="font-style:italic">n</span><span style="font-family:monospace">-1</span>). Os índices do primeiro e do último elementos inseridos na fila são armazenados respectivamente nas variáveis <code><span style="color:blue">inicio</span></code> e <code><span style="color:blue">fim</span></code>. </p><p>A fila está vazia quando <code><span style="color:blue">inicio</span></code><code> == </code><code><span style="color:blue">fim</span></code>. A fila está cheia
+quando <code><span style="color:blue">inicio</span></code><code> == </code><code><span style="color:blue">fim</span></code><code> + 1</code>, isto é, a fila é circular: o
+índice <span style="font-family:monospace">0</span> segue o índice <span style="font-style:italic">n</span><span style="font-family:monospace">-1</span>. </p><p>As operações em uma fila podem ser implementadas como a seguir,
+desconsiderando-se casos de erro: sair de uma fila vazia e entrar em uma
+fila cheia. O operador <span style="font-family:monospace">%</span>, usado na implementação, retorna o resto da
+divisão do primeiro operando pelo segundo.</p><div class="center">
+<table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" >
+<table class="lstframe" style="padding:1ex;background-color:#BCD3E5;"><tr><td class="myclisting"><span style="color:#007F00">vazia</span> (<span style="color:#007F00">fila</span>) { <span style="font-weight:bold"><span style="color:black">with</span></span> <span style="color:#007F00">fila</span> { <span style="color:blue">inicio</span> = <span style="color:blue">fim</span> = 0 } }
+
+<span style="color:#007F00">entrar</span> (<span style="color:blue">e</span>, <span style="color:#007F00">fila</span>)
+   <span style="font-weight:bold"><span style="color:black">with</span></span> <span style="color:#007F00">fila</span>
+      <span style="color:blue">elems</span>[<span style="color:blue">fim</span>] = <span style="color:blue">e</span>
+      <span style="color:blue">fim</span> = (<span style="color:blue">fim</span> + 1) % <span style="color:blue">n</span>
+
+<span style="color:#007F00">sair</span> (<span style="color:#007F00">fila</span>) { <span style="font-weight:bold"><span style="color:black">with</span></span> <span style="color:#007F00">fila</span> { <span style="color:blue">inicio</span> = (<span style="color:blue">inicio</span> + 1) % <span style="color:blue">n</span> } }
+
+<span style="color:#007F00">primeiro</span> (<span style="color:#007F00">fila</span>) { <span style="font-weight:bold"><span style="color:black">return</span></span> <span style="color:#007F00">fila</span>.<span style="color:blue">elems</span>[<span style="color:blue">inicio</span>] }
+
+<span style="color:#007F00">estaVazia</span> (<span style="color:#007F00">fila</span>) { <span style="font-weight:bold"><span style="color:black">with</span></span> <span style="color:#007F00">fila</span> { <span style="font-weight:bold"><span style="color:black">return</span></span> <span style="color:blue">inicio</span> == <span style="color:blue">fim</span> } }</td></tr>
+</table></td></tr>
+</table>
+</div>
+<!--TOC section id=sec37 Árvores-->
+<h2 id="sec37" class="section">3.2  Árvores</h2><!--SEC END --><p>
+<a id="sec:arvores"></a>
+<a id="hevea_default40"></a></p><p>Uma árvore pode ser vista como uma estrutura de dados recursiva, definida como sendo ou i) vazia (uma folha) ou ii) um nodo contendo um elemento e um certo número de ramos (ou nodos), que contêm sub-árvores:</p><div class="center">
+<table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" >
+<table class="lstframe" style="padding:1ex;background-color:#BCD3E5;"><tr><td class="myclisting"><span style="font-weight:bold"><span style="color:black">data</span></span> <span style="color:#007F00">Tree</span> <span style="color:blue">a</span> = <span style="color:#007F00">Leaf</span> | <span style="color:#007F00">Node</span> <span style="color:blue">a</span> [<span style="color:#007F00">Tree</span> <span style="color:blue">a</span>]</td></tr>
+</table></td></tr>
+</table>
+</div><p>Na definição acima, o construtor <code><span style="color:blue">Leaf</span></code> constrói uma árvore vazia, ou folha, e o construtor <code><span style="color:blue">Node</span></code> constrói uma árvore contendo uma informação de tipo <code><span style="color:blue">a</span></code> e um lista de subárvores.</p><p>Outra possível definição considera que a informação é armazenada nas folhas, em vez de nos nodos internos:</p><div class="center">
+<table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" >
+<table class="lstframe" style="padding:1ex;background-color:#BCD3E5;"><tr><td class="myclisting"><span style="font-weight:bold"><span style="color:black">data</span></span> <span style="color:#007F00">Tree</span>' <span style="color:blue">a</span> = <span style="color:#007F00">Leaf</span>' <span style="color:blue">a</span> | <span style="color:#007F00">Node</span>' [<span style="color:#007F00">Tree</span>' <span style="color:blue">a</span>]</td></tr>
+</table></td></tr>
+</table>
+</div><p>Uma árvore com exatamente duas sub-árvores (possivelmente vazias) é chamada de árvore binária e pode ser definida como:</p><div class="center">
+<table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" >
+<table class="lstframe" style="padding:1ex;background-color:#BCD3E5;"><tr><td class="myclisting"> <span style="font-weight:bold"><span style="color:black">data</span></span> <span style="color:#007F00">BTree</span> <span style="color:blue">a</span> = <span style="color:#007F00">BLeaf</span> <span style="color:blue">a</span> | <span style="color:#007F00">BNode</span> (<span style="color:#007F00">BTree</span> <span style="color:blue">a</span>) (<span style="color:#007F00">BTree</span> <span style="color:blue">a</span>)</td></tr>
+</table></td></tr>
+</table>
+</div><p>Em linguagens que provêem suporte ao uso de ponteiros, mas não à
+definição e manipulação direta de tipos recursivos, a representação de
+árvores binárias pode ser feita com o uso de ponteiro como mostra o
+exemplo a seguir:</p><div class="center">
+<table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" >
+<table class="lstframe" style="padding:1ex;background-color:#BCD3E5;"><tr><td class="myclisting"><span style="font-weight:bold"><span style="color:black">struct</span></span> <span style="color:#007F00">ArvoreBinariaDeInteiros</span>
+     <span style="font-weight:bold"><span style="color:black">int</span></span> <span style="color:blue">elem</span>
+     <span style="font-weight:bold"><span style="color:black">struct</span></span> <span style="color:#007F00">ArvoreBinariaDeInteiros</span> *<span style="color:blue">esq</span>, <span style="color:blue">dir</span></td></tr>
+</table></td></tr>
+</table>
+</div><p>Os campos <code><span style="color:blue">esq</span></code> e <code><span style="color:blue">dir</span></code> de um nodo são ponteiros, possivelmente nulos,
+para sub-árvores.</p><p>Para árvores não binárias, pode ser usada a seguinte representação, que
+podemos chamar de <em>representação com primogênito-irmão-e-pai</em>:</p><div class="center">
+<table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" >
+<table class="lstframe" style="padding:1ex;background-color:#BCD3E5;"><tr><td class="myclisting"><span style="font-weight:bold"><span style="color:black">struct</span></span> <span style="color:#007F00">ArvoreDeInteiros</span>
+   <span style="font-weight:bold"><span style="color:black">int</span></span> <span style="color:blue">elem</span>;
+   <span style="font-weight:bold"><span style="color:black">struct</span></span> <span style="color:#007F00">ArvoreDeInteiros</span> *<span style="color:blue">primogenito</span>, <span style="color:blue">irmao</span>, <span style="color:blue">pai</span></td></tr>
+</table></td></tr>
+</table>
+</div><p>A representação da árvore da Figura <a href="#fig%3AArv1">3.1</a> é mostrada na Figura <a href="#fig%3ARep-arv1">3.2</a>.</p><blockquote class="figure"><div class="center"><hr style="width:80%;height:2"></div><p>xxxx
+</p><div class="caption"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="vertical-align:top;text-align:left;" >Figura 3.1: Árvore exemplo</td></tr>
+</table></div><p>
+<a id="fig:Arv1"></a>
+</p><div class="center"><hr style="width:80%;height:2"></div></blockquote><blockquote class="figure"><div class="center"><hr style="width:80%;height:2"></div><p>yyyyy
+</p><div class="caption"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="vertical-align:top;text-align:left;" >Figura 3.2: Representação da árvore exemplo por valor do tipo <code><span style="color:blue">ArvoreDeInteiros</span></code></td></tr>
+</table></div><p>
+<a id="fig:Rep-arv1"></a>
+</p><div class="center"><hr style="width:80%;height:2"></div></blockquote><!--CUT END -->
 <!--HTMLFOOT-->
 <!--ENDHTML-->
 <!--FOOTER-->
