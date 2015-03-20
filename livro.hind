@@ -1,13 +1,54 @@
 \begin{indexenv}
-\indexitem \insert, \@locref{hevea_default5}{1.2.1}
-\indexitem \sort, \@locref{hevea_default4}{1.2.1}
+\indexitem \ina{elem}, \@locref{hevea_default29}{3.1.1.2}
+\indexitem \ina{insert}, \@locref{hevea_default31}{3.1.2.2}
+\indexitem \ina{ListaDeInteiros}, \@locref{hevea_default27}{3.1}
+\indexitem \ina{sort}, \@locref{hevea_default25}{1.2.2}
+\indexitem \inh{Cons}, \@locref{hevea_default10}{1.2.1}, \@locref{hevea_default16}{1.2.1}
+\indexitem \inh{delete}, \@locref{hevea_default24}{1.2.1}, \@locref{hevea_default32}{3.1.3.1}
+\indexitem \inh{elem}, \@locref{hevea_default23}{1.2.1}, \@locref{hevea_default28}{3.1.1.1}
+\indexitem \inh{insert}, \@locref{hevea_default5}{1.2.1}, \@locref{hevea_default30}{3.1.2.1}
+\indexitem \inh{List}, \@locref{hevea_default9}{1.2.1}
+\indexitem \inh{Ni}l, \@locref{hevea_default11}{1.2.1}
+\indexitem \inh{Nil}, \@locref{hevea_default17}{1.2.1}
+\indexitem \inh{Pair}, \@locref{hevea_default20}{1.2.1}
+\indexitem \inh{Pilha}, \@locref{hevea_default35}{3.1.5.1}
+\indexitem \inh{perm}, \@locref{hevea_default22}{1.2.1}
+\indexitem \inh{sort}, \@locref{hevea_default4}{1.2.1}
+\indexitem \inh{sorted}, \@locref{hevea_default21}{1.2.1}
 \indexspace
 \indexitem anagrama, \@locref{hevea_default2}{1.1.1}
+\indexitem aplica\c{c}\~ao funcional, \@locref{hevea_default6}{1.2.1}
+\indexitem arvores, \@locref{hevea_default40}{3.2}
 \indexspace
+\indexitem currificação, \@locref{hevea_default19}{1.2.1}
+\indexspace
+\indexitem fila, \@locref{hevea_default37}{3.1.6}, \@locref{hevea_default38}{3.1.6.1}, \@locref{hevea_default39}{3.1.6.2}
+\indexspace
+\indexitem invariante, \@locref{hevea_default26}{1.2.2}
+\indexspace
+\indexitem Listas, \@locref{hevea_default15}{1.2.1}
+\indexspace
+\indexitem operador\begin{indexenv}
+\indexitem bin\'ario, \@locref{hevea_default7}{1.2.1}
+\end{indexenv}
 \indexitem ordena\c{c}\~ao, \@locref{hevea_default0}{1.1}
 \begin{indexenv}
 \indexitem por inser\c{c}\~ao, \@locref{hevea_default3}{1.2}
 \end{indexenv}
 \indexspace
 \indexitem permuta\c{c}\~ao, \@locref{hevea_default1}{1.1.1}
+\indexitem pilha, \@locref{hevea_default33}{3.1.5}, \@locref{hevea_default34}{3.1.5.1}, \@locref{hevea_default36}{3.1.5.2}
+\indexitem polimorfismo, \@locref{hevea_default13}{1.2.1}
+\indexspace
+\indexitem soma\begin{indexenv}
+\indexitem disjunta, \@locref{hevea_default18}{1.2.1}
+\end{indexenv}
+\indexspace
+\indexitem Tipo\begin{indexenv}
+\indexitem polimórfico, \@locref{hevea_default14}{1.2.1}
+\indexitem recursivo, \@locref{hevea_default8}{1.2.1}
+\end{indexenv}
+\indexitem Tipo de dado\begin{indexenv}
+\indexitem algébrico, \@locref{hevea_default12}{1.2.1}
+\end{indexenv}
 \end{indexenv}

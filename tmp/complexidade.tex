@@ -1,3 +1,4 @@
+%!TEX encoding = ISO-8859-1
 \chapter{Complexidade}
 \label{Complexidade}
 
@@ -549,16 +550,16 @@ da ordem de $(2^{10})^{k/3} = 2^{10 \times (k/3)} = 2^{(10/3)\times
 
 Solução:
 
-\begin{description}
+\begin{enumerate}[[\textbf{1}]
 
-\item[1] $1 \asymp n^{\frac{1}{lg n}}$
+\item $1 \asymp n^{\frac{1}{lg n}}$
 
 Isso pode ser mostrado tomando $lg$ de $n^{\frac{1}{lg n}}$. Temos que
 $lg (n^{\frac{1}{lg n}}) = (\frac{1}{lg n}) \times lg n = 1$ (e
 portanto $n^{\frac{1}{lg n}} = 2$).  
 Logo, $1 \asymp n^{\frac{1}{lg n}}$.
 
-\item[2] $1 \prec lg (lg^* n)$
+\item $1 \prec lg (lg^* n)$
 
 Direto. Pois $1 \prec lg (lg^* n)$ decorre de $1 < 2 * lg (lg^* 4)$
 --- pela definição das relações $(\prec)$ e $O$, tomando $n_0 = 4, c = 2$ e usando o
@@ -567,7 +568,7 @@ quando $n$ cresce. O que é válido pois:
  $1 < 2 * lg (lg^* 4)$ é o mesmo que
  $1 < 2 * lg 2$, ou seja, $1 < 2$.
 
-\item[3] $lg (lg^* n) \prec lg^* n$
+\item $lg (lg^* n) \prec lg^* n$
 
 Seja $m = lg^* n$. Temos então que provar: $lg m \prec m$.
 
@@ -608,17 +609,17 @@ relação a $x$, temos: $e^y (\frac{dy}{dx}) = 1$, ou seja,
 {\em Fim de Nota\/} 
 \HRule
 
-\item[4] $lg^* n \asymp lg^* (lg n)$
+\item $lg^* n \asymp lg^* (lg n)$
 
 Veja a variação de valores da função $lg^*$ (veja explicação acima). A
 diferença entre $lg^* n$ e $lg^* (lg n)$ é $1$, ou seja, $lg^* (lg n)
 = (lg^* n) - 1$.
 
-\item[5] $lg^* n \prec 2^{lg^* n}$
+\item $lg^* n \prec 2^{lg^* n}$
 
 Consequência de $m \prec 2^m$ (fazendo $m = lg^* n$). 
 
-\item[6] $2^{lg^* n} \prec lg (lg n)$
+\item $2^{lg^* n} \prec lg (lg n)$
 
 Para poder comparar mais facilmente, eliminamos a exponenciação
 tomando o logaritmo (aplicando $lg$) aos dois lados. Obtemos: $lg^* n
@@ -628,28 +629,28 @@ $n$, e como $lg 2^i = i$, com $n$ a partir de $n_5 = 2^{2^{2^{2^2}}}$,
 para o qual $lg^* n_5 = 5$ e $lg (lg (lg n_5)) = 2^{2^2} = 16$,
 teremos sempre $lg^* n$ menor que $lg(lg(lg n))$.
 
-\item[7] $lg (lg n) \prec \sqrt{lg n}$
+\item $lg (lg n) \prec \sqrt{lg n}$
 
 Com $lg n = m$ obtemos $lg m \prec m^{\frac{1}{2}}$, que é
 consequência de (\ref{lim-poli-sobre-exp}).
 
-\item[8] $\sqrt{lg n} \prec lg n$
+\item $\sqrt{lg n} \prec lg n$
 
 Com $lg n = m$ obtemos $\sqrt m \prec m$, o que é verdadeiro (na
 definição de O, basta escolher $n_0 = 1, c = 1$).
 
-\item[9] $lg n \prec (lg n)^2$
+\item $lg n \prec (lg n)^2$
 
 Com $lg n = m$ obtemos $m \prec m^2$, o que é verdadeiro (na definição
 de O, basta escolher $n_0 = 1, c = 1$).
 
-\item[10] $(lg n)^2 \prec 2^{\sqrt{2 lg n}}$
+\item $(lg n)^2 \prec 2^{\sqrt{2 lg n}}$
 
 Com $lg n = m$ obtemos $m^2 \prec 2^{\frac{m}{2}}$, i.e.~$4m^2 \prec 2^m$, 
 o que é consequência de $\lim_{n\rightarrow\!\infty} \frac{n^b}{a^n} = 0$, 
 para todas as constantes $a$ e $b$ tais que $a>1$. 
 
-\item[11] $2^{\sqrt{2 lg n}} \prec \sqrt{2}^{lg n}$
+\item $2^{\sqrt{2 lg n}} \prec \sqrt{2}^{lg n}$
 
 Temos: $\sqrt{2}^{lg n} = 2^{\frac{lg n}{2}}$. Assim, usando o fato de
 que, para todo $k,f,g$, $k^{f(n)} \prec k^{g(n)}$ se e somente se
@@ -657,7 +658,7 @@ $f(n) \prec g(n)$, obtemos o resultado desejado se e somente se
 $\sqrt{2 lg n} \prec \frac{lg n}{2}$, o que é verdadeiro pois
 $\sqrt{lg n} \prec lg n$.
 
-\item[12] $\sqrt{2}^{lg n} \prec n$
+\item $\sqrt{2}^{lg n} \prec n$
 
 Temos: $\sqrt{2}^{lg n}  \prec n$ se e somente se 
        $2^{\frac{lg n}{2}} \prec n$ se e somente se 
@@ -665,15 +666,15 @@ Temos: $\sqrt{2}^{lg n}  \prec n$ se e somente se
        $\sqrt{n}       \prec n$,
 o que é verdadeiro. % (na definição de $O$, basta escolher $n_0 = 4$, $c = 1$).
 
-\item[13] $2^{lg n} \asymp n$
+\item $2^{lg n} \asymp n$
 
 Aplicando $lg$, obtemos: $lg n \asymp lg n$.
 
-\item[14] $n \prec n lg n$.
+\item $n \prec n lg n$.
 
 Podemos escolher por exemplo $n_0 = 1$, $c=2$ na definição de $O$.
 
-\item[15] $n lg n \asymp lg (n!)$
+\item $n lg n \asymp lg (n!)$
 
 Usando a {\em aproximação de Stirling\/}:
 
@@ -686,19 +687,19 @@ que é assintoticamente igual a $n lg n$:
     \label{lgn-eq-nlgn}
   \end{equation}
 
-\item[16] $n lg n \prec n^2$
+\item $n lg n \prec n^2$
 
 Podemos escolher por exemplo $n_0 = 2$, $c=1$ na definição de $O$.
 
-\item[17] $n^2 \asymp 4^{lg n}$
+\item $n^2 \asymp 4^{lg n}$
 
 Pois $4^{lg n} = (2^2)^{lg n} = 2^{2^{lg n}} = 2^{2 lg n} = 2^{lg (n^2)} = n^2$. 
 
-\item[18] $n^2 \prec n^3$
+\item $n^2 \prec n^3$
 
 Podemos escolher por exemplo $n_0 = 1$, $c=2$ na definição de $O$.
 
-\item[19] $n^3 \prec (lg n)!$
+\item $n^3 \prec (lg n)!$
 
 Aplicando $lg$ a ambos os lados, obtemos $lg (n^3) \prec lg ((lg n)!)$. 
 Com $m = lg n$, obtemos: $3 m \prec lg (m!)$ (pois $lg (n^3) = 3 lg n$). 
@@ -706,7 +707,7 @@ Com $m = lg n$, obtemos: $3 m \prec lg (m!)$ (pois $lg (n^3) = 3 lg n$).
 Usando (\ref{lgn-eq-nlgn}) obtemos: $3 m \prec m lg m$, que significa
 $3 \prec lg m$, que é verdadeiro.
 
-\item[20] $(lg n)! \prec (lg n)^{lg n}$. 
+\item $(lg n)! \prec (lg n)^{lg n}$. 
 
 É equivalente a $m!\prec m^m$, com $m = lg n$. O que é verdadeiro, pois:
 
@@ -714,7 +715,7 @@ $3 \prec lg m$, que é verdadeiro.
                {m \times m \times \ldots m \times m} = 0 
   \]
   
-\item[21] $(lg n)^{lg n} \asymp n^{lg (lg n)}$
+\item $(lg n)^{lg n} \asymp n^{lg (lg n)}$
 
 Vamos usar o fato de que $log_b a^n = n log_b a$, para todo $a,b,n$.
 
@@ -726,7 +727,7 @@ Aplicando $lg$ ao lado direito, obtemos:
 
   \[ lg (n^{lg (lg n)}) = lg (lg n) \times lg n \]
 
-\item[22] $n^{lg (lg n)} \prec (\frac{3}{2})^n$
+\item $n^{lg (lg n)} \prec (\frac{3}{2})^n$
 
 Aplicando $lg$ ao lado esquerdo, obtemos: $lg n \times lg (lg n)$. 
 
@@ -745,47 +746,49 @@ O resultado é então obtido pelo fato de que:
     \label{lgprec}
   \end{equation}
 
-\item[23] $(\frac{3}{2})^n \prec 2^n$
+\item $(\frac{3}{2})^n \prec 2^n$
 
 Consequência de: $\lim_{n\rightarrow\!\infty} \frac{(\frac{3}{2})^n}{2^n} = \lim_{n\rightarrow\!\infty} (\frac{3}{4})^n = 0$.
 
-\item[24] $2^n \prec n 2^n$
+\item $2^n \prec n 2^n$
 
 Com $m = 2^n$ ($n = lg m$), obtemos: $m \prec m lg m$.
 
-\item[25] $n 2^n \prec n!$
+\item $n 2^n \prec n!$
 
 Temos: $2^n \prec n!$ e, por transitividade, uma vez que $n 2^n \prec
 2^n$, obtemos $n 2^n \prec n!$.
 
-\item[26] $n! \prec (n+1)!$
+\item $n! \prec (n+1)!$
 
 Consequência de: $(n+1)! = (n+1) \times (n!)$.
 
-\item[27] $(n+1)! \asymp n^n$
+\item $(n+1)! \asymp n^n$
 
 Aplicando $lg$ a ambos os lados, obtemos, usando (\ref{lgn-eq-nlgn}):
   $(n+1) lg (n+1) \asymp n lg n$, o que é verdadeiro.
 Obtemos o resultado usando (\ref{lgprec}).
 
-\item[28] $n^n \prec 2^{2^n}$
+\item $n^n \prec 2^{2^n}$
 
 Aplicando $lg$ a ambos os lados, obtemos, usando (\ref{lgn-eq-nlgn}):
   $n lg n \prec lg (2^n)$, o que é verdadeiro.
 Obtemos o resultado usando (\ref{lgprec}).
 
-\item[29] $2^{2^n} \prec 2^{2^{n+1}}$
+\item $2^{2^n} \prec 2^{2^{n+1}}$
 
 Temos: $2^{n+1} = 2 \times 2^n$ e portanto $2^{2^{n+1}} = 2^{2\times
   {2^n}} = 2^{2^n} \times 2^{2^n}$.
 
 \end{description}
 
-\end{enumerate}
+%\end{enumerate}
 
 \section{Exercícios}
 
 \begin{enumerate}
+
+\item  xxx
 
 \end{enumerate}
 

@@ -2,5 +2,40 @@
 \indexentry{permuta\c{c}\~ao}{\@locref{hevea_default1}{1.1.1}}
 \indexentry{anagrama}{\@locref{hevea_default2}{1.1.1}}
 \indexentry{ordena\c{c}\~ao!por inser\c{c}\~ao}{\@locref{hevea_default3}{1.2}}
-\indexentry{\sort}{\@locref{hevea_default4}{1.2.1}}
-\indexentry{\insert}{\@locref{hevea_default5}{1.2.1}}
+\indexentry{\inh{sort}}{\@locref{hevea_default4}{1.2.1}}
+\indexentry{\inh{insert}}{\@locref{hevea_default5}{1.2.1}}
+\indexentry{aplica\c{c}\~ao funcional}{\@locref{hevea_default6}{1.2.1}}
+\indexentry{operador!bin\'ario}{\@locref{hevea_default7}{1.2.1}}
+\indexentry{Tipo!recursivo}{\@locref{hevea_default8}{1.2.1}}
+\indexentry{\inh{List}}{\@locref{hevea_default9}{1.2.1}}
+\indexentry{\inh{Cons}}{\@locref{hevea_default10}{1.2.1}}
+\indexentry{\inh{Ni}l}{\@locref{hevea_default11}{1.2.1}}
+\indexentry{Tipo de dado!algébrico}{\@locref{hevea_default12}{1.2.1}}
+\indexentry{polimorfismo}{\@locref{hevea_default13}{1.2.1}}
+\indexentry{Tipo!polimórfico}{\@locref{hevea_default14}{1.2.1}}
+\indexentry{Listas}{\@locref{hevea_default15}{1.2.1}}
+\indexentry{\inh{Cons}}{\@locref{hevea_default16}{1.2.1}}
+\indexentry{\inh{Nil}}{\@locref{hevea_default17}{1.2.1}}
+\indexentry{soma!disjunta}{\@locref{hevea_default18}{1.2.1}}
+\indexentry{currificação}{\@locref{hevea_default19}{1.2.1}}
+\indexentry{\inh{Pair}}{\@locref{hevea_default20}{1.2.1}}
+\indexentry{\inh{sorted}}{\@locref{hevea_default21}{1.2.1}}
+\indexentry{\inh{perm}}{\@locref{hevea_default22}{1.2.1}}
+\indexentry{\inh{elem}}{\@locref{hevea_default23}{1.2.1}}
+\indexentry{\inh{delete}}{\@locref{hevea_default24}{1.2.1}}
+\indexentry{\ina{sort}}{\@locref{hevea_default25}{1.2.2}}
+\indexentry{invariante}{\@locref{hevea_default26}{1.2.2}}
+\indexentry{\ina{ListaDeInteiros}}{\@locref{hevea_default27}{3.1}}
+\indexentry{\inh{elem}}{\@locref{hevea_default28}{3.1.1.1}}
+\indexentry{\ina{elem}}{\@locref{hevea_default29}{3.1.1.2}}
+\indexentry{\inh{insert}}{\@locref{hevea_default30}{3.1.2.1}}
+\indexentry{\ina{insert}}{\@locref{hevea_default31}{3.1.2.2}}
+\indexentry{\inh{delete}}{\@locref{hevea_default32}{3.1.3.1}}
+\indexentry{pilha}{\@locref{hevea_default33}{3.1.5}}
+\indexentry{pilha}{\@locref{hevea_default34}{3.1.5.1}}
+\indexentry{\inh{Pilha}}{\@locref{hevea_default35}{3.1.5.1}}
+\indexentry{pilha}{\@locref{hevea_default36}{3.1.5.2}}
+\indexentry{fila}{\@locref{hevea_default37}{3.1.6}}
+\indexentry{fila}{\@locref{hevea_default38}{3.1.6.1}}
+\indexentry{fila}{\@locref{hevea_default39}{3.1.6.2}}
+\indexentry{arvores}{\@locref{hevea_default40}{3.2}}

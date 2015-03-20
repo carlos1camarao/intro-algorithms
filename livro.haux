@@ -1,15 +1,79 @@
-\@@addtocsec{htoc}{sec2}{-1}{\colorbox{cyan}{Prefácio}{}}
-\@@addtocsec{htoc}{sec3}{1}{Conteúdo e Organização do Livro{}}
-\@@addtocsec{htoc}{sec4}{1}{Recursos Adicionais{}}
-\@@addtocsec{htoc}{sec5}{1}{Pré-requisitos{}}
-\@@addtocsec{htoc}{sec6}{-1}{\@print{Capítulo 1}\quad{}\colorbox{cyan}{Introdução}{}}
-\newlabel{Introducao}{{1}{X}}
+\@@addtocsec{htoc}{sec2}{-1}{\@print{Capítulo 1}\quad{}Introdução{}}
+\newlabel{ch:Introducao}{{1}{X}}
 \citation{PeytonJones92}
 \citation{Thompson99}
 \citation{O'Sullivan:2008:RWH}
 \citation{Lipovaca:2011:LYH}
-\@@addtocsec{htoc}{sec7}{0}{\@print{1.1}\quad{}Ordenação{}}
-\@@addtocsec{htoc}{sec8}{1}{\@print{1.1.1}\quad{}Sobre Permutação{}}
-\@@addtocsec{htoc}{sec9}{0}{\@print{1.2}\quad{}Ordenação por Inserção{}}
-\@@addtocsec{htoc}{sec10}{1}{\@print{1.2.1}\quad{}Versão funcional{}}
-\newlabel{insertion-sort-func}{{1.2.1}{X}}
+\@@addtocsec{htoc}{sec3}{0}{\@print{1.1}\quad{}Ordenação{}}
+\newlabel{sec:ordenacao}{{1.1}{X}}
+\@@addtocsec{htoc}{sec4}{1}{\@print{1.1.1}\quad{}Sobre Permutação{}}
+\newlabel{sec:permutacao}{{1.1.1}{X}}
+\@@addtocsec{htoc}{sec5}{0}{\@print{1.2}\quad{}Ordenação por Inserção{}}
+\newlabel{sec:ordenacao-insercao}{{1.2}{X}}
+\@@addtocsec{htoc}{sec6}{1}{\@print{1.2.1}\quad{}Versão funcional{}}
+\newlabel{sec:insertion-sort-func}{{1.2.1}{X}}
+\@@addtocsec{htoc}{sec7}{1}{\@print{1.2.2}\quad{}Versão imperativa{}}
+\newlabel{sec:insertion-sort-imperativ}{{1.2.2}{X}}
+\@@addtocsec{htoc}{sec8}{-1}{\@print{Capítulo 2}\quad{}Complexidade{}}
+\newlabel{ch:Complexidade}{{2}{X}}
+\@@addtocsec{htoc}{sec9}{0}{\@print{2.1}\quad{}Complexidade de Fun\c{c}\~oes{}}
+\newlabel{sec:complexidade-de-funcoes}{{2.1}{X}}
+\@@addtocsec{htoc}{sec10}{0}{\@print{2.2}\quad{}Notação $\Theta${}}
+\newlabel{sec:Notacao-Theta}{{2.2}{X}}
+\newlabel{fig:big-O}{{2.2}{X}}
+\citation{Minko-Markov-2013}
+\@@addtocsec{htoc}{sec11}{0}{\@print{2.3}\quad{}Notação $O${}}
+\newlabel{sec:Notacao-O}{{2.3}{X}}
+\citation{Minko-Markov-2013}
+\@@addtocsec{htoc}{sec12}{0}{\@print{2.4}\quad{}Notação $\Omega${}}
+\newlabel{sec:Notacao-Omega}{{2.4}{X}}
+\citation{Minko-Markov-2013}
+\@@addtocsec{htoc}{sec13}{0}{\@print{2.5}\quad{}Uso de notação assintótica em fórmulas{}}
+\newlabel{sec:uso-notacao-assintotica}{{2.5}{X}}
+\@@addtocsec{htoc}{sec14}{0}{\@print{2.6}\quad{}Notações $o$, $\omega${}}
+\newlabel{sec:Notacao-o}{{2.6}{X}}
+\citation{Minko-Markov-2013}
+\@@addtocsec{htoc}{sec15}{0}{\@print{2.7}\quad{}Propriedades de Relações assintóticas{}}
+\newlabel{sec:Propriedades-de-relacoes-assintoticas}{{2.7}{X}}
+\@@addtocsec{htoc}{sec16}{0}{\@print{2.8}\quad{}Complexidade polinomial, exponencial e logarítmica{}}
+\newlabel{sec:Complexidade-polinomial-exponencial-logaritmica}{{2.8}{X}}
+\newlabel{expxpoli}{{1}{X}}
+\newlabel{exlxpoli}{{2}{X}}
+\@@addtocsec{htoc}{sec17}{0}{\@print{2.9}\quad{}Exercícios Resolvidos{}}
+\citation{Minko-Markov-2013}
+\newlabel{eq:lim-poli-sobre-exp}{{3}{X}}
+\newlabel{lgn-eq-nlgn}{{4}{X}}
+\newlabel{lgprec}{{5}{X}}
+\@@addtocsec{htoc}{sec18}{0}{\@print{2.10}\quad{}Exercícios{}}
+\@@addtocsec{htoc}{sec19}{-1}{\@print{Capítulo 3}\quad{}Estruturas de Dados Básicas{}}
+\newlabel{ch:estruturas-de-dados-basicas}{{3}{X}}
+\@@addtocsec{htoc}{sec20}{0}{\@print{3.1}\quad{}Listas{}}
+\newlabel{sec:listas}{{3.1}{X}}
+\@@addtocsec{htoc}{sec21}{1}{\@print{3.1.1}\quad{}Pesquisa{}}
+\newlabel{sec:pesquisa-em-lista}{{3.1.1}{X}}
+\@@addtocsec{htoc}{sec22}{2}{\@print{3.1.1.1}\quad{}Versão funcional{}}
+\@@addtocsec{htoc}{sec23}{2}{\@print{3.1.1.2}\quad{}Versão imperativa{}}
+\@@addtocsec{htoc}{sec24}{1}{\@print{3.1.2}\quad{}Inserção{}}
+\newlabel{sec:insercao-em-lista}{{3.1.2}{X}}
+\@@addtocsec{htoc}{sec25}{2}{\@print{3.1.2.1}\quad{}Versão funcional{}}
+\@@addtocsec{htoc}{sec26}{2}{\@print{3.1.2.2}\quad{}Versão imperativa{}}
+\@@addtocsec{htoc}{sec27}{1}{\@print{3.1.3}\quad{}Remoção{}}
+\newlabel{sec:remocao-de-lista}{{3.1.3}{X}}
+\@@addtocsec{htoc}{sec28}{2}{\@print{3.1.3.1}\quad{}Versão funcional{}}
+\@@addtocsec{htoc}{sec29}{2}{\@print{3.1.3.2}\quad{}Versão imperativa{}}
+\@@addtocsec{htoc}{sec30}{1}{\@print{3.1.4}\quad{}Lista duplamente encadeada{}}
+\newlabel{sec:lista-duplamente-encadeada}{{3.1.4}{X}}
+\@@addtocsec{htoc}{sec31}{1}{\@print{3.1.5}\quad{}Pilha{}}
+\newlabel{sec:pilha}{{3.1.5}{X}}
+\@@addtocsec{htoc}{sec32}{2}{\@print{3.1.5.1}\quad{}Versão funcional{}}
+\newlabel{figPilha}{{3.1}{X}}
+\@@addtocsec{htoc}{sec33}{2}{\@print{3.1.5.2}\quad{}Versão imperativa{}}
+\@@addtocsec{htoc}{sec34}{1}{\@print{3.1.6}\quad{}Fila{}}
+\newlabel{sec:fila}{{3.1.6}{X}}
+\@@addtocsec{htoc}{sec35}{2}{\@print{3.1.6.1}\quad{}Versão funcional{}}
+\@@addtocsec{htoc}{sec36}{2}{\@print{3.1.6.2}\quad{}Versão imperativa{}}
+\newlabel{sec:fila-imperativa}{{3.1.6.2}{X}}
+\@@addtocsec{htoc}{sec37}{0}{\@print{3.2}\quad{}Árvores{}}
+\newlabel{sec:arvores}{{3.2}{X}}
+\newlabel{fig:Arv1}{{3.1}{X}}
+\newlabel{fig:Rep-arv1}{{3.2}{X}}
