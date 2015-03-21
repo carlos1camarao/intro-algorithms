@@ -1,0 +1,366 @@
+%!TEX encoding = ISO-8859-1
+\section{Multiplicação de Matrizes}
+\label{multiplicacao-de-matrizes}
+
+Considere o problema de calcular o produto de duas matrizes quadradas.
+
+Por definição, cada elemento $C[i,\,j]$ de duas matrizes $n\times \!n$ $A$
+e $B$ é igual a: 
+
+  \[ \begin{array}{llll}
+      A[i,0]   & \times & B[0   & , j] + \ldots + \\
+      A[i,k]   & \times & B[k   & , j] + \ldots + \\
+      A[i,n-1] & \times & B[n-1 & , j] 
+     \end{array}
+  \]
+para $0\leq i,\,j \leq n-1$.
+
+\subsection{Versão funcional}
+\label{versao-funcional-de-matrixMult}
+
+A motivação fundamental para a existência de arranjos é a propriedade
+de prover acesso eficiente ($O(1)$) a seus elementos. Eles espelham
+memórias RAM (em inglês ``random access memories'': memórias de acesso
+direto). O acesso a elementos de arranjos é feito via indexação. Dado
+um arranjo \ina{A}, o acesso a cada \ina{i}-ésimo elemento é feito
+usando \ina{A} e \ina{i} (em \C\ e \Pascal, a notação é \ina{A[i]}, em
+\Haskell, \inh{A!i}). Uma memória RAM pode ser considerada um arranjo,
+sendo o índice um endereço.
+
+A acesso eficiente ($O(1)$) decorre do fato de os elementos serem
+armazenados em posições contíguas; dessa forma, o acesso ao elemento
+pode ser feito apenas de acordo com o valor do índice; não é preciso
+acesso a outras posições do arranjo.
+
+Arranjos em Haskell (2010) fazem parte da biblioteca
+\inh{Data.Array}. Essa biblioteca provê suporte a arranjos imutáveis
+(não é provido suporte para a ação de modificar valores contidos em
+variáveis de tipo arranjo). Existem funções de modificação de
+elementos de arranjos na biblioteca, mas tais funções retornam novos
+arranjos em vez de modificar o arranjo original.
+
+Existem bibliotecas com suporte para arranjos mutáveis, que provêem
+implementações de custo $O(1)$ para modificação de elementos de
+arranjos. A implementação de avaliação de expressões com estratégia de
+avaliação tardia requer o uso de ponteiros para valores, em tempo de
+execução, que complica a implementação eficiente de indexação de
+arranjos, e impossibilita a implementação simples de indexação de
+arranjos feita em linguagens imperativas, basicamente porque elementos
+de arranjos são ponteiros que podem ou não apontar para um valor já
+avaliado. A indexação feita em arranjos mutáveis e nos quais os
+elementos não são ponteiros mas os próprios valores, devem usar
+estratégia de avaliação gulosa e deve usar código monádico (código que
+usa mônadas). O assunto de programação funcional usando mônadas e,
+portanto, o uso dessas bibliotecas de arranjos mutáveis não vão ser
+abordados neste livro.
+
+Em Haskell valores usados como índices de arranjo devem ter tipo que é
+instância da classe \inh{Ix}, que é subclasse de \inh{Ord} e define os
+nomes \inh{range}, \inh{index} e \inh{inRange} (para uma introdução ao
+mecanismo de classes de tipos em Haskell, veja o Apêndice
+\ref{ap:Haskell}, seção \ref{sec:Classes-de-tipos}):
+
+\begin{center}
+\begin{tabular}{l}
+\begin{hask}{Ix}
+class  (Ord a) => Ix a  where
+    range       :: (a,a) -> [a]
+    index       :: (a,a) -> a -> Int
+    inRange     :: (a,a) -> a -> Bool
+\end{hask}
+\end{tabular}
+\end{center}
+
+Existem, em \inh{Data.Array}, declarações de instâncias (veja seção
+\ref{sec:Classes-de-tipos} para os tipos \inh{Int}, \inh{Integer},
+\inh{Char}, \inh{Bool} e para tuplas, triplas, quádruplas e
+quíntuplas. Note que em Haskell tuplas podem ser índices de matrizes e
+outros arranjos multi-dimensionais; inteiros e outros tipos
+primitivos, como caracteres, podem ser índices de arranjos
+uni-dimensionais, também chamados de {\em vetores\/}.
+
+Por exemplo, um arranjo com limites \inh{((1,1),(10,20))} é um índice
+com 200 elementos ($10 \times 20$ elementos), e índices \inh{(1,1),
+  \ldots, (1,10), (2,1), \ldots, (2,20), \ldots, (10,1), \ldots,
+  (10,20)}.
+
+A criação de um arranjo em Haskell é feita com a função: 
+
+\begin{center}
+\begin{tabular}{l}
+\begin{hask}{array}
+array :: (Ix a) => (a,a) -> [(a,b)] -> Array a b
+\end{hask}
+\end{tabular}
+\end{center}
+
+O primeiro parâmetro de \inh{array} especifica o {\em limite
+  inferior\/} e {\em limite superior\/} do arranjo, e o segundo uma
+lista de pares índice-valor, chamada {\em lista geradora do arranjo}.
+Por exemplo:
+
+\begin{center}
+\begin{tabular}{l}
+\begin{hask}{array}
+quadrados =  array (1,100) [(i, i*i) | i <- [1..100]]
+\end{hask}
+\end{tabular}
+\end{center}
+
+A variável \inh{quadrados} denota um arranjo que associa a cada índice
+$i$, de 1 a 100, o quadrado de $i$ (usando definição de lista por
+geração; veja seção \ref{sec:definicao-de-lista-por-geracao-e-filtragem}).
+
+O operador \inh{!} denota a operação fundamental em arranjos, de
+indexação. Por exemplo:
+
+\begin{center}
+\begin{tabular}{l}
+\begin{hask}{!}
+quadrados!7 
+\end{hask}
+\end{tabular}
+\end{center}
+é igual a 49.
+
+O arranjo é igual a \inh{undefined} se algum índice na lista geradora
+não for um índice válido (i.e.~não estiver entre os limites inferior e
+superior) do arranjo. Se o índice for repetido em um dos pares da
+lista geradora, o valor nesse índice é igual a \inh{undefined}.
+
+A função \inh{range} recebe um par (limte inferior, limite superior) e
+retorna a lista dos índices entre esses limites, nesta ordem. Por
+exemplo, \inh{range (0,4)} retorna 4, e \inh{range ((0,0),(1,2))}
+retorna \inh{[(0,0), (0,1), (0,2), (1,0), (1,1), (1,2)]}.
+
+A função \inh{inRange} determina se um índice (segundo argumento) está
+entre os limites (inferior e superior), especificados pelo primeiro
+argumento. 
+
+A função \inh{index} \ldots
+
+Um arranjo é estrito no primeiro argumento (limites) e nos índices da
+lista geradora, mas não estrito nos valores dos elementos do arranjo.
+Isso permite definir, por exemplo:
+
+\begin{center}
+\begin{tabular}{l}
+\begin{hask}{fatorial,fibs}
+fatorial n = fatArr 
+  where fatArr = array (k,n) ((1,1) : [(i, i * fatArr!(i-1)) | i <- [2..n]]) 
+
+fibs n  = fibArr 
+  where fibArr = array (0,n) ([(0, 1), (1, 1)] ++ 
+                              [(i, fibArr!(i-2) + fibArr!(i-1)) | i <- [2..n]]) 
+\end{hask}
+\end{tabular}
+\end{center}
+
+A função \inh{bounds}, definida em \inh{Data.Array}, retorna os
+limites inicial e final do arranjo. 
+Por exemplo, \inh{bounds quadrados} é igual a \inh{(1,100)}.
+
+
+A implementação de multiplicação de duas matrizes \inh{m1} e \inh{m2},
+mostrada abaixo, constrói o arranjo que contém a multiplicação
+(\inh{m}) de \inh{m1} por \inh{m2} incrementalmente (linha a linha,
+elemento a elemento): o $j$-ésimo elemento da $i$-ésima linha é igual
+ao produto interno da $i$-ésima linha de \inh{m1} pela $j$-ésima
+coluna de \inh{m2}, para $i$ variando de 1 até o número de linhas de
+\inh{m} (igual ao número de linhas de \inh{m1}) e $j$ variando de 1
+até o número de colunas de \inh{m} (igual ao número de colunas de
+\inh{m2}).  Devido a essa característica da multiplicação de matrizes
+--- de ser baseada nos produtos das linhas da 1\prima\ matriz
+(\inh{m1}) pelas colunas da 2\prima\ (\inh{m2}) --- representamos
+\inh{m2} como uma matriz de colunas (a indexação de \inh{m2} fornece
+uma coluna da matriz).
+
+É incluída função \inh{transpose} para transposição de matrizes
+(conversão de representação de uma matriz de um arranjo de linhas em
+um arranjo de colunas). Para multiplicar matrizes usando
+\inh{matrixMult} e considerando a segunda matriz (\inh{m2}) como uma
+matriz de linhas, deve-se usar: \inh{matrixMult m1 (transpose m2)}.
+
+A modificação incremental de arranjos é feita pelo operador \inh{(//)
+  :: (Ix a) => Array a b -> [(a,b)] -> Array a b}. É usado abaixo o
+caso mais simples de atualização, em que o segundo argumento de
+\inh{(//)} --- a chamada lista de associações --- tem um único
+elemento. A modificação de um arranjo \inh{a} para que o índice
+\inh{i} passe a conter um valor \inh{v} é dada por \inh{a // [(i,
+    v)]}. Como no caso da função \inh{array}, os índices na lista de
+associação devem ser únicos, para que o valor em cada índice da lista
+de associação seja definido.
+
+\begin{center}
+\begin{tabular}{l}
+\begin{hask} {matrixMult,transpose}
+
+module MatrixMult where
+
+import Data.List  (foldl')
+import Data.Array (Array,array,(!),bounds,(//))
+
+type MatrixLin = Array Integer Lin -- MatrixLin = arranjo de linhas 
+type MatrixCol = Array Integer Col -- MatrixCol = arranjo de colunas
+type Lin       = Array Integer Integer
+type Col       = Array Integer Integer
+type LinNum    = Integer
+type ColNum    = Integer
+  
+matrixMult :: MatrixLin -> MatrixCol -> MatrixLin
+-- Pre: 1) Número de colunas de m1 = número de linhas de m2 (i.e. numCols1 = numLins2)
+--      2) Índices de arranjos começam em 1 (pequena simplificação).
+matrixMult m1 m2
+  | numCols1 == numLins2 = foldl' (addLin m1 m2 numCols1 numCols) m0 [1..numLins]
+  | otherwise            = error ("Multiplicação de matrizes m1 m2 requer: " ++ 
+                                  "número de colunas de m1 = número de linhas de m2")
+  where
+    (_,numLins1) = bounds m1
+    (_,numCols2) = bounds m2 -- m2 :: MatrixCol : numCols2 = no. colunas de m2 (não de linhas)
+    numLins      = numLins1
+    numCols      = numCols2
+    (_,numCols1) = bounds (m1 ! 1)
+    (_,numLins2) = bounds (m2 ! 1)
+    m0           = array (1,numLins) [] -- matriz inicial vazia 
+                                        -- linhas adicionadas, uma a uma, por addLin
+
+addLin :: MatrixLin -> MatrixCol -> ColNum -> ColNum -> MatrixLin -> LinNum -> MatrixLin
+-- Adiciona m!i. Cada elemento j de m!i = produto interno de m1!i pela coluna j de m2.
+addLin m1 m2 numColsm1 numCols m i = m // [(i,mi)]
+  where mi = mkLin i (m1!i) m2 numColsm1 numCols 
+
+mkLin:: LinNum -> Lin -> MatrixCol -> ColNum -> ColNum -> Lin
+-- m!i = linha formada pelo produtos internos de m1!i por m2!j, para j = [1..numCols]
+mkLin i m1i m2 numColsm1 numCols = array (1,numCols) [(j, innerProd m1i j (m2!j) numColsm1) | j <- [1..numCols]]
+      
+innerProd :: Lin -> ColNum -> Col -> ColNum -> Integer
+innerProd m1i j m2j n = sum [(m1i!j) * (m2j!j) | j <- [1..n]]
+
+transpose :: MatrixLin -> MatrixCol
+-- Pre: m ! i é a i-ésima linha de m, indexada de 1 a n.
+-- Pos: transpose m ! i é linha de transpose m tal que m!i!j = transpose m!j!i (j=1,..,n).
+transpose m = array (1,numCols) [(i, array (1,numLins) [(j, m!j!i) | j <- [1..numLins]]) | i <- [1..numCols]]
+  where
+    (_,numLins) = bounds m
+    (_,numCols) = bounds (m!1)
+\end{hask}
+\end{tabular}
+\end{center}
+
+O tamanho dos dados de entrada é dado por $n$, número de elementos em
+uma linha ou coluna da matriz quadrada. A relação de recorrência é
+dada por (temos $n = \inh{numLins} = \inh{numCols}$):
+
+ \[ T(n) = T(n-1) + f_1(n) \]
+onde $f_1$ é a função de complexidade de tempo de \inh{addLin}. Temos:
+$f_1(n) \asymp f_2(n)$, onde $f_2$ é a função de complexidade de tempo
+de \inh{mkLin} (considerando que $f_2(n)$ é maior assintoticamente que
+a soma dos tempos de execução de \inh{(//)} e \inh{(!)}). Temos:
+$f_2(n) = n f_3(n)$, onde $f_3$ é a função de complexidade de tempo de
+\inh{innerProd}. É fácil ver que $f_3(n) \asymp n$.
+
+Obtemos então: $T(n) = T(n-1) + n^2$. Podemos resolver a relação de
+recorrência usando o método de substitur-para-generalizar; obtemos
+$T(n) = T(n-i) + i \times n^2$ e, com $i=n$ e com $T(0)$ constante,
+obtemos:
+
+    \[ T(n) \asymp n^3 \]
+
+\subsection{Versão imperativa}
+
+No pseudo-código abaixo supomos que: 
+
+  \begin{itemize}
+    \item matrizes podem ser usadas como em matemática (e acima, e em
+      Pascal), ou seja, $A[i,\,j]$ representa o elemento na $j$-ésima
+      coluna da $i$-ésima linha da matriz;
+
+    \item uma matriz pode ser retornada como resultado de uma
+      função;
+
+    \item os tipos das matrizes $A$ e $B$ são matrizes quadradas
+      $n\times n$, supondo que esses tipos existem, no pseudo-código
+      (e supondo que não é preciso definir o tipo de parâmetros de
+      funções);
+
+    \item \ina{alocaMatrizQuadrada (n)} (não incluída no
+      pseudo-código; veja código \C\ a seguir) aloca uma matriz
+      quadrada $n\times n$ de inteiros e inicializa todos os elementos
+      com \ina{0}.
+  \end{itemize}
+
+\begin{center}
+\begin{tabular}{l}
+\begin{alg}{matrixMult}
+matrixMult(A,B) 
+  C = alocaMatrizQuadrada (n)
+  for i = 0 to n-1 do
+    for j = 0 to n-1 do
+        for k = 0 to n-1 do
+           C[i,j] = C[i,j] + A[i,k] * B[k,j]
+  return C
+\end{alg}
+\end{tabular}
+\end{center}
+
+Em uma linguagem como \C, matrizes são representadas por arranjos
+cujos elementos são arranjos (um arranjo de inteiros é representado
+por um ponteiro para um inteiro, o primeiro inteiro do arranjo). A
+notação usada em matemática para denotar o elemento na $j$-ésima
+coluna da $i$-ésima linha da matriz, $A[i,\,j]$, é denotado por
+\ina{A[i][j]}. É preciso primeiro alocar espaço para os arranjos (isso
+é feito usando a função \ina{malloc} (veja o programa abaixo). A
+função \ina{malloc} aloca um certo número de unidades de memória e
+retorna um ponteiro para o início da área alocada.
+
+A função de multiplicação de matrizes, mostrada a seguir, recebe um
+inteiro \ina{n}, duas matrizes \ina{A} e \ina{B} quadradas \ina{n} por
+\ina{n} (representadas por meio de ponteiros) e retorna um ponteiro,
+que representa a matriz computada pela multiplicação de \ina{A} por
+\ina{B}.
+
+\begin{center}
+\begin{tabular}{l}
+\begin{alg}{matrixMult,mkSquareMatrix}
+
+int** mkSquareMatrix (int n) {
+  int i,j; 
+  int **p = malloc (n * sizeof(int*)), *q;
+  for (i=0; i<n; i++) {
+    p[i] = malloc (n * sizeof(int));
+    q = p[i];
+    for (j=0; j<n; j++) q[j] = 0;
+  }
+  return p;
+}
+
+int** matrixMult (int **A, int **B, int n) {
+  int i, j, k;
+  int **C = mkSquareMatrix(n);
+  for (i=0; i<n; i++) 
+    for (j=0; j<n; j++)
+      for (k=0; k<n; k++)
+        C[i][j] += A[i][k] * B[k][j];
+  return C;
+}
+\end{alg}
+\end{tabular}
+\end{center}
+
+O tamanho dos dados de entrada é dado por $n$, número de elementos em
+uma linha ou coluna da matriz quadrada. As operações de atribuição,
+soma e multiplicação de inteiros, feitas repetidamente no comando
+interno ao comando de repetição, determinam o tempo de execução gasto
+pelo programa. Cada uma das atribuições, incluindo a multiplicação e
+adição, tem complexidade $\Theta(1)$. A variação do tempo de execução
+com $n$ é dada por:
+
+  \[ T(n) = \sum_{i=0}^{n-1} \sum_{i=0}^{n-1} \sum_{i=0}^{n-1} \Theta(1) \]
+Temos: \[ \begin{array}[t]{lll}
+            \sum_{i=0}^{n-1} \Theta(1) = \Theta(n) & 
+            \sum_{i=0}^{n-1} \Theta(n) = \Theta(n^2) & 
+            \sum_{i=0}^{n-1} \Theta(n^2) = \Theta(n^3) 
+          \end{array}
+       \]
+e portanto $T(n) \asymp n^3$. 
+
