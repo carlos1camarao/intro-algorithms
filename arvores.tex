@@ -3,7 +3,30 @@
 \label{sec:arvores}
 \index{arvores}
 
-Uma árvore pode ser vista como uma estrutura de dados recursiva, definida como sendo ou i) vazia (uma folha) ou ii) um nodo contendo um elemento e um certo número de ramos (ou nodos), que contêm sub-árvores:
+Uma árvore é um {\em grafo} conexo e acíclico. 
+
+\HRule
+{\em Nota\/}: 
+
+Um {\em grafo\/} é um conjunto de vértices e de arestas, cada aresta
+conectando dois vértices. Dois vértices $a$ e $b$ de um grafo são
+chamados {\em adjacentes\/} se estão conectados por uma aresta --
+usualmente representada como um par $(a,b)$. Um grafo é {\em conexo\/}
+se todo vérice é adjacente a algum outro. Um {\em caminho\/} de um
+vértice $a$ a um vértice $b$ é uma sequência de vértices adjacentes,
+tendo $a$ como primeiro e $b$ como último vértice. Um {\em ciclo\/} é
+um caminho que inicia e termina no mesmo vértice, não repetindo
+nenhuma aresta. Um grafo é {\em acíclico\/} se não contém nenhum
+ciclo. Um grafo acíclico, mas não for conexo, é uma floresta, isto é,
+um conjunto de árvores.
+
+\HRule
+
+No entanto, vamos considerar apenas (o que é chamado de) {\em árvore
+  com raiz\/} (em inglês, {\em rooted tree\/}, e ver essa estrutura de
+dados como sendo recursiva, definida de modo a ser ou i) vazia (uma
+folha) ou ii) um nodo contendo um elemento e um certo número de ramos
+(ou nodos), que contêm sub-árvores. Em Haskell, podemos definir:
 
 \begin{center}
 \begin{tabular}{l}
@@ -13,9 +36,12 @@ data Tree a = Leaf | Node a [Tree a]
 \end{tabular}
 \end{center}
 
-Na definição acima, o construtor \inh{Leaf} constrói uma árvore vazia, ou folha, e o construtor \inh{Node} constrói uma árvore contendo uma informação de tipo \inh{a} e um lista de subárvores.
+Na definição acima, o construtor \inh{Leaf} constrói uma árvore vazia,
+ou folha, e o construtor \inh{Node} constrói uma árvore contendo um
+valor de tipo \inh{a} e um lista de subárvores.
 
-Outra possível definição considera que a informação é armazenada nas folhas, em vez de nos nodos internos:
+Outra possível definição considera que a informação é armazenada nas
+folhas, em vez de nos nodos internos:
 
 \begin{center}
 \begin{tabular}{l}
@@ -25,23 +51,16 @@ data Tree' a = Leaf' a | Node' [Tree' a]
 \end{tabular}
 \end{center}
 
-Uma árvore com exatamente duas sub-árvores (possivelmente vazias) é chamada de árvore binária e pode ser definida como:
+Uma árvore com exatamente duas sub-árvores (possivelmente vazias) é
+chamada de árvore binária e pode ser definida como:
 
 \begin{center}
 \begin{tabular}{l}
 \begin{hask}{BTree,BLeaf,BNode}
- data BTree a = BLeaf a | BNode (BTree a) (BTree a)
+ data BTree a = BLeaf | BNode a (BTree a) (BTree a)
 \end{hask}
 \end{tabular}
 \end{center}
-
-%---- acho que esse parágrafo deve ser eliminado
-%---- é prematuro falar em grafo e nem é apresentado um desenho
-%---- talvez isso possa ser deixado como nota
-%
-%Uma árvore pode também ser definida como um {\em grafo} conexo e  acíclico. Um {\em grafo\/} é simplesmente um conjunto de vértices e de arestas entre esses vértices. Dizemos que dois vértices $a$ e $b$ do grafo são {\em adjacentes\/} se estão conectados por uma aresta -- usualmente representada como um par$(a,b)$. Um grafo é {\em conexo\/} se todo vérice é adjacente a algum outro. Um {\em caminho\/} de um vértice $a$ a um vértice $b$ é uma sequência de vértices adjacentes, tendo $a$ como primeiro e $b$ como último vértice. Um {\em ciclo\/} é um caminho que inicia e termina no mesmo vértice, não repetindo nenhuma aresta. Um grafo é {\em acíclico\/} se não contém nenhum ciclo. Um grafo acíclico, mas não for conexo, é uma floresta, isto é, um conjunto de árvores.
-%
-%-----------------------------------------------------------
 
 Em linguagens que provêem suporte ao uso de ponteiros, mas não à
 definição e manipulação direta de tipos recursivos, a representação de
@@ -79,14 +98,13 @@ A representação da árvore da Figura \ref{fig:Arv1} é mostrada na Figura \ref{fig
 \begin{figure}
 
 xxxx
-\caption{Árvore exemplo}
 \label{fig:Arv1}
+\caption{Árvore exemplo}
 \end{figure}
 
 \begin{figure}
 
 yyyyy
-\caption{Representação da árvore exemplo por valor do tipo \ina{ArvoreDeInteiros}}
 \label{fig:Rep-arv1}
+\caption{Representação da árvore exemplo por valor do tipo \ina{ArvoreDeInteiros}}
 \end{figure}
-\end{document}
