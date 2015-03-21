@@ -1,0 +1,209 @@
+%!TEX encoding = ISO-8859-1
+\section{Números de Fibonacci}
+\label{numeros-de-fibonacci}
+
+Considere a sequência de números naturais, conhecida como sequência de
+números de Fibonacci: 
+  
+  \[ 0,1,1,2,3,5,8,13,21,\ldots \]
+que pode ser definida pela relacão de recorrência 
+
+  \[ F(n) = F(n-1) + F(n-2) \]
+e pelas condições iniciais: $F(0) = 0$, $F(1) = 1$.
+ 
+O problema é determinar o $n$-ésimo número da sequência de números de
+Fibonacci, para dado $n$.
+
+\HRule
+{\em Nota\/}: 
+
+Curiosidades e história sobre a sequência de Fibonacci\ldots
+
+\HRule
+
+\subsection{Versão Funcional}
+
+Uma solução simples é baseada na indexação de um arranjo (\inh{fibs n
+  ! n}), onde a definição de \inh{fibs}, mostrada na seção
+\ref{versao-funcional-de-matrixMult}, é apresentada novamente a
+seguir:
+
+\begin{center}
+\begin{tabular}{l}
+\begin{hask}{fatorial,fibs,fib1}
+fib1 :: Integer -> Integer
+fib1 n = fibs n ! n 
+fibs n  = fibArr 
+  where fibArr = array (0,n) ([(0, 1), (1, 1)] ++ 
+                              [(i, fibArr!(i-2) + fibArr!(i-1)) | i <- [2..n]]) 
+\end{hask}
+\end{tabular}
+\end{center}
+
+Contudo, é desnecessário usar um arranjo para calcular um dado número
+da sequência de números de Fibonacci. O uso de um arranjo é adequado
+se for desejado usar (por exemplo, imprimir) todos ou vários números
+da sequência. Nosso problema, no entanto, pode ser resolvido com o
+armazenamento de apenas os dois últimos números da sequência. A função
+\inh{fib} abaixo faz isso, armazenando passo a passo apenas os dois
+últimos números da sequência até que o número desejado ($n$) seja
+alcançado:
+
+\begin{center}
+\begin{tabular}{l}
+\begin{hask}{fatorial,fibs}
+fib:: Integer -> Integer
+fib 0 = 0
+fib 1 = 1
+fib n = step (2,(0,1))
+  where
+    step (k,(fibk_2,fibk_1))
+      | k == n    = fibk_2 + fibk_1
+      | otherwise = step (k+1,(fibk_1,fibk_2+fibk_1))
+\end{hask}
+\end{tabular}
+\end{center}
+
+A versão seguinte, desnecessariamente ineficiente, é obtida usando a
+própria definição da sequência de números de Fibonacci:
+
+\begin{center}
+\begin{tabular}{l}
+\begin{hask}{fatorial,fibs}
+fibI 0 = 0
+fibI 1 = 1
+fibI n = fibI (n-1) + fibI(n-2) 
+\end{hask}
+\end{tabular}
+\end{center}
+
+O tamanho dos dados de entrada é determinado pelo valor de $n$ (índice
+da sequência de números de Fibonacci para o qual se deseja determinar
+o valor, nesta sequência).
+
+No caso de \inh{fib1}, as operações que determinam a eficiência do
+programa durante a execução estão relacionas à criação do arranjo
+\inh{fibArr} (que, como veremos a seguir, é quadrática; a operação de
+indexação, \inh{fibs n ! n}, tem custo $O(1)$). Portanto:
+
+  \[ T(\inh{n}) = f_0(\inh{n}) \]
+onde $f_0$ é a função de complexidade assintótica da função de criação
+do arranjo \inh{fibArr}. Temos: 
+
+  \[ f_0(\inh{n}) = \sum_{\inh{i}=2}^{\inh{n}} (c_0(\inh{i}) + c(\inh{i})) \]
+onde $c_0(i)$ é o custo de criar a lista e $c(\inh{i})$ o custo da
+contenação dessa lista (i.e.~uso de \inh{(++)}). Temos:
+
+   \[ c_0(\inh{i}) = \Theta(1) \]
+uma vez que a criacão envolve apenas duas operações de indexação
+(\inh{fibArr!(i-2)} e \inh{fibArr!(i-1)}) e uma soma
+(\inh{fibArr!(i-2) + fibArr!(i-1)}), e:
+
+  \[ c(\inh{i}) \asymp n \]
+uma vez que a complexidade assintótica da contenação é linear no
+tamanho (\inh{i}) da primeira lista a ser concatenada (primeiro
+argumento de \inh{(++)}).  Logo:
+
+   \[ T(n) \asymp n^2 \] 
+
+Logo, a operação que determina a complexidade assintótica do programa
+\inh{fib1} é a concatenação iterativa de listas, realizada para
+criação do arranjo \inh{fibArr}.
+
+No caso de \inh{fib}, a complexidade assintótica é claramente linear:
+
+   \[ T(\inh{n}) = s(\inh{n-k}) = s(\inh{n-k-1}) + f(\inh{n}) \]
+onde $s(\inh{n-k})$ é a complexidade assintótica de \inh{step}, e
+$f(n) = \Theta(1)$ é o custo de realizar operações de adição de
+inteiros (\inh{k+1} e \inh{fibk_2+fibk_1}) e comparação entre inteiros
+(\inh{n==k}).
+
+Há um drástico contraste entre as complexidades de tempo de \inh{fib}
+e \inh{fibI}: como vemos a seguir, a complexidade de tempo de
+\inh{fibI} é exponencial.
+
+O método de substituir-para-generalizar não fornece solução para a
+relação de recorrência do nosso problema. Podemos obter uma solução
+usando uma estimativa para a complexidade de tempo igual a
+$k^{\inh{n}}$. Considerando $F(n) = k^n$, temos: $k^n = k^{n-1} +
+k^{n-2}$; dividindo ambos os lados por $k^{n-2}$ obtemos: $k^2 = k +
+1$.  A solução da equação de segundo grau $k^2 - k - 1 = 0$ nos
+fornece $k = \frac{1 \pm \sqrt{5}}{2}$. 
+
+As duas raízes da equação de segundo grau são: 
+
+  \[ \begin{array}{l}
+      r_1 = \frac{1 + \sqrt{5}}{2} \\
+      r_2 = \frac{1 - \sqrt{5}}{2}
+    \end{array}
+  \]
+
+\ldots \ldots
+
+  \[ F(\inh{n}) = \alpha r_1^{\inh{n}} + \beta r_2^{\inh{n}} \]
+Usando as condições iniciais $F(0) = 0$ e $F(1) = 1$, obtemos:
+
+  \[ \begin{array}{l}
+         \alpha + \beta = 0\\
+         \alpha r_1 + \beta r_2 = 1
+     \end{array}
+  \]
+e portanto $\alpha = \frac{1}{\sqrt{5}}$ e $\beta = -\frac{1}{\sqrt{5}}$. 
+Portanto: 
+
+  \[ F(\inh{n}) = \frac{1}{\sqrt{5}} (\phi^{\inh{n}} - (1 - \phi)^{\inh{n}}) \]
+onde $\phi = \frac{1 + \sqrt{5}}{2}$. 
+
+Podemos essa usar fórmula para obter diretamente o \inh{n}-ésimo
+número da sequência de Fibonacci, com o cuidado de verificar a
+implementação para evitar introdução de erros na manipulação de
+números de ponto flutuante (é de fato surpreendente que as operações
+de números de ponto flutuante do lado direito da equação de
+$F\inh{n})$, que incluem exponenciações diversas de números
+irracionais, forneçam como resultado os números da sequência de
+Fibonacci). A complexidade de tempo obtida com o uso da fórmula acima
+é igual à complexidade de tempo da função de exponenciação, para a
+qual existem algoritmos com ordem de complexidade logarítmica ($O(lg
+n)$).
+
+Note também que $(1-\phi)^{\inh{n}}$ fica infinitamente pequeno quando
+\inh{n} tende para infinito. Pode ser mostrado (....ref....?)  que o
+resultado de $\frac{1}{\sqrt{5}} (\phi^{\inh{n}} +
+\frac{1}{\phi}^{\inh{n}})$ é o mesmo de $\frac{1}{\sqrt{5}}
+(\phi^{\inh{n}} + \frac{1}{\phi}^{\inh{n}})$ é o mesmo de
+$\frac{1}{\phi}^{\inh{n}}$ arredondado para o inteiro mais próximo.
+
+\subsection{Versão Imperativa}
+
+Uma versão eficiente que armazena a sequência de números de Fibonacci
+em um arranjo é mostrada na versão seguinte (usando função não
+incluída \ina{alocaArranjo}, para alocar arranjo, dado o número de
+elementos):
+
+\begin{center}
+\begin{tabular}{l}
+\begin{alg}{fibA}
+fibA(n)
+  F = alocaArranjo (n)
+  F(0) = 0
+  F(1) = 1
+  for i = 2 to n do
+    F[i] = F[i-1] + F[i-2]
+  return F
+\end{alg}
+\end{tabular}
+\end{center}
+
+A função \ina{fibA} é claramente linear: ela realiza \ina{n-1}
+adições, uma a cada iteração. O uso de um arranjo pode ser evitado, se
+apenas o \ina{n}-ésimo número da sequência de Fibonacci é
+desejado. Nesse caso, apenas dois valores são necessários (como vimos
+na versão funcional mostrada na subsecão anterior).
+
+Como mostrado na subseção anterior, podemos usar a fórmula:
+
+  \[ F(\inh{n}) = \frac{1}{\sqrt{5}} (\phi^n + \frac{1}{\phi}^n) \]
+onde $\phi = \frac{1 + \sqrt{5}}{2}$ para obter uma complexidade de
+tempo igual à complexidade de tempo da função de exponenciação.
+
+
