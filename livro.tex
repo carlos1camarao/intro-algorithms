@@ -1,21 +1,18 @@
-%!TEX encoding = ISO-8859-1
 \documentclass[a4paper,10pt]{book}
 
 \usepackage[T1]{fontenc}             % font encoding
-\usepackage[brazil]{babel}           % language
-%\usepackage[portuguese]{babel}
+%\usepackage[brazil]{babel}           % language
+\usepackage[portuguese]{babel}
 \usepackage[latin1]{inputenc}      % acentos
 
 \usepackage{amsmath,amssymb,amsthm}  % mathematics
-\usepackage{graphics}                               % graphics
+\usepackage{graphicx}                               % graphics
 \usepackage{color}                                     % cores
 \usepackage{indentfirst}  % indentation at paragraph beggining
 \usepackage{hyperref}     % for links in pdf and webpage
 \usepackage{makeidx}
-\usepackage{enumerate}
-%\usepackage{tikz}
 %\usepackage{subfigure}
-\usepackage{comment}
+%\usepackage{comment}
 
 %-- colors --------------------------------------
 \definecolor{bluencs}{rgb}{0.0, 0.53, 0.74}
@@ -31,7 +28,7 @@
 \usepackage{fancybox}
 \usepackage{fancyheadings}
 \usepackage{fancysection}            % hevea styling for sections
-\colorsections{210}
+\colorsections{185}
 
 %--- page style ----------------------------------
 \setlength{\headheight}{15.2pt}
@@ -91,21 +88,21 @@ escapechar=§
 \lstset{style=mystyle}
 
 % listings e lstinline para Haskell 
-\lst@definelanguage{myHaskell}{language=Haskell,%
-deletekeywords={List,Cons,Nil,Pair,Tree,Leaf,Node,%
-all,and,any,delete,elem,foldl,foldr,insert,map,max,or,sort}}
-{}
+%\lst@definelanguage{myHaskell}{language=Haskell}%
+%deletekeywords={List,Cons,Nil,Pair,Tree,Leaf,Node,%
+%all,and,any,delete,elem,foldr,insert,map,or,sort}}
+%{}
 
 
 \lstnewenvironment{hask}[1]{
-\lstset{language=myHaskell,emph={#1}}}
+\lstset{language=Haskell,emph={#1}}}
 {}
 
-\newcommand{\inh}{\lstinline[language=myHaskell]}
+\newcommand{\inh}{\lstinline[language=Haskell]}
 
 % listings e lstinline para C 
 \lst@definelanguage{myAlg}{language={C++},%
-morekeywords={with}}
+morekeywords={with,to}}
 
 \lstnewenvironment{alg}[1]{
 \lstset{language={myAlg},emph={#1}}}
@@ -124,7 +121,7 @@ morekeywords={with}}
 \setcounter{tocdepth}{3}
 
 %-- title------------------------------------------
-\title{\textsc{{\color{white} Introdução a Algoritmos}}\\
+\title{Introdução a Algoritmos}\\
 %{\small release ##= version ##}}
 \author{Carlos Camarão\\
 {\small Universidade Federal de Minas Gerais}\\
@@ -136,14 +133,6 @@ morekeywords={with}}
 \htmlhead{{\sc\bf \small Introdução a Algoritmos}:}
 
 \makeindex
-
-
-%----- lista de exercicios ---------------
-%\newenvironment{exerc}
-%   {\renewcommand{\labelenumi}{\textbf{\theenumi.}}
-%    \begin{enumerate}
-%   }
-%   {\end{enumerate}}                    
 
 \begin{document}
 
@@ -157,7 +146,7 @@ para fins não comerciais.
 \tableofcontents
 
 \setcounter{secnumdepth}{-2}
-%\input{prefacio}
+\input{prefacio}
 
 \input{meta.keys}
 
@@ -166,29 +155,26 @@ para fins não comerciais.
 \pagenumbering{arabic}
 
 \input{introd}
-
 \input{complexidade}
-
+\input{analise-eficiencia-de-algoritmos}
 \input{estruturas-de-dados-basicas}
 \input{arvores}
-\input{analise-eficiencia-de-algoritmos}
 \input{algoritmos-de-pesquisa}
-
 \input{algoritmos-de-ordenacao}
-
 \input{hash}
 
-\pagebreak
-\thispagestyle{empty}
-\pagebreak
-\pagestyle{fancyplain}
-
-\bibliographystyle{plain}
-\bibliography{livro}
+%\pagebreak
+%\thispagestyle{empty}
+%\pagebreak
+%\pagestyle{fancyplain}
 
 \appendix
 \input{Haskell}
+\input{Somatorios}
 \input{relacoes-de-recorrencia}
+
+\bibliographystyle{plain}
+\bibliography{livro}
 
 \printindex
 
