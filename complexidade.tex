@@ -120,11 +120,11 @@ ilustrado na Figura \ref{fig:big-O}(a).
 \caption{Notações $\Theta$, $O$ e $\Omega$}
 \end{figure}
 
-Como $\Theta(g(n))$ é um conjunto, o correto seria escrever $f(n) \in
-\Theta(g(n))$, mas é usual escrever $f(n) = \Theta(g(n))$, um abuso de
-notação, que simplifica a notação.  Escrevemos também $f(n) \asymp
-g(n)$ (seguindo Minko Markov \cite{Minko-Markov-2013}) como sinônimo
-de $f(n) = \Theta(g(n))$.
+Como $\Theta(g(n))$ é um conjunto, o correto é escrever $f(n) \in
+\Theta(g(n))$; neste livro, evitamos escrever, como é usual, $f(n) =
+\Theta(g(n))$. Em vez de cometar tal abuso de notação, escrevemos
+$f(n) \asymp g(n)$ (seguindo Minko Markov \cite{Minko-Markov-2013})
+como sinônimo de $f(n) \in \Theta(g(n))$.
 
 %ssume-se também, na definição de $\Theta(g(n))$ que $g(n)$ e os
 %embros $f(n)$ são assintoticamente não-negativos para $n$
@@ -180,10 +180,7 @@ Em palavras, $f(n)$ é membro de $O(g(n))$ se $f(n)$ sempre é menor ou
 igual a $cg(n)$, para algum $c$, e para $n$ suficientemente grande
 (i.e.~a partir de algum $n_0$). A Figura \ref{fig:big-O}(b) ilustra essa definição. 
  
-Assim como na notação $\Theta$, usa-se $f(n) = O(g(n))$ em vez de
-$f(n) \in O(g(n))$. 
-
-Escrevemos também $f(n) \preceq g(n)$ como sinônimo de $f(n) =
+Escrevemos também $f(n) \preceq g(n)$ como sinônimo de $f(n) \in
 O(g(n))$ (seguindo Minko Markov \cite{Minko-Markov-2013}).
 
 Note que $f(n) \asymp g(n)$ implica $f(n) \preceq g(n)$, mas a
@@ -235,9 +232,6 @@ Em palavras, $f(n)$ é membro de $\Omega(g(n))$ se $f(n)$ sempre é
 maior ou igual a $cg(n)$, para algum $c$, e para todo $n$
 suficientemente grande. Isso é ilustrado na Figura \ref{fig:big-O}(c)
 
-Assim como na notação $\Theta$, usa-se $f(n) = \Omega(g(n))$ em vez de
-$f(n) \in \Omega(g(n))$.
-
 Escrevemos também $f(n) \succeq g(n)$ como sinônimo de $f(n) =
 \Omega(g(n))$ (seguindo Minko Markov \cite{Minko-Markov-2013}).
 
@@ -254,8 +248,8 @@ limitada, sendo usada mais como complementação à notação $O$.
 \section{Uso de notação assintótica em fórmulas}
 \label{sec:uso-notacao-assintotica}
 
-Em equações do tipo $n = O(n^2)$, a notação $O$ significa $n \in
-O(n^2)$. 
+% Em equações do tipo $n = O(n^2)$, a notação $O$ significa $n \in
+% O(n^2)$. 
 
 Em geral, no entanto, a ocorrência da notação assintótica expressa uma
 função qualquer, anônima, para a qual não há interesse em especificar
@@ -267,10 +261,11 @@ $\Theta(n)$, no caso $bn + c$. Continuando nesse sentido, $an^2 +
 Essas abreviações são usadas para evitar ter que escrever em fórmulas funções que correspondem a termos de menor grau.
 
 Como exemplo de uso de notação assintótica, temos: $O(2^{O(lg
-  n)})=n^{O(1)}$.  O uso da notação $O$ nessa fórmula expressa
+  n)})\asymp n^{O(1)}$.  O uso da notação $O$ nessa fórmula expressa
 supressão de constantes. Note que $n \preceq 2^{lg n}$, e portanto,
-para qualquer constante $c$, temos: $n^c \asymp 2^{c lg n}$, e $O(2^{O(lg
-  n)})=n^{O(1)}$ é outra forma de expressar essa igualdade.
+para qualquer constante $c$, temos: $n^c \asymp 2^{c lg n}$, e
+$O(2^{O(lg n)}) \asymp n^{O(1)}$ é outra forma de expressar essa
+relação.
 
 \section{Notações $o$, $\omega$}
 \label{sec:Notacao-o}
@@ -305,9 +300,9 @@ Isso é equivalente a:
 
   \[ \llim_{n\rightarrow\!\infty} \frac{g(n)}{f(n)} = 0 \]
 
-Escrevemos também $f(n) \succ g(n)$ como sinônimo de $f(n) = o(g(n))$,
-e $f(n) \prec g(n)$ como sinônimo de $f(n) = \omega(g(n))$ (seguindo
-Minko Markov \cite{Minko-Markov-2013}).
+Escrevemos também $f(n) \succ g(n)$ como sinônimo de $f(n) \in
+o(g(n))$, e $f(n) \prec g(n)$ como sinônimo de $f(n) \in \omega(g(n))$
+(seguindo Minko Markov \cite{Minko-Markov-2013}).
 
 Por exemplo, para qualquer $a>0$, $an^2 \succ n$ mas $an^2 \nsucc
 n^2$.
@@ -339,8 +334,8 @@ Para $\succeq$ e $\preceq$, e $\succ$ e $\prec$, temos:
 Essas propriedades são similares às verificadas para as relações de
 igualdade e desigualdade entre números reais, motivam o uso das
 notações semelhantes para funções e motivam chamar $f$ de
-assintoticamente menor que $g$ se $f(n) = o(g(n))$, $f$ de
-assintoticamente maior que $g$ se $g(n) = \omega(f(n))$), e
+assintoticamente menor que $g$ se $f(n) \in o(g(n))$, $f$ de
+assintoticamente maior que $g$ se $g(n) \in \omega(f(n))$), e
 analogamente para ($\asymp$ e $\Theta$, assintoticamente igual),
 ($\preceq$ e $O$, assintoticamente menor ou igual a) e ($\succeq$ e
 $\Omega$, assintoticamente maior ou igual a).
@@ -360,10 +355,10 @@ sobre os naturais, que:
 
   \begin{itemize}
     \item $f$ tem limite (superior) de complexidade polinomial se
-      $f(n) = O(n^k)$,
-    \item tem limite (inferior) de complexidade exponencial se $f(n) =
-      \Omega(k^n)$,
-    \item tem limite (superior) de complexidade logarítmica se $f(n) =
+      $f(n) \in O(n^k)$,
+    \item tem limite (inferior) de complexidade exponencial se $f(n)
+      \in \Omega(k^n)$,
+    \item tem limite (superior) de complexidade logarítmica se $f(n) \in
       O((lg n)^k)$.
   \end{itemize}
 
@@ -435,11 +430,11 @@ $\lfloor x \rfloor < x + 1$, e $lg n \preceq n$, e portanto $\lfloor
 lg n \rfloor \preceq n$.
 
 \item Cada entrada da tabela abaixo indica, para o par formado por $v
-  = f(n)$ e $w = g(n)$ das duas primeiras colunas da tabela, se $f(n)
-  = X(g(n))$, para $X$ variando de acordo com o indicado nas colunas
-  seguintes (i.e.~para $X = \Theta,O,\Omega,o,\omega$).  Insira {\tt
-    '*'} quando a entrada da tabela abaixo for "Sim", e deixe em
-  branco caso contrário.
+  \in f(n)$ e $w \in g(n)$ das duas primeiras colunas da tabela, se
+  $f(n) \in X(g(n))$, para $X$ variando de acordo com o indicado nas
+  colunas seguintes (i.e.~para $X = \Theta,O,\Omega,o,\omega$).
+  Insira {\tt '*'} quando a entrada da tabela abaixo for "Sim", e
+  deixe em branco caso contrário.
 % Sempre que inserir {\tt '*'}, justifique (mostre porque sim).
 
 Suponha $k\geq 1$, $a > 0$ e $b > 1$ constantes.
@@ -471,18 +466,15 @@ lg (n!)  & lg (n^n) &          & {\tt *} &        & {\tt *} &
     \end{array}
 \]
 
-A primeira linha é consequência de $\llim_{n\rightarrow\!\infty}
-\frac{(lg n)^k}{n^a} = 0$, para todo $k$ e todo $a>0$.
+A primeira linha é consequência de $\llim_{n\rightarrow\!\infty} \frac{(lg n)^k}{n^a} = 0$, para todo $k$ e todo $a>0$.
 
-A segunda linha é consequência de $\llim_{n\rightarrow\!\infty}
-\frac{n^k}{b^n} = 0$, para todo $a$ e todo $b>1$.
+A segunda linha é consequência de $\llim_{n\rightarrow\!\infty} \frac{n^k}{b^n} = 0$, para todo $a$ e todo $b>1$.
 
 $\sin\ n$ oscila (continuamente) entre 0 e 1, quando $n$ cresce de 0 a
 $\infty$. Portanto, $2^{1/2}$ e $2^{\sin\ n}$ não se relacionam (com as
 relações assintóticas acima).
 
-$\frac{2^{n/2}}{2^n} = \frac{1}{2^{n/2}}$, e portanto $2^n \preceq
-2^{n/2}$.
+$\frac{2^{n/2}}{2^n} = \frac{1}{2^{n/2}}$, e portanto $2^n \preceq 2^{n/2}$.
 
 Temos: $\begin{array}[t]{lll}
           lg (n^{lg b}) & = lg b (lg n) & \asymp (lg n) \\
@@ -492,10 +484,8 @@ Temos: $\begin{array}[t]{lll}
 Temos: 
 
 \[ \begin{array}[t]{llllllll}
-n!  = n & \times (n-1) & \times (n-2) & \times (n-3) & \times \ldots 
-                                      & \times 3 & \times 2 & \times 1\\
-n^n = n & \times  n    & \times  n    & \times n     & \times \ldots
-                                      & \times n & \times n & \times n
+n!  = n & \times (n-1) & \times (n-2) & \times (n-3) & \times \ldots & \times 3 & \times 2 & \times 1\\
+n^n = n & \times  n    & \times  n    & \times n     & \times \ldots & \times n & \times n & \times n
 \end{array}
 \]
 
