@@ -1,21 +1,22 @@
 % !TEX encoding = ISO-8859-1
-\subsection{Pesquisa bin√°ria}
+\subsection{Pesquisa bin·ria}
 \label{pesquisa-binaria}
 
-Pesquisa bin√°ria √© apresentada a seguir usando √°rvores de pesquisa
-bin√°ria, em Haskell, e arranjos ordenados, em pseudo-c√≥digo
+Pesquisa bin·ria È apresentada a seguir usando ·rvores de pesquisa
+bin·ria, em Haskell, e arranjos ordenados, em pseudo-cÛdigo
 imperativo.
 
-Uma √°rvore de pesquisa bin√°ria √© uma √°rvore bin√°ria --- isto √©, um
-√°rvore com duas sub-√°rvores (possivelmente vazias), digamos, √†
-esquerda e √† direita --- com os elementos contidos nos nodos e tal
-que: todo elemento contido em um nodo √© maior que os elementos
-contidos na sub-√°rvore √† esquerda e menor que os elementos contidos na
-sub-√°rvore √† direita.
+Uma ·rvore de pesquisa bin·ria È uma ·rvore bin·ria --- isto È, um
+·rvore com duas sub-·rvores (possivelmente vazias), digamos, ‡
+esquerda e ‡ direita --- com os elementos contidos nos nodos e tal
+que: todo elemento contido em um nodo È maior que os elementos
+contidos na sub-·rvore ‡ esquerda e menor que os elementos contidos na
+sub-·rvore ‡ direita.
 
-Dois exemplos de √°rvores bin√°rias de pesquisa com os elementos de 1 a
-7 s√£o mostradas abaixo. 
+Dois exemplos de ·rvores bin·rias de pesquisa com os elementos de 1 a
+7 s„o mostradas abaixo. 
 
+\begin{verbatim}
   4                    4
  / \                  / \
 1   5                2   6
@@ -23,11 +24,12 @@ Dois exemplos de √°rvores bin√°rias de pesquisa com os elementos de 1 a
  3    6            1  3 5  7 
 /      \ 
 2       7
+\end{verbatim}
 
-A propriedade fundamental de uma √°rvore bin√°ria de pesquisa √© o acesso
-eficiente (como vamos ver, logaritmo) a um elemento.
+A propriedade fundamental de uma ·rvore bin·ria de pesquisa È o acesso
+eficiente (como vamos ver, logarÌtmico) a um elemento.
 
-\subsubsection{Vers√£o funcional}
+\subsubsection{Vers„o funcional}
 
 
 
