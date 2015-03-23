@@ -7,7 +7,8 @@
 
 \usepackage{amsmath,amssymb,amsthm}  % mathematics
 \usepackage{graphicx}                               % graphics
-\usepackage{color}                                     % cores
+\usepackage[usenames,dvipsnames]{xcolor}
+% \usepackage{color}                                     % cores
 \usepackage{indentfirst}  % indentation at paragraph beggining
 \usepackage{hyperref}     % for links in pdf and webpage
 \usepackage{makeidx}
@@ -15,12 +16,12 @@
 %\usepackage{comment}
 
 %-- colors --------------------------------------
-\definecolor{bluencs}{rgb}{0.0, 0.53, 0.74}
-\definecolor{paleblue}{rgb}{0.74, 0.83, 0.9}
+%\definecolor{bluencs}{rgb}{0.0, 0.53, 0.74}
+%\definecolor{paleblue}{rgb}{0.74, 0.83, 0.9}
 %\definecolor{magnolia}{rgb}{0.97, 0.96, 1.0}
-\definecolor{darkgreen}{rgb}{0.0,0.5,0.0}
-\definecolor{brown}{rgb}{0.65,0.16,0.16}
-\definecolor{ngray}{rgb}{0.86, 0.86, 0.86}
+%\definecolor{darkgreen}{rgb}{0.0,0.5,0.0}
+%\definecolor{brown}{rgb}{0.65,0.16,0.16}
+%\definecolor{ngray}{rgb}{0.86, 0.86, 0.86}
 
 %-- hevea and page styling -------------------------
 \usepackage{hevea}
@@ -67,11 +68,11 @@
 %OBS: a versao original de Haskell considera como 
 % keywords todas as definições do prelude.base
 \lstdefinestyle{mystyle}{basicstyle={\tt},
-backgroundcolor={\color{paleblue}},
+backgroundcolor={\color{Cyan}},
 keywordstyle={\bf \color{black}},
 identifierstyle={\color{blue}},
-commentstyle={\rm \it \color{red}},
-emphstyle={\color{darkgreen}},
+commentstyle={\rm \it \color{DarkOrchid}},
+emphstyle={{\bf \color{Mahogany}}},
 xleftmargin=0pt,xrightmargin=0pt,
 columns={fixed},
 keepspaces={true},
@@ -87,15 +88,26 @@ escapechar=§
 \setenvclass{lstlisting}{myclisting}
 \lstset{style=mystyle}
 
+\definecolor{LightGray}{gray}{0.90}
+% \definecolor{LightBlue}{rgb}{\color{blue!20}}
+% \definecolor{LightGreen}{rgb}{\color{green!20}}
+
 % listings e lstinline para Haskell 
 %\lst@definelanguage{myHaskell}{language=Haskell}%
 %deletekeywords={List,Cons,Nil,Pair,Tree,Leaf,Node,%
 %all,and,any,delete,elem,foldr,insert,map,or,sort}}
 %{}
 
+\newcommand{\divisao}{Cyan}
+\newcommand{\decremento}{YellowGreen}
+\newcommand{\simplificacao}{Orange}
+\newcommand{\mudancaRep}{GreenYellow}
+\newcommand{\preProcess}{Tan}
+\newcommand{\definicao}{LightGray}
 
-\lstnewenvironment{hask}[1]{
-\lstset{language=Haskell,emph={#1}}}
+\lstnewenvironment{hask}[2]{
+\lstset{language=Haskell,emph={#1},
+backgroundcolor={\color{#2}}}}
 {}
 
 \newcommand{\inh}{\lstinline[language=Haskell]}
@@ -104,8 +116,9 @@ escapechar=§
 \lst@definelanguage{myAlg}{language={C++},%
 morekeywords={with,to}}
 
-\lstnewenvironment{alg}[1]{
-\lstset{language={myAlg},emph={#1}}}
+\lstnewenvironment{alg}[2]{
+\lstset{language={myAlg},emph={#1},
+backgroundcolor={\color{#2}}}}
 {}
 
 % environment para algoritmo com linhas numeradas
@@ -147,10 +160,8 @@ para fins não comerciais.
 
 \setcounter{secnumdepth}{-2}
 \input{prefacio}
-
 \input{meta.keys}
 
-%\pagestyle{fancy}
 \setcounter{secnumdepth}{10}
 \pagenumbering{arabic}
 
@@ -159,6 +170,7 @@ para fins não comerciais.
 \input{analise-eficiencia-de-algoritmos}
 \input{estruturas-de-dados-basicas}
 \input{arvores}
+\input{tecnicas-de-projeto-de-algoritmos}
 \input{algoritmos-de-pesquisa}
 \input{algoritmos-de-ordenacao}
 \input{hash}
