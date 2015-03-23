@@ -28,7 +28,6 @@ difíceis têm ordem de complexidade {\em exponencial}, ou seja, tempo
 de execução limitado superiormente por uma função $k^n$, onde $n$ é o
 tamanho da entrada e $k$ é um valor constante, que independe de $n$.
 
-
 \section{Complexidade de Fun\c{c}\~oes}
 \label{sec:complexidade-de-funcoes}
 
@@ -110,7 +109,6 @@ Em palavras, $f(n)$ é membro de $\Theta(g(n))$ se $f(n)$ sempre está
 entre $c_1g(n)$ e $c_2g(n)$, para determinados $c_1,c_2$, e para $n$
 suficientemente grande (i.e.~a partir de algum $n_0$). Isso é
 ilustrado na Figura \ref{fig:big-O}(a).
-
 
 \begin{figure}
 \label{fig:big-O}
@@ -258,7 +256,8 @@ um nome. Por exemplo, $an^2 + bn + c$ pode ser expressa como $an^2 +
 $\Theta(n)$, no caso $bn + c$. Continuando nesse sentido, $an^2 +
 \Theta(n)$ pode ser expressa como $\Theta(n^2)$. 
 
-Essas abreviações são usadas para evitar ter que escrever em fórmulas funções que correspondem a termos de menor grau.
+Essas abreviações são usadas para evitar ter que escrever em fórmulas
+funções que correspondem a termos de menor grau.
 
 Como exemplo de uso de notação assintótica, temos: $O(2^{O(lg
   n)})\asymp n^{O(1)}$.  O uso da notação $O$ nessa fórmula expressa
@@ -380,11 +379,13 @@ Para quaisquer constantes inteiras $a,b$, se $a>1$ temos:
             \llim_{n\rightarrow\!\infty} \frac{lg^b n}{n^a} &= 0 \label{exlxpoli}
      \end{align}
 
-A equação \ref{expxpoli} indica que toda função exponencial 
-com uma base maior que 1 cresce mais rapidamente que qualquer função polinomial.
+A equação \ref{expxpoli} indica que toda função exponencial com uma
+base maior que 1 cresce mais rapidamente que qualquer função
+polinomial.
 
-A segunda equação \ref{exlxpoli} (que vale também se $a=1$) indica 
-que toda função logarítmica cresce mais lentamente que qualquer função polinomial.
+A segunda equação \ref{exlxpoli} (que vale também se $a=1$) indica que
+toda função logarítmica cresce mais lentamente que qualquer função
+polinomial.
 
 %Lembre-se:
 
@@ -443,36 +444,38 @@ Suponha $k\geq 1$, $a > 0$ e $b > 1$ constantes.
 \newcommand{\hsC}{\hspace*{1.8cm}}
 
 \[ \begin{array}{|c|c|c|c|c|c|c|}
-v           & w            & \Theta & O      & \Omega & o &   \omega \\ \hline\hline
-(lg n)^k & n^a        &  \hsC    & \hsC & \hsC      & \hsC  &  \hsC \\ \hline
-n^k       & b^n        &         &  &        &   &        \\ \hline
-\sqrt n  & n^{sin n} &         &  &        &   &        \\ \hline
-2^n       & 2^{n/2}  &         &  &        &   &        \\ \hline
-n^{lg b} & b^{lg n}  &         &  &        &   &        \\ \hline
-lg (n!)    & lg (n^n)  &         &  &        &   &        
+v           & w            & \Theta & O      & \Omega & o     &   \omega \\ \hline\hline
+(lg n)^k    & n^a          &  \hsC   & \hsC  & \hsC    & \hsC  &  \hsC \\ \hline
+n^k         & b^n          &         &       &         &      &        \\ \hline
+\sqrt n     & n^{sin n}     &         &       &         &      &        \\ \hline
+2^n         & 2^{n/2}       &         &       &         &      &        \\ \hline
+n^{lg b}     & b^{lg n}      &         &       &         &      &        \\ \hline
+lg (n!)     & lg (n^n)     &         &       &         &      &        
     \end{array}
 \]
 
 Resposta (baseada em \cite{Minko-Markov-2013}):
 
 \[ \begin{array}{|c|c|c|c|c|c|c|}
-    v        & w      & \Theta & O      & \Omega  & o       & \omega\\ \hline\hline
-(lg n)^k & n^a        &       & {\tt *} &         & {\tt *} &     \\ \hline
-n^k      & b^n        &       & {\tt *} &         & {\tt *} &     \\ \hline
-\sqrt n  & n^{\sin\ n} & \hsC    & \hsC & \hsC      & \hsC  &  \hsC \\ \hline
-2^n      & 2^{n/2}     &       &         & {\tt *} &         & {\tt *} \\ \hline
-n^{lg b}  & b^{lg n}    & {\tt *} & {\tt *} & {\tt *} &        &        \\ \hline
-lg (n!)  & lg (n^n) &          & {\tt *} &        & {\tt *} &        
+    v        & w          & \Theta & O       & \Omega  & o       & \omega  \\ \hline\hline
+(lg n)^k     & n^a        &         & {\tt *} &         & {\tt *} &        \\ \hline
+n^k          & b^n        &         & {\tt *} &         & {\tt *} &        \\ \hline
+\sqrt n      & n^{\sin\ n}  & \hsC    & \hsC   & \hsC     & \hsC   &  \hsC   \\ \hline
+2^n          & 2^{n/2}     &         &         & {\tt *} &         & {\tt *} \\ \hline
+n^{lg b}      & b^{lg n}    & {\tt *} & {\tt *} & {\tt *}  &        &         \\ \hline
+lg (n!)      & lg (n^n)   &         & {\tt *} &         & {\tt *} &        
     \end{array}
 \]
 
-A primeira linha é consequência de $\llim_{n\rightarrow\!\infty} \frac{(lg n)^k}{n^a} = 0$, para todo $k$ e todo $a>0$.
+A primeira linha é consequência de $\llim_{n\rightarrow\!\infty}
+\frac{(lg n)^k}{n^a} = 0$, para todo $k$ e todo $a>0$.
 
-A segunda linha é consequência de $\llim_{n\rightarrow\!\infty} \frac{n^k}{b^n} = 0$, para todo $a$ e todo $b>1$.
+A segunda linha é consequência de $\llim_{n\rightarrow\!\infty}
+\frac{n^k}{b^n} = 0$, para todo $a$ e todo $b>1$.
 
 $\sin\ n$ oscila (continuamente) entre 0 e 1, quando $n$ cresce de 0 a
-$\infty$. Portanto, $2^{1/2}$ e $2^{\sin\ n}$ não se relacionam (com as
-relações assintóticas acima).
+$\infty$. Portanto, $2^{1/2}$ e $2^{\sin\ n}$ não se relacionam (com
+as relações assintóticas acima).
 
 $\frac{2^{n/2}}{2^n} = \frac{1}{2^{n/2}}$, e portanto $2^n \preceq 2^{n/2}$.
 
