@@ -32,7 +32,7 @@ ponto-e-vírgula.
 
 A notação funcional será explicada sempre que necessário, isto é,
 sempre que houver alguma possibilidade de dúvida. Uma descrição
-sucinta da linguagem Haskell é incluída no Apêndice \ref{app:Ap-Haskell},
+sucinta da linguagem Haskell é incluída no Apêndice \ref{ap:Haskell},
 que deverá ser lido pelo leitor não familiarizado com essa
 linguagem. Descrições mais completas de Haskell podem ser encontradas,
 por exemplo, em
@@ -107,7 +107,7 @@ um jogo de buraco).
 
 \begin{center}
 \begin{tabular}{l}
-\begin{hask}{sort,insert}
+\begin{hask}{sort,insert}{\decremento}
 sort []    = []
 sort (a:x) = insert a (sort x)
 
@@ -152,7 +152,7 @@ Explicações sobre a notação funcional (usada em Haskell):
 
 \begin{center}
 \begin{tabular}{l}
-\begin{hask}{List,Nil,Cons}
+\begin{hask}{List,Nil,Cons}{White}
 data List a = Nil | Cons a (List a)
 \end{hask}
 \end{tabular}
@@ -189,7 +189,7 @@ data List a = Nil | Cons a (List a)
 
 \begin{center}
 \begin{tabular}{l}
-\begin{hask}{Pair}
+\begin{hask}{Pair}{White}
 data Pair a b = Pair a b
 \end{hask}
 \end{tabular}
@@ -235,7 +235,7 @@ As definições desses predicados são apresentadas a seguir, onde \inh{perm} faz u
 
 \begin{center}
 \begin{tabular}{l}
-\begin{hask}{sorted,perm,elem,delete}
+\begin{hask}{sorted,perm,elem,delete}{\decremento}
 
 sorted []      =  True
 sorted [a]     =  True
@@ -301,16 +301,16 @@ de blocos):
 
 \begin{center}
 \begin{tabular}{l}
-\begin{alg}{sort}
+\begin{alg}{sort}{\decremento}
 sort(A) 
-   for j:=2 to length[A] do
-      key := A[j]
+   for j§$\from$§2 to length[A] do
+      key §$\from$§ A[j]
       /* Insere A[j] no arranjo ordenado A[1..j-1] */ 
-      i := j-1
+      i §$\from$§ j-1
       while (i > 0 && A[i]>key) do
-         A[i+1] := A[i]
-         i := i - 1
-         A[i+1] := key
+         A[i+1] §$\from$§ A[i]
+         i §$\from$§ i - 1
+         A[i+1] §$\from$§ key
 \end{alg}
 \end{tabular}
 \end{center}
