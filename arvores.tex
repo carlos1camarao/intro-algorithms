@@ -31,7 +31,7 @@ podemos definir:
 
 \begin{center}
 \begin{tabular}{l}
-\begin{hask}{Tree,Leaf,Node}
+\begin{hask}{Tree,Leaf,Node}{White}
 data Tree a = Leaf | Node a [Tree a]
 \end{hask}
 \end{tabular}
@@ -46,7 +46,7 @@ folhas, em vez de nos nodos internos:
 
 \begin{center}
 \begin{tabular}{l}
-\begin{hask}{Tree,Leaf,Node}
+\begin{hask}{Tree,Leaf,Node}{White}
 data Tree' a = Leaf' a | Node' [Tree' a]
 \end{hask}
 \end{tabular}
@@ -57,7 +57,7 @@ chamada de árvore binária e pode ser definida como:
 
 \begin{center}
 \begin{tabular}{l}
-\begin{hask}{BTree,BLeaf,BNode}
+\begin{hask}{BTree,BLeaf,BNode}{White}
  data BTree a = BLeaf | BNode a (BTree a) (BTree a)
 \end{hask}
 \end{tabular}
@@ -70,7 +70,7 @@ exemplo a seguir:
 
 \begin{center}
 \begin{tabular}{l}
-\begin{alg}{ArvoreBinariaDeInteiros}
+\begin{alg}{ArvoreBinariaDeInteiros}{White}
 struct ArvoreBinariaDeInteiros
      int elem
      struct ArvoreBinariaDeInteiros *esq, dir 
@@ -86,7 +86,7 @@ podemos chamar de {\em representação com primogênito-irmão-e-pai}:
 
 \begin{center}
 \begin{tabular}{l}
-\begin{alg}{ArvoreDeInteiros}
+\begin{alg}{ArvoreDeInteiros}{White}
 struct ArvoreDeInteiros
    int elem;
    struct ArvoreDeInteiros *primogenito, irmao, pai 
