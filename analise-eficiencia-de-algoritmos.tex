@@ -3,23 +3,18 @@
 \label{analise-eficiencia-de-algoritmos}
 
 Esse capítulo apresenta um roteiro para análise da eficiência de
-algoritmos e apresenta exemplos simples de problemas e de soluções
+algoritmos, juntamente com exemplos simples de problemas e suas soluções,
 usando esse roteiro.
 
 Além da eficiência, algoritmos podem ser analisados quanto a
 facilidade de mostrar ou provar correção, simplicidade e
-generalidade. 
-
-Ao contrário da análise da eficiência, simplicidade e facilidade de
+generalidade. Ao contrário da análise da eficiência, simplicidade e facilidade de
 mostrar correção são critérios bastante subjetivos. É bastante difícil
 estabelecer métricas para tais critérios. Generalidade, por sua vez,
 pode ser medida pelo tamanho do domínio da entrada do problema
 resolvido, mas há situações em que o desenvolvimento de um algoritmo
 mais geral é desnecessário (pouco vantajoso) ou difícil, e tal
 dificuldade ou necessidade é difícil de ser medida precisamente.
-
-O projeto de algoritmos envolve revisão e busca de melhorias, com o
-qual programadores devem se envolver. 
 
 Em geral, o projeto de algortimos envolve a adoção de soluções que
 favorecem um aspecto em detrimento de outro, e um aspecto que costuma
@@ -28,14 +23,12 @@ programa. O desenvolvimento de algoritmos {\em ótimos\/} é uma questão
 relativa ao {\em problema\/} que está sendo resolvido e, mesmo
 restringindo ao aspecto de eficiência, para muitos problemas saber
 dizer qual é o algoritmo ótimo é difícil e muitas vezes não tem uma
-resposta conhecida. Vamos falar mais sobre esse assunto na seção
-{P-vs-NP}.
+resposta conhecida. 
 
-% Anany Levitin cita \ref{Anany-Levitin-analysis-and-design-of-algs} a
-% seguinte observação de Saint-Exupéry (que ele tirou de citação feita
-% por Jon Bentley): ``Um projetista sabe que chegou à perfeição não
-% quando não há mais nada a incluir, mas quando não há mais nada a
-% remover''.
+%Vamos falar mais sobre esse assunto na seção \ref{sec:P-vs-NP}.
+
+\HRule
+{\em Nota\/}: 
 
 A prova de correção de programas é uma área da ciência da computação
 que está em franca evolução, atualmente. O desenvolvimento de teorias
@@ -52,62 +45,61 @@ e técnicas de teste de programas não fazem parte do escopo deste
 livro; no entanto, vamos usar provas de indução e definição de
 invariantes para mostrar informalmente a correção de programas.
 
-Como usualmente, não é feita neste livro nenhuma {\em validação dos
-  dados de entrada}, isto é, não é verificado que os dados de entrada
-realmente estão dentro dos limites estabelecidos no enunciado de um
-problema. Em programas usados na prática, essa verificação deve ser
-incluída (o enunciado do problema não deve estabelecer tais limites
-para os dados de entrada), mas em geral essa validação não envolve
-nenhum aspecto mais relevante para a tarefa de programação (apenas
-inclusão de testes para emissão de mensagens de erro no caso em que os
-dados de entrada não satisfaçam a esses testes).
+\HRule
 
-As seções a seguir apresentam alguns exemplos de problemas para os
-quais há vamos analisar a eficiência de um algoritmo simples que os
-resolve. O roteiro para análise da eficiência é o seguinte:
+Como usualmente, vamos em geral omitir a {\em validação dos dados de
+  entrada}, isto é, não verificar se os dados de entrada realmente
+estão dentro dos limites estabelecidos no enunciado de um problema. Em
+programas usados na prática, essa verificação deve ser incluída mas,
+em geral, essa validação não envolve nenhum aspecto mais relevante
+para a tarefa de programação, envolvendo apenas a inclusão de testes
+para emissão de mensagens de erro no caso em que os dados de entrada
+não satisfaçam a esses testes.
+
+As seções a seguir apresentam alguns exemplos de problemas e
+algoritmos simples para solução desses problemas, seguidos da análise
+de eficiência desses algoritmos. O roteiro para análise da eficiência
+é o seguinte:
 
 \begin{enumerate}
 
-\item Determinar variável ($n$) que representa o tamanho dos dados de
+\item Determinar a variável ($n$) que representa o tamanho dos dados de
   entrada.
 
-\item Identificar operações que vão determinar a variação na
+\item Identificar operações que são relevantes para determinar a 
   eficiência do programa durante a execução.
 
-\item Expresse o número de vezes que a operação é executada em função
-  de $n$, chamada de expressão-determinante-da-eficiência.
+\item Expressar o número de vezes que essas operações são executadas,
+  em função de $n$, chamada de expressão-determinante-da-eficiência.
 
-\item Resolva ou simplifique a expressão-determinante-da-eficiência.
+\item Resolver ou simplificar a expressão-determinante-da-eficiência.
 
 \end{enumerate}
 
 No caso de um programa recursivo, a
-expressão-determinante-da-eficiência é em geral uma expressão escrita
-em função de $T(n-1)$ ou outro argumento da função $T$ (de tempo de
-execução) menor que $n$, que expressa $T(n)$ de modo recursivo,
-criando o que é chamado de uma {\em relação de recorrência}.
+expressão-determinante-da-eficiência é, em geral, também definida
+recursivamente. Isto é, o tempo de execução do algoritmo para uma
+entrada de tamanho $n$ -- $T(n)$ -- é escrito em termos de $T(n-1)$,
+ou em termos de $T(k)$, para algum $k<n$. Dizemos, nesse caso, que
+$T(n)$ é definido por uma {\em relação de recorrência}.
 
 \begin{quotation}
   {\em Uma relação de recorrência é uma definição recursiva para a
-    qual busca-se (espera-se encontrar) uma solução não recursiva que
-    a simplifique, que especifica a mesma relação (em geral uma
-    função).\/}
+    qual busca-se uma solução não recursiva que a simplifique, que
+    especifica a mesma relação.\/}
 \end{quotation}
 
-Note: essa busca pode não ter sucesso. De fato, a grande maioria das
-equações recursivas não pode ser {\em simplificada\/} para uma solução
-não recursiva, embora possa ser reescrita, algumas vezes com bastante
-esforço, para uma forma não diretamente recursiva, mas que use alguma
-maneira (estrutura de dados) de implementar (para representar) a
-recursão. No entanto, as equações que expressam tempos de execução de
-pequenos programas, com as quais vamos trabalhar, em geral são
-bastante simples e podem ser {\em simplificadas\/} para uma equação
-não recursiva.
+Existem inúmeras equações recursivas para as quais não podemos
+encontrar uma solução não recursiva (de fato, isto acontece com a
+maioria das equações recursivas). Entretanto, para os problemas com os
+quais vamos lidar a seguir, as equações recursivas que expressam o
+tempos de execução de algoritmos para solução desses problemas podem
+ser resolvidas de maneira bastante simples.
 
 No caso de um programa não recursivo, a
-expressão-determinante-da-eficiência é em geral um somatório, que em
-geral também pode ser simplificado, usando propriedades de somatórios
-como as seguintes, onde $a,b,c$ são constantes:
+expressão-determinante-da-eficiência é em geral um somatório, que
+muitas vezes também pode ser simplificado, usando propriedades de
+somatórios como as seguintes, onde $a,b,c$ são constantes:
 
   \[ \begin{array}{l}
        \sum_{i=a}^{b} cm_i = c \sum_{i=a}^{b} m_i\\
@@ -138,7 +130,7 @@ A versão funcional é apresentada em Haskell a seguir:
 
 \begin{center}
 \begin{tabular}{l}
-\begin{hask}{numDigs}
+\begin{hask}{numDigs}{\divisao}
 numDigs x b 
   | x < b     = 1
   | otherwise = 1 + numDigs (x `div` b)
@@ -210,7 +202,7 @@ de recursão:
 
 \begin{center}
 \begin{tabular}{l}
-\begin{alg}{numDigs}
+\begin{alg}{numDigs}{\divisao}
 numDigs (n,b)
   numD = 0
   while (n > b) 
@@ -246,7 +238,7 @@ A versão funcional apresentada abaixo simplesmente usa \foldl'
 
 \begin{center}
 \begin{tabular}{l}
-\begin{hask}{maxElem}
+\begin{hask}{maxElem}{\decremento}
 maxElem :: Ord a => [a] -> a
 maxElem (a:x) = foldl' max a x
 \end{hask}
@@ -258,7 +250,7 @@ entre dois valores, passados como parâmetros:
 
 \begin{center}
 \begin{tabular}{l}
-\begin{hask}{max}
+\begin{hask}{max}{\definicao}
 max :: Ord a => a -> a -> a
 max a b 
   | a <= b    = b
@@ -271,7 +263,7 @@ A função \inh{foldl} é definida no prelúdio de Haskell como a seguir:
 
 \begin{center}
 \begin{tabular}{l}
-\begin{hask}{foldl}
+\begin{hask}{foldl}{\decremento}
 foldl f z []    = z
 foldl f z (a:x) = foldl f (f z a) 
 \end{hask}
@@ -422,12 +414,12 @@ um arranjo (com índices de :
 
 \begin{center}
 \begin{tabular}{l}
-\begin{alg}{maxElem}
+\begin{alg}{maxElem}{\decremento}
 maxElem (A) 
-  max = A[0]
-  for (i $\leftarrow$ 1 to n-1) 
+  max §$\from$§ A[0]
+  for i §$\from$§ 1 to n-1 
      if A[i] > max
-        max = A[i]
+        max §$\from$§ A[i]
   return max
 \end{alg}
 \end{tabular}
@@ -451,7 +443,7 @@ A versão funcional é apresentada a seguir:
 
 \begin{center}
 \begin{tabular}{l}
-\begin{hask}{allUnique,chkUnique}
+\begin{hask}{allUnique,chkUnique}{\decremento}
 allUnique :: Eq a => [a] -> Bool
 allUnique = fst . foldr chkUnique (True,[])
 
@@ -499,10 +491,10 @@ mostrado a seguir:
 
 \begin{center}
 \begin{tabular}{l}
-\begin{alg}{allUnique}
+\begin{alg}{allUnique}{\decremento}
 allUnique(A) 
-  for i = 0 to n-2 do
-    for j = i+1 to n-1 do
+  for i §$\from$§ 0 to n-2 do
+    for j §$\from$§ i+1 to n-1 do
         if A[i] == A[j] return false
 \end{alg}
 \end{tabular}
