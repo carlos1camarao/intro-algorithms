@@ -2,33 +2,44 @@
 \chapter{Algoritmos de Pesquisa}
 \label{algoritmos-de-pesquisa}
 
-Pesquisar em computação significa encontrar um dado valor dentre
-vários valores existentes. Os valores existentes podem estar
-representados como um conjunto ou qualquer forma de agrupamento de
-valores. 
+Pesquisar em computação significa encontrar um dado valor, chamado de
+{\em chave da pesquisa\/}, dentre vários valores existentes. Os
+valores existentes podem estar representados de várias formas, mas
+vamos tratar neste livro apenas de listas e árvores.  Mesmo nos
+restringindo apenas a essas formas de representação de valores,
+existem vários algoritmos de pesquisa. 
 
-%% Existem vários algoritmos de pesquisa. Na seção
-%%-- \ref{pesquisa-em-lista} apresentamos um algoritmo simples de {\em
-%%--   pesquisa sequencial}. Na seção --
-%%-- \ref{pesquisa-sequencial-com-valores-ordenados} apresentamos pequena
-%%-- variação da pesquisa sequencial usada quando os valores que estão
-%%-- sendo pesquisados estão ordenados. Na seção
-%%-- \ref{pesquisa-sequencial-com-sentinela} apresentamos % outra pequena
-%%-- variação (otimização) da pesquisa sequencial, que usa o que é chamado
-%%-- de {\em sentinela}. Sentinela é um elemento adicionado a extremo de
-%%-- estrutura de dados para evitar teste para verificar chegada a esse
-%%-- extremo.
+Na seção \ref{sec:pesquisa-em-lista} apresentamos um algoritmo simples
+de {\em pesquisa sequencial\/} em listas (incluindo representação com
+arranjos). Duas variações simples dessa pesquisa sequencial são
+apresentadas nos exercícios resolvidos. A primeira é baseada em
+pesquisa em lista ordenada, que termina a pesquisa sequencial quando a
+chave da pesquisa é encontrada ou quando se torna maior do que um
+elemento da lista (supondo ordem crescente dos valores na lista). A
+segunda usa o que é chamado de {\em sentinela} --- um elemento
+adicionado ao extremo (tipicamente, de arranjo), para evitar teste
+para verificar chegada a esse extremo (por isso, é usada somente
+quando o número de elementos que pode ser armazenado é limitado, como
+ocorre no caso de arranjos).
 
 A seção \ref{pesquisa-binaria} apresentamos o eficiente algoritmo de
-{\em pesquisa binária\/}. 
-
-.......
-
--- \subsection{Pesquisa sequencial com valores ordenados}
--- \label{pesquisa-sequencial-com-valores-ordenados}
-
--- \subsection{Pesquisa sequencial com sentinela}
--- \label{pesquisa-sequencial-com-sentinela}
+pesquisa em árvore binária, chamada de {\em pesquisa binária}. As
+seções seguintes apresentam variações da pesquisa binária, que usam
+operações para balanceamento da árvore na qual a pesquisa é feita, com
+o objetivo de aumentar a eficiência da pesquisa.
 
 \input{pesquisa-binaria}
+
+\section{Exercícios Resolvidos}
+
+\begin{enumerate}
+
+\item .... pesquisa em lista ordenada ....
+
+\item .... pesquisa em arranjo com sentinela ....
+
+\end{enumerate}
+
+\section{Exercícios}
+
 
