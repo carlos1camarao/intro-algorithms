@@ -17,7 +17,7 @@ Fibonacci, para dado $n$.
 \HRule
 {\em Nota\/}: 
 
-Curiosidades e história sobre a sequência de Fibonacci\ldots
+Curiosidades e história sobre a sequência de Fibonacci\ldots ?
 
 \HRule
 
@@ -30,7 +30,7 @@ seguir:
 
 \begin{center}
 \begin{tabular}{l}
-\begin{hask}{fatorial,fibs,fib1}
+\begin{hask}{fatorial,fibs,fib1}{\decremento}
 fib1 :: Integer -> Integer
 fib1 n = fibs n ! n 
 fibs n  = fibArr 
@@ -51,7 +51,7 @@ alcançado:
 
 \begin{center}
 \begin{tabular}{l}
-\begin{hask}{fatorial,fibs}
+\begin{hask}{fib}{\decremento}
 fib:: Integer -> Integer
 fib 0 = 0
 fib 1 = 1
@@ -69,7 +69,7 @@ própria definição da sequência de números de Fibonacci:
 
 \begin{center}
 \begin{tabular}{l}
-\begin{hask}{fatorial,fibs}
+\begin{hask}{fatorial,fibs}{\decremento}
 fibI 0 = 0
 fibI 1 = 1
 fibI n = fibI (n-1) + fibI(n-2) 
@@ -182,7 +182,7 @@ elementos):
 
 \begin{center}
 \begin{tabular}{l}
-\begin{alg}{fibA}
+\begin{alg}{fibA}{\decremento}
 fibA(n)
   F = alocaArranjo (n)
   F(0) = 0
