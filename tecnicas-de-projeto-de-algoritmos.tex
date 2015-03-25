@@ -12,7 +12,10 @@ as ideias de Levitin \cite{Levitin:2007:Introd-Design-Analysis-Alg}):
   menores, resolver essas duas ou mais sub-instâncias e combinar os
   resultados obtidos para solução do problema original.
 
-  Exemplos ....
+  Algoritmos de caminhamento em árvores binárias (pre-ordem, pos-ordem
+  e visita-no-meio (em inglês, {\em in-order\/}) são exemplos
+  clássicos de uso da técnica de divisão (exemplos
+  \ref{caminhamento-em-arvores-binarias}). 
 
 \item[Decremento] (em inglês, chamada de {\em decrease-and-conquer\/}):
   é baseada em passar da instância original para uma instância menor
@@ -25,15 +28,15 @@ as ideias de Levitin \cite{Levitin:2007:Introd-Design-Analysis-Alg}):
   diferença está em que decrementar não origina duas ou mais
   sub-instâncias (apenas decrementa o tamanho da entrada).
 
-  A maioria dos algoritmos apresentados neste livro usam a técnica de
-  decremento: veja por exemplo \inh{maiorElem} (seção
+  A vasta maioria dos algoritmos apresentados neste livro usam a
+  técnica de decremento: veja por exemplo \inh{maiorElem} (seção
   \ref{maior-elemeento}), \inh{elem} (seção
   \ref{sec:pesquisa-em-lista}), \inh{allUnique} (seção
   \ref{unicidade}), ordenação por inserção (seção
   \ref{sec:insertion-sort-func}), funções \inh{sorted}, \inh{perm} e
-  \inh{delete} (seção \ref{sec:insertion-sort-func}), multiplicação
-  de matrizes (seção \ref{multiplicacao-de-matrizes}), função
-  \inh{fib} (seção \ref{numeros-de-fibonacci}).
+  \inh{delete} (seção \ref{sec:insertion-sort-func}), multiplicação de
+  matrizes (seção \ref{multiplicacao-de-matrizes}), função \inh{fib}
+  (seção \ref{numeros-de-fibonacci}).
 
 \item[Transformação] (em inglês, chamada de {\em
   transform-and-conquer\/}): baseada em transformar a instância do
@@ -155,6 +158,9 @@ indique a técnica usada na solução.
 
 \begin{enumerate}
 
+\item \label{caminhamento-em-arvores-binarias} ..... 
+
+
 \item Problema da Celebridade: uma celebridade de um grupo de $n$
   pessoas é uma pessoa que não conhece ninguém do grupo mas é
   conhecida por todas as pessoas do grupo.  O problema consiste em,
@@ -190,7 +196,7 @@ No programa abaixo, usamos valores \inh{m} de tipo \inh{Map
   (Pessoa,Pessoa) Bool} para indicar se duas pessoas \inh{(a,b)} se
 conhecem ou não: em caso positivo \inh{m ! (a,b)} é igual a
 \inh{True}. Em caso negativo, o par \inh{(a,b)} não faz parte do
-domínio de \inh{n} (ou seja, o par \inh{(a,b)} não foi inserido como
+domínio de \inh{m} (ou seja, o par \inh{(a,b)} não foi inserido como
 uma chave de \inh{m}) e nesse caso a avaliação de \inh{m ! (a,b)}
 resulta em um erro. Usamos por isso \inh{findWithDefault False (a,b)
   m}, que retorna \inh{False} se \inh{(a,b)} não pertence ao domínio
