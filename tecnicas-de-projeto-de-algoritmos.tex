@@ -1,0 +1,241 @@
+% !TEX encoding = ISO-8859-1
+\chapter{Técnicas de Projeto de Algoritmos}
+\label{ch:tecnicas-de-projeto-de-algoritmos}
+
+Consideramos as seguintes técnicas de projeto de algoritmos (seguindo
+as ideias de Levitin \cite{Levitin:2007:Introd-Design-Analysis-Alg}):
+
+\begin{description}
+
+\item[Divisão] (em inglês, chamada de {\em divide-and-conquer\/}): é
+  baseada em dividir a instância do problema em duas ou mais partes
+  menores, resolver essas duas ou mais sub-instâncias e combinar os
+  resultados obtidos para solução do problema original.
+
+  Exemplos ....
+
+\item[Decremento] (em inglês, chamada de {\em decrease-and-conquer\/}):
+  é baseada em passar da instância original para uma instância menor
+  ou reduzir o tamanho da entrada do problema para solução da
+  instância original. O decréscimo é tipicamente de um valor ou por um
+  fator constante no tamanho da entrada, mas pode também ser um
+  decréscimo de um valor ou por um fator variável. Note que o
+  decremento por um fator constante não é caracterizado como divisão
+  (seguindo \cite{Levitin:2007:Introd-Design-Analysis-Alg}): a
+  diferença está em que decrementar não origina duas ou mais
+  sub-instâncias (apenas decrementa o tamanho da entrada).
+
+  A maioria dos algoritmos apresentados neste livro usam a técnica de
+  decremento: veja por exemplo \inh{maiorElem} (seção
+  \ref{maior-elemeento}), \inh{elem} (seção
+  \ref{sec:pesquisa-em-lista}), \inh{allUnique} (seção
+  \ref{unicidade}), ordenação por inserção (seção
+  \ref{sec:insertion-sort-func}), funções \inh{sorted}, \inh{perm} e
+  \inh{delete} (seção \ref{sec:insertion-sort-func}), multiplicação
+  de matrizes (seção \ref{multiplicacao-de-matrizes}), função
+  \inh{fib} (seção \ref{numeros-de-fibonacci}).
+
+\item[Transformação] (em inglês, chamada de {\em
+  transform-and-conquer\/}): baseada em transformar a instância do
+  problema original em outra instância do mesmo problema (com o mesmo
+  tamanho da instância original) ou de outro problema, e usar ou
+  adaptar o resultado para solução do problema original.
+
+  A transformação para uma instância do mesmo problema pode ser
+  envolver {\em simplificação\/} ou {\em mudança de representação\/}
+  ou {\em pré-processamento\/} da entrada.
+
+  A simplificação não envolve mudança de representação da entrada: usa
+  a mesma representação original, transformando a entrada para que ela
+  tenha alguma propriedade que torna a solução do problema mais fácil
+  ou mais eficiente (por exemplo, ordenando os dados de entrada). O
+  pré-processamento é caracterizado pela existência de um ou mais
+  passos adicionais sobre os dados de entrada, para obtenção de dados
+  extras, novamente para tornar a solução do problema mais fácil ou
+  mais eficiente.
+
+  Exemplos ....
+
+\item[Uso-da-Definição] (também chamada de {\em força bruta\/}):
+  baseada em uso direto da especificação do problema e das definições
+  dos conceitos envolvidos na especificação do problema e, além disso,
+  quando a técnica não se encaixa em alguma das demais técnicas acima.
+
+  Exemplos ....
+
+\end{description}
+
+Todo programa apresentado neste livro é classificado segundo uma, e
+apenas uma, das técnicas acima, para motivar e ajudar no processo de
+desenvolvimento do raciocínio usado na elaboração de algoritmos. No
+processo de elaboração de um algoritmo, é instrutivo procurar
+classificá-lo segundo uma das técnicas acima, e considerar a
+existência ou não de outros algoritmos, elaborados possivelmente
+segundo outras técnicas. Isso pode ajudar a organizar o raciocínio, o
+entendimento de algoritmos existentes e aumentar a motivação para o
+estudo de novos algoritmos.
+
+Para espeficicar a classificação de algoritmo, implementado por função
+com nome salientado no texto em cor \textcolor{Mahogany}{mogno}
+(mogno), usamos cores de fundo, como a seguir:
+
+  \begin{description}
+    \item[{\colorbox{\divisao}{divisão}}] 
+    \item[{\colorbox{\decremento}{decremento}}]
+    \item[transformação]
+       \begin{description}
+         \item[{\colorbox{\simplificacao}{simplificação}}]
+         \item[{\colorbox{\mudancaRep}{mudança de representação}}]
+         \item[{\colorbox{\preProcess}{pré-processamento}}]
+      \end{description}
+    \item[{\colorbox{\definicao}{definição}}]
+  \end{description}
+
+Quando não se trata de um algoritmo, ou quando são incluídas várias
+funções e não está se considerando a análise da eficiência de um
+algoritmo, é usado fundo branco.
+
+As técnicas de projeto de algoritmos abaixo, tradicionalmente vistas
+como principais, são consideradas como sub-classificações, por não
+constituir base para classificação de algoritmos em geral:
+
+  \begin{enumerate}
+
+     \item gananciosa (em inglês, {\em greedy\/}) --- para problemas
+       de {\em otimização\/}, baseada na escolha de {\em ótimo\/}
+       local, i.e.~baseada em fazer melhor escolha na fase ou instante
+       corrente.
+
+       Exemplos...
+
+     \item programação dinâmica --- ....
+
+     \item busca exaustiva --- baseada na tentativa de todos os
+       possíveis valores que possam levar a uma solução, até que uma
+       solução seja encontrada. É um caso de uso-da-definição.
+
+       A limitação mais importante da busca exaustiva é sua
+       ineficiência. Em geral, o número de possíveis valores que podem
+       levar a uma solução cresce muito rapidamente
+       (e.g.~exponencialmente) com o crescimento do tamanho da
+       entrada.
+
+       Exemplos ....
+
+     \item retrocedimento (em inglês, {\em backtracking\/}) ---
+       baseada na tentativa de realizar escolhas, dentre opções
+       existentes, para construção da solução passo a passo e
+       retroceder na escolha feita em um passo se esta escolha não
+       puder ser usada para gerar uma solução.
+
+       No pior caso, retrocedimento pode acabar gerando todas as
+       soluções possíveis, como no caso da busca exaustiva, mas não é
+       comum isso ocorrer. 
+
+       É instrutivo visualizar a técnica de retrocesso como um
+       processo de construir uma árvore que mostra as decisões tomadas
+       a cada passo. A raiz da árvore corresponde ao estado inicial
+       antes do primeiro passo, e cada nó da árvore contém sub-árvores
+       com raízes que correspondem a estados que caracterizam a
+       decisão tomada no passo seguinte.
+
+       Por exemplo, a árvore abaixo descreve a técnica de
+       retrocedimento aplicada ao problema de colocar 4 rainhas em um
+       tabuleiro 4x4 sem que haja uma rainha atacando outra (veja
+       exercício \ref{...}.
+
+       ......
+
+  \end{enumerate}
+
+\section{Exercícios Resolvidos}
+
+Escreva um programa para solução de cada problema enunciado a seguir e
+indique a técnica usada na solução.
+
+\begin{enumerate}
+
+\item Problema da Celebridade: uma celebridade de um grupo de $n$
+  pessoas é uma pessoa que não conhece ninguém do grupo mas é
+  conhecida por todas as pessoas do grupo.  O problema consiste em,
+  dados: i) $n$, ii) uma lista de pessoas, e iii) uma tabela que
+  indica, para cada par de pessoas $(a,b)$ da lista, se $a$ conhece
+  $b$, identificar uma celebridade do grupo de pessoas (supondo, por
+  simplicidade, que uma celebridade de fato existe).
+
+  {\bf Solução}: O algoritmo que soluciona o problema usa a técnica de
+  decremento. Se só há duas ou mais pessoas quaisquer $a$ e $b$ na
+  lista, o algoritmo verifica se $a$ conhece $b$; em caso positivo,
+  $a$ é removido da lista (celebridades não conhecem ninguém) e, em
+  caso negativo, $b$ é removido (celebridades são conhecidas por
+  todos). Se há só uma pessoa na lista, essa pessoa é uma celebridade.
+ 
+{\bf Versão funcional}: Em Haskell, usamos abaixo um mapeamento, em
+vez de um arranjo, para definir quando duas pessoas se conhecem ou
+não.
+
+\HRule
+{\em Nota\/}: 
+
+Um valor de tipo \inh{Map k a}, para tipos \inh{k} e \inh{a} quaisquer
+com a única condição que \inh{k} seja da classe \inh{Ord} (sobre
+classes de tipos em Haskell, veja seção \ref{sec:Classes-de-tipos}),
+associa valores de tipo \inh{k}, chamados de {\em chaves}, a valores
+de tipo \inh{a} (de modo semelhante a arranjos e funções). O conjunto
+de chaves (de um valor \inh{m} de tipo \inh{Map k a}) é chamado de
+{\em domínio\/} de \inh{m}. Internamente, um valor de tipo \inh{Map k
+  a} é implementado como uma árvore binária balanceada.
+
+No programa abaixo, usamos valores \inh{m} de tipo \inh{Map
+  (Pessoa,Pessoa) Bool} para indicar se duas pessoas \inh{(a,b)} se
+conhecem ou não: em caso positivo \inh{m ! (a,b)} é igual a
+\inh{True}. Em caso negativo, o par \inh{(a,b)} não faz parte do
+domínio de \inh{n} (ou seja, o par \inh{(a,b)} não foi inserido como
+uma chave de \inh{m}) e nesse caso a avaliação de \inh{m ! (a,b)}
+resulta em um erro. Usamos por isso \inh{findWithDefault False (a,b)
+  m}, que retorna \inh{False} se \inh{(a,b)} não pertence ao domínio
+de \inh{m} (\inh{findWithDefault v k m} retorna \inh{m!k} --- o valor
+associado à chave \inh{k} em \inh{m} --- se \inh{k} pertence ao
+domínio de \inh{m}, caso contrário retorna o valor \inh{v}).
+
+O mapeamento que indica se pares de pessoas se conhecem pode ser
+criado com a função \inh{conheceM0}, que cria um mapeamento a partir
+de uma lista de pares \inh{((a,b),True)}, que indica que a pessoa
+\inh{a} conhece a pessoa \inh{b}. 
+
+\HRule
+
+\begin{center}
+\begin{tabular}{l}
+\begin{hask}{celebridade}{\decremento}
+
+module Celebridade where
+
+import Data.Map (Map, findWithDefault, fromList)
+
+type NumPessoas = Integer
+type Pessoa     = Integer
+
+type ConheceM   = Map (Pessoa,Pessoa) Bool
+-- For m::ConheceM, findWithDefault False (a,b) m = True sse (a conhece b).
+
+conheceM0 :: [(Pessoa,Pessoa)] -> ConheceM
+conheceM0 x = fromList [(p,True) | p <- x]
+
+celebridade :: NumPessoas -> [Pessoa] -> ConheceM -> Pessoa
+-- Pre: celebridade n x m implica n = length x
+celebridade n (a:b:r) m           
+  | findWithDefault False (a,b) m = celebridade (n-1) (b:r) m -- a não é celeb. (celeb. não conhece ninguém)
+  | otherwise                     = celebridade (n-1) (a:r) m -- b não é celeb. (todos conhecem celeb.)
+celebridade _ [a]     _           = a -- n==1
+
+\end{hask}
+\end{tabular}
+\end{center}
+
+{\bf Versão imperativa}: \ldots
+
+\end{enumerate}
+
+\section{Exercícios}
+
