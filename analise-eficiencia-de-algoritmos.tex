@@ -238,9 +238,9 @@ A versão funcional apresentada abaixo simplesmente usa \foldl'
 
 \begin{center}
 \begin{tabular}{l}
-\begin{hask}{maxElem}{\decremento}
-maxElem :: Ord a => [a] -> a
-maxElem (a:x) = foldl' max a x
+\begin{hask}{maiorElem}{\decremento}
+maiorElem :: Ord a => [a] -> a
+maiorElem (a:x) = foldl' max a x
 \end{hask}
 \end{tabular}
 \end{center}
@@ -414,8 +414,8 @@ um arranjo (com índices de :
 
 \begin{center}
 \begin{tabular}{l}
-\begin{alg}{maxElem}{\decremento}
-maxElem (A) 
+\begin{alg}{maiorElem}{\decremento}
+maiorElem (A) 
   max §$\from$§ A[0]
   for i §$\from$§ 1 to n-1 
      if A[i] > max
