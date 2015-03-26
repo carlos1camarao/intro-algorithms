@@ -365,7 +365,7 @@ label={figPilha}]
 module Pilha (Pilha, vazia, empilhar, desempilhar, topo, estaVazia) where
    newtype Pilha a = mkPilha [a] 
 
-   vazia :: Pilha $a
+   vazia :: Pilha a
    vazia = mkPilha []
    
    empilhar :: a -> Pilha a -> Pilha a
