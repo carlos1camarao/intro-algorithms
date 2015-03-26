@@ -1,6 +1,6 @@
 %!TEX encoding = ISO-8859-1
 \section{Multiplicação de Matrizes}
-\label{multiplicacao-de-matrizes}
+\label{sec:multiplicacao-de-matrizes}
 
 Considere o problema de calcular o produto de duas matrizes quadradas.
 
@@ -16,7 +16,7 @@ e $B$ é igual a:
 para $0\leq i,\,j \leq n-1$.
 
 \subsection{Versão funcional}
-\label{versao-funcional-de-matrixMult}
+\label{sec:matrixMult-fun}
 
 A motivação fundamental para a existência de arranjos é a propriedade
 de prover acesso eficiente ($O(1)$) a seus elementos. Eles espelham
@@ -62,7 +62,7 @@ mecanismo de classes de tipos em Haskell, veja o Apêndice
 
 \begin{center}
 \begin{tabular}{l}
-\begin{hask}{Ix}
+\begin{hask}{Ix}{White}
 class  (Ord a) => Ix a  where
     range       :: (a,a) -> [a]
     index       :: (a,a) -> a -> Int
@@ -88,7 +88,7 @@ A criação de um arranjo em Haskell é feita com a função:
 
 \begin{center}
 \begin{tabular}{l}
-\begin{hask}{array}
+\begin{hask}{array}{White}
 array :: (Ix a) => (a,a) -> [(a,b)] -> Array a b
 \end{hask}
 \end{tabular}
@@ -101,7 +101,7 @@ Por exemplo:
 
 \begin{center}
 \begin{tabular}{l}
-\begin{hask}{array}
+\begin{hask}{array}{White}
 quadrados =  array (1,100) [(i, i*i) | i <- [1..100]]
 \end{hask}
 \end{tabular}
@@ -116,7 +116,7 @@ indexação. Por exemplo:
 
 \begin{center}
 \begin{tabular}{l}
-\begin{hask}{!}
+\begin{hask}{!}{White}
 quadrados!7 
 \end{hask}
 \end{tabular}
@@ -145,7 +145,7 @@ Isso permite definir, por exemplo:
 
 \begin{center}
 \begin{tabular}{l}
-\begin{hask}{fatorial,fibs}
+\begin{hask}{fatorial,fibs}{White}
 fatorial n = fatArr 
   where fatArr = array (k,n) ((1,1) : [(i, i * fatArr!(i-1)) | i <- [2..n]]) 
 
@@ -193,7 +193,7 @@ de associação seja definido.
 
 \begin{center}
 \begin{tabular}{l}
-\begin{hask} {matrixMult,transpose}
+\begin{hask} {matrixMult}{\decremento}
 
 module MatrixMult where
 
@@ -291,7 +291,7 @@ No pseudo-código abaixo supomos que:
 
 \begin{center}
 \begin{tabular}{l}
-\begin{alg}{matrixMult}
+\begin{alg}{matrixMult}{\decremento}
 matrixMult(A,B) 
   C = alocaMatrizQuadrada (n)
   for i = 0 to n-1 do
@@ -321,7 +321,7 @@ que representa a matriz computada pela multiplicação de \ina{A} por
 
 \begin{center}
 \begin{tabular}{l}
-\begin{alg}{matrixMult,mkSquareMatrix}
+\begin{alg}{matrixMult}{\decremento}
 
 int** mkSquareMatrix (int n) {
   int i,j; 
