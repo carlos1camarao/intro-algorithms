@@ -1,12 +1,13 @@
 % !TEX encoding = ISO-8859-1
-\subsection{Pesquisa binária}
-\label{pesquisa-binaria}
+\section{Pesquisa binária}
+\label{sec:pesquisa-binaria}
 
-Pesquisa binária é apresentada a seguir usando árvores de pesquisa
-binária, em Haskell, e arranjos ordenados, em pseudo-código
-imperativo.
+.... 
 
-Uma árvore de pesquisa binária é uma árvore binária --- isto é, um
+\section{Pesquisa em árvore binária}
+\label{sec:pesquisa-em-arvore-binaria}
+
+Uma árvore binária de pesquisa é uma árvore binária --- isto é, um
 árvore com duas sub-árvores (possivelmente vazias), digamos, à
 esquerda e à direita --- com os elementos contidos nos nodos e tal
 que: todo elemento contido em um nodo é maior que os elementos
@@ -27,11 +28,93 @@ Dois exemplos de árvores binárias de pesquisa com os elementos de 1 a
 \end{verbatim}
 
 A propriedade fundamental de uma árvore binária de pesquisa é o acesso
-eficiente (como vamos ver, logarítmico) a um elemento.
+eficiente (como vamos ver, logarítmico no caso médio) a um elemento.
 
 \subsubsection{Versão funcional}
 
+Considere a definição de árvore binária com elementos nos nodos
+internos da árvore apresentada na seção \sec{sec:arvores}:
 
+\begin{center}
+\begin{tabular}{l}
+\begin{hask}{BTree,BLeaf,BNode}{White}
+ data BTree a = BLeaf | BNode a (BTree a) (BTree a)
+\end{hask}
+\end{tabular}
+\end{center}
 
+A pesquisa por um elemento em uma árbore de pesquisa binária é um
+algoritmo simples, mostrado a seguir:
 
+\begin{center}
+\begin{tabular}{l}
+\begin{hask}{BTree,BLeaf,BNode}{\decremento}
+search v BLeaf = False
+search v (BNode v' t t') 
+  | v == v'    = True
+  | v <  v'    = search v t
+  | otherwise  = search v t'
+\end{hask}
+\end{tabular}
+\end{center}
 
+O algoritmo para inserção de elementos em uma árvore binária de
+pesquisa é semelhante:
+
+\begin{center}
+\begin{tabular}{l}
+\begin{hask}{BTree,BLeaf,BNode}{\decremento}
+insert v BLeaf = BNode v BLeaf BLeaf
+search v t@(BNode v' t1 t2) 
+  | v <  v'    = insert v t1
+  | v >  v'    = insert v t2
+  | otherwise  = t
+\end{hask}
+\end{tabular}
+\end{center}
+
+Vamos determinar a função de complexidade de tempo da pesquisa em uma
+árvore binária de pesquisa: 
+
+\begin{enumerate}
+
+  \item O tamanho da entrada é dado pelo número de elementos $n$ na
+    árvore.
+
+  \item As operações relevantes são as comparações de igualdade
+    (\inh{==}) e menor-que (\inh{<}). 
+
+  \item A expressão-determinante-da-eficiência é, no pior caso, igual
+    a $T(n-1) + k$, onde $k$ é uma constante que expressa o tempo de
+    execução das comparações de igualdade e menor-que. No pior caso, o
+    elemento está em sub-árvore que contém $n-1$ nodos: todos os nodos
+    menos o nodo corrente. Neste caso, a árvore está
+    desbalanceada. Isso ocorre, por exemplo, para as árvores mostradas
+    a seguir, construídas com inserções sucessivas de elementos em uma
+    lista crescente e decrescente, respectivamente. 
+
+    \begin{verbatim}
+
+         v0                             v0
+          \                             /
+          v1                           v1
+           \                           /
+           ...                        ...
+            \                         /
+            vn-1                     vn-1
+             \                      /
+              vn                   vn
+
+    \end{verbatim}
+
+  \end{enumerate}
+
+A relação de recorrência neste caso é, assim:
+
+   \[ T(n) = T(n-1) + k \]
+
+....
+
+\subsection{Versão imperativa}
+
+....
