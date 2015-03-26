@@ -25,16 +25,16 @@ Curiosidades e história sobre a sequência de Fibonacci\ldots ?
 
 Uma solução simples é baseada na indexação de um arranjo (\inh{fibs n
   ! n}), onde a definição de \inh{fibs}, mostrada na seção
-\ref{sec:matrixMult-fun}, é apresentada novamente a seguir:
+\ref{sec:multMatriz-fun}, é apresentada novamente a seguir:
 
 \begin{center}
 \begin{tabular}{l}
 \begin{hask}{fatorial,fibs,fib1}{\decremento}
 fib1 :: Integer -> Integer
 fib1 n = fibs n ! n 
-fibs n  = fibArr 
-  where fibArr = array (0,n) ([(0, 1), (1, 1)] ++ 
-                              [(i, fibArr!(i-2) + fibArr!(i-1)) | i <- [2..n]]) 
+fibs n  = arrFib
+  where arrFib = array (0,n) ([(0, 1), (1, 1)] ++ 
+                              [(i, arrFib!(i-2) + arrFib!(i-1)) | i <- [2..n]]) 
 \end{hask}
 \end{tabular}
 \end{center}
@@ -82,12 +82,12 @@ o valor, nesta sequência).
 
 No caso de \inh{fib1}, as operações que determinam a eficiência do
 programa durante a execução estão relacionas à criação do arranjo
-\inh{fibArr} (que, como veremos a seguir, é quadrática; a operação de
+\inh{arrFib} (que, como veremos a seguir, é quadrática; a operação de
 indexação, \inh{fibs n ! n}, tem custo $O(1)$). Portanto:
 
   \[ T(\inh{n}) = f_0(\inh{n}) \]
 onde $f_0$ é a função de complexidade assintótica da função de criação
-do arranjo \inh{fibArr}. Temos: 
+do arranjo \inh{arrFib}. Temos: 
 
   \[ f_0(\inh{n}) = \sum_{\inh{i}=2}^{\inh{n}} (c_0(\inh{i}) + c(\inh{i})) \]
 onde $c_0(i)$ é o custo de criar a lista e $c(\inh{i})$ o custo da
@@ -95,8 +95,8 @@ contenação dessa lista (i.e.~uso de \inh{(++)}). Temos:
 
    \[ c_0(\inh{i}) = \Theta(1) \]
 uma vez que a criacão envolve apenas duas operações de indexação
-(\inh{fibArr!(i-2)} e \inh{fibArr!(i-1)}) e uma soma
-(\inh{fibArr!(i-2) + fibArr!(i-1)}), e:
+(\inh{arrFib!(i-2)} e \inh{arrFib!(i-1)}) e uma soma
+(\inh{arrFib!(i-2) + arrFib!(i-1)}), e:
 
   \[ c(\inh{i}) \asymp n \]
 uma vez que a complexidade assintótica da contenação é linear no
@@ -107,7 +107,7 @@ argumento de \inh{(++)}).  Logo:
 
 Logo, a operação que determina a complexidade assintótica do programa
 \inh{fib1} é a concatenação iterativa de listas, realizada para
-criação do arranjo \inh{fibArr}.
+criação do arranjo \inh{arrFib}.
 
 No caso de \inh{fib}, a complexidade assintótica é claramente linear:
 
