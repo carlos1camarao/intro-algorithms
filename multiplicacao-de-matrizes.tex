@@ -16,7 +16,7 @@ e $B$ é igual a:
 para $0\leq i,\,j \leq n-1$.
 
 \subsection{Versão funcional}
-\label{sec:matrixMult-fun}
+\label{sec:multMatriz-fun}
 
 A motivação fundamental para a existência de arranjos é a propriedade
 de prover acesso eficiente ($O(1)$) a seus elementos. Eles espelham
@@ -149,9 +149,9 @@ Isso permite definir, por exemplo:
 fatorial n = fatArr 
   where fatArr = array (k,n) ((1,1) : [(i, i * fatArr!(i-1)) | i <- [2..n]]) 
 
-fibs n  = fibArr 
-  where fibArr = array (0,n) ([(0, 1), (1, 1)] ++ 
-                              [(i, fibArr!(i-2) + fibArr!(i-1)) | i <- [2..n]]) 
+fibs n  = arrFib
+  where arrFib = array (0,n) ([(0, 1), (1, 1)] ++ 
+                              [(i, arrFib !(i-2) + arrFib!(i-1)) | i <- [2..n]]) 
 \end{hask}
 \end{tabular}
 \end{center}
@@ -175,11 +175,11 @@ até o número de colunas de \inh{m} (igual ao número de colunas de
 \inh{m2} como uma matriz de colunas (a indexação de \inh{m2} fornece
 uma coluna da matriz).
 
-É incluída função \inh{transpose} para transposição de matrizes
+É incluída função \inh{transpoe} para transposição de matrizes
 (conversão de representação de uma matriz de um arranjo de linhas em
 um arranjo de colunas). Para multiplicar matrizes usando
-\inh{matrixMult} e considerando a segunda matriz (\inh{m2}) como uma
-matriz de linhas, deve-se usar: \inh{matrixMult m1 (transpose m2)}.
+\inh{multMatriz} e considerando a segunda matriz (\inh{m2}) como uma
+matriz de linhas, deve-se usar: \inh{multMatriz m1 (transpoe m2)}.
 
 A modificação incremental de arranjos é feita pelo operador \inh{(//)
   :: (Ix a) => Array a b -> [(a,b)] -> Array a b}. É usado abaixo o
@@ -193,24 +193,24 @@ de associação seja definido.
 
 \begin{center}
 \begin{tabular}{l}
-\begin{hask} {matrixMult}{\decremento}
+\begin{hask} {multMatriz}{\decremento}
 
-module MatrixMult where
+module MultMatriz where
 
 import Data.List  (foldl')
 import Data.Array (Array,array,(!),bounds,(//))
 
-type MatrixLin = Array Integer Lin -- MatrixLin = arranjo de linhas 
-type MatrixCol = Array Integer Col -- MatrixCol = arranjo de colunas
+type MatrizLin = Array Integer Lin -- MatrizLin = arranjo de linhas 
+type MatrizCol = Array Integer Col -- MatrizCol = arranjo de colunas
 type Lin       = Array Integer Integer
 type Col       = Array Integer Integer
-type LinNum    = Integer
-type ColNum    = Integer
+type NumLin    = Integer
+type NumCol    = Integer
   
-matrixMult :: MatrixLin -> MatrixCol -> MatrixLin
+multMatriz :: MatrizLin -> MatrizCol -> MatrizLin
 -- Pre: 1) Número de colunas de m1 = número de linhas de m2 (i.e. numCols1 = numLins2)
 --      2) Índices de arranjos começam em 1 (pequena simplificação).
-matrixMult m1 m2
+multMatriz m1 m2
   | numCols1 == numLins2 = foldl' (addLin m1 m2 numCols1 numCols) m0 [1..numLins]
   | otherwise            = error ("Multiplicação de matrizes m1 m2 requer: " ++ 
                                   "número de colunas de m1 = número de linhas de m2")
@@ -224,22 +224,22 @@ matrixMult m1 m2
     m0           = array (1,numLins) [] -- matriz inicial vazia 
                                         -- linhas adicionadas, uma a uma, por addLin
 
-addLin :: MatrixLin -> MatrixCol -> ColNum -> ColNum -> MatrixLin -> LinNum -> MatrixLin
+somaLin :: MatrizLin -> MatrizCol -> NumCol -> NumCol -> MatrizLin -> NumLin -> MatrizLin
 -- Adiciona m!i. Cada elemento j de m!i = produto interno de m1!i pela coluna j de m2.
-addLin m1 m2 numColsm1 numCols m i = m // [(i,mi)]
+somaLin m1 m2 numColsm1 numCols m i = m // [(i,mi)]
   where mi = mkLin i (m1!i) m2 numColsm1 numCols 
 
-mkLin:: LinNum -> Lin -> MatrixCol -> ColNum -> ColNum -> Lin
+geraLin:: NumLin -> Lin -> MatrizCol -> NumCol -> NumCol -> Lin
 -- m!i = linha formada pelo produtos internos de m1!i por m2!j, para j = [1..numCols]
-mkLin i m1i m2 numColsm1 numCols = array (1,numCols) [(j, innerProd m1i j (m2!j) numColsm1) | j <- [1..numCols]]
+geraLin i m1i m2 numColsm1 numCols = array (1,numCols) [(j, prodInterno m1i j (m2!j) numColsm1) | j <- [1..numCols]]
       
-innerProd :: Lin -> ColNum -> Col -> ColNum -> Integer
-innerProd m1i j m2j n = sum [(m1i!j) * (m2j!j) | j <- [1..n]]
+prodInterno :: Lin -> NumCol -> Col -> NumCol -> Integer
+prodInterno m1i j m2j n = sum [(m1i!j) * (m2j!j) | j <- [1..n]]
 
-transpose :: MatrixLin -> MatrixCol
+transpoe :: MatrizLin -> MatrizCol
 -- Pre: m ! i é a i-ésima linha de m, indexada de 1 a n.
 -- Pos: transpose m ! i é linha de transpose m tal que m!i!j = transpose m!j!i (j=1,..,n).
-transpose m = array (1,numCols) [(i, array (1,numLins) [(j, m!j!i) | j <- [1..numLins]]) | i <- [1..numCols]]
+transpoe m = array (1,numCols) [(i, array (1,numLins) [(j, m!j!i) | j <- [1..numLins]]) | i <- [1..numCols]]
   where
     (_,numLins) = bounds m
     (_,numCols) = bounds (m!1)
@@ -291,8 +291,8 @@ No pseudo-código abaixo supomos que:
 
 \begin{center}
 \begin{tabular}{l}
-\begin{alg}{matrixMult}{\decremento}
-matrixMult(A,B) 
+\begin{alg}{multMatriz}{\decremento}
+multMatriz(A,B) 
   C = alocaMatrizQuadrada (n)
   for i = 0 to n-1 do
     for j = 0 to n-1 do
@@ -321,9 +321,9 @@ que representa a matriz computada pela multiplicação de \ina{A} por
 
 \begin{center}
 \begin{tabular}{l}
-\begin{alg}{matrixMult}{\decremento}
+\begin{alg}{multMatriz}{\decremento}
 
-int** mkSquareMatrix (int n) {
+int** geraMatrizQuad (int n) {
   int i,j; 
   int **p = malloc (n * sizeof(int*)), *q;
   for (i=0; i<n; i++) {
@@ -334,9 +334,9 @@ int** mkSquareMatrix (int n) {
   return p;
 }
 
-int** matrixMult (int **A, int **B, int n) {
+int** multMatriz (int **A, int **B, int n) {
   int i, j, k;
-  int **C = mkSquareMatrix(n);
+  int **C = geraMatrizQuad(n);
   for (i=0; i<n; i++) 
     for (j=0; j<n; j++)
       for (k=0; k<n; k++)
