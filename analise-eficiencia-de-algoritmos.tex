@@ -447,11 +447,11 @@ A versão funcional é apresentada a seguir:
 verifUnicidade :: Eq a => [a] -> Bool
 verifUnicidade = fst . foldr verifUnico (True,[])
 
-verifUnicidade :: Eq a => a -> (Bool,[a]) -> (Bool,[a])
-verifUnicidade a (True,x) 
+verifUnico :: Eq a => a -> (Bool,[a]) -> (Bool,[a])
+verifUnico a (True,x) 
  | a `elem` x   = (False,undefined)
  | otherwise    = (True, a:x)
-verifUnico _ r   = r
+verifUnico _ r  = r
 \end{hask}
 \end{tabular}
 \end{center}
@@ -493,7 +493,7 @@ mostrado a seguir:
 \begin{center}
 \begin{tabular}{l}
 \begin{alg}{verifUnicidade}{\decremento}
-verifUnicos(A) 
+verifUnicidade(A) 
   for i §$\from$§ 0 to n-2 do
     for j §$\from$§ i+1 to n-1 do
         if A[i] == A[j] return false
