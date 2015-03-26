@@ -443,28 +443,29 @@ A versão funcional é apresentada a seguir:
 
 \begin{center}
 \begin{tabular}{l}
-\begin{hask}{allUnique,chkUnique}{\decremento}
-allUnique :: Eq a => [a] -> Bool
-allUnique = fst . foldr chkUnique (True,[])
+\begin{hask}{verifUnicidade,verifUnico}{\decremento}
+verifUnicidade :: Eq a => [a] -> Bool
+verifUnicidade = fst . foldr verifUnico (True,[])
 
-chkUnique :: Eq a => a -> (Bool,[a]) -> (Bool,[a])
-chkUnique a (True,x) 
+verifUnicidade :: Eq a => a -> (Bool,[a]) -> (Bool,[a])
+verifUnicidade a (True,x) 
  | a `elem` x   = (False,undefined)
  | otherwise    = (True, a:x)
-chkUnique _ r   = r
+verifUnico _ r   = r
 \end{hask}
 \end{tabular}
 \end{center}
 
-A função \inh{chkUnique} usa um par $(b,x)$, onde $b$ indica unicidade
-(de todos os elementos testados até agora), e $x$ representa a lista
-dos elementos já testados. A unicidade de cada elemento $a$ da lista é
-testada com relação à lista dos já testados $x$: se $a$ não pertence a
-$x$, então a unicidade é preservada e $a$ é adicionado a $x$, caso
-contrário não há unicidade e a verificação pode ser interrompida.
+A função \inh{verifUnico} usa um par $(b,x)$, onde $b$ indica
+unicidade (de todos os elementos testados até agora), e $x$ representa
+a lista dos elementos já testados. A unicidade de cada elemento $a$ da
+lista é testada com relação à lista dos já testados $x$: se $a$ não
+pertence a $x$, então a unicidade é preservada e $a$ é adicionado a
+$x$, caso contrário não há unicidade e a verificação pode ser
+interrompida.
 
-A função \inh{allUnique} percorre a lista para produzir o resultado
-desejado, usando \inh{chkUnique}.
+A função \inh{verifUnicidade} percorre a lista para produzir o
+resultado desejado, usando \inh{verifUnico}.
 
 A relação de recorrência é 
 
@@ -491,8 +492,8 @@ mostrado a seguir:
 
 \begin{center}
 \begin{tabular}{l}
-\begin{alg}{allUnique}{\decremento}
-allUnique(A) 
+\begin{alg}{verifUnicidade}{\decremento}
+verifUnicos(A) 
   for i §$\from$§ 0 to n-2 do
     for j §$\from$§ i+1 to n-1 do
         if A[i] == A[j] return false
