@@ -113,7 +113,21 @@ A relação de recorrência neste caso é, assim:
 
    \[ T(n) = T(n-1) + k \]
 
-....
+A solução dessa relação de recorrência foi apresentada na seção
+\ref{sec:maior-elemento}. Temos: 
+
+   \[ T(n) \asymp n \]
+
+O algoritmo de pesquisa em uma árvore binária de pesquisa tem
+complexidade $O(p)$ no pior caso, onde $p$ é a profundidade da árvore
+(número de arestas do maior caminho existente entre a raiz e uma
+folha). 
+
+Em uma árvore balanceada, o número de elementos $n$ é igual a $2^p$,
+ou seja, em uma árvore balanceada, a pesquisa tem complexidade 
+
+  \[ T(n) \asymp lg n \]
+Em uma árvore totalmente desbalanceada, temos no entanto $p = n-1$.
 
 \subsection{Versão imperativa}
 
