@@ -22,11 +22,13 @@ para verificar chegada a esse extremo (por isso, é usada somente
 quando o número de elementos que pode ser armazenado é limitado, como
 ocorre no caso de arranjos).
 
-A seção \ref{pesquisa-binaria} apresentamos o eficiente algoritmo de
-pesquisa em árvore binária, chamada de {\em pesquisa binária}. As
-seções seguintes apresentam variações da pesquisa binária, que usam
-operações para balanceamento da árvore na qual a pesquisa é feita, com
-o objetivo de aumentar a eficiência da pesquisa.
+A seção \ref{sec:pesquisa-binaria} apresenta o eficiente algoritmo de
+pesquisa em um arranjo ordenado chamada de {\em pesquisa binária}.  A
+seção \ref{sec:pesquisa-em-arvore-binaria} apresenta algoritmos de
+pesquisa em árvore binária, incluindo variações do algoritmo básico
+(em árvores não balanceadas) para diferentes formas de obter
+balanceamento da árvore na qual a pesquisa é feita, com o objetivo de
+aumentar a eficiência da pesquisa.
 
 \input{pesquisa-binaria}
 
@@ -37,6 +39,14 @@ o objetivo de aumentar a eficiência da pesquisa.
 \item .... pesquisa em lista ordenada ....
 
 \item .... pesquisa em arranjo com sentinela ....
+
+\item \label{ex:dicionario} Em computação, um dicionário é um tipo
+  abstrato que define operações de inserção, remoção e
+  pesquisa. Define um tipo abstrato dicionário usando uma árvore
+  binária de pesquisa para implementação das operações sobre o tipo
+  abstrato.
+
+  {\bf Solução}: ....
 
 \end{enumerate}
 
