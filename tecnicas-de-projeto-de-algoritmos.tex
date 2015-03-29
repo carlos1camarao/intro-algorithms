@@ -13,9 +13,11 @@ as ideias de Levitin \cite{Levitin:2007:Introd-Design-Analysis-Alg}):
   resultados obtidos para solução do problema original.
 
   Algoritmos de caminhamento em árvores binárias (pre-ordem, pos-ordem
-  e visita-no-meio (em inglês, {\em in-order\/}) são exemplos
-  clássicos de uso da técnica de divisão (exemplos
-  \ref{caminhamento-em-arvores-binarias}). 
+  e visita-no-meio (em inglês, {\em in-order\/}) são exemplos de uso
+  da técnica de divisão (veja exercício resolvido
+  \ref{ex:caminhamento-em-arvores-binarias}). Outros exemplos são {\em
+    quickSort\/} (seção \ref{sec:quickSort}) e {\em mergeSort\/} (seção
+  \ref{sec:mergeSort}). 
 
 \item[Decremento] (em inglês, chamada de {\em decrease-and-conquer\/}):
   é baseada em passar da instância original para uma instância menor
@@ -29,35 +31,14 @@ as ideias de Levitin \cite{Levitin:2007:Introd-Design-Analysis-Alg}):
   sub-instâncias (apenas decrementa o tamanho da entrada).
 
   A vasta maioria dos algoritmos apresentados neste livro usam a
-  técnica de decremento: veja por exemplo \inh{maiorElem} (seção
+  técnica de decremento. Veja por exemplo \inh{maiorElem} (seção
   \ref{sec:maior-elemento}), \inh{elem} (seção
-  \ref{sec:pesquisa-em-lista}), \inh{allUnique} (seção
+  \ref{sec:pesquisa-em-lista}), \inh{verifUnicidade} (seção
   \ref{sec:unicidade}), ordenação por inserção (seção
   \ref{sec:insertion-sort-func}), funções \inh{sorted}, \inh{perm} e
   \inh{delete} (seção \ref{sec:insertion-sort-func}), multiplicação de
-  matrizes (seção \ref{sec:multiplicacao-de-matrizes}), função \inh{fib}
-  (seção \ref{sec:numeros-de-fibonacci}).
-
-\item[Transformação] (em inglês, chamada de {\em
-  transform-and-conquer\/}): baseada em transformar a instância do
-  problema original em outra instância do mesmo problema (com o mesmo
-  tamanho da instância original) ou de outro problema, e usar ou
-  adaptar o resultado para solução do problema original.
-
-  A transformação para uma instância do mesmo problema pode ser
-  envolver {\em simplificação\/} ou {\em mudança de representação\/}
-  ou {\em pré-processamento\/} da entrada.
-
-  A simplificação não envolve mudança de representação da entrada: usa
-  a mesma representação original, transformando a entrada para que ela
-  tenha alguma propriedade que torna a solução do problema mais fácil
-  ou mais eficiente (por exemplo, ordenando os dados de entrada). O
-  pré-processamento é caracterizado pela existência de um ou mais
-  passos adicionais sobre os dados de entrada, para obtenção de dados
-  extras, novamente para tornar a solução do problema mais fácil ou
-  mais eficiente.
-
-  Exemplos ....
+  matrizes (seção \ref{sec:multiplicacao-de-matrizes}), função
+  \inh{fib} (seção \ref{sec:numeros-de-fibonacci}).
 
 \item[Uso-da-Definição] (também chamada de {\em força bruta\/}):
   baseada em uso direto da especificação do problema e das definições
@@ -68,15 +49,16 @@ as ideias de Levitin \cite{Levitin:2007:Introd-Design-Analysis-Alg}):
 
 \end{description}
 
-Todo programa apresentado neste livro é classificado segundo uma, e
-apenas uma, das técnicas acima, para motivar e ajudar no processo de
-desenvolvimento do raciocínio usado na elaboração de algoritmos. No
-processo de elaboração de um algoritmo, é instrutivo procurar
-classificá-lo segundo uma das técnicas acima, e considerar a
-existência ou não de outros algoritmos, elaborados possivelmente
-segundo outras técnicas. Isso pode ajudar a organizar o raciocínio, o
-entendimento de algoritmos existentes e aumentar a motivação para o
-estudo de novos algoritmos.
+Vamos chamar cada técnica do conjunto de técnicas acima de TPA. Todo
+programa apresentado neste livro é classificado segundo uma, e apenas
+uma, TPA. O objetivo é o de motivar e ajudar no processo de
+desenvolvimento do raciocínio usado na elaboração de algoritmos. É
+instrutivo não apenas entender a classificação e procurar classificar
+algoritmos segundo uma TPA, mas também considerar a existência ou não
+de outros algoritmos, elaborados segundo outra TPA. Isso ajuda a
+organizar o raciocínio, e pode contribuir para o entendimento sobre
+algoritmos existentes e para o aumento da motivação no estudo de novos
+algoritmos.
 
 Para espeficicar a classificação de algoritmo, implementado por função
 com nome salientado no texto em cor \textcolor{Mahogany}{mogno}
@@ -85,12 +67,6 @@ com nome salientado no texto em cor \textcolor{Mahogany}{mogno}
   \begin{description}
     \item[{\colorbox{\divisao}{divisão}}] 
     \item[{\colorbox{\decremento}{decremento}}]
-    \item[transformação]
-       \begin{description}
-         \item[{\colorbox{\simplificacao}{simplificação}}]
-         \item[{\colorbox{\mudancaRep}{mudança de representação}}]
-         \item[{\colorbox{\preProcess}{pré-processamento}}]
-      \end{description}
     \item[{\colorbox{\definicao}{definição}}]
   \end{description}
 
@@ -151,14 +127,62 @@ constituir base para classificação de algoritmos em geral:
 
   \end{enumerate}
 
+%    \item[transformação]
+%       \begin{description}
+%         \item[{\colorbox{\simplificacao}{simplificação}}]
+%         \item[{\colorbox{\mudancaRep}{mudança de representação}}]
+%         \item[{\colorbox{\preProcess}{pré-processamento}}]
+%      \end{description}
+
+Levitin considera também a técnica de transformação (em inglês,
+chamada de {\em transform-and-conquer\/}), baseada em transformar a
+instância do problema original em outra instância do mesmo ou de outro
+problema (com o mesmo tamanho da instância original), e em usar ou
+adaptar o resultado para solução do problema original.  A
+transformação para uma instância do mesmo problema pode envolver {\em
+  simplificação\/} ou {\em mudança de representação\/} ou {\em
+  pré-processamento\/} da entrada.
+
+A simplificação não envolve mudança de representação da entrada: usa a
+mesma representação original, transformando a entrada para que ela
+tenha alguma propriedade que torna a solução do problema mais fácil ou
+mais eficiente (por exemplo, ordenando os dados de entrada). O
+pré-processamento é caracterizado pela existência de um ou mais passos
+adicionais sobre os dados de entrada, para obtenção de dados extras,
+novamente para tornar a solução do problema mais fácil ou mais
+eficiente.
+
+Consideramos que a técnica de transformação está em um outro nível,
+acima das TPAs. Ela constitui uma técnica de projeto usada para
+solução de um problema mas não uma classificação de técnica de projeto
+usada para um algoritmo particular, como acontece nos casos das
+TPAs. Consideramos o projeto de algoritmos como tendo duas fases: a
+primeira consiste em decidir se uma transformação vai ser usada ou
+não. A segunda fase consiste do projeto do algoritmo propriamente dito
+(usando uma das TPAs). Na primeira fase, se a técnica de transformação
+for usada, a transformação precisa ser especificada e implementada,
+ela própria, por meio de um algoritmo, o qual deve ser classificado de
+acordo com alguma TPA.
+
 \section{Exercícios Resolvidos}
 
-Escreva um programa para solução de cada problema enunciado a seguir e
-indique a técnica usada na solução.
+Escreva programa para solução de cada problema enunciado a seguir e
+indique a TPA usada.
 
 \begin{enumerate}
 
-\item \label{caminhamento-em-arvores-binarias} ..... 
+\item \label{ex:caminhamento-em-arvores-binarias} Considere o problema
+  de caminhamento em árvores (aplicado em geral a grafos) chamados de
+  {\em busca em profundidade\/} e {\em busca em largura\/}.
+
+  A busca em profundidade ...
+
+  A busca em largura ...
+
+  Escreva algoritmos para caminhamento em árvores binárias, árvores
+  com qualquer número de filhos e árvores que usam a {\em
+    representação com primogênito-irmão-e-pai} (e indique a técnica
+  usada em cada algoritmo).
 
 \item Problema da Celebridade: uma celebridade de um grupo de $n$
   pessoas é uma pessoa que não conhece ninguém do grupo mas é
