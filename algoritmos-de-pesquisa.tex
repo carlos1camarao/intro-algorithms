@@ -48,6 +48,39 @@ aumentar a eficiência da pesquisa.
 
   {\bf Solução}: ....
 
+\item \label{ex:arvores-MovPraRaiz} .... 
+
+Operações em uma árvore MovPraRaiz (como inserção, remoção ou
+pesquisa) podem ser seguidas por uma operação básica chamada de {\em
+  movPraRaiz\/} (em inglês, {\em splaying\/}), que reorganiza a árvore
+de modo a mover um elemento para a raiz (em operações de inserção e
+pesquisa, o elemento inserido ou pesquisado; em operação de remoção, o
+elemento a ser removido é movido para a raiz antes de ser removido).
+A ideia básica por trás disso é tornar os elementos usados mais
+recentemente próximos à raiz da árvore e a árvore razoavelmente
+balanceada.
+
+A operação \ina{movPraRaiz}, que move um nodo $x$ para a raiz, pode
+realizar um dentre os seguintes passos:
+ 
+  \begin{enumerate}
+
+    \item passo x-raiz: se $x$ é filho da raiz,
+
+    \item passo x-pai-de-x-no-mesmo-lado: 
+          $x$ é filho do lado esquerdo e o pai de $x$ está à esquerda da raiz, ou 
+          $x$ é filho do lado direito  e o pai de $x$ está à direita da raiz, 
+
+    \item passo x-pai-de-x-em-lados-opostos: 
+          $x$ é filho do lado esquerdo e o pai de $x$ está à direita da raiz, ou 
+          $x$ é filho do lado direito  e o pai de $x$ está à esquerda da raiz.
+
+  \end{enumerate}
+
+Essas três possibilidades são ilustradas abaixo.
+
+....
+
 \end{enumerate}
 
 \section{Exercícios}
