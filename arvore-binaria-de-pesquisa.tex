@@ -1,0 +1,263 @@
+\section{Árvore binária de pesquisa}
+\label{sec:arvore-binaria-de-pesquisa}
+
+Uma árvore binária de pesquisa é uma árvore binária --- isto é, um
+árvore com duas sub-árvores (possivelmente vazias), digamos, à
+esquerda e à direita --- com os elementos contidos nos nodos, um
+elemento por nodo, e tal que: todo elemento contido em um nodo é maior
+que os elementos contidos na sub-árvore à esquerda deste nodo e menor
+que os elementos contidos na sub-árvore à direita do nodo.
+
+Dois exemplos de árvores binárias de pesquisa com os elementos de 1 a
+7 são mostradas abaixo. 
+
+\begin{verbatim}
+      4                    4
+     / \                  / \
+    1   5                2   6
+     \   \              / \  /\
+     3    6            1  3 5  7 
+    /      \ 
+    2       7
+\end{verbatim}
+
+A propriedade fundamental de uma árvore binária de pesquisa é o acesso
+eficiente (logarítmico no caso médio: veja comentário sobre a
+complexidade no caso médio abaixo) a um elemento.
+
+\subsubsection{Versão funcional}
+
+Considere a definição de árvore binária com elementos nos nodos
+internos da árvore apresentada na seção \sec{sec:arvores}:
+
+\begin{center}
+\begin{tabular}{l}
+\begin{hask}{ArvB,FolhaB,NodoB}{White}
+ data ArvB a = FolhaB | NodoB a (ArvB a) (ArvB a)
+\end{hask}
+\end{tabular}
+\end{center}
+
+A pesquisa por um elemento em uma árbore de pesquisa binária é um
+algoritmo simples, mostrado a seguir:
+
+\begin{center}
+\begin{tabular}{l}
+\begin{hask}{pesq}{\decremento}
+pesq v FolhaB = False
+pesq v (NodoB v' t t') 
+  | v == v'    = True
+  | v <  v'    = pesq v t
+  | otherwise  = pesq v t'
+\end{hask}
+\end{tabular}
+\end{center}
+
+O algoritmo para inserção de elementos em uma árvore binária de
+pesquisa é semelhante:
+
+\begin{center}
+\begin{tabular}{l}
+\begin{hask}{ins}{\decremento}
+ins v FolhaB = NodoB v FolhaB FolhaB
+ins v t@(NodoB v' t1 t2) 
+  | v <  v'    = ins v t1
+  | v >  v'    = ins v t2
+  | otherwise  = t
+\end{hask}
+\end{tabular}
+\end{center}
+
+A complexidade de tempo de \inh{pesq} é determinada a seguir: 
+
+\begin{enumerate}
+
+  \item Vamos considerar que o tamanho da entrada é dado pelo número
+    de elementos $n$ na árvore.
+
+  \item As operações relevantes são as comparações de igualdade
+    (\inh{==}) e menor-que (\inh{<}). 
+
+  \item \label{complexidade-da-pesquisa-binaria-no-pior-caso} A
+    expressão-determinante-da-eficiência é, no pior caso, igual a
+    $T(n-1) + k$, onde $k$ é uma constante que expressa o tempo de
+    execução das comparações de igualdade e menor-que. No pior caso, o
+    elemento está em sub-árvore que contém $n-1$ nodos: todos os nodos
+    menos o nodo corrente. Neste caso, a árvore está
+    desbalanceada. Isso ocorre, por exemplo, para as árvores mostradas
+    a seguir, construídas com inserções sucessivas de elementos em uma
+    lista crescente e decrescente, respectivamente.
+
+    \begin{verbatim}
+
+         v0                             v0
+          \                             /
+          v1                           v1
+           \                           /
+           ...                        ...
+            \                         /
+            vn-1                     vn-1
+             \                      /
+              vn                   vn
+
+    \end{verbatim}
+
+  \end{enumerate}
+
+Assim, a relação de recorrência neste caso é:
+
+   \[ T(n) = T(n-1) + k \]
+
+A solução dessa relação de recorrência foi apresentada na seção
+\ref{sec:maior-elemento}:
+
+       \[ T(n) \asymp n \]
+
+Note que o algoritmo de pesquisa em uma árvore binária de pesquisa tem
+complexidade $O(p)$ no pior caso, onde $p$ é a profundidade da árvore
+(número de arestas do maior caminho existente entre a raiz e uma
+folha).
+
+Em uma árvore balanceada, o número de elementos $n$ é igual a $2^p$,
+ou seja, em uma árvore balanceada, a pesquisa tem complexidade 
+
+  \[ T(n) \asymp lg n \]
+Em uma árvore totalmente desbalanceada, temos no entanto $p = n-1$.
+
+\subsection{Versão imperativa}
+
+Vamos usar a definição de árvore binária apresentada na seção
+\ref{sec:arvores}:
+
+\begin{center}
+\begin{tabular}{l}
+\begin{alg}{ArvoreBinariaDeInteiros}{White}
+struct ArvoreBinariaDeInteiros
+     int elem
+     struct ArvoreBinariaDeInteiros *esq, dir 
+\end{alg}
+\end{tabular}
+\end{center}
+
+A pesquisa iterativa por um valor \ina{k} em uma árvore \in{arvBin} é
+apresentada a seguir:
+
+\begin{center}
+\begin{tabular}{l}
+\begin{alg}{pesq}{\decremento}
+pesq(k, arvBin) 
+    nodoCorrente §$\from$§ arvBin
+    while nocoCorrente != NULL
+        v §$\from$§ nocoCorrente->elem
+        if v == k 
+           return nodoCorrente
+        else if k < v
+                  nodoCorrente §$\from$§ nodoCorrente->esq
+             else nodoCorrente §$\from$§ nodoCorrente->dir
+    return NULL
+\end{alg}
+\end{tabular}
+\end{center}
+
+A complexidade é claramente a mesma da versão recursiva. 
+
+Uma árvore binária de pesquisa é uma importante estruturas de dados,
+gerando implementações simples e eficientes de pesquisa, inserção e
+remoção (em computação, um {\em dicionário\/} é um tipo abstrato que
+define tais operações; veja exercício resolvido \ref{ex:dicionario}).
+
+Embora a complexidade da pesquisa a um elemento seja logarítmica no
+caso médio, como vimos no item
+\ref{complexidade-da-pesquisa-binaria-no-pior-caso} acima, no pior
+caso a complexidade da pesquisa é a mesma da complexidade da pesquisa
+sequencial, quando a árvore está totalmente desbalanceada, ficando
+equivalente a uma lista.
+
+Há muitos trabalhos de pesquisa em computação que procuram preservar o
+balanceamento de árvores binárias de pesquisa, para manter a
+propriedade de complexidade logarítmica para as operações de inserção,
+remoção, pesquisa e ordenação de valores, baseados principalmente em
+técnicas de transformação: simplificação ou mudança de representação.
+
+A simplificação transforma árvores não balanceadas em árvores
+balanceadas (segundo alguma critério de balanceamento) sem adicionar
+nenhuma informação adicional a nodos da árvore. A seção
+\ref{sec:arvores-AVL} aborda {\em árvores AVL\/}, nas quais a
+diferença entre a altura das sub-árvores de qualquer nodo não deve ser
+maior que 1.
+
+Outro estrutura de dados que provê balanceamento de árvores de
+pesquisa baseada na técnica de transformação por simplificação é a que
+vamos chamar de {\em árvores MovPraRaiz\/} (em inglês, {\em splay
+  trees\/}), baseada na ideia de mover para raiz um elemento em
+operações de inserção, remoção ou pesquisa.  Árvores MovPraRaiz são
+abordadas no exercício resolvido \ref{ex:arvores-MovPraRaiz}.
+
+Exemplos de balanceamento via mudança de representação são {\em
+  árvores vermelha-e-preta\/} (também chamadas de rubro-negras, em
+inglês {\em red-black trees\/}) e {\em árvores B\/} (em inglês, {\em
+  B-trees\/}), abordadas respectivamente nas seções
+\ref{sec:arvore-vermelha-e-preta} e \ref{sec:arvores-B}.
+
+\section{Árvores AVL}
+\label{sec:arvores-AVL}
+
+....
+
+\section{Árvores Vermelha-e-Preta}
+\label{sec:arvore-vermelha-e-preta}
+
+Uma árvorte vermelha-e-preta é uma árvore binária de pesquisa com uma
+informação a mais em cada nodo que indica sua cor, que pode ser
+vermelha ou preta, e que deve além disso satisfazer às seguintes
+condições (chamadas de {\em condições-de-arvore-vermelho-e-preta\/}):
+
+\begin{enumerate}
+
+\item As folhas e a raiz são pretas.
+
+\item Os filhos de todo nodo vermelho são pretos.
+
+\item Todo caminho de um nodo a uma folha contém o mesmo número de
+  nodos pretos.
+
+\end{enumerate}
+
+Um exemplo de uma árvore vermelha-e-preta é mostrada abaixo.
+
+.... aqui vem figura de árvore vermelha-e-preta. ....
+
+As duas últimas condições garantem a propriedade {\em
+  altura-varia-pouco\/}: o comprimento do caminho mais longo da raiz a
+uma folha não é maior que o dobro do comprimento do menor caminho da
+raiz a uma folha. Ou seja, a árvore é razoavelmente bem balanceada em
+termos de altura dos seus nodos (altura = comprimento do maior caminho
+do nodo até uma folha). Como o pior caso da complexidade de tempo de
+operações de inserção, remoção e pesquisa são proporcionais à altura
+da árvore, isso permite uma eficiência maior, no pior caso, do que
+árvores binárias de pesquisa.
+
+Para ver porque as duas últimas condições garantem a propriedade
+altura-varia-pouco, considere que $n_p$ seja o número de nodos pretos
+de um caminho a uma folha, para uma árvore $a$.  Seja $k$ o
+comprimento do menor caminho $c_m$ da raiz a uma folha (esse caminho
+contém $n_b$ nodos pretos). O caminho mais longo da raiz a uma folha
+$c_M$ não pode conter nodos vermelhos em níveis consecutivos da árvore
+(um novo vermelho não pode ser filho de outro nodo vermelho), e o
+número de nodos pretos tem que ser igual a $n_p$. Portanto, o número
+de nodos de $c_M$ tem que ser no máximo igual a $2*k$ (caso em que
+$c_m$ só tem nodos pretos).
+
+Operações que modificam a árvore geralmente causam reorganização dos
+nodos e cores dos nodos de modo a que as
+condições-de-árvore-vermelho-e-preta continuem a ser satisfeitas, o
+que pode ser feito de modo eficiente. 
+
+% The balancing of the tree is not perfect but it is good enough to
+% allow it to guarantee searching in O(log n) time, where n is the total
+% number of elements in the tree. The insertion and deletion operations,
+% along with the tree rearrangement and recoloring, are also performed
+% in O(log n) time.
+
+\section{Árvores B}
+\label{sec:arvores-B}
