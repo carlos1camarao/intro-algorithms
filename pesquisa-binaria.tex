@@ -1,38 +1,38 @@
 % !TEX encoding = ISO-8859-1
-\section{Pesquisa binÃ¡ria}
+\section{Pesquisa binária}
 \label{sec:pesquisa-binaria}
 
-O algoritmo de pesquisa binÃ¡ria Ã© um algoritmo bastante simples e
+O algoritmo de pesquisa binária é um algoritmo bastante simples e
 eficiente. Consiste em pesquisar um arranjo ordenado, baseando-se na
-comparaÃ§Ã£o da chave $v$ de pesquisa (i.e.~valor pesquisado) com um
-valor $v'$ na metade do arranjo e repetiÃ§Ã£o dessa operaÃ§Ã£o, se
-$v\not=v'$, considerando apenas a metade Ã  esquerda do arranjo se $v <
-v'$, e Ã  direita de $v > v'$. Veja Figura abaixo.
+comparação da chave $v$ de pesquisa (i.e.~valor pesquisado) com um
+valor $v'$ na metade do arranjo e repetição dessa operação, se
+$v\not=v'$, considerando apenas a metade à esquerda do arranjo se $v <
+v'$, e à direita de $v > v'$. Veja Figura abaixo.
 
 ....
 
-VersÃµes recursivas e iterativas sÃ£o apresentadas, em Haskell e em
-pseudo-cÃ³digo, nas seÃ§Ãµes \ref{sec:pesquisa-binaria-fun} e
+Versões recursivas e iterativas são apresentadas, em Haskell e em
+pseudo-código, nas seções \ref{sec:pesquisa-binaria-fun} e
 \ref{sec:pesquisa-binaria-imp} a seguir. 
 
-A pesquisa binÃ¡ria Ã© Ã s vezes apresentada como o melhor exemplo da
-tÃ©cnica de divisÃ£o (comumente chamada de ``dividir-para-conquistar'',
-em inglÃªs {\em divide-and-conquer\/}). No entanto, isso nÃ£o estÃ¡ de
-acordo com a classificaÃ§Ã£o que apresentamos, segundo a qual a tÃ©cnica
-de divisÃ£o divide a entrada do algoritmo em duas ou mais sub-partes,
-que entÃ£o sÃ£o solucionadas, sendo os resultados obtidos usados para
-obter uma soluÃ§Ã£o do problema original. Esse nÃ£o Ã© o caso da pesquisa
-binÃ¡ria, no qual se escolhe uma Ãºnica sub-parte da entrada do problema
+A pesquisa binária é às vezes apresentada como o melhor exemplo da
+técnica de divisão (comumente chamada de ``dividir-para-conquistar'',
+em inglês {\em divide-and-conquer\/}). No entanto, isso não está de
+acordo com a classificação que apresentamos, segundo a qual a técnica
+de divisão divide a entrada do algoritmo em duas ou mais sub-partes,
+que então são solucionadas, sendo os resultados obtidos usados para
+obter uma solução do problema original. Esse não é o caso da pesquisa
+binária, no qual se escolhe uma única sub-parte da entrada do problema
 original para ser considerada. Consideramos, assim, que a pesquisa
-binÃ¡ria Ã© um exemplo de uso da tÃ©cnica de decremento, de fato
+binária é um exemplo de uso da técnica de decremento, de fato
 decremento por um fator constante (e igual a 2, ou seja, decremento
-por divisÃ£o Ã  metade). Esta observaÃ§Ã£o foi feita por Levitin
+por divisão à metade). Esta observação foi feita por Levitin
 \cite{Levitin:2007:Introd-Design-Analysis-Alg}.
 
-\subsection{VersÃ£o funcional}
+\subsection{Versão funcional}
 \label{sec:pesquisa-binaria-fun}
 
-A versÃ£o recursiva Ã© mostrada a seguir.
+A versão recursiva é mostrada a seguir.
 
 \begin{center}
 \begin{tabular}{l}
@@ -54,42 +54,43 @@ pesqBin v a = pesqBin' (bounds a)
 \end{tabular}
 \end{center}
 
-Uma pequena otimizaÃ§Ã£o Ã© que Ã© realizada uma Ãºnica comparaÃ§Ã£o, usando
-\inh{compare v v'}, que retorna se \inh{v} Ã© menor (\inh{LT}, as
+Uma pequena otimização é que é realizada uma única comparação, usando
+\inh{compare v v'}, que retorna se \inh{v} é menor (\inh{LT}, as
 iniciais de {\em \underline{l}ess \underline{t}han\/}), maior
 (\inh{GT}, as iniciais de {\em \underline{g}reater
-  \underline{t}han\/}) ou igual a \inh{v'} (nÃ£o Ã© preciso testar por
-exemplo se \inh{h} Ã© menor que \inh{v'} e, caso negativo, se Ã© maior).
+  \underline{t}han\/}) ou igual a \inh{v'} (não é preciso testar por
+exemplo se \inh{h} é menor que \inh{v'} e, caso negativo, se é maior).
 
-Obtemos a seguinte relaÃ§Ã£o de recorrÃªncia para a complexidade de tempo
+Obtemos a seguinte relação de recorrência para a complexidade de tempo
 de \inh{pesqBin} no pior caso:
 
   \[ \begin{array}{ll}
-       T(0) = 0 & \\
-       T(n) = T(\lfloor{n/2}) + k & (n > 0)
+       T(0) = 0                   & \\
+       T(n) = T(\lfloor{n/2}) + k & (n>0)
+     \end{array}
   \]
-onde $k$ Ã© uma constante que indica a complexidade de tempo das
-comparaÃ§Ãµes \inh{(<)}, \inh{compare} e \inh{(==)}, a indexaÃ§Ã£o
-(\inh{(!)}) e as operaÃ§Ãµes aritmÃ©ticas \inh{(+)}, \inh{(-)} e
-\inh{div} (para definiÃ§Ã£o de $\lfloor$, veja exercÃ­cio resolvido
-\ref{ex:lfloor-rfloor-def} na seÃ§Ã£o
+onde $k$ é uma constante que indica a complexidade de tempo das
+comparações \inh{(<)}, \inh{compare} e \inh{(==)}, a indexação
+(\inh{(!)}) e as operações aritméticas \inh{(+)}, \inh{(-)} e
+\inh{div} (para definição de $\lfloor$, veja exercício resolvido
+\ref{ex:lfloor-rfloor-def} na seção
 \ref{sec:exs-resolvidos-complexidade}).
 
-Uma soluÃ§Ã£o dessa relaÃ§Ã£o de recorrÃªncia foi apresentada na seÃ§Ã£o
+Uma solução dessa relação de recorrência foi apresentada na seção
 \ref{sec:num-digs-fun}, onde obtivemos:
 
    \[ T(n) \asymp lg n \]
 
-\subsection{VersÃ£o imperativa}
+\subsection{Versão imperativa}
 \label{sec:pesquisa-binaria-imp} 
 
-A versÃ£o imperativa Ã© mostrada a seguir, onde supomos que o arranjo
+A versão imperativa é mostrada a seguir, onde supomos que o arranjo
 (\ina{A}) tem \ina{n} elementos (indexados de \ina{0} a \ina{n}-1).
 
 \begin{center}
 \begin{tabular}{l}
 \begin{alg}{pesqBin}{\decremento}
-pesqBin (chave, A, n) {
+pesqBin (chave, A, n) 
   esq = 0
   dir = n-1
   while esq <= dir
@@ -97,33 +98,32 @@ pesqBin (chave, A, n) {
     v = arr[meio]
     if (chave == v) return meio else
     if (chave < v) dir = meio - 1 
-    else esq = meio + 1;
-  return -1;
-}
+    else esq = meio + 1
+  return -1
 \end{alg}
 \end{tabular}
 \end{center}
 
-Como apÃ³s cada iteraÃ§Ã£o, o tamanho do arranjo a ser considerado Ã©
-igual a $\lfloor{m/2} do tamanho $m$ anterior Ã  iteraÃ§Ã£o, a
+Como após cada iteração, o tamanho do arranjo a ser considerado é
+igual a $\lfloor{m/2}$ do tamanho $m$ anterior à iteração, a
 complexidade de tempo de \ina{pesqBin} pode ser expressa pela mesma
-relaÃ§Ã£o de recorrÃªncia do caso recursivo:
+relação de recorrência do caso recursivo:
 
   \[ \begin{array}{ll}
-       T(0) = k_0                   & \\
-       T(n) = T(\lfloor(n/2)) + k & (\text{ para } n>0)  
+       T(0) = k_0                 & \\
+       T(n) = T(\lfloor(n/2)) + k & (n>0)  
      \end{array}
   \]
-onde $k_0$ Ã© uma constante que indica a complexidade das atribuiÃ§Ãµes a
-\ina{esq,dir} e da comparaÃ§Ã£o \ina{esq <= dir}, e $k$ Ã© uma constante
-que indica a complexidade de tempo da comparaÃ§Ã£o \inh{esq <= dir} e da
-execuÃ§Ã£o dos comandos internos ao comando \ina{while} (a definiÃ§Ã£o de
-$\lfloor$ pode ser vista no exercÃ­cio resolvido
-\ref{ex:lfloor-rfloor-def}, seÃ§Ã£o
+onde $k_0$ é uma constante que indica a complexidade das atribuições a
+\ina{esq,dir} e da comparação \ina{esq <= dir}, e $k$ é uma constante
+que indica a complexidade de tempo da comparação \inh{esq <= dir} e da
+execução dos comandos internos ao comando \ina{while} (a definição de
+$\lfloor$ pode ser vista no exercício resolvido
+\ref{ex:lfloor-rfloor-def}, seção
 \ref{sec:exs-resolvidos-complexidade}).
 
-Um outro modo de expressar $T(n)$ considera que o nÃºmero de vezes que
-a iteraÃ§Ã£o Ã© repetida Ã© igual a $\lfloor{lg \ina{n}}$, e portanto:
+Um outro modo de expressar $T(n)$ considera que o número de vezes que
+a iteração é repetida é igual a $\lfloor{lg \ina{n}}$, e portanto:
 
    \[ T(n) = k \times \lfloor{lg \ina{n}} + k_0 \]
 ou seja:
