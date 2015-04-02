@@ -29,7 +29,7 @@ complexidade no caso médio abaixo) a um elemento.
 \subsubsection{Versão funcional}
 
 Considere a definição de árvore binária com elementos nos nodos
-internos da árvore apresentada na seção \sec{sec:arvores}:
+internos da árvore apresentada na seção \ref{sec:arvores}:
 
 \begin{center}
 \begin{tabular}{l}
@@ -45,11 +45,11 @@ algoritmo simples, mostrado a seguir:
 \begin{center}
 \begin{tabular}{l}
 \begin{hask}{pesq}{\decremento}
-pesq v FolhaB = False
-pesq v (NodoB v' t t') 
-  | v == v'    = True
-  | v <  v'    = pesq v t
-  | otherwise  = pesq v t'
+pesq v FolhaB          = False
+pesq v (NodoB v' t t') = case compare v v' of
+                           LT -> pesq v t
+                           GT -> pesq v t'
+                           _  -> True
 \end{hask}
 \end{tabular}
 \end{center}
@@ -60,11 +60,11 @@ pesquisa é semelhante:
 \begin{center}
 \begin{tabular}{l}
 \begin{hask}{ins}{\decremento}
-ins v FolhaB = NodoB v FolhaB FolhaB
-ins v t@(NodoB v' t1 t2) 
-  | v <  v'    = ins v t1
-  | v >  v'    = ins v t2
-  | otherwise  = t
+ins v FolhaB             = NodoB v FolhaB FolhaB
+ins v t@(NodoB v' t1 t2) = case compare v v' of
+                             LT -> ins v t1
+                             GT -> ins v t2
+                             _  -> t
 \end{hask}
 \end{tabular}
 \end{center}
@@ -148,11 +148,11 @@ pesq(k, arvBin)
     nodoCorrente §$\from$§ arvBin
     while nocoCorrente != NULL
         v §$\from$§ nocoCorrente->elem
-        if v == k 
-           return nodoCorrente
-        else if k < v
-                  nodoCorrente §$\from$§ nodoCorrente->esq
-             else nodoCorrente §$\from$§ nodoCorrente->dir
+        if v > k 
+           nodoCorrente §$\from$§ nodoCorrente->esq else
+        if v < k
+            nodoCorrente §$\from$§ nodoCorrente->dir
+        else return nodoCorrente
     return NULL
 \end{alg}
 \end{tabular}
