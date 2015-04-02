@@ -43,13 +43,12 @@ pesqBin v a = pesqBin' (bounds a)
  where 
    pesqBin' (i,j)
       | j < i      = Nothing 
-      | comp == LT = pesqBin' (i,meio-1)
-      | comp == GT = pesqBin' (meio+1,j)
-      | otherwise = Just meio
+      | otherwise  = case compare v (a ! meio) of 
+                       LT -> pesqBin' (i,meio-1)
+                       GT -> pesqBin' (meio+1,j)
+                       _  -> Just meio
       where
         meio = i + div (j-i) 2
-        v'   = a ! meio
-        comp = compare v v'
 \end{hask}
 \end{tabular}
 \end{center}
@@ -66,13 +65,13 @@ de \inh{pesqBin} no pior caso:
 
   \[ \begin{array}{ll}
        T(0) = 0                   & \\
-       T(n) = T(\lfloor{n/2}) + k & (n>0)
+       T(n) = T(\lfloor{n/2}\rfloor) + k & (n>0)
      \end{array}
   \]
 onde $k$ é uma constante que indica a complexidade de tempo das
 comparações \inh{(<)}, \inh{compare} e \inh{(==)}, a indexação
 (\inh{(!)}) e as operações aritméticas \inh{(+)}, \inh{(-)} e
-\inh{div} (para definição de $\lfloor$, veja exercício resolvido
+\inh{div} (para definição de $\lfloor\_\rfloor$, veja exercício resolvido
 \ref{ex:lfloor-rfloor-def} na seção
 \ref{sec:exs-resolvidos-complexidade}).
 
@@ -96,36 +95,36 @@ pesqBin (chave, A, n)
   while esq <= dir
     meio = (esq + dir) / 2
     v = arr[meio]
-    if (chave == v) return meio else
-    if (chave < v) dir = meio - 1 
-    else esq = meio + 1
+    if (chave < v) dir = meio - 1 else
+    if (chave > v) esq = meio + 1
+    else return meio 
   return -1
 \end{alg}
 \end{tabular}
 \end{center}
 
 Como após cada iteração, o tamanho do arranjo a ser considerado é
-igual a $\lfloor{m/2}$ do tamanho $m$ anterior à iteração, a
+igual a $\lfloor{m/2}\rfloor$ do tamanho $m$ anterior à iteração, a
 complexidade de tempo de \ina{pesqBin} pode ser expressa pela mesma
 relação de recorrência do caso recursivo:
 
   \[ \begin{array}{ll}
        T(0) = k_0                 & \\
-       T(n) = T(\lfloor(n/2)) + k & (n>0)  
+       T(n) = T(\lfloor(n/2)\rfloor) + k & (n>0)  
      \end{array}
   \]
 onde $k_0$ é uma constante que indica a complexidade das atribuições a
 \ina{esq,dir} e da comparação \ina{esq <= dir}, e $k$ é uma constante
 que indica a complexidade de tempo da comparação \inh{esq <= dir} e da
 execução dos comandos internos ao comando \ina{while} (a definição de
-$\lfloor$ pode ser vista no exercício resolvido
+$\lfloor\_\rfloor$ pode ser vista no exercício resolvido
 \ref{ex:lfloor-rfloor-def}, seção
 \ref{sec:exs-resolvidos-complexidade}).
 
 Um outro modo de expressar $T(n)$ considera que o número de vezes que
-a iteração é repetida é igual a $\lfloor{lg \ina{n}}$, e portanto:
+a iteração é repetida é igual a $\lfloor{lg \ina{n}}\rfloor$, e portanto:
 
-   \[ T(n) = k \times \lfloor{lg \ina{n}} + k_0 \]
+   \[ T(n) = k \lfloor{lg \ina{n}}\rfloor + k_0 \]
 ou seja:
 
    \[ T(n) \asymp lg n \]
