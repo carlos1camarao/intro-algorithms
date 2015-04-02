@@ -1,15 +1,16 @@
-\section{√Årvore bin√°ria de pesquisa}
+% !TEX encoding = ISO-8859-1
+\section{¡rvore bin·ria de pesquisa}
 \label{sec:arvore-binaria-de-pesquisa}
 
-Uma √°rvore bin√°ria de pesquisa √© uma √°rvore bin√°ria --- isto √©, um
-√°rvore com duas sub-√°rvores (possivelmente vazias), digamos, √†
-esquerda e √† direita --- com os elementos contidos nos nodos, um
-elemento por nodo, e tal que: todo elemento contido em um nodo √© maior
-que os elementos contidos na sub-√°rvore √† esquerda deste nodo e menor
-que os elementos contidos na sub-√°rvore √† direita do nodo.
+Uma ·rvore bin·ria de pesquisa È uma ·rvore bin·ria --- isto È, um
+·rvore com duas sub-·rvores (possivelmente vazias), digamos, ‡
+esquerda e ‡ direita --- com os elementos contidos nos nodos, um
+elemento por nodo, e tal que: todo elemento contido em um nodo È maior
+que os elementos contidos na sub-·rvore ‡ esquerda deste nodo e menor
+que os elementos contidos na sub-·rvore ‡ direita do nodo.
 
-Dois exemplos de √°rvores bin√°rias de pesquisa com os elementos de 1 a
-7 s√£o mostradas abaixo. 
+Dois exemplos de ·rvores bin·rias de pesquisa com os elementos de 1 a
+7 s„o mostradas abaixo. 
 
 \begin{verbatim}
       4                    4
@@ -21,14 +22,14 @@ Dois exemplos de √°rvores bin√°rias de pesquisa com os elementos de 1 a
     2       7
 \end{verbatim}
 
-A propriedade fundamental de uma √°rvore bin√°ria de pesquisa √© o acesso
-eficiente (logar√≠tmico no caso m√©dio: veja coment√°rio sobre a
-complexidade no caso m√©dio abaixo) a um elemento.
+A propriedade fundamental de uma ·rvore bin·ria de pesquisa È o acesso
+eficiente (logarÌtmico no caso mÈdio: veja coment·rio sobre a
+complexidade no caso mÈdio abaixo) a um elemento.
 
-\subsubsection{Vers√£o funcional}
+\subsubsection{Vers„o funcional}
 
-Considere a defini√ß√£o de √°rvore bin√°ria com elementos nos nodos
-internos da √°rvore apresentada na se√ß√£o \sec{sec:arvores}:
+Considere a definiÁ„o de ·rvore bin·ria com elementos nos nodos
+internos da ·rvore apresentada na seÁ„o \sec{sec:arvores}:
 
 \begin{center}
 \begin{tabular}{l}
@@ -38,7 +39,7 @@ internos da √°rvore apresentada na se√ß√£o \sec{sec:arvores}:
 \end{tabular}
 \end{center}
 
-A pesquisa por um elemento em uma √°rbore de pesquisa bin√°ria √© um
+A pesquisa por um elemento em uma ·rbore de pesquisa bin·ria È um
 algoritmo simples, mostrado a seguir:
 
 \begin{center}
@@ -53,8 +54,8 @@ pesq v (NodoB v' t t')
 \end{tabular}
 \end{center}
 
-O algoritmo para inser√ß√£o de elementos em uma √°rvore bin√°ria de
-pesquisa √© semelhante:
+O algoritmo para inserÁ„o de elementos em uma ·rvore bin·ria de
+pesquisa È semelhante:
 
 \begin{center}
 \begin{tabular}{l}
@@ -68,28 +69,27 @@ ins v t@(NodoB v' t1 t2)
 \end{tabular}
 \end{center}
 
-A complexidade de tempo de \inh{pesq} √© determinada a seguir: 
+A complexidade de tempo de \inh{pesq} È determinada a seguir: 
 
 \begin{enumerate}
 
-  \item Vamos considerar que o tamanho da entrada √© dado pelo n√∫mero
-    de elementos $n$ na √°rvore.
+  \item Vamos considerar que o tamanho da entrada È dado pelo n˙mero
+    de elementos $n$ na ·rvore.
 
-  \item As opera√ß√µes relevantes s√£o as compara√ß√µes de igualdade
+  \item As operaÁıes relevantes s„o as comparaÁıes de igualdade
     (\inh{==}) e menor-que (\inh{<}). 
 
   \item \label{complexidade-da-pesquisa-binaria-no-pior-caso} A
-    express√£o-determinante-da-efici√™ncia √©, no pior caso, igual a
-    $T(n-1) + k$, onde $k$ √© uma constante que expressa o tempo de
-    execu√ß√£o das compara√ß√µes de igualdade e menor-que. No pior caso, o
-    elemento est√° em sub-√°rvore que cont√©m $n-1$ nodos: todos os nodos
-    menos o nodo corrente. Neste caso, a √°rvore est√°
-    desbalanceada. Isso ocorre, por exemplo, para as √°rvores mostradas
-    a seguir, constru√≠das com inser√ß√µes sucessivas de elementos em uma
+    express„o-determinante-da-eficiÍncia È, no pior caso, igual a
+    $T(n-1) + k$, onde $k$ È uma constante que expressa o tempo de
+    execuÁ„o das comparaÁıes de igualdade e menor-que. No pior caso, o
+    elemento est· em sub-·rvore que contÈm $n-1$ nodos: todos os nodos
+    menos o nodo corrente. Neste caso, a ·rvore est·
+    desbalanceada. Isso ocorre, por exemplo, para as ·rvores mostradas
+    a seguir, construÌdas com inserÁıes sucessivas de elementos em uma
     lista crescente e decrescente, respectivamente.
 
     \begin{verbatim}
-
          v0                             v0
           \                             /
           v1                           v1
@@ -99,34 +99,33 @@ A complexidade de tempo de \inh{pesq} √© determinada a seguir:
             vn-1                     vn-1
              \                      /
               vn                   vn
-
     \end{verbatim}
 
   \end{enumerate}
 
-Assim, a rela√ß√£o de recorr√™ncia neste caso √©:
+Assim, a relaÁ„o de recorrÍncia neste caso È:
 
    \[ T(n) = T(n-1) + k \]
 
-A solu√ß√£o dessa rela√ß√£o de recorr√™ncia foi apresentada na se√ß√£o
+A soluÁ„o dessa relaÁ„o de recorrÍncia foi apresentada na seÁ„o
 \ref{sec:maior-elemento}:
 
        \[ T(n) \asymp n \]
 
-Note que o algoritmo de pesquisa em uma √°rvore bin√°ria de pesquisa tem
-complexidade $O(p)$ no pior caso, onde $p$ √© a profundidade da √°rvore
-(n√∫mero de arestas do maior caminho existente entre a raiz e uma
+Note que o algoritmo de pesquisa em uma ·rvore bin·ria de pesquisa tem
+complexidade $O(p)$ no pior caso, onde $p$ È a profundidade da ·rvore
+(n˙mero de arestas do maior caminho existente entre a raiz e uma
 folha).
 
-Em uma √°rvore balanceada, o n√∫mero de elementos $n$ √© igual a $2^p$,
-ou seja, em uma √°rvore balanceada, a pesquisa tem complexidade 
+Em uma ·rvore balanceada, o n˙mero de elementos $n$ È igual a $2^p$,
+ou seja, em uma ·rvore balanceada, a pesquisa tem complexidade 
 
   \[ T(n) \asymp lg n \]
-Em uma √°rvore totalmente desbalanceada, temos no entanto $p = n-1$.
+Em uma ·rvore totalmente desbalanceada, temos no entanto $p = n-1$.
 
-\subsection{Vers√£o imperativa}
+\subsection{Vers„o imperativa}
 
-Vamos usar a defini√ß√£o de √°rvore bin√°ria apresentada na se√ß√£o
+Vamos usar a definiÁ„o de ·rvore bin·ria apresentada na seÁ„o
 \ref{sec:arvores}:
 
 \begin{center}
@@ -139,118 +138,118 @@ struct ArvoreBinariaDeInteiros
 \end{tabular}
 \end{center}
 
-A pesquisa iterativa por um valor \ina{k} em uma √°rvore \in{arvBin} √©
+A pesquisa iterativa por um valor \ina{k} em uma ·rvore \in{arvBin} È
 apresentada a seguir:
 
 \begin{center}
 \begin{tabular}{l}
 \begin{alg}{pesq}{\decremento}
 pesq(k, arvBin) 
-    nodoCorrente ¬ß$\from$¬ß arvBin
+    nodoCorrente ß$\from$ß arvBin
     while nocoCorrente != NULL
-        v ¬ß$\from$¬ß nocoCorrente->elem
+        v ß$\from$ß nocoCorrente->elem
         if v == k 
            return nodoCorrente
         else if k < v
-                  nodoCorrente ¬ß$\from$¬ß nodoCorrente->esq
-             else nodoCorrente ¬ß$\from$¬ß nodoCorrente->dir
+                  nodoCorrente ß$\from$ß nodoCorrente->esq
+             else nodoCorrente ß$\from$ß nodoCorrente->dir
     return NULL
 \end{alg}
 \end{tabular}
 \end{center}
 
-A complexidade √© claramente a mesma da vers√£o recursiva. 
+A complexidade È claramente a mesma da vers„o recursiva. 
 
-Uma √°rvore bin√°ria de pesquisa √© uma importante estruturas de dados,
-gerando implementa√ß√µes simples e eficientes de pesquisa, inser√ß√£o e
-remo√ß√£o (em computa√ß√£o, um {\em dicion√°rio\/} √© um tipo abstrato que
-define tais opera√ß√µes; veja exerc√≠cio resolvido \ref{ex:dicionario}).
+Uma ·rvore bin·ria de pesquisa È uma importante estruturas de dados,
+gerando implementaÁıes simples e eficientes de pesquisa, inserÁ„o e
+remoÁ„o (em computaÁ„o, um {\em dicion·rio\/} È um tipo abstrato que
+define tais operaÁıes; veja exercÌcio resolvido \ref{ex:dicionario}).
 
-Embora a complexidade da pesquisa a um elemento seja logar√≠tmica no
-caso m√©dio, como vimos no item
+Embora a complexidade da pesquisa a um elemento seja logarÌtmica no
+caso mÈdio, como vimos no item
 \ref{complexidade-da-pesquisa-binaria-no-pior-caso} acima, no pior
-caso a complexidade da pesquisa √© a mesma da complexidade da pesquisa
-sequencial, quando a √°rvore est√° totalmente desbalanceada, ficando
+caso a complexidade da pesquisa È a mesma da complexidade da pesquisa
+sequencial, quando a ·rvore est· totalmente desbalanceada, ficando
 equivalente a uma lista.
 
-H√° muitos trabalhos de pesquisa em computa√ß√£o que procuram preservar o
-balanceamento de √°rvores bin√°rias de pesquisa, para manter a
-propriedade de complexidade logar√≠tmica para as opera√ß√µes de inser√ß√£o,
-remo√ß√£o, pesquisa e ordena√ß√£o de valores, baseados principalmente em
-t√©cnicas de transforma√ß√£o: simplifica√ß√£o ou mudan√ßa de representa√ß√£o.
+H· muitos trabalhos de pesquisa em computaÁ„o que procuram preservar o
+balanceamento de ·rvores bin·rias de pesquisa, para manter a
+propriedade de complexidade logarÌtmica para as operaÁıes de inserÁ„o,
+remoÁ„o, pesquisa e ordenaÁ„o de valores, baseados principalmente em
+tÈcnicas de transformaÁ„o: simplificaÁ„o ou mudanÁa de representaÁ„o.
 
-A simplifica√ß√£o transforma √°rvores n√£o balanceadas em √°rvores
-balanceadas (segundo alguma crit√©rio de balanceamento) sem adicionar
-nenhuma informa√ß√£o adicional a nodos da √°rvore. A se√ß√£o
-\ref{sec:arvores-AVL} aborda {\em √°rvores AVL\/}, nas quais a
-diferen√ßa entre a altura das sub-√°rvores de qualquer nodo n√£o deve ser
+A simplificaÁ„o transforma ·rvores n„o balanceadas em ·rvores
+balanceadas (segundo alguma critÈrio de balanceamento) sem adicionar
+nenhuma informaÁ„o adicional a nodos da ·rvore. A seÁ„o
+\ref{sec:arvores-AVL} aborda {\em ·rvores AVL\/}, nas quais a
+diferenÁa entre a altura das sub-·rvores de qualquer nodo n„o deve ser
 maior que 1.
 
-Outro estrutura de dados que prov√™ balanceamento de √°rvores de
-pesquisa baseada na t√©cnica de transforma√ß√£o por simplifica√ß√£o √© a que
-vamos chamar de {\em √°rvores MovPraRaiz\/} (em ingl√™s, {\em splay
+Outro estrutura de dados que provÍ balanceamento de ·rvores de
+pesquisa baseada na tÈcnica de transformaÁ„o por simplificaÁ„o È a que
+vamos chamar de {\em ·rvores MovPraRaiz\/} (em inglÍs, {\em splay
   trees\/}), baseada na ideia de mover para raiz um elemento em
-opera√ß√µes de inser√ß√£o, remo√ß√£o ou pesquisa.  √Årvores MovPraRaiz s√£o
-abordadas no exerc√≠cio resolvido \ref{ex:arvores-MovPraRaiz}.
+operaÁıes de inserÁ„o, remoÁ„o ou pesquisa.  ¡rvores MovPraRaiz s„o
+abordadas no exercÌcio resolvido \ref{ex:arvores-MovPraRaiz}.
 
-Exemplos de balanceamento via mudan√ßa de representa√ß√£o s√£o {\em
-  √°rvores vermelha-e-preta\/} (tamb√©m chamadas de rubro-negras, em
-ingl√™s {\em red-black trees\/}) e {\em √°rvores B\/} (em ingl√™s, {\em
-  B-trees\/}), abordadas respectivamente nas se√ß√µes
+Exemplos de balanceamento via mudanÁa de representaÁ„o s„o {\em
+  ·rvores vermelha-e-preta\/} (tambÈm chamadas de rubro-negras, em
+inglÍs {\em red-black trees\/}) e {\em ·rvores B\/} (em inglÍs, {\em
+  B-trees\/}), abordadas respectivamente nas seÁıes
 \ref{sec:arvore-vermelha-e-preta} e \ref{sec:arvores-B}.
 
-\section{√Årvores AVL}
+\section{¡rvores AVL}
 \label{sec:arvores-AVL}
 
 ....
 
-\section{√Årvores Vermelha-e-Preta}
+\section{¡rvores Vermelha-e-Preta}
 \label{sec:arvore-vermelha-e-preta}
 
-Uma √°rvorte vermelha-e-preta √© uma √°rvore bin√°ria de pesquisa com uma
-informa√ß√£o a mais em cada nodo que indica sua cor, que pode ser
-vermelha ou preta, e que deve al√©m disso satisfazer √†s seguintes
-condi√ß√µes (chamadas de {\em condi√ß√µes-de-arvore-vermelho-e-preta\/}):
+Uma ·rvorte vermelha-e-preta È uma ·rvore bin·ria de pesquisa com uma
+informaÁ„o a mais em cada nodo que indica sua cor, que pode ser
+vermelha ou preta, e que deve alÈm disso satisfazer ‡s seguintes
+condiÁıes (chamadas de {\em condiÁıes-de-arvore-vermelho-e-preta\/}):
 
 \begin{enumerate}
 
-\item As folhas e a raiz s√£o pretas.
+\item As folhas e a raiz s„o pretas.
 
-\item Os filhos de todo nodo vermelho s√£o pretos.
+\item Os filhos de todo nodo vermelho s„o pretos.
 
-\item Todo caminho de um nodo a uma folha cont√©m o mesmo n√∫mero de
+\item Todo caminho de um nodo a uma folha contÈm o mesmo n˙mero de
   nodos pretos.
 
 \end{enumerate}
 
-Um exemplo de uma √°rvore vermelha-e-preta √© mostrada abaixo.
+Um exemplo de uma ·rvore vermelha-e-preta È mostrada abaixo.
 
-.... aqui vem figura de √°rvore vermelha-e-preta. ....
+.... aqui vem figura de ·rvore vermelha-e-preta. ....
 
-As duas √∫ltimas condi√ß√µes garantem a propriedade {\em
+As duas ˙ltimas condiÁıes garantem a propriedade {\em
   altura-varia-pouco\/}: o comprimento do caminho mais longo da raiz a
-uma folha n√£o √© maior que o dobro do comprimento do menor caminho da
-raiz a uma folha. Ou seja, a √°rvore √© razoavelmente bem balanceada em
+uma folha n„o È maior que o dobro do comprimento do menor caminho da
+raiz a uma folha. Ou seja, a ·rvore È razoavelmente bem balanceada em
 termos de altura dos seus nodos (altura = comprimento do maior caminho
-do nodo at√© uma folha). Como o pior caso da complexidade de tempo de
-opera√ß√µes de inser√ß√£o, remo√ß√£o e pesquisa s√£o proporcionais √† altura
-da √°rvore, isso permite uma efici√™ncia maior, no pior caso, do que
-√°rvores bin√°rias de pesquisa.
+do nodo atÈ uma folha). Como o pior caso da complexidade de tempo de
+operaÁıes de inserÁ„o, remoÁ„o e pesquisa s„o proporcionais ‡ altura
+da ·rvore, isso permite uma eficiÍncia maior, no pior caso, do que
+·rvores bin·rias de pesquisa.
 
-Para ver porque as duas √∫ltimas condi√ß√µes garantem a propriedade
-altura-varia-pouco, considere que $n_p$ seja o n√∫mero de nodos pretos
-de um caminho a uma folha, para uma √°rvore $a$.  Seja $k$ o
+Para ver porque as duas ˙ltimas condiÁıes garantem a propriedade
+altura-varia-pouco, considere que $n_p$ seja o n˙mero de nodos pretos
+de um caminho a uma folha, para uma ·rvore $a$.  Seja $k$ o
 comprimento do menor caminho $c_m$ da raiz a uma folha (esse caminho
-cont√©m $n_b$ nodos pretos). O caminho mais longo da raiz a uma folha
-$c_M$ n√£o pode conter nodos vermelhos em n√≠veis consecutivos da √°rvore
-(um novo vermelho n√£o pode ser filho de outro nodo vermelho), e o
-n√∫mero de nodos pretos tem que ser igual a $n_p$. Portanto, o n√∫mero
-de nodos de $c_M$ tem que ser no m√°ximo igual a $2*k$ (caso em que
-$c_m$ s√≥ tem nodos pretos).
+contÈm $n_b$ nodos pretos). O caminho mais longo da raiz a uma folha
+$c_M$ n„o pode conter nodos vermelhos em nÌveis consecutivos da ·rvore
+(um novo vermelho n„o pode ser filho de outro nodo vermelho), e o
+n˙mero de nodos pretos tem que ser igual a $n_p$. Portanto, o n˙mero
+de nodos de $c_M$ tem que ser no m·ximo igual a $2*k$ (caso em que
+$c_m$ sÛ tem nodos pretos).
 
-Opera√ß√µes que modificam a √°rvore geralmente causam reorganiza√ß√£o dos
+OperaÁıes que modificam a ·rvore geralmente causam reorganizaÁ„o dos
 nodos e cores dos nodos de modo a que as
-condi√ß√µes-de-√°rvore-vermelho-e-preta continuem a ser satisfeitas, o
+condiÁıes-de-·rvore-vermelho-e-preta continuem a ser satisfeitas, o
 que pode ser feito de modo eficiente. 
 
 % The balancing of the tree is not perfect but it is good enough to
@@ -259,5 +258,5 @@ que pode ser feito de modo eficiente.
 % along with the tree rearrangement and recoloring, are also performed
 % in O(log n) time.
 
-\section{√Årvores B}
+\section{¡rvores B}
 \label{sec:arvores-B}
