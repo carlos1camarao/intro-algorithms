@@ -93,24 +93,22 @@ escapechar=§
 % \definecolor{LightGreen}{rgb}{\color{green!20}}
 
 % listings e lstinline para Haskell 
-%\lst@definelanguage{myHaskell}{language=Haskell}%
-%deletekeywords={List,Cons,Nil,Pair,Tree,Leaf,Node,%
-%all,and,any,delete,elem,foldr,insert,map,or,sort}}
-%{}
-
-\newcommand{\divisao}{Cyan}
-\newcommand{\decremento}{YellowGreen}
-\newcommand{\simplificacao}{Orange}
-\newcommand{\mudancaRep}{GreenYellow}
-\newcommand{\preProcess}{Tan}
-\newcommand{\definicao}{LightGray}
+\lst@definelanguage{myHaskell}{language={Haskell},
+morekeywords={if,then,else,case,class,data,default,deriving,%
+              hiding,in,infix,infixl,infixr,import,instance,let,module,%
+              newtype,of,qualified,type,where,do}} %Bug in Hevea: if I put last '}' in the next line, keywords do not work!
+{}
+ % Bug in Hevea: I have to repeat here the haskell keywords, 
+ % copied from lstlang2.sty (more specifically, from lst@definelanguage{Haskell}{keywords={if,...}})
 
 \lstnewenvironment{hask}[2]{
-\lstset{language=Haskell,emph={#1},
-backgroundcolor={\color{#2}}}}
-{}
+\lstset{language=myHaskell,emph={#1},
+backgroundcolor={\color{#2}}
+}}
 
-\newcommand{\inh}{\lstinline[language=Haskell]}
+{} % Bug in Hevea: if I comment this line, Hevea causes a fatal error, and asks reporting bug to Luc...
+\newcommand{\inh}{\lstinline[language=myHaskell]}
+
 
 % listings e lstinline para C 
 \lst@definelanguage{myAlg}{language={C++},%
@@ -132,6 +130,13 @@ backgroundcolor={\color{#2}}}}
 %-----------------------------------------------
 
 \setcounter{tocdepth}{3}
+
+\newcommand{\divisao}{Cyan}
+\newcommand{\decremento}{YellowGreen}
+\newcommand{\simplificacao}{Orange}
+\newcommand{\mudancaRep}{GreenYellow}
+\newcommand{\preProcess}{Tan}
+\newcommand{\definicao}{LightGray}
 
 %-- title------------------------------------------
 \title{Introdução a Algoritmos}\\
