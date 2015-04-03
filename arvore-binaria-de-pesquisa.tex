@@ -23,10 +23,10 @@ Dois exemplos de árvores binárias de pesquisa com os elementos de 1 a
 \end{verbatim}
 
 A propriedade fundamental de uma árvore binária de pesquisa é o acesso
-eficiente (logarítmico no caso médio: veja comentário sobre a
-complexidade no caso médio abaixo) a um elemento.
+eficiente a um elemento (veja abaixo comentário sobre a complexidade
+logarítmica da pesquisa por um elemento no caso médio).
 
-\subsubsection{Versão funcional}
+\subsection{Versão funcional}
 
 Considere a definição de árvore binária com elementos nos nodos
 internos da árvore apresentada na seção \ref{sec:arvores}:
@@ -39,6 +39,8 @@ internos da árvore apresentada na seção \ref{sec:arvores}:
 \end{tabular}
 \end{center}
 
+\subsubsection{Pesquisa}
+
 A pesquisa por um elemento em uma árbore de pesquisa binária é um
 algoritmo simples, mostrado a seguir:
 
@@ -50,21 +52,6 @@ pesq v (NodoB v' t t') = case compare v v' of
                            LT -> pesq v t
                            GT -> pesq v t'
                            _  -> True
-\end{hask}
-\end{tabular}
-\end{center}
-
-O algoritmo para inserção de elementos em uma árvore binária de
-pesquisa é semelhante:
-
-\begin{center}
-\begin{tabular}{l}
-\begin{hask}{ins}{\decremento}
-ins v FolhaB             = NodoB v FolhaB FolhaB
-ins v t@(NodoB v' t1 t2) = case compare v v' of
-                             LT -> ins v t1
-                             GT -> ins v t2
-                             _  -> t
 \end{hask}
 \end{tabular}
 \end{center}
@@ -123,6 +110,58 @@ ou seja, em uma árvore balanceada, a pesquisa tem complexidade
   \[ T(n) \asymp lg n \]
 Em uma árvore totalmente desbalanceada, temos no entanto $p = n-1$.
 
+\subsubsection{Inserção}
+
+O algoritmo para inserção de elementos em uma árvore binária de
+pesquisa é semelhante ao algoritmo de pesquisa:
+
+\begin{center}
+\begin{tabular}{l}
+\begin{hask}{ins}{\decremento}
+ins v FolhaB             = NodoB v FolhaB FolhaB
+ins v t@(NodoB v' t1 t2) = case compare v v' of
+                             LT -> ins v t1
+                             GT -> ins v t2
+                             _  -> t
+\end{hask}
+\end{tabular}
+\end{center}
+
+\subsubsection{Remoção}
+
+Para remoção de um nodo $n$, raiz de uma árvore $t$, o algoritmo de
+remoção de elemento essencialmente subsititui $n$ pelo menor elemento
+da sub-árvore direita de $t$ (e remove este menor elemento dessa
+sub-árvore). O algoritmo em Haskell é apresentado a seguir.
+
+\begin{center}
+\begin{tabular}{l}
+\begin{hask}{remov}{\decremento}
+remov:: Ord a => a -> ArvB a -> ArvB a
+remov _ FolhaB = FolhaB
+remov a (NodoB b l r) = case compare a b of 
+                          LT -> NodoB b (remov a l) r
+                          GT -> NodoB b l (remov a r)
+                          _  -> junta l r
+
+junta:: Ord a => ArvB a -> ArvB a -> ArvB a
+-- junta l r cria árvore com o menor elemento m de r como raiz e remove m de r, 
+-- se m existir; senão (r é vazia) retorna l.
+junta l r = case min r of 
+              Nothing     -> l
+              Just (m,r') -> Node m l r'
+
+min:: Ord a => ArvB a -> Maybe (a,ArvB a)
+-- min t retorna Just (m,r) se o menor elemento m de t existir
+-- (onde r é a sub-árvore direita de t); senão Nothing.
+min FolhaB             = Nothing
+min (NodoB a FolhaB r) = Just (a, r)
+min (NodoB a l      r) = Just (m,r)
+  where Just (m,_)     = min l
+\end{hask}
+\end{tabular}
+\end{center}
+
 \subsection{Versão imperativa}
 
 Vamos usar a definição de árvore binária apresentada na seção
@@ -138,8 +177,8 @@ struct ArvoreBinariaDeInteiros
 \end{tabular}
 \end{center}
 
-A pesquisa iterativa por um valor \ina{k} em uma árvore \in{arvBin} é
-apresentada a seguir:
+A pesquisa iterativa por um valor em uma árvore binária de pesquisa
+com valores inteiros é apresentada a seguir:
 
 \begin{center}
 \begin{tabular}{l}
@@ -159,6 +198,12 @@ pesq(k, arvBin)
 \end{center}
 
 A complexidade é claramente a mesma da versão recursiva. 
+
+A inserção de um elemento ....
+
+A remoção de um elemento ....
+
+\HRule
 
 Uma árvore binária de pesquisa é uma importante estruturas de dados,
 gerando implementações simples e eficientes de pesquisa, inserção e
@@ -181,7 +226,7 @@ técnicas de transformação: simplificação ou mudança de representação.
 A simplificação transforma árvores não balanceadas em árvores
 balanceadas (segundo alguma critério de balanceamento) sem adicionar
 nenhuma informação adicional a nodos da árvore. A seção
-\ref{sec:arvores-AVL} aborda {\em árvores AVL\/}, nas quais a
+\ref{sec:arvore-AVL} aborda {\em árvores AVL\/}, nas quais a
 diferença entre a altura das sub-árvores de qualquer nodo não deve ser
 maior que 1.
 
@@ -192,65 +237,143 @@ vamos chamar de {\em árvores MovPraRaiz\/} (em inglês, {\em splay
 operações de inserção, remoção ou pesquisa.  Árvores MovPraRaiz são
 abordadas no exercício resolvido \ref{ex:arvores-MovPraRaiz}.
 
-Exemplos de balanceamento via mudança de representação são {\em
-  árvores vermelha-e-preta\/} (também chamadas de rubro-negras, em
-inglês {\em red-black trees\/}) e {\em árvores B\/} (em inglês, {\em
-  B-trees\/}), abordadas respectivamente nas seções
-\ref{sec:arvore-vermelha-e-preta} e \ref{sec:arvores-B}.
+Exemplos de balanceamento via mudança de representação ocorrem com os
+seguintes tipos de árvore: {\em árvore bicolor\/} (também chamadas de
+vermelha-e-preta ou rubro-negra, em inglês {\em red-black tree\/}) e
+{\em árvore B\/} (em inglês, {\em B-tree\/}), abordadas
+respectivamente nas seções \ref{sec:arvore-bicolor} e
+\ref{sec:arvore-B}.
 
-\section{Árvores AVL}
-\label{sec:arvores-AVL}
+\section{Árvore AVL}
+\label{sec:arvore-AVL}
 
-....
+O nome AVL é proveniente das iniciais dos sobrenomes dos dois
+pesquisadores russos G.~M.~\underline{A}delson-\underline{V}elsky e
+E.~M.~\underline{L}andis, que foram os primeiros a definir e realizar
+trabalhos com esse tipo de árvore.
 
-\section{Árvores Vermelha-e-Preta}
-\label{sec:arvore-vermelha-e-preta}
+Seja $n$ um nó de uma árvore binária, $ad_n$ e $ae_n$ as alturas da
+sub-árvore esquerda e direita de $n$, respectivamente, e seja
+$\delta_n = ae_n - ad_n$ o {\em fator de balanceamento\/} do nodo.
 
-Uma árvorte vermelha-e-preta é uma árvore binária de pesquisa com uma
-informação a mais em cada nodo que indica sua cor, que pode ser
-vermelha ou preta, e que deve além disso satisfazer às seguintes
-condições (chamadas de {\em condições-de-arvore-vermelho-e-preta\/}):
+Uma árvore AVL é uma árvore de pesquisa binária na qual $\delta_n$ é
+igual a 0, 1 ou  1, para todo nodo $n$ (que vamos chamar de {\em
+  condição-AVL\/}).
+
+Por exemplo, a ávore binária de pesquisa abaixo à esquerda é uma
+árvore AVL, enquanto a da direita não é.
+
+
+..... exemplo de árvore AVL ..... exemplo de árvore binária de pesquisa não AVL ....
+ 
+O algoritmo de pesquisa em uma árvore AVL é o mesmo do algoritmo de
+pesquisa em uma árvore binária de pesquisa. Os algoritmos de inserção
+e remoção são apresentados nas subseções seguintes.
+
+\subsection{Inserção}
+
+Após uma inserção de um nodo em uma árvore AVL, é feita uma
+verificação do fator de balanceamento de cada nodo (que está no
+caminho da raiz até o nodo inserido). Se esse fator se tornar maior
+que 1 ou menor que -1, a sub-árvore com raiz nesse nodo é
+rebalanceada, por meio de uma {\em rotação}, para que a condição-AVL
+volte a ser satisfeita (como a inserção de elemento em sub-árvore
+aumenta a altura de qualquer nodo nessa sub-árvore em no máximo 1, o
+fator de balanceamento deve estar, logo após a inserção, entre -2 e
+2).
+
+Suponha que o fator de balanceamento seja igual a 2 (o caso igual a -2
+é análogo). Existem duas possibilidades (veja a figura abaixo, onde a
+altura das árvores t1, t2, tA, tB é a mesma).
+
+\begin{verbatim}
+    Caso EE      Caso ED
+      5(2)        5(2)                
+     /   \       /    \   
+    4(1)  t1    3(-1)  t2
+   /   \       /  \                    
+  3(-1) t2    tA   4
+ / \              / \
+tA  tB           t1  tB                   
+
+Árvore R (depois de rotacionada)
+      4
+    /   \ 
+   3     5
+  / \   / \
+tA  tB t1  t2
+
+\end{verbatim}
+
+Considere na Figura o nodo com valor 5 (e fator de balanceamento 2).
+Se a raiz da sub-árvore à esquerda tem fator de balanceamento 1 (caso
+EE na figura), a árvore com raiz no nodo 5 é rotacionada, gerando
+depois de rotacionada a árvore R, como mostra a Figura. Se a raiz da
+sub-árvore à esquerda tem fator de balanceamento -1 (caso ED na
+figura), a árvore com raiz no nodo 4 é rotacionada para cairmos no
+caso EE (depois caímos no caso EE).
+
+\subsubsection{Versão funcional}
+
+\subsubsection{Versão imperativa}
+
+\subsection{Remoção}
+
+\subsubsection{Versão funcional}
+
+\subsubsection{Versão imperativa}
+
+
+
+\section{Árvore Bicolor}
+\label{sec:arvore-bicolor}
+
+Uma árvore bicolor --- ou rubro-negra, ou vermelha-e-preta --- é uma
+árvore binária de pesquisa com uma informação em cada nodo que indica
+sua cor --- vamos chamar um nodo de cor $A$ de nodo $A$ e um nodo de
+cor $B$ de nodo $B$ (em geral, as cores $A$ e $B$ são vermelha e
+preta) --- e que deve além disso satisfazer às seguintes condições
+(chamadas de {\em condições-de-árvore-bicolor\/}):
 
 \begin{enumerate}
 
-\item As folhas e a raiz são pretas.
+\item As folhas e a raiz são nodos $B$.
 
-\item Os filhos de todo nodo vermelho são pretos.
+\item Os filhos de todo nodo $A$ são nodos $B$.
 
 \item Todo caminho de um nodo a uma folha contém o mesmo número de
-  nodos pretos.
+  nodos $B$.
 
 \end{enumerate}
 
-Um exemplo de uma árvore vermelha-e-preta é mostrada abaixo.
+Um exemplo de uma árvore bicolor é mostrada abaixo.
 
 .... aqui vem figura de árvore vermelha-e-preta. ....
 
 As duas últimas condições garantem a propriedade {\em
-  altura-varia-pouco\/}: o comprimento do caminho mais longo da raiz a
-uma folha não é maior que o dobro do comprimento do menor caminho da
-raiz a uma folha. Ou seja, a árvore é razoavelmente bem balanceada em
-termos de altura dos seus nodos (altura = comprimento do maior caminho
-do nodo até uma folha). Como o pior caso da complexidade de tempo de
-operações de inserção, remoção e pesquisa são proporcionais à altura
-da árvore, isso permite uma eficiência maior, no pior caso, do que
-árvores binárias de pesquisa.
+  balanceamento-bicolor\/}: o comprimento do caminho mais longo da
+raiz a uma folha não é maior que o dobro do comprimento do menor
+caminho da raiz a uma folha. Ou seja, a árvore é razoavelmente bem
+balanceada em termos de altura dos seus nodos (altura = comprimento do
+maior caminho do nodo até uma folha). Como o pior caso da complexidade
+de tempo de operações de inserção, remoção e pesquisa são
+proporcionais à altura da árvore, isso permite uma eficiência maior do
+que árvores binárias de pesquisa.
 
-Para ver porque as duas últimas condições garantem a propriedade
-altura-varia-pouco, considere que $n_p$ seja o número de nodos pretos
+Para ver porque as duas últimas condições garantem a propriedade de
+balanceamento-bicolor, considere que $n_p$ seja o número de nodos $B$
 de um caminho a uma folha, para uma árvore $a$.  Seja $k$ o
 comprimento do menor caminho $c_m$ da raiz a uma folha (esse caminho
 contém $n_b$ nodos pretos). O caminho mais longo da raiz a uma folha
 $c_M$ não pode conter nodos vermelhos em níveis consecutivos da árvore
 (um novo vermelho não pode ser filho de outro nodo vermelho), e o
-número de nodos pretos tem que ser igual a $n_p$. Portanto, o número
-de nodos de $c_M$ tem que ser no máximo igual a $2*k$ (caso em que
-$c_m$ só tem nodos pretos).
+número de nodos $B$ tem que ser igual a $n_p$. Portanto, o número de
+nodos de $c_M$ tem que ser no máximo igual a $2*k$ (caso em que $c_m$
+só tem nodos $B$).
 
 Operações que modificam a árvore geralmente causam reorganização dos
-nodos e cores dos nodos de modo a que as
-condições-de-árvore-vermelho-e-preta continuem a ser satisfeitas, o
-que pode ser feito de modo eficiente. 
+nodos e cores dos nodos de modo a que as condições-de-árvore-bicolor
+continuem a ser satisfeitas, o que pode ser feito de modo eficiente.
 
 % The balancing of the tree is not perfect but it is good enough to
 % allow it to guarantee searching in O(log n) time, where n is the total
@@ -258,5 +381,5 @@ que pode ser feito de modo eficiente.
 % along with the tree rearrangement and recoloring, are also performed
 % in O(log n) time.
 
-\section{Árvores B}
-\label{sec:arvores-B}
+\section{Árvore B}
+\label{sec:arvore-B}
