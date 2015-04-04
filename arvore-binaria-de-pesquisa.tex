@@ -26,6 +26,13 @@ A propriedade fundamental de uma árvore binária de pesquisa é o acesso
 eficiente a um elemento (veja abaixo comentário sobre a complexidade
 logarítmica da pesquisa por um elemento no caso médio).
 
+Uma árvore binária de pesquisa é uma importante estruturas de dados,
+gerando implementações simples de pesquisa, inserção e remoção. Em
+computação, um {\em dicionário\/} é um tipo abstrato que define tais
+operações. As seções seguintes apresentam versões recursivas e
+iterativas de pesquisa, inserção e remoção, usando árvores binárias de
+pesquisa.
+
 \subsection{Versão funcional}
 
 Considere a definição de árvore binária com elementos nos nodos
@@ -69,23 +76,23 @@ A complexidade de tempo de \inh{pesq} é determinada a seguir:
   \item \label{complexidade-da-pesquisa-binaria-no-pior-caso} A
     expressão-determinante-da-eficiência é, no pior caso, igual a
     $T(n-1) + k$, onde $k$ é uma constante que expressa o tempo de
-    execução das comparações de igualdade e menor-que. No pior caso, o
-    elemento está em sub-árvore que contém $n-1$ nodos: todos os nodos
-    menos o nodo corrente. Neste caso, a árvore está
-    desbalanceada. Isso ocorre, por exemplo, para as árvores mostradas
-    a seguir, construídas com inserções sucessivas de elementos em uma
-    lista crescente e decrescente, respectivamente.
+    execução da comparação. No pior caso, o elemento está em
+    sub-árvore que contém $n-1$ nodos: todos os nodos menos o nodo
+    corrente. Neste caso, a árvore está desbalanceada. Isso ocorre,
+    por exemplo, para as árvores mostradas a seguir, construídas com
+    inserções sucessivas de elementos em uma lista crescente e
+    decrescente, respectivamente.
 
     \begin{verbatim}
          v0                             v0
           \                             /
           v1                           v1
-           \                           /
-           ...                        ...
             \                         /
-            vn-1                     vn-1
-             \                      /
-              vn                   vn
+            ...                     ...
+              \                     /
+              vn-1               vn-1
+                \                 /
+                 vn              vn
     \end{verbatim}
 
   \end{enumerate}
@@ -102,7 +109,7 @@ A solução dessa relação de recorrência foi apresentada na seção
 Note que o algoritmo de pesquisa em uma árvore binária de pesquisa tem
 complexidade $O(p)$ no pior caso, onde $p$ é a profundidade da árvore
 (número de arestas do maior caminho existente entre a raiz e uma
-folha).
+folha). 
 
 Em uma árvore balanceada, o número de elementos $n$ é igual a $2^p$,
 ou seja, em uma árvore balanceada, a pesquisa tem complexidade 
@@ -126,6 +133,10 @@ ins v t@(NodoB v' t1 t2) = case compare v v' of
 \end{hask}
 \end{tabular}
 \end{center}
+
+O tempo de complexidade do algoritmo de inserção é o mesmo do de
+pesquisa: $lg n$ no caso de uma árvore balanceada, mas linear no pior
+caso de uma árvore desbalanceada.
 
 \subsubsection{Remoção}
 
@@ -162,6 +173,10 @@ min (NodoB a l      r) = Just (m,r)
 \end{tabular}
 \end{center}
 
+O tempo de complexidade do algoritmo de remoção de elementos é também
+o mesmo do de pesquisa: $lg n$ no caso de uma árvore balanceada, mas
+linear no pior caso de uma árvore desbalanceada.
+
 \subsection{Versão imperativa}
 
 Vamos usar a definição de árvore binária apresentada na seção
@@ -176,6 +191,8 @@ struct ArvoreBinariaDeInteiros
 \end{alg}
 \end{tabular}
 \end{center}
+
+\subsubsection{Pesquisa}
 
 A pesquisa iterativa por um valor em uma árvore binária de pesquisa
 com valores inteiros é apresentada a seguir:
@@ -197,18 +214,64 @@ pesq(k, arvBin)
 \end{tabular}
 \end{center}
 
-A complexidade é claramente a mesma da versão recursiva. 
+A complexidade é a mesma da versão recursiva: $lg n$ no caso de uma
+árvore balanceada, mas linear no pior caso de uma árvore
+desbalanceada.
 
-A inserção de um elemento ....
+\subsubsection{Inserção}
 
-A remoção de um elemento ....
+A inserção de um elemento usando comando de repetição em vez de
+recursão. O comando de atribuição é usado para modificar a árvore na
+qual o elemento está sendo inserido, em vez de criar nova árvore.
+
+O algoritmo \ina{ins} apresentado abaixo retorna um booleano para
+indicar se a inserção de fato ocorreu (retorna 0 se o elemento já está
+presente e 1 caso a inserção tenha ocorrido).
+
+Um novo nodo é criado com chamada a \ina{novoNodo}.
+
+\begin{center}
+\begin{tabular}{l}
+\begin{alg}{pesq}{\decremento}
+ArvoreBinariaDeInteiros* novoNodo (int k) 
+  ArvoreBinariaDeInteiros * a = malloc(sizeof(ArvoreBinariaDeInteiros))
+  a -> elem §$\from$§ k
+  a -> esq  §$\from$§ NULL
+  a -> dir  §$\from$§ NULL
+  return a
+
+int ins (int k, ArvoreBinariaDeInteiros* arvBin)
+  ArvoreBinariaDeInteiros* nodoCorrente = arvBin
+  int v
+  while (nodoCorrente != NULL) 
+    v §$\from$§ nodoCorrente->elem
+    if (v > k) 
+      if (nodoCorrente->esq == NULL) 
+	nodoCorrente->esq §$\from$§ novoNodo(k)
+	return 1
+      else nodoCorrente §$\from$§ nodoCorrente -> esq
+    else if (v < k) 
+      if (nodoCorrente->dir == NULL) 
+	nodoCorrente->dir §$\from$§ novoNodo(k)
+	return 1
+      else nodoCorrente §$\from$§ nodoCorrente -> dir
+    else /* v==k */ return 0
+  // if arvBin != NULL execution does not reach here
+  arvBin §$\from$§ novoNodo(k)
+  return 1
+\end{alg}
+\end{tabular}
+\end{center}
+
+A complexidade de \ina{ins} acima nesse ponto já é nossa conhecida:
+$lg n$ no caso de uma árvore balanceada, mas linear no pior caso de
+uma árvore desbalanceada.
+
+A versão imperativa do algoritmo de remoção de um elemento em uma
+árvore binária de pesquisa é deixada como exercício para o leitor
+(exercício \ref{remocao-de-elemento-em-arvore-binaria-de-pesquisa}).
 
 \HRule
-
-Uma árvore binária de pesquisa é uma importante estruturas de dados,
-gerando implementações simples e eficientes de pesquisa, inserção e
-remoção (em computação, um {\em dicionário\/} é um tipo abstrato que
-define tais operações; veja exercício resolvido \ref{ex:dicionario}).
 
 Embora a complexidade da pesquisa a um elemento seja logarítmica no
 caso médio, como vimos no item
