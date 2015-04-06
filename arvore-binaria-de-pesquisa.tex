@@ -224,18 +224,13 @@ Na inserção de um elemento usando comando de repetição em vez de
 recursão, o comando de atribuição é usado para modificar a árvore na
 qual o elemento está sendo inserido, em vez de criar nova árvore.
 
-Um novo nodo é criado com chamada a \ina{novoNodo}.
+Um novo nodo é criado com chamada a \ina{novoNodo}, que atribui
+referências nulas aos campos \ina{esq} e \ina{dir} e atribui o
+argumento ao campo \ina{elem}.
 
 \begin{center}
 \begin{tabular}{l}
 \begin{alg}{ins}{\decremento}
-ArvoreBinariaDeInteiros* novoNodo (int k) 
-  ArvoreBinariaDeInteiros * a = malloc(sizeof(ArvoreBinariaDeInteiros))
-  a -> elem §$\from$§ k
-  a -> esq  §$\from$§ NULL
-  a -> dir  §$\from$§ NULL
-  return a
-
 ins (int k, ArvoreBinariaDeInteiros* arvBin) {
   ArvoreBinariaDeInteiros* nodoCorrente = arvBin
   ArvoreBinariaDeInteiros* prev = NULL
