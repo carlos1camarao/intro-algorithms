@@ -282,9 +282,11 @@ técnicas de transformação: simplificação ou mudança de representação.
 A simplificação transforma árvores não balanceadas em árvores
 balanceadas (segundo alguma critério de balanceamento) sem adicionar
 nenhuma informação adicional a nodos da árvore. A seção
-\ref{sec:arvore-AVL} aborda {\em árvores AVL\/}, nas quais a
-diferença entre a altura das sub-árvores de qualquer nodo não deve ser
-maior que 1.
+\ref{sec:arvore-AVL} aborda {\em árvores AVL\/}, nas quais a diferença
+entre a altura das sub-árvores de qualquer nodo não deve ser maior que
+1. A altura de um nodo da árvore é o número de nodos do maior caminho
+entre esse nodo e uma folha. A altura de uma árvore é altura do nodo
+raiz da árvore.
 
 Outro estrutura de dados que provê balanceamento de árvores de
 pesquisa baseada na técnica de transformação por simplificação é a que
@@ -335,6 +337,7 @@ Os algoritmos de inserção e remoção são apresentados nas subseções
 seguintes.
 
 \subsection{Inserção}
+\label{sec:insercao-em-arvores-AVL-versao-func}
 
 Após inserção de nodo em uma árvore AVL, é feita uma verificação do
 fator de balanceamento de cada nodo que está no caminho da raiz até o
@@ -430,11 +433,9 @@ e demonstrar que tal variação é verificada em todos os casos, é
 deixada para trabalho futuro. Não encontramos na literatura textos que
 abordam o assunto de forma clara e precisa.
 
-Para evitar o cálculo da altura de sub-árvores direita e esquerda para
-determinar o fator de balanceamento de cada nodo que está no caminho
-da árvore até o nodo inserido, que seria desnecessariamente
-ineficiente, e para facilitar a atualização da altura, vamos armazenar
-e atualizar as alturas de ambas as sub-árvores de cada nodo.
+O armazenamento da altura em cada nodo evita ter que calcular a altura
+de cada nodo que está no caminho da árvore até o nodo inserido, o que
+seria desnecessariamente ineficiente. 
 
 \subsubsection{Versão funcional}
 
@@ -445,101 +446,101 @@ A inserção de elemento em árvore AVL é feita em Haskell como a seguir:
 \begin{hask}{ins}{\decremento}
 module AVL (ArvoreAVL, arvVazia, ins) where
 
-type AlturaEsq = Integer
-type AlturaDir = Integer
-
-data ArvoreAVL a = Vazia | Nodo a (AlturaEsq,AlturaDir) (ArvoreAVL a) (ArvoreAVL a)
+type Altura      = Integer
+data ArvoreAVL a = Vazia | Nodo a Altura (ArvoreAVL a) (ArvoreAVL a)
 
 arvVazia = Vazia
 
-ins:: Ord a => a -> ArvoreAVL a -> ArvoreAVL a
-ins k Vazia             = Nodo k (0,0) Vazia Vazia
-ins k arv@(Nodo v (ae,ad) e d) = 
+ins:: (Show a, Ord a) => a -> ArvoreAVL a -> ArvoreAVL a
+ins k Vazia              = Nodo k 1 Vazia Vazia
+ins k arv@(Nodo v _ e d) = 
  case compare k v of 
-  LT -> let e1@(Nodo v1 (ae1,ad1) _ _) = ins k e 
-            altura1 = max ae1 ad1
-            altura' = altura1+1
-         in if altura1 - ad == 1 -- condição AVL precisa ser restaurada (altura' = altura1 + 1)
-            then if k < v1 
-                 then sobE  (Nodo v (altura',ad) e1 d) 
-                 else sobED (Nodo v (altura',ad) e1 d) 
-            else Nodo v (altura',ad) e1 d
-  GT -> let d1@(Nodo v1 (ae1,ad1) _ _) = ins k d 
-            altura1 = max ae1 ad1
-            altura' = altura1+1
-         in if altura1 - ae == 1 -- condição AVL precisa ser restaurada (altura' = altura1 + 1)
-            then -- ou sobD ou sobDE 
+  LT -> let e1@(Nodo v1 a1 _ _) = ins k e 
+            ad = altura d
+         in if a1 - ad == 2 -- condição AVL precisa ser restaurada
+            then if k < v1  
+                 then sobE  (Nodo v undefined e1 d)  
+                 else sobED (Nodo v undefined e1 d)
+            else Nodo v (max a1 ad + 1) e1 d
+  GT -> let d1@(Nodo v1 a1 _ _) = ins k d 
+            ae = altura e
+         in if a1 - ae == 2 -- condição AVL precisa ser restaurada 
+            then 
                if k > v1
-               then sobD  (Nodo v (ae,altura') e d1) 
-               else sobDE (Nodo v (ae,altura') e d1) 
-            else Nodo v (ae,altura') e d1
+               then sobD  (Nodo v undefined e d1) 
+               else sobDE (Nodo v undefined e d1) 
+            else Nodo v (max ae a1 + 1) e d1
   _ -> arv
 
 sobE :: ArvoreAVL a -> ArvoreAVL a
-sobE (Nodo v (ae,ad) (Nodo ve (ae1,ad1) ee ed) d) = Nodo ve (ae1,max ad1 ad +1) ee (Nodo v (ad1,ad) ed d) 
+sobE (Nodo v _ (Nodo ve _ ee ed) d) = Nodo ve a ee (Nodo v ad ed d) 
+  where ad = max (altura ed) (altura d) + 1
+        a  = max (altura ee) ad         + 1
 
 sobD :: ArvoreAVL a -> ArvoreAVL a
-sobD (Nodo v (ae,ad) e (Nodo vd (ae1,ad1) de dd)) = Nodo vd (max ae ae1+1,ad1) (Nodo v (ae,ae1) e de) dd
-  
+sobD (Nodo v _ e (Nodo vd _ de dd)) = Nodo vd a (Nodo v ae e de) dd
+  where ae = max (altura e) (altura de) + 1
+        a  = max ae         (altura dd) + 1
+
 sobED :: ArvoreAVL a -> ArvoreAVL a
-sobED (Nodo v (ae,ad) (Nodo ve (aee,aed) ee (Nodo ved (aede,aedd) ede edd)) d) = 
-       Nodo ved (max aee aede+1,max aedd ad+1) (Nodo ve (aee,aede) ee ede) (Nodo v (aedd,ad) edd d)
+sobED (Nodo v _ (Nodo ve _ ee (Nodo ved _ ede edd)) d) = 
+       Nodo ved a (Nodo ve ae ee ede) (Nodo v ad edd d)
+  where a  = max ae           ad           + 1
+        ae = max (altura ee ) (altura ede) + 1
+        ad = max (altura edd) (altura d  ) + 1
 
 sobDE :: ArvoreAVL a -> ArvoreAVL a
-sobDE (Nodo v (ae,ad) e (Nodo vd (ade,add) (Nodo vde (adee,aded) dee ded) dd)) = 
-       Nodo vde (max ae adee+1,max aded add+1) (Nodo v (ae,adee) e dee) (Nodo vd (aded,add) ded dd)
+sobDE (Nodo v _ e (Nodo vd _ (Nodo vde _ dee ded) dd)) = 
+       Nodo vde a (Nodo v ae e dee) (Nodo vd ad ded dd)
+  where a  = max ae           ad           + 1
+        ad = max (altura ded) (altura dd ) + 1
+        ae = max (altura e  ) (altura dee) + 1 
+
+altura (Nodo _ a _ _) = a
+altura Vazia          = 0
 \end{hask}
 \end{tabular}
 \end{center}
 
+No pior caso, temos $T(h) = T(h-1) + k$, onde $h$ é a altura da árvore
+e $k$ é o tempo de execução referente aos cálculos de i) altura de uma
+sub-árvore, ii) condição AVL e iii) rotação (uma das funções
+\inh{sobE}, \inh{sobED}, \inh{sobD}, \inh{sobDE}). Todos os tempos de
+i) a iii) têm complexidade $O(1)$. Logo (cf.~seção
+\ref{sec:maior-elemento}): $T(h) \asymp h$, ou seja, considerando que
+$h \asymp lg n$ em uma árvore balanceada (onde $n$ é o número de
+elementos da árvore):
+
+  \[ T(n) \asymp lg n \]
+
 \subsubsection{Versão imperativa}
 
-\#include<stdio.h>
-\#include<stdlib.h>
+\begin{center}
+\begin{tabular}{l}
+\begin{alg}{ArvoreBinariaDeInteiros}{White}
+struct AVL
+    int chave
+    struct AVL *esq
+    struct AVL *dir
+    int alturaEsq, alturaDir
  
-// An AVL tree node
-struct node
-{
-    int key;
-    struct node *left;
-    struct node *right;
-    int height;
-};
+int altura (struct node *pnodo)
+    if (pnodo == NULL)
+        return 0
+    return pnodo->altura
  
-// A utility function to get maximum of two integers
-int max(int a, int b);
- 
-// A utility function to get height of the tree
-int height(struct node *N)
-{
-    if (N == NULL)
-        return 0;
-    return N->height;
-}
- 
-// A utility function to get maximum of two integers
 int max(int a, int b)
-{
-    return (a > b)? a : b;
-}
+    if a > b return a else return b
  
-/* Helper function that allocates a new node with the given key and
-    NULL left and right pointers. */
-struct node* newNode(int key)
-{
-    struct node* node = (struct node*)
-                        malloc(sizeof(struct node));
-    node->key   = key;
-    node->left   = NULL;
-    node->right  = NULL;
-    node->height = 1;  // new node is initially added at leaf
-    return(node);
-}
+struct node* novoNodo (int chave)
+    struct AVL* nodo = (struct AVL*) malloc(sizeof(struct AVL))
+    nodo->chave  = chave
+    nodo->esq    = NULL;
+    nodo->dir    = NULL;
+    nodo->altura = 1 // novo nodo é folha
+    return nodo
  
-// A utility function to right rotate subtree rooted with y
-// See the diagram given above.
 struct node *rightRotate(struct node *y)
-{
     struct node *x = y->left;
     struct node *T2 = x->right;
  
@@ -553,12 +554,8 @@ struct node *rightRotate(struct node *y)
  
     // Return new root
     return x;
-}
  
-// A utility function to left rotate subtree rooted with x
-// See the diagram given above.
 struct node *leftRotate(struct node *x)
-{
     struct node *y = x->right;
     struct node *T2 = y->left;
  
@@ -572,18 +569,13 @@ struct node *leftRotate(struct node *x)
  
     // Return new root
     return y;
-}
  
-// Get Balance factor of node N
 int getBalance(struct node *N)
-{
     if (N == NULL)
         return 0;
     return height(N->left) - height(N->right);
-}
  
 struct node* insert(struct node* node, int key)
-{
     /* 1.  Perform the normal BST rotation */
     if (node == NULL)
         return(newNode(key));
@@ -626,15 +618,15 @@ struct node* insert(struct node* node, int key)
  
     /* return the (unchanged) node pointer */
     return node;
-}
+\end{alg}
+\end{tabular}
+\end{center}
 
 \subsection{Remoção}
 
 \subsubsection{Versão funcional}
 
 \subsubsection{Versão imperativa}
-
-
 
 \section{Árvore Bicolor}
 \label{sec:arvore-bicolor}
