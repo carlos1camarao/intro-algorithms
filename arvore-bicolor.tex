@@ -1,0 +1,55 @@
+\section{Árvore Bicolor}
+\label{sec:arvore-bicolor}
+
+Uma árvore bicolor --- ou rubro-negra, ou vermelha-e-preta --- é uma
+árvore binária de pesquisa com uma informação em cada nodo que indica
+sua cor --- vamos chamar um nodo de cor $A$ de nodo $A$ e um nodo de
+cor $B$ de nodo $B$ (em geral, as cores $A$ e $B$ são vermelha e
+preta) --- e que deve além disso satisfazer às seguintes condições
+(chamadas de {\em condições-de-árvore-bicolor\/}):
+
+\begin{enumerate}
+
+\item As folhas e a raiz são nodos $B$.
+
+\item Os filhos de todo nodo $A$ são nodos $B$.
+
+\item Todo caminho de um nodo a uma folha contém o mesmo número de
+  nodos $B$.
+
+\end{enumerate}
+
+Um exemplo de uma árvore bicolor é mostrada abaixo.
+
+.... aqui vem figura de árvore vermelha-e-preta. ....
+
+As duas últimas condições garantem a propriedade {\em
+  balanceamento-bicolor\/}: o comprimento do caminho mais longo da
+raiz a uma folha não é maior que o dobro do comprimento do menor
+caminho da raiz a uma folha. Ou seja, a árvore é razoavelmente bem
+balanceada em termos de altura dos seus nodos (altura = comprimento do
+maior caminho do nodo até uma folha). Como o pior caso da complexidade
+de tempo de operações de inserção, remoção e pesquisa são
+proporcionais à altura da árvore, isso permite uma eficiência maior do
+que árvores binárias de pesquisa.
+
+Para ver porque as duas últimas condições garantem a propriedade de
+balanceamento-bicolor, considere que $n_p$ seja o número de nodos $B$
+de um caminho a uma folha, para uma árvore $a$.  Seja $k$ o
+comprimento do menor caminho $c_m$ da raiz a uma folha (esse caminho
+contém $n_b$ nodos pretos). O caminho mais longo da raiz a uma folha
+$c_M$ não pode conter nodos vermelhos em níveis consecutivos da árvore
+(um novo vermelho não pode ser filho de outro nodo vermelho), e o
+número de nodos $B$ tem que ser igual a $n_p$. Portanto, o número de
+nodos de $c_M$ tem que ser no máximo igual a $2*k$ (caso em que $c_m$
+só tem nodos $B$).
+
+Operações que modificam a árvore geralmente causam reorganização dos
+nodos e cores dos nodos de modo a que as condições-de-árvore-bicolor
+continuem a ser satisfeitas, o que pode ser feito de modo eficiente.
+
+% The balancing of the tree is not perfect but it is good enough to
+% allow it to guarantee searching in O(log n) time, where n is the total
+% number of elements in the tree. The insertion and deletion operations,
+% along with the tree rearrangement and recoloring, are also performed
+% in O(log n) time.
