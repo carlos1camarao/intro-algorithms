@@ -1,0 +1,326 @@
+\section{Árvore AVL}
+\label{sec:arvore-AVL}
+
+O nome AVL é proveniente das iniciais dos sobrenomes dos dois
+pesquisadores russos G.~M.~\underline{A}delson-\underline{V}elsky e
+E.~M.~\underline{L}andis, que foram os primeiros a definir e realizar
+trabalhos com esse tipo de árvore.
+
+Seja $n$ um nó de uma árvore binária, $ad_n$ e $ae_n$ as alturas da
+sub-árvore esquerda e direita de $n$, respectivamente, e seja $k_n =
+ae_n - ad_n $ o {\em fator de balanceamento\/} do nodo (i.e.~o fator
+de balanceamento é igual ao valor da diferença entre as alturas de
+suas sub-árvores).
+
+Uma árvore AVL é uma árvore de pesquisa binária na qual $\delta_n$ é
+igual a 0 ou 1 ou -1, para todo nodo $n$.
+
+Por exemplo, a ávore binária de pesquisa abaixo à esquerda é uma
+árvore AVL, enquanto a da direita não é. 
+
+\begin{verbatim}
+      5                 5
+     / \               /
+    2   6             2 
+   /                 / 
+  1                 1   
+\end{verbatim}
+
+O algoritmo de pesquisa em uma árvore AVL é o mesmo do algoritmo de
+pesquisa em uma árvore binária de pesquisa. 
+
+Os algoritmos de inserção e remoção são apresentados nas subseções
+seguintes.
+
+\subsection{Inserção}
+\label{sec:insercao-em-arvores-AVL-versao-func}
+
+Após inserção de nodo em uma árvore AVL, é feita uma verificação do
+fator de balanceamento de cada nodo que está no caminho da raiz até o
+nodo inserido. Se a inserção tornar o fator de balanceamento maior que
+1 ou menor que -1, a sub-árvore com raiz nesse nodo é rebalanceada,
+por meio de uma {\em rotação}, para que a condição-AVL volte a ser
+satisfeita. Como a inserção de elemento em uma árvore pode aumentar a
+altura da árvore em no máximo 1, o fator de balanceamento deve ser,
+logo após a inserção de nodo na sub-árvore esquerda e antes do
+rebalanceamento, no máximo igual a 2; e, logo após a inserção de nodo
+na sub-árvore direita e antes do rebalanceamento, no mínimo igual a
+-2.
+
+Quando o fator de balanceamento é igual a 2, existem duas
+possibilidades (outras duas possibilidades, que existem quando o fator
+de balanceamento é igual a -2, são análogas). 
+
+\newcommand{\altura}{{\it altura\/}}
+
+A primeira, mostrada no caso \verb+sobE+ abaixo, temos 
+  $\text{\altura\ (\verb+ee+) = \altura\ (\verb+d+)}$.
+Note que: 
+  \begin{enumerate}
+    \item se
+      $\altura\ (\verb+ee+) < \altura\ (\verb+d+)$ então a
+      árvore continuaria sendo uma árvore AVL após a inserção de um
+      nodo em \verb+ee+;
+    \item se $\altura\ (\verb+ee+) > \altura\ (\verb+d+)$ então a
+      árvore já não seria uma árvore AVL antes da inserção de um nodo
+      em \verb+ee+.
+  \end{enumerate}
+   
+\begin{verbatim}
+       Caso sobE      Caso sobED
+           v              v
+         /   \          /   \   
+        ve    d        ve    d
+       /  \           /  \                    
+      ee  ed         ee   ved
+                         / \
+                       ede  edd                   
+
+Árvore depois de rotacionada:
+
+    Caso sobE          Caso sobED
+     ve                   ved
+    /  \                /     \ 
+   ee   v             ve       v
+       / \           /  \     / \ 
+      ed  d         ee  ede edd  d
+
+\end{verbatim}
+
+O caso \verb+sobED+ pode ser expresso como \verb+sobE+ (aplicado ao
+nodo com raiz \verb+ved+) seguido de \verb+sobD+ (aplicado ao mesmo
+nodo).
+
+%É importante notar que apenas um fator de balanceamento não é
+%suficiente para determinar se uma árvore AVL necessita de rotação após
+%uma inserção. Por exemplo, considere as duas árvores AVL a seguir:
+%
+%\begin{verbatim}
+%      7                  7
+%     /  \               /
+%    3    8             3 
+%   / \    \ 
+%  2   5    9
+% /     \ 
+%1       6
+%\end{verbatim}
+%
+%O fator de balanceamento da árvore com raiz \verb+7+ é igual a 1, nas
+%duas árvores acima, antes da inserção.  No entanto, a inserção de
+%\verb+4+ não quebra a condição de a árvore à esquerda ser AVL, ao
+%contrário do que ocorre no caso da árvore à direita; após a inserção,
+%e antes da rotação, que deve ser feita apenas na árvore à direita,
+%temos:
+%
+%\begin{verbatim}
+%     AVL              Não AVL 
+%      7                  7
+%     / \                /
+%    3   8              3 
+%   / \   \             \ 
+%  2   5   9             4
+% /   / \ 
+%1   4   6
+%\end{verbatim}
+
+A tarefa de determinar, usando apenas o próprio fator de
+balanceamento, a variação do fator de balanceamento após uma inserção,
+e demonstrar que tal variação é verificada em todos os casos, é
+deixada para trabalho futuro. Não encontramos na literatura textos que
+abordam o assunto de forma clara e precisa.
+
+O armazenamento da altura em cada nodo evita ter que calcular a altura
+de cada nodo que está no caminho da árvore até o nodo inserido, o que
+seria desnecessariamente ineficiente. 
+
+\subsubsection{Versão funcional}
+
+A inserção de elemento em árvore AVL é feita em Haskell como a seguir:
+
+\begin{center}
+\begin{tabular}{l}
+\begin{hask}{ins}{\decremento}
+module AVL (ArvoreAVL, arvVazia, ins) where
+
+type Altura      = Integer
+data ArvoreAVL a = Vazia | Nodo a Altura (ArvoreAVL a) (ArvoreAVL a)
+
+arvVazia = Vazia
+
+ins:: (Show a, Ord a) => a -> ArvoreAVL a -> ArvoreAVL a
+ins k Vazia              = Nodo k 1 Vazia Vazia
+ins k arv@(Nodo v _ e d) = 
+ case compare k v of 
+  LT -> let e1@(Nodo v1 a1 _ _) = ins k e 
+            ad = altura d
+         in if a1 - ad == 2 -- condição AVL precisa ser restaurada
+            then if k < v1  
+                 then sobE  (Nodo v undefined e1 d)  
+                 else sobED (Nodo v undefined e1 d)
+            else Nodo v (max a1 ad + 1) e1 d
+  GT -> let d1@(Nodo v1 a1 _ _) = ins k d 
+            ae = altura e
+         in if a1 - ae == 2 -- condição AVL precisa ser restaurada 
+            then 
+               if k > v1
+               then sobD  (Nodo v undefined e d1) 
+               else sobDE (Nodo v undefined e d1) 
+            else Nodo v (max ae a1 + 1) e d1
+  _ -> arv
+
+sobE :: ArvoreAVL a -> ArvoreAVL a
+sobE (Nodo v _ (Nodo ve _ ee ed) d) = Nodo ve a ee (Nodo v ad ed d) 
+  where ad = max (altura ed) (altura d) + 1
+        a  = max (altura ee) ad         + 1
+
+sobD :: ArvoreAVL a -> ArvoreAVL a
+sobD (Nodo v _ e (Nodo vd _ de dd)) = Nodo vd a (Nodo v ae e de) dd
+  where ae = max (altura e) (altura de) + 1
+        a  = max ae         (altura dd) + 1
+
+sobED :: ArvoreAVL a -> ArvoreAVL a
+sobED (Nodo v _ (Nodo ve _ ee (Nodo ved _ ede edd)) d) = 
+       Nodo ved a (Nodo ve ae ee ede) (Nodo v ad edd d)
+  where a  = max ae           ad           + 1
+        ae = max (altura ee ) (altura ede) + 1
+        ad = max (altura edd) (altura d  ) + 1
+
+sobDE :: ArvoreAVL a -> ArvoreAVL a
+sobDE (Nodo v _ e (Nodo vd _ (Nodo vde _ dee ded) dd)) = 
+       Nodo vde a (Nodo v ae e dee) (Nodo vd ad ded dd)
+  where a  = max ae           ad           + 1
+        ad = max (altura ded) (altura dd ) + 1
+        ae = max (altura e  ) (altura dee) + 1 
+
+altura (Nodo _ a _ _) = a
+altura Vazia          = 0
+\end{hask}
+\end{tabular}
+\end{center}
+
+No pior caso, temos $T(h) = T(h-1) + k$, onde $h$ é a altura da árvore
+e $k$ é o tempo de execução referente aos cálculos de i) altura de uma
+sub-árvore, ii) condição AVL e iii) rotação (uma das funções
+\inh{sobE}, \inh{sobED}, \inh{sobD}, \inh{sobDE}). Todos os tempos de
+i) a iii) têm complexidade $O(1)$. Logo (cf.~seção
+\ref{sec:maior-elemento}): $T(h) \asymp h$, ou seja, considerando que
+$h \asymp lg n$ em uma árvore balanceada (onde $n$ é o número de
+elementos da árvore):
+
+  \[ T(n) \asymp lg n \]
+
+\subsubsection{Versão imperativa}
+
+\begin{center}
+\begin{tabular}{l}
+\begin{alg}{ArvoreBinariaDeInteiros}{White}
+struct AVL
+    int chave
+    struct AVL *esq
+    struct AVL *dir
+    int alturaEsq, alturaDir
+ 
+int altura (struct node *pnodo)
+    if (pnodo == NULL)
+        return 0
+    return pnodo->altura
+ 
+int max(int a, int b)
+    if a > b return a else return b
+ 
+struct node* novoNodo (int chave)
+    struct AVL* nodo = (struct AVL*) malloc(sizeof(struct AVL))
+    nodo->chave  = chave
+    nodo->esq    = NULL;
+    nodo->dir    = NULL;
+    nodo->altura = 1 // novo nodo é folha
+    return nodo
+ 
+struct node *rightRotate(struct node *y)
+    struct node *x = y->left;
+    struct node *T2 = x->right;
+ 
+    // Perform rotation
+    x->right = y;
+    y->left = T2;
+ 
+    // Update heights
+    y->height = max(height(y->left), height(y->right))+1;
+    x->height = max(height(x->left), height(x->right))+1;
+ 
+    // Return new root
+    return x;
+ 
+struct node *leftRotate(struct node *x)
+    struct node *y = x->right;
+    struct node *T2 = y->left;
+ 
+    // Perform rotation
+    y->left = x;
+    x->right = T2;
+ 
+    //  Update heights
+    x->height = max(height(x->left), height(x->right))+1;
+    y->height = max(height(y->left), height(y->right))+1;
+ 
+    // Return new root
+    return y;
+ 
+int getBalance(struct node *N)
+    if (N == NULL)
+        return 0;
+    return height(N->left) - height(N->right);
+ 
+struct node* insert(struct node* node, int key)
+    /* 1.  Perform the normal BST rotation */
+    if (node == NULL)
+        return(newNode(key));
+ 
+    if (key < node->key)
+        node->left  = insert(node->left, key);
+    else
+        node->right = insert(node->right, key);
+ 
+    /* 2. Update height of this ancestor node */
+    node->height = max(height(node->left), height(node->right)) + 1;
+ 
+    /* 3. Get the balance factor of this ancestor node to check whether
+       this node became unbalanced */
+    int balance = getBalance(node);
+ 
+    // If this node becomes unbalanced, then there are 4 cases
+ 
+    // Left Left Case
+    if (balance > 1 && key < node->left->key)
+        return rightRotate(node);
+ 
+    // Right Right Case
+    if (balance < -1 && key > node->right->key)
+        return leftRotate(node);
+ 
+    // Left Right Case
+    if (balance > 1 && key > node->left->key)
+    {
+        node->left =  leftRotate(node->left);
+        return rightRotate(node);
+    }
+ 
+    // Right Left Case
+    if (balance < -1 && key < node->right->key)
+    {
+        node->right = rightRotate(node->right);
+        return leftRotate(node);
+    }
+ 
+    /* return the (unchanged) node pointer */
+    return node;
+\end{alg}
+\end{tabular}
+\end{center}
+
+\subsection{Remoção}
+
+\subsubsection{Versão funcional}
+
+\subsubsection{Versão imperativa}
+
