@@ -382,11 +382,11 @@ module Pilha (Pilha, vazia, empilhar, desempilhar, topo, estaVazia) where
 
    desempilhar :: Pilha a -> Pilha a
    desempilhar (mkPilha [])    = error "Função desempilhar chamada com pilha vazia"
-   desempilhar (mkPilha (§{\tt \_}§:p)) = mkPilha p
+   desempilhar (mkPilha (_:p)) = mkPilha p
 
    topo:: Pilha a -> a
    topo (mkPilha [])    = error "Função topo chamada com pilha vazia"
-   topo (mkPilha (e:§{\tt \_}§)) = e 
+   topo (mkPilha (e:_)) = e 
   
    estaVazia:: Pilha a -> Bool
    estaVazia (mkPilha p) = null p
