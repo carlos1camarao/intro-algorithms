@@ -78,14 +78,19 @@ com os elementos \inh{1,2,3}, é necessário código como o seguinte:
 \begin{center}
 \begin{tabular}{l}
 \begin{alg}{ListaDeInteiros}{White}
-struct ListaDeInteiros *p =
-   malloc(sizeof(struct ListaDeInteiros))
+struct ListaDeInteiros *p = malloc(sizeof(struct ListaDeInteiros))
    p->elem = 1;       p->r = malloc(sizeof(struct ListaDeInteiros))
    p->r->elem = 2;    p->r->r = malloc(sizeof(struct ListaDeInteiros))
    p->r->r->elem = 3; p->r->r->r = NULL
 \end{alg}
 \end{tabular}
 \end{center}
+
+\ina{sizeof} retorna o número de unidades de memória necessário para
+variáveis do tipo especificado. \ina{malloc} aloca o número de
+unidades de memória especificado na área dinâmica do processo corrente
+(em inglês, a área dinâmica de memória de um processo é comumente
+chamada de {\em heap\/}).
 
 Em \Haskell, o acesso a um valor \inh{v}, em uma lista \inh{x}, requer
 acesso a todos os elementos anteriores a \inh{v} em \inh{x}. De fato,
@@ -94,9 +99,13 @@ meio de ponteiros, mas a manipulação de ponteiros é gerada
 automaticamente pelo compilador da linguagem, de acordo com o código
 do programa, em vez de ser feita diretamente pelo programador.
 
-Uma maneira alternativa de representar listas é por meio de {\em arranjos}, 
-especialmente em uma linguagem (como \C) que não provê suporte a
-manipulação de valores de estruturas de dados recursivas. Utilizando essa forma de representação, a lista fica limitada a um número máximo de elementos, já que a defição de uma arranjo requer que o número de elementos do mesmo seja especificado a priori.
+Uma maneira alternativa de representar listas é por meio de {\em
+  arranjos}, especialmente em uma linguagem (como \C) que não provê
+suporte a manipulação de valores de estruturas de dados
+recursivas. Utilizando essa forma de representação, a lista fica
+limitada a um número máximo de elementos, já que a defição de uma
+arranjo requer que o número de elementos do mesmo seja especificado a
+priori.
 
 \subsection{Pesquisa}
 \label{sec:pesquisa-em-lista}
@@ -142,26 +151,26 @@ A função \inh{elem}, de fato, faz parte do módulo \Prelude, importado
 automaticamente por todos os módulos de programas \Haskell, sem
 necessidade de comando ou cláusula explícita de importação. A
 definição de \inh{elem} no \Prelude\ é diferente da apresentada acima,
-e usa outras funções também definidas no \Prelude, como \inh{mmap} e
+e usa outras funções também definidas no \Prelude, como \inh{map} e
 \inh{foldr}, que são ferramentas importantes para definição de outras
 funções em Haskell. A definição de \inh{elem} contida no \Prelude\ é
 apresentada a seguir:
 
 \begin{center}
 \begin{tabular}{l}
-\begin{hask}{foldr,mmap,and,or,any,all,elem}{\decremento}
+\begin{hask}{foldr,map,and,or,any,all,elem}{\decremento}
 
 foldr  :: (a -> b -> b) -> b -> [a] -> b
 foldr f z []    =  z
 foldr f z (a:x) =  f a (foldr f z x) 
 
-mmap :: (a -> b) -> [a] -> [b]
-mmap §{\tt \_}§  []   = []
-mmap f (a:x) = f a : mmap f x 
+map :: (a -> b) -> [a] -> [b]
+map _  []   = []
+map f (a:x) = f a : map f x 
 
 and, or :: [Bool] -> Bool
 and =  foldr (&&) True
-or   =  foldr (||) False 
+or  =  foldr (||) False 
 
 any, all :: (a -> Bool) -> [a] -> Bool
 any p =  or . map p
