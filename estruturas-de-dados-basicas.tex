@@ -366,8 +366,7 @@ seguir.  \index{\inh{Pilha}}
 
 \begin{center}
 \begin{tabular}{l}
-\begin{lstlisting}[language={Haskell},%
-emph={Pilha,vazia,empilhar,desempilhar,topo,estaVazia},
+\begin{hask}{Pilha,vazia,empilhar,desempilhar,topo,estaVazia}{\definicao}
 caption={Tipo abstrato Pilha},%
 label={figPilha}]
 
@@ -390,7 +389,7 @@ module Pilha (Pilha, vazia, empilhar, desempilhar, topo, estaVazia) where
   
    estaVazia:: Pilha a -> Bool
    estaVazia (mkPilha p) = null p
-\end{lstlisting}
+\end{hask}
 \end{tabular}
 \end{center}
 
@@ -407,7 +406,7 @@ desempilhar de uma pilha vazia e empilhar em uma pilha cheia).
 
 \begin{center}
 \begin{tabular}{l}
-\begin{alg}{vazia,empilhar,desempilhar,topo,estaVazia}{Cyan}
+\begin{alg}{vazia,empilhar,desempilhar,topo,estaVazia}{\definicao}
 vazia (pilha) { pilha.topo = -1 }
 
 empilhar (e, pilha) 
@@ -458,7 +457,7 @@ fila está vazia).
 
 \begin{center}
 \begin{tabular}{l}
-\begin{hask}{fila,vazia,entrar,sair,estaVazia,primeiro}{Cyan}
+\begin{hask}{fila,vazia,entrar,sair,estaVazia,primeiro}{\definicao}
 vazia = ([],[])
 
 entrar e (frente,tras) = fila (frente, e:tras)
@@ -498,7 +497,7 @@ divisão do primeiro operando pelo segundo.
 
 \begin{center}
 \begin{tabular}{l}
-\begin{alg}{fila,vazia,entrar,sair,estaVazia,primeiro}{Cyan}
+\begin{alg}{fila,vazia,entrar,sair,estaVazia,primeiro}{\definicao}
 vazia (fila) { with fila { inicio = fim = 0 } } 
  
 entrar (e, fila)
