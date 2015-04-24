@@ -1,7 +1,7 @@
 %!TEX encoding = ISO-8859-1
 \section{Árvores}
 \label{sec:arvores}
-\index{arvores}
+\index{Árvores}
 
 Uma árvore é um {\em grafo} conexo e acíclico. 
 
@@ -22,32 +22,34 @@ um conjunto de árvores.
 
 \HRule
 
-No entanto, vamos considerar neste livro apenas (o que é chamado de)
-{\em árvore com raiz\/} (em inglês, {\em rooted tree\/}), e ver essa
-estrutura de dados como sendo recursiva, definida de modo a ser ou i)
-vazia (uma folha) ou ii) um nodo contendo um elemento e um certo
-número de ramos (ou nodos), que contêm sub-árvores. Em Haskell,
-podemos definir:
+No entanto, essa definição é baseada no conceito de grafo, que não é
+abordado neste livro. Vamos considerar aqui apenas o que podemos
+chamar de {\em árvore com raiz identificada\/} (em inglês, {\em rooted
+  tree\/}. O adjetivo {\em identificada\/} procura evitar estranheza,
+ao pensar em o que seria uma árvore sem raiz. Uma árvore com raiz
+identificada pode ser definida recursivamente: é ou i) vazia (uma
+folha) ou ii) um nodo contendo um elemento e um certo número de ramos
+(ou nodos), que contêm sub-árvores. Em Haskell, podemos definir:
 
 \begin{center}
 \begin{tabular}{l}
-\begin{hask}{Tree,Leaf,Node}{White}
-data Tree a = Leaf | Node a [Tree a]
+\begin{hask}{Arvore,Folha,Nodo}{White}
+data Arvore a = Folha | Nodo a [Arvore a]
 \end{hask}
 \end{tabular}
 \end{center}
 
-Na definição acima, o construtor \inh{Leaf} constrói uma árvore vazia,
-ou folha, e o construtor \inh{Node} constrói uma árvore contendo um
-valor de tipo \inh{a} e um lista de subárvores.
+Na definição acima, o construtor \inh{Folha} constrói uma árvore
+vazia, ou folha, e o construtor \inh{Nodo} constrói uma árvore
+contendo um valor de tipo \inh{a} e um lista de subárvores.
 
 Outra possível definição considera que a informação é armazenada nas
 folhas, em vez de nos nodos internos:
 
 \begin{center}
 \begin{tabular}{l}
-\begin{hask}{Tree,Leaf,Node}{White}
-data Tree' a = Leaf' a | Node' [Tree' a]
+\begin{hask}{Avore,Folha,Nodo}{White}
+data Arvore' a = Folha' a | Nodo' [Arvore' a]
 \end{hask}
 \end{tabular}
 \end{center}
@@ -57,8 +59,8 @@ chamada de árvore binária e pode ser definida como:
 
 \begin{center}
 \begin{tabular}{l}
-\begin{hask}{BTree,BLeaf,BNode}{White}
- data BTree a = BLeaf | BNode a (BTree a) (BTree a)
+\begin{hask}{ArvB,FolhaB,NodoB}{White}
+ data ArvB a = FolhaB | NodoB a (ArvB a) (ArvB a)
 \end{hask}
 \end{tabular}
 \end{center}
@@ -94,11 +96,11 @@ struct ArvoreDeInteiros
 \end{tabular}
 \end{center}
 
-A representação da árvore:
+%A representação da árvore:
 
-xxxx
+%xxxx
 
-é mostrada abaixo:
+%é mostrada abaixo:
 
-yyyyy
+%yyyyy
 
