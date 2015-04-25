@@ -31,16 +31,54 @@ balanceamento da árvore na qual a pesquisa é feita, com o objetivo de
 aumentar a eficiência da pesquisa.
 
 \input{pesquisa-binaria}
-
 \input{arvore-binaria-de-pesquisa}
+\input{arvore-AVL}
+\input{arvore-bicolor}
+\input{arvore-B}
 
 \section{Exercícios Resolvidos}
 
 \begin{enumerate}
 
-\item .... pesquisa em lista ordenada ....
+\item Escreva função que implementa algoritmo de pesquisa em lista
+  ordenada.  Ou seja, escreva função que recebe um valor e uma lista,
+  que pode-se supor que está ordenada, em ordem não-decrescente, e
+  retorne valor booleano que indica se o valor está presente ou não na
+  lista. A pesquisa deve considerar, por questão de eficiência, que a
+  lista está ordenada.
 
-\item .... pesquisa em arranjo com sentinela ....
+{\bf Solução}: 
+
+Versão funcional:
+
+\begin{center}
+\begin{tabular}{l}
+\begin{hask}{elemOrdL}{\decremento}
+elemOrdL :: Ord a => a -> [a] -> Bool
+elemOrdL _ [] = False
+elemOrdL a (b:x) 
+  | a < b     = elemOrdL a x
+  | otherwise = a == b
+\end{hask}
+\end{tabular}
+\end{center}
+
+Versão imperativa:
+
+\begin{center}
+\begin{tabular}{l}
+\begin{alg}{elemOrdL}{\decremento}
+elemOrdL (a, l) 
+   while ((l != NULL) && (l->elem < a)) l = l->r
+   return (l->elem == a)
+\end{alg}
+\end{tabular}
+\end{center}
+
+\item \label{ex:lista-duplamente-encadeada} ....
+
+\item \label{ex:pesquisa-em-arranjo-com-sentinela} .... Para evitar o
+  teste .... pesquisa em arranjo com sentinela ....
 
 \item \label{ex:dicionario} Em computação, um dicionário é um tipo
   abstrato que define operações de inserção, remoção e
@@ -50,20 +88,18 @@ aumentar a eficiência da pesquisa.
 
   {\bf Solução}: ....
 
-\item \label{ex:arvores-MovPraRaiz} .... 
+\item \label{ex:arvores-MovPraRaiz} Operações em uma árvore MovPraRaiz
+  (como inserção, remoção ou pesquisa) podem ser seguidas por uma
+  operação básica chamada de {\em movPraRaiz\/} (em inglês, {\em
+    splaying\/}), que reorganiza a árvore de modo a mover um elemento
+  para a raiz (em operações de inserção e pesquisa, o elemento
+  inserido ou pesquisado; em operação de remoção, o elemento a ser
+  removido é movido para a raiz antes de ser removido).  A ideia
+  básica por trás disso é tornar os elementos usados mais recentemente
+  próximos à raiz da árvore e a árvore razoavelmente balanceada.
 
-Operações em uma árvore MovPraRaiz (como inserção, remoção ou
-pesquisa) podem ser seguidas por uma operação básica chamada de {\em
-  movPraRaiz\/} (em inglês, {\em splaying\/}), que reorganiza a árvore
-de modo a mover um elemento para a raiz (em operações de inserção e
-pesquisa, o elemento inserido ou pesquisado; em operação de remoção, o
-elemento a ser removido é movido para a raiz antes de ser removido).
-A ideia básica por trás disso é tornar os elementos usados mais
-recentemente próximos à raiz da árvore e a árvore razoavelmente
-balanceada.
-
-A operação \ina{movPraRaiz}, que move um nodo $x$ para a raiz, pode
-realizar um dentre os seguintes passos:
+  A operação \ina{movPraRaiz}, que move um nodo $x$ para a raiz, pode
+  realizar um dentre os seguintes passos:
  
   \begin{enumerate}
 
@@ -81,7 +117,7 @@ realizar um dentre os seguintes passos:
 
 Essas três possibilidades são ilustradas abaixo.
 
-....
+...
 
 \end{enumerate}
 
@@ -89,9 +125,20 @@ Essas três possibilidades são ilustradas abaixo.
 
 \begin{enumerate}
 
-\item \label{remocao-de-elemento-em-arvore-binaria-de-pesquisa} Defina
-  um programa para remoção de um elemento em uma árvore binária de
-  pesquisa que use comandos de repetição em vez de funções definidas
-  recursivamente.
+\item \label{remocao-de-elemento-em-arvore-binaria-de-pesquisa}
+  Escreva um programa para remoção de um elemento em uma árvore
+  binária de pesquisa que use comandos de repetição em vez de funções
+  definidas recursivamente.
+
+\item \label{experimente-alg-ins-arv-AVL} Escreva um programa para
+  percorrer e imprimir árvores resultantes de inserções repetidas de
+  elementos em uma árvore vazia, usando versão imperativa e/ou
+  funcional do algoritmo de inserção em árvore AVL.
+
+\item \label{experimente-alg-rem-arv-AVL} Escreva um programa para
+  percorrer e imprimir árvores resultantes de inserções repetidas com
+  remoções de alguns elementos inseridos, em uma árvore vazia, usando
+  versão imperativa e/ou funcional dos algoritmos de inserção e
+  remoção em árvore AVL.
 
 \end{enumerate}
