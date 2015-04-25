@@ -211,6 +211,7 @@ Inserir um elemento no início de uma lista é uma operação de
 complexidade $O(1)$.
 
 \subsubsection{Versão funcional}
+\label{sec:insercao-inicio-de-lista-versao-func}
 
 A inserção de um elemento no início da lista é feita simplesmente, por
 meio do construtor de lista \inh{(:)}, ou seja: \index{\inh{insert}}
@@ -222,14 +223,16 @@ insert = (:)
 \end{center}
 
 \subsubsection{Versão imperativa}
+\label{sec:insercao-inicio-de-lista-versao-imp}
 
-Na versão imperativa, é alocado um novo registro, de tipo \ina{ListaDeInteiros},
-para armazenar o novo valor a ser inserido na lista, sendo retornada a lista resultante dessa operação.
+Na versão imperativa, é alocado um novo registro, de tipo
+\ina{ListaDeInteiros}, para armazenar o novo valor a ser inserido na
+lista, sendo retornada a lista resultante dessa operação.
 \index{\ina{insert}}
 
 \begin{center}
 \begin{tabular}{l}
-\begin{alg}{insert}{\decremento}
+\begin{alg}{insert}{\definicao}
 insert (a, l)
    p = malloc(sizeof(struct ListaDeInteiros))
    p->elem = a
@@ -292,12 +295,6 @@ delete (a, l)
 \end{tabular}
 \end{center}
              
-
-\subsection{Lista duplamente encadeada}
-\label{sec:lista-duplamente-encadeada}
-
-\ldots \ldots .....
-
 \subsection{Pilha}
 \label{sec:pilha}
 \index{pilha}
@@ -314,6 +311,8 @@ ver que a ordem de complexidade de tempo de cada uma dessas operações
 é $O(1)$.
 
 \subsubsection{Versão funcional}
+\label{sec:ops-sobre-pilhas-versao-func}
+
 \index{pilha}
 Em \Haskell, a implementação de \inh{Pilha} é obtida diretamente das operações definidas sobre listas, isto é:
 
