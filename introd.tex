@@ -42,8 +42,9 @@ por exemplo, em
 \label{sec:ordenacao}
 \index{ordena\c{c}\~ao}
 
-Considere o problema de ordenação, especificado formalmente como a seguir (um problema computacional especifica a relação que deve existir entre a
-entrada e a saída):
+Considere o problema de ordenação, especificado formalmente como a
+seguir (um problema computacional especifica a relação que deve
+existir entre a entrada e a saída):
 
 \Entrada: sequência de elementos $S_0$.
 
@@ -58,7 +59,8 @@ $i=1,\ldots, n-1$.
 
 \index{permuta\c{c}\~ao}
 
-Uma {\em permutação\/} é uma redisposição dos elementos em uma certa sequência. Por exemplo, existem 6 permutações distintas dos elementos
+Uma {\em permutação\/} é uma redisposição dos elementos em uma certa
+sequência. Por exemplo, existem 6 permutações distintas dos elementos
 1,2,3, que são: (1,2,3), (1,3,2), (2,1,3), (2,3,1), (3,1,2), (3,2,1).
 
 %O conceito de permutação (também chamado em matemática de ``arranjo'')
@@ -83,11 +85,10 @@ uma permutação de $n$ elementos. Para cada possível escolha do
 primeiro elemento, temos $n-1$ possíveis maneiras de escolher o
 segundo elemento da permutação. Portanto, temos $n (n-1)$ maneiras de
 escolher os dois primeiros elementos. Temos então $n-2$ maneiras de
-escolher o terceiro elemento da permutação, ou seja, 
-$n(n-1)(n-2)$ possíveis maneiras de escolher os três primeiros
-elementos. E assim sucessivamente, até que reste apenas um último
-elemento, o que nos dá um total de $n!=n(n-1)\ldots 1$ possíveis permutações distintas.
-
+escolher o terceiro elemento da permutação, ou seja, $n(n-1)(n-2)$
+possíveis maneiras de escolher os três primeiros elementos. E assim
+sucessivamente, até que reste apenas um último elemento, o que nos dá
+um total de $n!=n(n-1)\ldots 1$ possíveis permutações distintas.
 
 \section{Ordenação por Inserção}
 \label{sec:ordenacao-insercao}
@@ -163,20 +164,26 @@ data List a = Nil | Cons a (List a)
   disjuntas de tipos), que modelam escolha (``ou'') de tipos de dados.
 
   \index{polimorfismo}\index{Tipo!polimórfico} A declaração de
-  \inh{List} acima especifica que um valor de tipo lista é polimórfico (o
-  uso da variável de tipo \inh{a} indica que \inh{List} é um construtor de
-  tipos que pode ser aplicado a {\em qualquer\/} tipo \inh{t}, isto é,
-  podemos ter qualquer instância \inh{List t}, para {\em qualquer\/}
-  tipo \inh{t}), e que uma lista (um valor de tipo \inh{List t}, para algum
-  tipo \inh{t}) pode ser \inh{Nil} (uma lista vazia) {\em ou\/} \inh{Cons v x}, uma lista (não vazia) formada por um valor \inh{v}
-  (cabeça da lista) e de um restante (ou rabo) da lista, \inh{x} (que deve
-  ser do mesmo tipo da lista da qual é o restante).
+  \inh{List} acima especifica que um valor de tipo lista é polimórfico
+  (o uso da variável de tipo \inh{a} indica que \inh{List} é um
+  construtor de tipos que pode ser aplicado a {\em qualquer\/} tipo
+  \inh{t}, isto é, podemos ter qualquer instância \inh{List t}, para
+      {\em qualquer\/} tipo \inh{t}), e que uma lista (um valor de
+      tipo \inh{List t}, para algum tipo \inh{t}) pode ser \inh{Nil}
+      (uma lista vazia) {\em ou\/} \inh{Cons v x}, uma lista (não
+      vazia) formada por um valor \inh{v} (cabeça da lista) e de um
+      restante (ou rabo) da lista, \inh{x} (que deve ser do mesmo tipo
+      da lista da qual é o restante).
 
   \index{Listas}\index{\inh{Cons}}\index{\inh{Nil}}
 
   O tipo de listas em Haskell (é parecido mas) difere ligeiramente do
-  tipo algébrico acima porque o construtor \inh{Nil} é escrito como \inh{[]} e o construtor \inh{Cons} é escrito como um operador binário \inh{(:)}. Assim, em vez de escrever, \inh{Cons 1 Nil}, escreve-se em
-  Haskell \inh{1:[]}. Além disso, pode-se escrever também \inh{[1,2,3]} em vez de \inh{1:2:3:[]} --- i.e.~em vez de \inh{1:(2:(3:[]))}.
+  tipo algébrico acima porque o construtor \inh{Nil} é escrito como
+  \inh{[]} e o construtor \inh{Cons} é escrito como um operador
+  binário \inh{(:)}. Assim, em vez de escrever, \inh{Cons 1 Nil},
+  escreve-se em Haskell \inh{1:[]}. Além disso, pode-se escrever
+  também \inh{[1,2,3]} em vez de \inh{1:2:3:[]} --- i.e.~em vez de
+  \inh{1:(2:(3:[]))}.
 
 \item \index{soma!disjunta} \index{currificação} Tipos de dados
   algébricos permitem definir somas (disjuntas) de tipos, que modelam
@@ -195,36 +202,55 @@ data Pair a b = Pair a b
 \end{tabular}
 \end{center}
 
-   define um construtor de tipos \inh{Pair}, que tem dois parâmetros que
-  podem ser instanciados para quaisquer tipos \inh{t} e \inh{t'}: por exemplo,
-  \inh{Pair Int Bool} representa pares de valores de inteiros e
-  booleanos (o primeiro componente do par é um inteiro e o segundo um
-  valor booleano). É semelhante ao produto \inh{(Int,Bool)}. A
-  diferença é que valores do primeiro são construídos da forma \inh{Pair 1 True} (especificando um valor inteiro e em seguida um
-  valor booleano), ao passo que valores do segundo são construídos da
-  forma \inh{(1,True)} (especificando, entre parânteses, primeiro um
-  valor inteiro, seguido de uma vírgula, e depois um valor booleano).
+   define um construtor de tipos \inh{Pair}, que tem dois parâmetros
+   que podem ser instanciados para quaisquer tipos \inh{t} e \inh{t'}:
+   por exemplo, \inh{Pair Int Bool} representa pares de valores de
+   inteiros e booleanos (o primeiro componente do par é um inteiro e o
+   segundo um valor booleano). É semelhante ao produto
+   \inh{(Int,Bool)}. A diferença é que valores do primeiro são
+   construídos da forma \inh{Pair 1 True} (especificando um valor
+   inteiro e em seguida um valor booleano), ao passo que valores do
+   segundo são construídos da forma \inh{(1,True)} (especificando,
+   entre parânteses, primeiro um valor inteiro, seguido de uma
+   vírgula, e depois um valor booleano).
 
 \end{enumerate}
 
-Vamos mostrar que a definição de \inh{sort}, acima, é correta, isto é, que o resultado é uma permutação ordenada (em ordem não decrescente) da lista  original. Essa propriedade de correção pode ser expressa formalmente como
+Vamos mostrar que a definição de \inh{sort}, acima, é correta, isto é,
+que o resultado é uma permutação ordenada (em ordem não decrescente)
+da lista original. Essa propriedade de correção pode ser expressa
+formalmente como
 \begin{center}
 \inh{sort x} = \inh{y}\;\; implica\;\; \inh{sorted y}\;\; e\;\; \inh{y `perm` x}
 \end{center}
 onde \inh{sorted} e \inh{perm} são os seguintes predicados (funções de
-contra-domínio \inh{Bool}) sobre listas: 
+contra-domínio \inh{Bool}) sobre listas:
 
 \begin{itemize}
-  \item \inh{sorted :: [a] -> Bool} retorna \inh{True} se a lista dada como argumento está ordenada em ordem não decrescente, e retorna \inh{False} em caso contrário.
-  \item \inh{perm :: [a] -> [a] -> Bool} retorna \inh{True} se a lista dada como primeiro argumento é uma permutação da lista dada como segundo argumento, e retorna \inh{False} em caso contrário.
+
+  \item \inh{sorted :: [a] -> Bool} retorna \inh{True} se a lista dada
+    como argumento está ordenada em ordem não decrescente, e retorna
+    \inh{False} em caso contrário.
+
+  \item \inh{perm :: [a] -> [a] -> Bool} retorna \inh{True} se a lista
+    dada como primeiro argumento é uma permutação da lista dada como
+    segundo argumento, e retorna \inh{False} em caso contrário.
+
 \end{itemize}
 
-As definições desses predicados são apresentadas a seguir, onde \inh{perm} faz uso de duas outras funções: 
+As definições desses predicados são apresentadas a seguir, onde
+\inh{perm} faz uso de duas outras funções:
 
 \begin{itemize}
-\item \inh{elem :: a -> [a] -> Bool} retorna \inh{True} se a o valor dado como primeiro argumento ocorre na lista dada como segundo argumento, e retorna \inh{False} em caso contrário.
 
-  \item \inh{delete :: a -> [a] -> [a]} que retorna a lista obtida removendo-se, da lista dada como segundo argumento, a primeira ocorrência do valor dado como primeiro argumento, retornando a lista original caso este valor não ocorra na lista.
+\item \inh{elem :: a -> [a] -> Bool} retorna \inh{True} se a o valor
+  dado como primeiro argumento ocorre na lista dada como segundo
+  argumento, e retorna \inh{False} em caso contrário.
+
+  \item \inh{delete :: a -> [a] -> [a]} que retorna a lista obtida
+    removendo-se, da lista dada como segundo argumento, a primeira
+    ocorrência do valor dado como primeiro argumento, retornando a
+    lista original caso este valor não ocorra na lista.
 
 \end{itemize}
 
@@ -272,8 +298,12 @@ conjunção e disjunção, respectivamente.
 
 \end{enumerate}
 
-\textbf{Prova da correção de \inh{sort}}: A prova é por indução sobre a estrutura de construção de listas (ou sobre o comprimento da lista). O caso base, correspondente à lista vazia, pode ser provado diretamente. O caso indutivo é obtido como consequência
-dos seguintes lemas:
+\textbf{Prova da correção de \inh{sort}}: A prova é por indução sobre
+a estrutura de construção de listas (ou sobre o comprimento da
+lista). O caso base, correspondente à lista vazia, pode ser provado
+diretamente. O caso indutivo é obtido como consequência dos seguintes
+lemas:
+
 \begin{itemize}
 \item{Lema 1}: Para todo \inh{a},\inh{x}, 
         \inh{(sorted x)} implica \inh{(sorted (insert a x))}
@@ -303,14 +333,14 @@ de blocos):
 \begin{tabular}{l}
 \begin{alg}{sort}{\decremento}
 sort(A) 
-   for j§$\from$§2 to length[A] do
-      key §$\from$§ A[j]
+   for j=2 to length[A] do
+      key = A[j]
       /* Insere A[j] no arranjo ordenado A[1..j-1] */ 
-      i §$\from$§ j-1
+      i = j-1
       while (i > 0 && A[i]>key) do
-         A[i+1] §$\from$§ A[i]
-         i §$\from$§ i - 1
-         A[i+1] §$\from$§ key
+         A[i+1] = A[i]
+         i = i - 1
+         A[i+1] = key
 \end{alg}
 \end{tabular}
 \end{center}
