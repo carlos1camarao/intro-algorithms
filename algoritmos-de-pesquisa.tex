@@ -1,34 +1,34 @@
 % !TEX encoding = ISO-8859-1
-\chapter{Algoritmos e √Årvores de Pesquisa}
+\chapter{Algoritmos e ¡rvores de Pesquisa}
 \label{algoritmos-de-pesquisa}
 
-Pesquisar em computa√ß√£o significa encontrar um dado valor, chamado de
-{\em chave da pesquisa\/}, dentre v√°rios valores existentes. Os
-valores existentes podem estar representados de v√°rias formas, mas
-vamos tratar neste livro apenas de listas e √°rvores.  Mesmo nos
-restringindo apenas a essas formas de representa√ß√£o de valores,
-existem v√°rios algoritmos de pesquisa. 
+Pesquisar em computaÁ„o significa encontrar um dado valor, chamado de
+{\em chave da pesquisa\/}, dentre v·rios valores existentes. Os
+valores existentes podem estar representados de v·rias formas, mas
+vamos tratar neste livro apenas de listas e ·rvores.  Mesmo nos
+restringindo apenas a essas formas de representaÁ„o de valores,
+existem v·rios algoritmos de pesquisa. 
 
-Na se√ß√£o \ref{sec:pesquisa-em-lista} apresentamos um algoritmo simples
-de {\em pesquisa sequencial\/} em listas (incluindo representa√ß√£o com
-arranjos). Duas varia√ß√µes simples dessa pesquisa sequencial s√£o
-apresentadas nos exerc√≠cios resolvidos. A primeira √© baseada em
+Na seÁ„o \ref{sec:pesquisa-em-lista} apresentamos um algoritmo simples
+de {\em pesquisa sequencial\/} em listas (incluindo representaÁ„o com
+arranjos). Duas variaÁıes simples dessa pesquisa sequencial s„o
+apresentadas nos exercÌcios resolvidos. A primeira È baseada em
 pesquisa em lista ordenada, que termina a pesquisa sequencial quando a
-chave da pesquisa √© encontrada ou quando se torna maior do que um
+chave da pesquisa È encontrada ou quando se torna maior do que um
 elemento da lista (supondo ordem crescente dos valores na lista). A
-segunda usa o que √© chamado de {\em sentinela} --- um elemento
+segunda usa o que È chamado de {\em sentinela} --- um elemento
 adicionado ao extremo (tipicamente, de arranjo), para evitar teste
-para verificar chegada a esse extremo (por isso, √© usada somente
-quando o n√∫mero de elementos que pode ser armazenado √© limitado, como
+para verificar chegada a esse extremo (por isso, È usada somente
+quando o n˙mero de elementos que pode ser armazenado È limitado, como
 ocorre no caso de arranjos).
 
-A se√ß√£o \ref{sec:pesquisa-binaria} apresenta o eficiente algoritmo de
-pesquisa em um arranjo ordenado chamada de {\em pesquisa bin√°ria}.  A
-se√ß√£o \ref{sec:arvore-binaria-de-pesquisa} apresenta algoritmos de
-pesquisa em √°rvore bin√°ria, incluindo varia√ß√µes do algoritmo b√°sico
-(em √°rvores n√£o balanceadas) para diferentes formas de obter
-balanceamento da √°rvore na qual a pesquisa √© feita, com o objetivo de
-aumentar a efici√™ncia da pesquisa.
+A seÁ„o \ref{sec:pesquisa-binaria} apresenta o eficiente algoritmo de
+pesquisa em um arranjo ordenado chamada de {\em pesquisa bin·ria}.  A
+seÁ„o \ref{sec:arvore-binaria-de-pesquisa} apresenta algoritmos de
+pesquisa em ·rvore bin·ria, incluindo variaÁıes do algoritmo b·sico
+(em ·rvores n„o balanceadas) para diferentes formas de obter
+balanceamento da ·rvore na qual a pesquisa È feita, com o objetivo de
+aumentar a eficiÍncia da pesquisa.
 
 \input{pesquisa-binaria}
 \input{arvore-binaria-de-pesquisa}
@@ -36,20 +36,20 @@ aumentar a efici√™ncia da pesquisa.
 \input{arvore-bicolor}
 \input{arvore-B}
 
-\section{Exerc√≠cios Resolvidos}
+\section{ExercÌcios Resolvidos}
 
 \begin{enumerate}
 
-\item Escreva fun√ß√£o que implementa algoritmo de pesquisa em lista
-  ordenada.  Ou seja, escreva fun√ß√£o que recebe um valor e uma lista,
-  que pode-se supor que est√° ordenada, em ordem n√£o-decrescente, e
-  retorne valor booleano que indica se o valor est√° presente ou n√£o na
-  lista. A pesquisa deve considerar, por quest√£o de efici√™ncia, que a
-  lista est√° ordenada.
+\item Escreva funÁ„o que implementa algoritmo de pesquisa em lista
+  ordenada.  Ou seja, escreva funÁ„o que recebe um valor e uma lista,
+  que pode-se supor que est· ordenada, em ordem n„o-decrescente, e
+  retorne valor booleano que indica se o valor est· presente ou n„o na
+  lista. A pesquisa deve considerar, por quest„o de eficiÍncia, que a
+  lista est· ordenada.
 
-{\bf Solu√ß√£o}: 
+{\bf SoluÁ„o}: 
 
-{\bf Vers√£o funcional}:
+{\bf Vers„o funcional}:
 
 \begin{center}
 \begin{tabular}{l}
@@ -63,7 +63,7 @@ elemOrdL a (b:x)
 \end{tabular}
 \end{center}
 
-{\bf Vers√£o imperativa}:
+{\bf Vers„o imperativa}:
 
 \begin{center}
 \begin{tabular}{l}
@@ -77,65 +77,65 @@ elemOrdL (a, l)
 
 \item \label{ex:lista-duplamente-encadeada} ....
 
-\item \label{ex:dicionario} Em computa√ß√£o, um dicion√°rio √© um tipo
-  abstrato que define opera√ß√µes de inser√ß√£o, remo√ß√£o e
-  pesquisa. Define um tipo abstrato dicion√°rio usando uma √°rvore
-  bin√°ria de pesquisa para implementa√ß√£o das opera√ß√µes sobre o tipo
+\item \label{ex:dicionario} Em computaÁ„o, um dicion·rio È um tipo
+  abstrato que define operaÁıes de inserÁ„o, remoÁ„o e
+  pesquisa. Define um tipo abstrato dicion·rio usando uma ·rvore
+  bin·ria de pesquisa para implementaÁ„o das operaÁıes sobre o tipo
   abstrato.
 
-  {\bf Solu√ß√£o}: ....
+  {\bf SoluÁ„o}: ....
 
-\item \label{ex:arvores-MovPraRaiz} Opera√ß√µes em uma √°rvore MovPraRaiz
-  (como inser√ß√£o, remo√ß√£o ou pesquisa) podem ser seguidas por uma
-  opera√ß√£o b√°sica chamada de {\em movPraRaiz\/} (em ingl√™s, {\em
-    splaying\/}), que reorganiza a √°rvore de modo a mover um elemento
-  para a raiz (em opera√ß√µes de inser√ß√£o e pesquisa, o elemento
-  inserido ou pesquisado; em opera√ß√£o de remo√ß√£o, o elemento a ser
-  removido √© movido para a raiz antes de ser removido).  A ideia
-  b√°sica por tr√°s disso √© tornar os elementos usados mais recentemente
-  pr√≥ximos √† raiz da √°rvore e a √°rvore razoavelmente balanceada.
+\item \label{ex:arvores-MovPraRaiz} OperaÁıes em uma ·rvore MovPraRaiz
+  (em inglÍs, chamada de {\em splay tree\/}), como inserÁ„o, remoÁ„o
+  ou pesquisa, podem ser seguidas por uma operaÁ„o b·sica chamada de
+  {\em movPraRaiz\/}, que reorganiza a ·rvore de modo a mover um
+  elemento para a raiz (em operaÁıes de inserÁ„o e pesquisa, o
+  elemento inserido ou pesquisado; em operaÁ„o de remoÁ„o, o elemento
+  a ser removido È movido para a raiz antes de ser removido).  A ideia
+  b·sica por tr·s disso È tornar os elementos usados mais recentemente
+  prÛximos ‡ raiz da ·rvore e a ·rvore razoavelmente balanceada.
 
-  A opera√ß√£o \ina{movPraRaiz}, que move um nodo $x$ para a raiz, pode
+  A operaÁ„o \ina{movPraRaiz}, que move um nodo $x$ para a raiz, pode
   realizar um dentre os seguintes passos:
  
   \begin{enumerate}
 
-    \item passo x-raiz: se $x$ √© filho da raiz,
+    \item passo x-raiz: se $x$ È filho da raiz,
 
     \item passo x-pai-de-x-no-mesmo-lado: 
-          $x$ √© filho do lado esquerdo e o pai de $x$ est√° √† esquerda da raiz, ou 
-          $x$ √© filho do lado direito  e o pai de $x$ est√° √† direita da raiz, 
+          $x$ È filho do lado esquerdo e o pai de $x$ est· ‡ esquerda da raiz, ou 
+          $x$ È filho do lado direito  e o pai de $x$ est· ‡ direita da raiz, 
 
     \item passo x-pai-de-x-em-lados-opostos: 
-          $x$ √© filho do lado esquerdo e o pai de $x$ est√° √† direita da raiz, ou 
-          $x$ √© filho do lado direito  e o pai de $x$ est√° √† esquerda da raiz.
+          $x$ È filho do lado esquerdo e o pai de $x$ est· ‡ direita da raiz, ou 
+          $x$ È filho do lado direito  e o pai de $x$ est· ‡ esquerda da raiz.
 
   \end{enumerate}
 
-Essas tr√™s possibilidades s√£o ilustradas abaixo.
+Essas trÍs possibilidades s„o ilustradas abaixo.
 
 ...
 
 \end{enumerate}
 
-\section{Exerc√≠cios}
+\section{ExercÌcios}
 
 \begin{enumerate}
 
 \item \label{remocao-de-elemento-em-arvore-binaria-de-pesquisa}
-  Escreva um programa para remo√ß√£o de um elemento em uma √°rvore
-  bin√°ria de pesquisa que use comandos de repeti√ß√£o em vez de fun√ß√µes
+  Escreva um programa para remoÁ„o de um elemento em uma ·rvore
+  bin·ria de pesquisa que use comandos de repetiÁ„o em vez de funÁıes
   definidas recursivamente.
 
 \item \label{experimente-alg-ins-arv-AVL} Escreva um programa para
-  percorrer e imprimir √°rvores resultantes de inser√ß√µes repetidas de
-  elementos em uma √°rvore vazia, usando vers√£o imperativa e/ou
-  funcional do algoritmo de inser√ß√£o em √°rvore AVL.
+  percorrer e imprimir ·rvores resultantes de inserÁıes repetidas de
+  elementos em uma ·rvore vazia, usando vers„o imperativa e/ou
+  funcional do algoritmo de inserÁ„o em ·rvore AVL.
 
 \item \label{experimente-alg-rem-arv-AVL} Escreva um programa para
-  percorrer e imprimir √°rvores resultantes de inser√ß√µes repetidas com
-  remo√ß√µes de alguns elementos inseridos, em uma √°rvore vazia, usando
-  vers√£o imperativa e/ou funcional dos algoritmos de inser√ß√£o e
-  remo√ß√£o em √°rvore AVL.
+  percorrer e imprimir ·rvores resultantes de inserÁıes repetidas com
+  remoÁıes de alguns elementos inseridos, em uma ·rvore vazia, usando
+  vers„o imperativa e/ou funcional dos algoritmos de inserÁ„o e
+  remoÁ„o em ·rvore AVL.
 
 \end{enumerate}
