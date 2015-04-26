@@ -1,51 +1,52 @@
-\section{√Årvore Bicolor}
+% !TEX encoding = ISO-8859-1
+\section{¡rvore Bicolor}
 \label{sec:arvore-bicolor}
 
-Uma √°rvore bicolor --- ou rubro-negra, ou vermelha-e-preta --- √© uma
-√°rvore bin√°ria de pesquisa com uma informa√ß√£o em cada nodo que indica
+Uma ·rvore bicolor --- ou rubro-negra, ou vermelha-e-preta --- È uma
+·rvore bin·ria de pesquisa com uma informaÁ„o em cada nodo que indica
 sua cor --- vamos chamar um nodo de cor $A$ de nodo $A$ e um nodo de
-cor $B$ de nodo $B$ (em geral, as cores $A$ e $B$ s√£o vermelha e
-preta) --- e que deve al√©m disso satisfazer √†s seguintes condi√ß√µes
-(chamadas de {\em condi√ß√µes-de-√°rvore-bicolor\/}):
+cor $B$ de nodo $B$ (em geral, as cores $A$ e $B$ s„o vermelha e
+preta) --- e que deve alÈm disso satisfazer ‡s seguintes condiÁıes
+(chamadas de {\em condiÁıes-de-·rvore-bicolor\/}):
 
 \begin{enumerate}
 
-\item As folhas e a raiz s√£o nodos $B$.
+\item As folhas e a raiz s„o nodos $B$.
 
-\item Os filhos de todo nodo $A$ s√£o nodos $B$.
+\item Os filhos de todo nodo $A$ s„o nodos $B$.
 
-\item Todo caminho de um nodo a uma folha cont√©m o mesmo n√∫mero de
+\item Todo caminho de um nodo a uma folha contÈm o mesmo n˙mero de
   nodos $B$.
 
 \end{enumerate}
 
-Um exemplo de uma √°rvore bicolor √© mostrada abaixo.
+Um exemplo de uma ·rvore bicolor È mostrada abaixo.
 
-.... aqui vem figura de √°rvore vermelha-e-preta. ....
+.... aqui vem figura de ·rvore vermelha-e-preta. ....
 
-As duas √∫ltimas condi√ß√µes garantem a propriedade {\em
+As duas ˙ltimas condiÁıes garantem a propriedade {\em
   balanceamento-bicolor\/}: o comprimento do caminho mais longo da
-raiz a uma folha n√£o √© maior que o dobro do comprimento do menor
-caminho da raiz a uma folha. Ou seja, a √°rvore √© razoavelmente bem
+raiz a uma folha n„o È maior que o dobro do comprimento do menor
+caminho da raiz a uma folha. Ou seja, a ·rvore È razoavelmente bem
 balanceada em termos de altura dos seus nodos (altura = comprimento do
-maior caminho do nodo at√© uma folha). Como o pior caso da complexidade
-de tempo de opera√ß√µes de inser√ß√£o, remo√ß√£o e pesquisa s√£o
-proporcionais √† altura da √°rvore, isso permite uma efici√™ncia maior do
-que √°rvores bin√°rias de pesquisa.
+maior caminho do nodo atÈ uma folha). Como o pior caso da complexidade
+de tempo de operaÁıes de inserÁ„o, remoÁ„o e pesquisa s„o
+proporcionais ‡ altura da ·rvore, isso permite uma eficiÍncia maior do
+que ·rvores bin·rias de pesquisa.
 
-Para ver porque as duas √∫ltimas condi√ß√µes garantem a propriedade de
-balanceamento-bicolor, considere que $n_p$ seja o n√∫mero de nodos $B$
-de um caminho a uma folha, para uma √°rvore $a$.  Seja $k$ o
+Para ver porque as duas ˙ltimas condiÁıes garantem a propriedade de
+balanceamento-bicolor, considere que $n_p$ seja o n˙mero de nodos $B$
+de um caminho a uma folha, para uma ·rvore $a$.  Seja $k$ o
 comprimento do menor caminho $c_m$ da raiz a uma folha (esse caminho
-cont√©m $n_b$ nodos pretos). O caminho mais longo da raiz a uma folha
-$c_M$ n√£o pode conter nodos vermelhos em n√≠veis consecutivos da √°rvore
-(um novo vermelho n√£o pode ser filho de outro nodo vermelho), e o
-n√∫mero de nodos $B$ tem que ser igual a $n_p$. Portanto, o n√∫mero de
-nodos de $c_M$ tem que ser no m√°ximo igual a $2*k$ (caso em que $c_m$
-s√≥ tem nodos $B$).
+contÈm $n_b$ nodos pretos). O caminho mais longo da raiz a uma folha
+$c_M$ n„o pode conter nodos vermelhos em nÌveis consecutivos da ·rvore
+(um novo vermelho n„o pode ser filho de outro nodo vermelho), e o
+n˙mero de nodos $B$ tem que ser igual a $n_p$. Portanto, o n˙mero de
+nodos de $c_M$ tem que ser no m·ximo igual a $2*k$ (caso em que $c_m$
+sÛ tem nodos $B$).
 
-Opera√ß√µes que modificam a √°rvore geralmente causam reorganiza√ß√£o dos
-nodos e cores dos nodos de modo a que as condi√ß√µes-de-√°rvore-bicolor
+OperaÁıes que modificam a ·rvore geralmente causam reorganizaÁ„o dos
+nodos e cores dos nodos de modo a que as condiÁıes-de-·rvore-bicolor
 continuem a ser satisfeitas, o que pode ser feito de modo eficiente.
 
 % The balancing of the tree is not perfect but it is good enough to
