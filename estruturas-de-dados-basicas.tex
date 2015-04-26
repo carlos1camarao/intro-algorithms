@@ -1,20 +1,20 @@
 %!TEX encoding = ISO-8859-1
-\chapter{Estruturas de Dados Básicas}
+\chapter{Estruturas de Dados BÃ¡sicas}
 \label{ch:estruturas-de-dados-basicas}
 
-Este capítulo aborda listas e árvores, suas representações em um computador e
-operações básicas sobre essas estruturas de dados.
+Este capÃ­tulo aborda listas e Ã¡rvores, suas representaÃ§Ãµes em um computador e
+operaÃ§Ãµes bÃ¡sicas sobre essas estruturas de dados.
 
 \section{Listas}
 \label{sec:listas}
 
-Uma lista é uma estrutura de dados comumente usada em computação e
+Uma lista Ã© uma estrutura de dados comumente usada em computaÃ§Ã£o e
 pode ser definida recursivamente como a seguir.  Uma lista de
-elementos de determinado tipo \inh{t} é ou i) {\em vazia} ou ii)
-constituída de um elemento de tipo \inh{t} e um uma lista de elementos
+elementos de determinado tipo \inh{t} Ã© ou i) {\em vazia} ou ii)
+constituÃ­da de um elemento de tipo \inh{t} e um uma lista de elementos
 do mesmo tipo \inh{t} (denominada {\em cauda} ou resto da lista).
 
-Em uma linguagem como Haskell, que provê suporte à definição de tipos
+Em uma linguagem como Haskell, que provÃª suporte Ã  definiÃ§Ã£o de tipos
 de dados recursivos, o tipo lista pode ser definido como:
 
 \begin{center}
@@ -25,30 +25,30 @@ data List a = Nil | Cons a (List a)
 \end{tabular}
 \end{center}
 
-O tipo de dado \inh{List a}\ é um tipo recursivo, sendo \inh{Nil} e
-\inh{Cons} os construtores de valores desse tipo. Além disso,
-\inh{List a}\ é um tipo {\em polimórfico}: a variável de tipo \inh{a}
+O tipo de dado \inh{List a}\ Ã© um tipo recursivo, sendo \inh{Nil} e
+\inh{Cons} os construtores de valores desse tipo. AlÃ©m disso,
+\inh{List a}\ Ã© um tipo {\em polimÃ³rfico}: a variÃ¡vel de tipo \inh{a}
 pode ser instanciada para um tipo \inh{t} qualquer, permitindo assim a
-definição de listas com elementos de desse tipo \inh{t}. Por exemplo,
-\inh{(Cons 1 (Cons 2 (Cons 3 Nil)))} é uma lista de tipo \inh{List
+definiÃ§Ã£o de listas com elementos de desse tipo \inh{t}. Por exemplo,
+\inh{(Cons 1 (Cons 2 (Cons 3 Nil)))} Ã© uma lista de tipo \inh{List
   Int} e \inh{(Cons True (Cons False Nil))} tem tipo \inh{List Bool}.
 
-A linguagem Haskell provê uma notação especial para a criação de
-valores de tipo lista: \inh{[]} é usado em lugar de \inh{Nil}, e o
-construtor infixado \inh{(:)}, associativo à direita, em lugar de
+A linguagem Haskell provÃª uma notaÃ§Ã£o especial para a criaÃ§Ã£o de
+valores de tipo lista: \inh{[]} Ã© usado em lugar de \inh{Nil}, e o
+construtor infixado \inh{(:)}, associativo Ã  direita, em lugar de
 \inh{Cons}. Por exemplo, a lista \inh{Cons 1 (Cons 2 (Cons 3 Nil))}
-seria representada como \inh{(1:2:3:[])}.  Além disso, uma lista pode
+seria representada como \inh{(1:2:3:[])}.  AlÃ©m disso, uma lista pode
 ser representada simplesmente escrevendo-se os seus elementos da lista
-entre colchetes, separados por vírgulas. Ou seja, a lista
+entre colchetes, separados por vÃ­rgulas. Ou seja, a lista
 \inh{\inh{(1:2:3:[]}} pode ser escrita, mais simplesmente, como
 \inh{[1,2,3]}.
 
 Em linguagens como \C, uma lista pode ser representada por meio de
-{\em registros} (também chamados de "estruturas", em \C) e {\em
+{\em registros} (tambÃ©m chamados de "estruturas", em \C) e {\em
   ponteiros\/} (ou apontadores), tal como ilustrado no exemplo a
 seguir, que define uma lista de elementos de tipo
-\ina{int}. Linguagens como \C, que não provêm suporte para
-polimorfismo, requerem a definição de tipos lista distintos para cada
+\ina{int}. Linguagens como \C, que nÃ£o provÃªm suporte para
+polimorfismo, requerem a definiÃ§Ã£o de tipos lista distintos para cada
 tipo particular de elementos.
 
 \begin{center}
@@ -61,68 +61,68 @@ struct ListaDeInteiros
 \end{tabular}
 \end{center}
 
-Uma definição de registro, em \C, é introduzida pela palavra-chave
+Uma definiÃ§Ã£o de registro, em \C, Ã© introduzida pela palavra-chave
 \ina{struct}, seguida do nome do registro -- neste caso,
 \ina{ListaDeInteiros}. O registro possui dois campos: um campo de tipo
-\ina{int} e nome \ina{elem}, e um campo de nome \ina{r}, que é um
-ponteiro para valores do próprio tipo \ina{ListaDeInteiros}.
+\ina{int} e nome \ina{elem}, e um campo de nome \ina{r}, que Ã© um
+ponteiro para valores do prÃ³prio tipo \ina{ListaDeInteiros}.
  
-A manipulação de valores de tipo lista em \C\ é bem mais trabalhosa. A
-falta de suporte para definição e uso de tipos recursivos e
-polimórficos torna a programação mais difícil e demorada e o código
-menos legível e mais sujeito a repetições e a ocorrências de
+A manipulaÃ§Ã£o de valores de tipo lista em \C\ Ã© bem mais trabalhosa. A
+falta de suporte para definiÃ§Ã£o e uso de tipos recursivos e
+polimÃ³rficos torna a programaÃ§Ã£o mais difÃ­cil e demorada e o cÃ³digo
+menos legÃ­vel e mais sujeito a repetiÃ§Ãµes e a ocorrÃªncias de
 erros. Por exemplo, para criar um valor de tipo \ina{ListaDeInteiros},
-com os elementos \inh{1,2,3}, é necessário código como o seguinte:
+com os elementos \inh{1,2,3}, Ã© necessÃ¡rio cÃ³digo como o seguinte:
 \index{\ina{ListaDeInteiros}}
 
 \begin{center}
 \begin{tabular}{l}
 \begin{alg}{ListaDeInteiros}{White}
-struct ListaDeInteiros *p = malloc(sizeof(struct ListaDeInteiros))
-   p->elem = 1;       p->r = malloc(sizeof(struct ListaDeInteiros))
-   p->r->elem = 2;    p->r->r = malloc(sizeof(struct ListaDeInteiros))
-   p->r->r->elem = 3; p->r->r->r = NULL
+struct ListaDeInteiros *p Â§$\from$Â§ malloc(sizeof(struct ListaDeInteiros))
+   p->elem Â§$\from$Â§ 1;       p->r Â§$\from$Â§ malloc(sizeof(struct ListaDeInteiros))
+   p->r->elem Â§$\from$Â§ 2;    p->r->r Â§$\from$Â§ malloc(sizeof(struct ListaDeInteiros))
+   p->r->r->elem Â§$\from$Â§ 3; p->r->r->r Â§$\from$Â§ NULL
 \end{alg}
 \end{tabular}
 \end{center}
 
-\ina{sizeof} retorna o número de unidades de memória necessário para
-variáveis do tipo especificado. \ina{malloc} aloca o número de
-unidades de memória especificado na área dinâmica do processo corrente
-(em inglês, a área dinâmica de memória de um processo é comumente
+\ina{sizeof} retorna o nÃºmero de unidades de memÃ³ria necessÃ¡rio para
+variÃ¡veis do tipo especificado. \ina{malloc} aloca o nÃºmero de
+unidades de memÃ³ria especificado na Ã¡rea dinÃ¢mica do processo corrente
+(em inglÃªs, a Ã¡rea dinÃ¢mica de memÃ³ria de um processo Ã© comumente
 chamada de {\em heap\/}).
 
 Em \Haskell, o acesso a um valor \inh{v}, em uma lista \inh{x}, requer
 acesso a todos os elementos anteriores a \inh{v} em \inh{x}. De fato,
-a representação interna de listas definidas em \Haskell é feita por
-meio de ponteiros, mas a manipulação de ponteiros é gerada
-automaticamente pelo compilador da linguagem, de acordo com o código
+a representaÃ§Ã£o interna de listas definidas em \Haskell Ã© feita por
+meio de ponteiros, mas a manipulaÃ§Ã£o de ponteiros Ã© gerada
+automaticamente pelo compilador da linguagem, de acordo com o cÃ³digo
 do programa, em vez de ser feita diretamente pelo programador.
 
-Uma maneira alternativa de representar listas é por meio de {\em
-  arranjos}, especialmente em uma linguagem (como \C) que não provê
-suporte a manipulação de valores de estruturas de dados
-recursivas. Utilizando essa forma de representação, a lista fica
-limitada a um número máximo de elementos, já que a defição de uma
-arranjo requer que o número de elementos do mesmo seja especificado a
+Uma maneira alternativa de representar listas Ã© por meio de {\em
+  arranjos}, especialmente em uma linguagem (como \C) que nÃ£o provÃª
+suporte a manipulaÃ§Ã£o de valores de estruturas de dados
+recursivas. Utilizando essa forma de representaÃ§Ã£o, a lista fica
+limitada a um nÃºmero mÃ¡ximo de elementos, jÃ¡ que a defiÃ§Ã£o de uma
+arranjo requer que o nÃºmero de elementos do mesmo seja especificado a
 priori.
 
 \subsection{Pesquisa}
 \label{sec:pesquisa-em-lista}
 
-Em computação, {\em pesquisar\/} em geral significa determinar se um
-dado elemento está presente ou não em uma estrutura de dados. As
-subseções seguintes tratam de operações de pesquisa, inserção e
-remoção de elementos de listas, de acordo com a forma com que listas
-são representadas.
+Em computaÃ§Ã£o, {\em pesquisar\/} em geral significa determinar se um
+dado elemento estÃ¡ presente ou nÃ£o em uma estrutura de dados. As
+subseÃ§Ãµes seguintes tratam de operaÃ§Ãµes de pesquisa, inserÃ§Ã£o e
+remoÃ§Ã£o de elementos de listas, de acordo com a forma com que listas
+sÃ£o representadas.
 
 Em ambos os casos apresentados abaixo, a pesquisa em uma lista de $n$
 elementos tem complexidade $O(n)$ no pior caso, pois envolve,
-possivelmente, comparação com cada elemento da lista.
+possivelmente, comparaÃ§Ã£o com cada elemento da lista.
 
-\subsubsection{Versão funcional}
+\subsubsection{VersÃ£o funcional}
 
-A função \inh{elem}, que determina se um dado valor é elemento de uma
+A funÃ§Ã£o \inh{elem}, que determina se um dado valor Ã© elemento de uma
 lista dada, pode ser definida como a seguir: \index{\inh{elem}}
 
 \begin{center}
@@ -135,25 +135,25 @@ elem a (b:x) = (a == b) || elem a x
 \end{tabular}
 \end{center}
 
-O tipo de \inh{elem}, em \Haskell, é um tipo {\em polimórfico
-  restrito\/}: a restrição ({\em constraint\/}) (\inh{Eq a}) indica
-que a variável de tipo \inh{a} não pode ser instanciada para qualquer
-tipo, mas apenas para um tipo que é membro da classe de tipos
+O tipo de \inh{elem}, em \Haskell, Ã© um tipo {\em polimÃ³rfico
+  restrito\/}: a restriÃ§Ã£o ({\em constraint\/}) (\inh{Eq a}) indica
+que a variÃ¡vel de tipo \inh{a} nÃ£o pode ser instanciada para qualquer
+tipo, mas apenas para um tipo que Ã© membro da classe de tipos
 \inh{Eq}, ou seja, no caso, apenas para um tipo para o qual exista
-definida uma operação de igualdade \inh{(==)}, para valores desse
-tipo. É um erro de tipo chamar a função \inh{elem} com um argumento de
-um tipo para o qual não é definida comparação de igualdade.
+definida uma operaÃ§Ã£o de igualdade \inh{(==)}, para valores desse
+tipo. Ã‰ um erro de tipo chamar a funÃ§Ã£o \inh{elem} com um argumento de
+um tipo para o qual nÃ£o Ã© definida comparaÃ§Ã£o de igualdade.
 
 \HRule
 {\em Nota\/}: 
 
-A função \inh{elem}, de fato, faz parte do módulo \Prelude, importado
-automaticamente por todos os módulos de programas \Haskell, sem
-necessidade de comando ou cláusula explícita de importação. A
-definição de \inh{elem} no \Prelude\ é diferente da apresentada acima,
-e usa outras funções também definidas no \Prelude, como \inh{map} e
-\inh{foldr}, que são ferramentas importantes para definição de outras
-funções em Haskell. A definição de \inh{elem} contida no \Prelude\ é
+A funÃ§Ã£o \inh{elem}, de fato, faz parte do mÃ³dulo \Prelude, importado
+automaticamente por todos os mÃ³dulos de programas \Haskell, sem
+necessidade de comando ou clÃ¡usula explÃ­cita de importaÃ§Ã£o. A
+definiÃ§Ã£o de \inh{elem} no \Prelude\ Ã© diferente da apresentada acima,
+e usa outras funÃ§Ãµes tambÃ©m definidas no \Prelude, como \inh{map} e
+\inh{foldr}, que sÃ£o ferramentas importantes para definiÃ§Ã£o de outras
+funÃ§Ãµes em Haskell. A definiÃ§Ã£o de \inh{elem} contida no \Prelude\ Ã©
 apresentada a seguir:
 
 \begin{center}
@@ -184,36 +184,67 @@ elem a = any (== a)
 
 \HRule
 
-\subsubsection{Versão imperativa}
+\subsubsection{VersÃ£o imperativa}
+\label{pesquisa-sequencial-em-arranjo-versao-imp}
 
-A versão imperativa de \ina{elem} definida a seguir recebe como
-argumento o valor a ser pesquisado, denotado pelo parâmetro \ina{a},
+A versÃ£o imperativa de \ina{elem} definida a seguir recebe como
+argumento o valor a ser pesquisado, denotado pelo parÃ¢metro \ina{a},
 juntamente com um apontador para uma lista (de tipo
-\ina{ListaDeInteiros}), denotado pelo parâmetro \ina{l}. O algoritmo
-retorna retorna um apontador para o elemento da lista \ina{l} que é
+\ina{ListaDeInteiros}), denotado pelo parÃ¢metro \ina{l}. O algoritmo
+retorna retorna um apontador para o elemento da lista \ina{l} que Ã©
 igual a \ina{a}, caso o argumento esteja presente na lista, e retorna
-\ina{NULL} em caso contrário.  \index{\ina{elem}}
+\ina{NULL} em caso contrÃ¡rio.  \index{\ina{elem}}
 
 \begin{center}
 \begin{tabular}{l}
 \begin{alg}{elem}{\decremento}
 elem (a, l) 
-   while ((l != NULL) && (l->elem != a)) l = l->r
+   while ((l != NULL) && (l->elem != a)) l Â§$\from$Â§ l->r
    return l
 \end{alg}
 \end{tabular}
 \end{center}
 
-\subsection{Inserção}
+Em uma pesquisa sequencial em um arranjo, um valor igual ao que estÃ¡
+sendo pesquisado pode ser armazenado no fim do arranjo, para evitar o
+teste relativo a se a pesquisa chegou ao fim do arranjo. Tal valor Ã©
+comumente chamado de {\em sentinela\/}.  O mesmo poderia ser feita com
+uma lista, mas nesse caso Ã© mais apropriado usar tambÃ©m um apontador
+para o Ãºltimo elemento da lista (ou uma lista duplamente encadeada,
+como no exercÃ­cio resolvido \ref{....}), para evitar ter que percorrer
+toda a lista para armazenar a sentinela. Um programa com uso de
+sentinela para pesquisa em um arranjo indexado de 0 a \ina{n}-1 Ã©
+mostrado a seguir, onde o resultado Ã© o Ã­ndice do arranjo, se o valor
+pesquisado for encontrado, e -1 caso contrÃ¡rio:
+
+\begin{center}
+\begin{tabular}{l}
+\begin{alg}{elem}{\decremento}
+elem (k, A) 
+   A[n-1] Â§$\from$Â§ k
+   i Â§$\from$Â§ 0
+   while (A[i] != k) do
+    i Â§$\from$Â§ i + 1
+   return (i < n ? i : âˆ’1)
+\end{alg}
+\end{tabular}
+\end{center}
+
+O programa usa uma expressÃ£o condicional (em vez do comando
+condicional, ou "comando \if"), como em \C: a expressÃ£o \ina{e ? e1 :
+  e2} denota o mesmo resultado de \ina{e1} ou de \ina{e2} conforme a
+avaliaÃ§Ã£o de \ina{e} seja verdadeira ou falsa, respectivamente.
+
+\subsection{InserÃ§Ã£o}
 \label{sec:insercao-em-lista}
 
-Inserir um elemento no início de uma lista é uma operação de
+Inserir um elemento no inÃ­cio de uma lista Ã© uma operaÃ§Ã£o de
 complexidade $O(1)$.
 
-\subsubsection{Versão funcional}
+\subsubsection{VersÃ£o funcional}
 \label{sec:insercao-inicio-de-lista-versao-func}
 
-A inserção de um elemento no início da lista é feita simplesmente, por
+A inserÃ§Ã£o de um elemento no inÃ­cio da lista Ã© feita simplesmente, por
 meio do construtor de lista \inh{(:)}, ou seja: \index{\inh{insert}}
 
 \begin{center}
@@ -222,12 +253,12 @@ insert = (:)
 \end{hask}
 \end{center}
 
-\subsubsection{Versão imperativa}
+\subsubsection{VersÃ£o imperativa}
 \label{sec:insercao-inicio-de-lista-versao-imp}
 
-Na versão imperativa, é alocado um novo registro, de tipo
+Na versÃ£o imperativa, Ã© alocado um novo registro, de tipo
 \ina{ListaDeInteiros}, para armazenar o novo valor a ser inserido na
-lista, sendo retornada a lista resultante dessa operação.
+lista, sendo retornada a lista resultante dessa operaÃ§Ã£o.
 \index{\ina{insert}}
 
 \begin{center}
@@ -242,28 +273,28 @@ insert (a, l)
 \end{tabular}
 \end{center}
 
-\subsection{Remoção}
+\subsection{RemoÃ§Ã£o}
 \label{sec:remocao-de-lista}
 
-Remover um elemento de uma lista é uma operação de complexidade $O(n)$
-no pior caso, pois é necessário procurar o elemento a ser removido.
+Remover um elemento de uma lista Ã© uma operaÃ§Ã£o de complexidade $O(n)$
+no pior caso, pois Ã© necessÃ¡rio procurar o elemento a ser removido.
 
-A Seção \ref{sec:lista-duplamente-encadeada} redefine o tipo de lista
-encadeada para uma versão de listas duplamente encadeadas, e reescreve
-as funções \ina{elem} e \ina{insert}, para definir \ina{delete} por meio de uma
-chamada à função \ina{elem}, seguida de chamada a \ina{insert}.
+A SeÃ§Ã£o \ref{sec:lista-duplamente-encadeada} redefine o tipo de lista
+encadeada para uma versÃ£o de listas duplamente encadeadas, e reescreve
+as funÃ§Ãµes \ina{elem} e \ina{insert}, para definir \ina{delete} por meio de uma
+chamada Ã  funÃ§Ã£o \ina{elem}, seguida de chamada a \ina{insert}.
 
-\subsubsection{Versão funcional}
+\subsubsection{VersÃ£o funcional}
 
-A versão funcional cria uma nova lista, que não tem o elemento
-passado como parâmetro:
+A versÃ£o funcional cria uma nova lista, que nÃ£o tem o elemento
+passado como parÃ¢metro:
 \index{\inh{delete}}
 
 \begin{center}
 \begin{tabular}{l}
 \begin{hask}{delete}{\decremento}
 delete :: Eq a => a -> [a] -> [a]
-delete §{\tt \_}§ [] = []
+delete Â§{\tt \_}Â§ [] = []
 delete a (b:x)
    | a == b    = x
    | otherwise = b:delete a x
@@ -271,11 +302,11 @@ delete a (b:x)
 \end{tabular}
 \end{center}
 
-\subsubsection{Versão imperativa}
+\subsubsection{VersÃ£o imperativa}
 
-A versão imperativa de \ina{delete}, apresentada a seguir, não cria
+A versÃ£o imperativa de \ina{delete}, apresentada a seguir, nÃ£o cria
 uma nova lista: usa um ponteiro -- \ina{prev} -- para percorrer a
-lista até encontrar o elemento a ser removido e, quando este é
+lista atÃ© encontrar o elemento a ser removido e, quando este Ã©
 encontrado, modifica a estrutura de encadeamento da lista, removendo
 este elemento.
 
@@ -300,67 +331,67 @@ delete (a, l)
 \index{pilha}
 
 Uma estrutura de dados {\em Pilha} caracteriza-se pelo fato de que as
-operações de inserção, acesso e remoção de elementos são feitas em
-apenas um de seus lados (ou extremidades). Essa política de uso é
-comumente chamada LIFO (do inglês, {\em last-in first-out\/}: o último
-a ser inserido é o primeiro a ser removido da pilha. Discutimos, a
-seguir, a implementação de uma Pilha, com as operações: i) criar pilha
+operaÃ§Ãµes de inserÃ§Ã£o, acesso e remoÃ§Ã£o de elementos sÃ£o feitas em
+apenas um de seus lados (ou extremidades). Essa polÃ­tica de uso Ã©
+comumente chamada LIFO (do inglÃªs, {\em last-in first-out\/}: o Ãºltimo
+a ser inserido Ã© o primeiro a ser removido da pilha. Discutimos, a
+seguir, a implementaÃ§Ã£o de uma Pilha, com as operaÃ§Ãµes: i) criar pilha
 vazia, ii) empilhar elemento, iii) desempilhar elemento, iv) obter
-elemento do topo da pilha, e v) testar se pilha está vazia. É fácil
-ver que a ordem de complexidade de tempo de cada uma dessas operações
-é $O(1)$.
+elemento do topo da pilha, e v) testar se pilha estÃ¡ vazia. Ã‰ fÃ¡cil
+ver que a ordem de complexidade de tempo de cada uma dessas operaÃ§Ãµes
+Ã© $O(1)$.
 
-\subsubsection{Versão funcional}
+\subsubsection{VersÃ£o funcional}
 \label{sec:ops-sobre-pilhas-versao-func}
 
 \index{pilha}
-Em \Haskell, a implementação de \inh{Pilha} é obtida diretamente das operações definidas sobre listas, isto é:
+Em \Haskell, a implementaÃ§Ã£o de \inh{Pilha} Ã© obtida diretamente das operaÃ§Ãµes definidas sobre listas, isto Ã©:
 
 \begin{center}
 \begin{tabular}{l}
 \begin{hask}{vazia,empilhar,desempilhar,topo,estaVazia}{\definicao}
 vazia = []
 empilhar = (:)
-desempilhar (§{\tt \_}§:x) = x
-topo (a:§{\tt \_}§) = a
+desempilhar (Â§{\tt \_}Â§:x) = x
+topo (a:Â§{\tt \_}Â§) = a
 estaVazia = null
 \end{hask}
 \end{tabular}
 \end{center}
                   
-Em geral, vamos procurar simplificar o código de nossos programas, não
-tratando casos de erro, por motivos didáticos. Entretanto, em
-programas completos, não podemos esquecer de tratar todos os casos
-possíveis para os dados de entrada. O módulo \href{figPilha}{Tipo
+Em geral, vamos procurar simplificar o cÃ³digo de nossos programas, nÃ£o
+tratando casos de erro, por motivos didÃ¡ticos. Entretanto, em
+programas completos, nÃ£o podemos esquecer de tratar todos os casos
+possÃ­veis para os dados de entrada. O mÃ³dulo \href{figPilha}{Tipo
   abstrato Pilha}, a seguir, implementa esse tipo abstrato,
-considerando todos esses casos possíveis para os dados de entrada das
-operações.
+considerando todos esses casos possÃ­veis para os dados de entrada das
+operaÃ§Ãµes.
 
-O módulo \inh{Pilha} implementa o que é chamado em computação de um
-{\em tipo abstrato de dados\/}, que é um tipo com operações de
-criação, modificação e consulta sobre valores desse tipo. Por exemplo,
-\inh{vazia} é uma operação de criação (nesse caso, a única);
-\inh{empilhar} e \inh{desempilhar} são operações de modificação;
-\inh{topo} e \inh{estaVazia} são operações de consulta.
+O mÃ³dulo \inh{Pilha} implementa o que Ã© chamado em computaÃ§Ã£o de um
+{\em tipo abstrato de dados\/}, que Ã© um tipo com operaÃ§Ãµes de
+criaÃ§Ã£o, modificaÃ§Ã£o e consulta sobre valores desse tipo. Por exemplo,
+\inh{vazia} Ã© uma operaÃ§Ã£o de criaÃ§Ã£o (nesse caso, a Ãºnica);
+\inh{empilhar} e \inh{desempilhar} sÃ£o operaÃ§Ãµes de modificaÃ§Ã£o;
+\inh{topo} e \inh{estaVazia} sÃ£o operaÃ§Ãµes de consulta.
 
-Em uma definição de um tipo abstrato de dados, a definição de tipo e
-das operações (para criação, modificação e consulta) sobre valores do
+Em uma definiÃ§Ã£o de um tipo abstrato de dados, a definiÃ§Ã£o de tipo e
+das operaÃ§Ãµes (para criaÃ§Ã£o, modificaÃ§Ã£o e consulta) sobre valores do
 tipo devem ser contidas em um mesmo trecho de programa (em geral, um
-módulo), e a representação usada não é ``visível'' para quem usa
-valores do tipo. Ou seja, um tipo abstrato é constituído de um tipo,
-munido de um conjunto de operações sobre valores desse tipo. Qualquer
-outra operação sobre valores do tipo apenas pode ser implementada por
-meio dessas operações previamente definidas.
+mÃ³dulo), e a representaÃ§Ã£o usada nÃ£o Ã© ``visÃ­vel'' para quem usa
+valores do tipo. Ou seja, um tipo abstrato Ã© constituÃ­do de um tipo,
+munido de um conjunto de operaÃ§Ãµes sobre valores desse tipo. Qualquer
+outra operaÃ§Ã£o sobre valores do tipo apenas pode ser implementada por
+meio dessas operaÃ§Ãµes previamente definidas.
 
 Para definir um tipo abstrato \inh{Pilha}, em \Haskell, usamos uma
-definição de um novo tipo, introduzida pela palavra-chave
-\inh{newtype}. O tipo \inh{Pilha} possui um único construtor de
+definiÃ§Ã£o de um novo tipo, introduzida pela palavra-chave
+\inh{newtype}. O tipo \inh{Pilha} possui um Ãºnico construtor de
 valores \inh{mkPilha} (de mesmo nome do construtor de tipo). Esse
-mecanismo é usado para ocultar a representação do tipo abstrato: o
-construtor de que não é exportado pelo módulo em que o tipo é
-definido: o construtor de valores \inh{mkPilha} não é exportado,
+mecanismo Ã© usado para ocultar a representaÃ§Ã£o do tipo abstrato: o
+construtor de que nÃ£o Ã© exportado pelo mÃ³dulo em que o tipo Ã©
+definido: o construtor de valores \inh{mkPilha} nÃ£o Ã© exportado,
 apenas o construtor de tipos \inh{Pilha}. Para melhor legibilidade,
-definimos também o tipo de cada uma das funções. Veja o código a
+definimos tambÃ©m o tipo de cada uma das funÃ§Ãµes. Veja o cÃ³digo a
 seguir.  \index{\inh{Pilha}}
 
 \begin{center}
@@ -379,11 +410,11 @@ module Pilha (Pilha, vazia, empilhar, desempilhar, topo, estaVazia) where
    empilhar e (mkPilha p) = Pilha (e:p)
 
    desempilhar :: Pilha a -> Pilha a
-   desempilhar (mkPilha [])    = error "Função desempilhar chamada com pilha vazia"
+   desempilhar (mkPilha [])    = error "FunÃ§Ã£o desempilhar chamada com pilha vazia"
    desempilhar (mkPilha (_:p)) = mkPilha p
 
    topo:: Pilha a -> a
-   topo (mkPilha [])    = error "Função topo chamada com pilha vazia"
+   topo (mkPilha [])    = error "FunÃ§Ã£o topo chamada com pilha vazia"
    topo (mkPilha (e:_)) = e 
   
    estaVazia:: Pilha a -> Bool
@@ -392,14 +423,14 @@ module Pilha (Pilha, vazia, empilhar, desempilhar, topo, estaVazia) where
 \end{tabular}
 \end{center}
 
-\subsubsection{Versão imperativa}
+\subsubsection{VersÃ£o imperativa}
 \index{pilha}
 
-Na versão imperativa, consideramos uma \ina{pilha} representada como
+Na versÃ£o imperativa, consideramos uma \ina{pilha} representada como
 um registro com dois campos: \in{topo} e \ina{elems}, sendo
 \ina{elems}\ um arranjo de $n$ elementos (indexado de $0$ a {\tt
-  $n$-1}), e \ina{topo}\ uma variável inteira, que indica o índice do
-último elemento inserido. As operações sobre a \ina{pilha} podem ser
+  $n$-1}), e \ina{topo}\ uma variÃ¡vel inteira, que indica o Ã­ndice do
+Ãºltimo elemento inserido. As operaÃ§Ãµes sobre a \ina{pilha} podem ser
 implementadas como a seguir (desconsiderando-se os casos de erro:
 desempilhar de uma pilha vazia e empilhar em uma pilha cheia).
 
@@ -422,8 +453,8 @@ estaVazia (pilha) { return pilha.topo == -1 }
 \end{tabular}
 \end{center}
 
-O comando \ina{with}, usado no código acima, serve para tornar
-visíveis os nomes de campos de um registro: \ina{with r} evita que se
+O comando \ina{with}, usado no cÃ³digo acima, serve para tornar
+visÃ­veis os nomes de campos de um registro: \ina{with r} evita que se
 tenha que prefixar os nomes dos campos do registro ina{r} com o nome
 do registro.
 
@@ -433,26 +464,26 @@ do registro.
 \label{sec:fila}
 \index{fila}
 
-Em uma {\em Fila}, a inserção é feita de um lado e a remoção é feita
-do lado oposto da estrutura de dados -- política de uso algumas vezes
+Em uma {\em Fila}, a inserÃ§Ã£o Ã© feita de um lado e a remoÃ§Ã£o Ã© feita
+do lado oposto da estrutura de dados -- polÃ­tica de uso algumas vezes
 chamada de FIFO ({\em first-in first-out\/}: o primeiro a ser inserido
-é o primeiro a ser removido da fila.
+Ã© o primeiro a ser removido da fila.
 
-Uma fila, com operações de i) criar fila vazia, ii) entrar (inserir
+Uma fila, com operaÃ§Ãµes de i) criar fila vazia, ii) entrar (inserir
 elemento) na fila, iii) sair (tirar elemento) da fila, iv) obter
-primeiro elemento da fila, e v) testar se fila está vazia, pode ser
+primeiro elemento da fila, e v) testar se fila estÃ¡ vazia, pode ser
 implementada como se mostra a seguir.
 
-\subsubsection{Versão funcional}
+\subsubsection{VersÃ£o funcional}
 \index{fila}
 
-Não é eficiente fazer acesso ao último elemento de uma lista em
-Haskell. Por isso, a implementação padrão de filas por meio de listas
+NÃ£o Ã© eficiente fazer acesso ao Ãºltimo elemento de uma lista em
+Haskell. Por isso, a implementaÃ§Ã£o padrÃ£o de filas por meio de listas
 usa duas listas, \inh{frente} e \inh{tras}: elementos entram na lista
-\inh{tras} e saem da lista \inh{frente}. A função \inh{fila} é usada
-na definição de \inh{entrar}, para garantir o invariante de que, se
-\inh{frente} está vazia, então \inh{tras} está vazia (e, portanto, a
-fila está vazia).
+\inh{tras} e saem da lista \inh{frente}. A funÃ§Ã£o \inh{fila} Ã© usada
+na definiÃ§Ã£o de \inh{entrar}, para garantir o invariante de que, se
+\inh{frente} estÃ¡ vazia, entÃ£o \inh{tras} estÃ¡ vazia (e, portanto, a
+fila estÃ¡ vazia).
 
 \begin{center}
 \begin{tabular}{l}
@@ -466,33 +497,33 @@ fila f          = f
 
 sair (e:frente, tras) = (frente,tras)
 
-primeiro (e:frente,§{\tt\_}§) = e
+primeiro (e:frente,Â§{\tt\_}Â§) = e
 
-estaVazia (frente,§{\tt \_}§)  = null frente
+estaVazia (frente,Â§{\tt \_}Â§)  = null frente
 \end{hask}
 \end{tabular}
 \end{center}
 
-% faltou discutir a ordem de complexidade das operações
+% faltou discutir a ordem de complexidade das operaÃ§Ãµes
 
-\subsubsection{Versão imperativa}
+\subsubsection{VersÃ£o imperativa}
 \label{sec:fila-imperativa}
 \index{fila}
 
-Na versão imperativa, consideramos uma \ina{fila} como um registro com
+Na versÃ£o imperativa, consideramos uma \ina{fila} como um registro com
 campos \ina{inicio}, \ina{fim} e \ina{elems}, sendo \ina{elems} um
 arranjo de $n$ elementos (indexado de {\tt 0} a {\tt $n$-1}).  Os
-índices do primeiro e do último elementos inseridos na fila são
-armazenados respectivamente nas variáveis \ina{inicio} e \ina{fim}.
+Ã­ndices do primeiro e do Ãºltimo elementos inseridos na fila sÃ£o
+armazenados respectivamente nas variÃ¡veis \ina{inicio} e \ina{fim}.
 
-A fila está vazia quando \ina{inicio == fim}. A fila está cheia
-quando \ina{inicio == fim + 1}, isto é, a fila é circular: o
-índice {\tt 0} segue o índice {\tt $n$-1}. 
+A fila estÃ¡ vazia quando \ina{inicio == fim}. A fila estÃ¡ cheia
+quando \ina{inicio == fim + 1}, isto Ã©, a fila Ã© circular: o
+Ã­ndice {\tt 0} segue o Ã­ndice {\tt $n$-1}. 
 
-As operações em uma fila podem ser implementadas como a seguir,
+As operaÃ§Ãµes em uma fila podem ser implementadas como a seguir,
 desconsiderando-se casos de erro: sair de uma fila vazia e entrar em uma
-fila cheia. O operador {\tt \%}, usado na implementação, retorna o resto da
-divisão do primeiro operando pelo segundo.
+fila cheia. O operador {\tt \%}, usado na implementaÃ§Ã£o, retorna o resto da
+divisÃ£o do primeiro operando pelo segundo.
 
 \begin{center}
 \begin{tabular}{l}
@@ -502,9 +533,9 @@ vazia (fila) { with fila { inicio = fim = 0 } }
 entrar (e, fila)
    with fila
       elems[fim] = e
-      fim = (fim + 1) §{\tt \%}§ n
+      fim = (fim + 1) Â§{\tt \%}Â§ n
       
-sair (fila) { with fila { inicio = (inicio + 1) §{\tt \%}§ n } }
+sair (fila) { with fila { inicio = (inicio + 1) Â§{\tt \%}Â§ n } }
    
 primeiro (fila) { return fila.elems[inicio] }
 
