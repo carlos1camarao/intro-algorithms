@@ -63,8 +63,8 @@ algoritmos existentes e para o aumento da motivação no estudo de novos
 algoritmos.
 
 Para espeficicar a classificação de algoritmo, implementado por função
-com nome salientado no texto em cor \textcolor{Mahogany}{mogno}
-(mogno), usamos cores de fundo, como a seguir:
+com nome salientado no texto em cor \textcolor{Mahogany}{mogno},
+usamos cores de fundo, como a seguir:
 
   \begin{description}
     \item[{\colorbox{\divisao}{divisão}}] 
@@ -123,7 +123,7 @@ constituir base para classificação de algoritmos em geral:
        Por exemplo, a árvore abaixo descreve a técnica de
        retrocedimento aplicada ao problema de colocar 4 rainhas em um
        tabuleiro 4x4 sem que haja uma rainha atacando outra (veja
-       exercício \ref{rainhas-nao-se-atacando}.
+       exercício \ref{rainhas-nao-se-atacando}).
 
        ......
 
@@ -254,7 +254,7 @@ conheceM0 :: [(Pessoa,Pessoa)] -> ConheceM
 conheceM0 x = fromList [(p,True) | p <- x]
 
 celebridade :: NumPessoas -> [Pessoa] -> ConheceM -> Pessoa
--- Pre: celebridade n x m implica n = length x
+-- Pre: celebridade n x m implica (n = length x)
 celebridade n (a:b:r) m           
   | findWithDefault False (a,b) m = celebridade (n-1) (b:r) m -- a não é celeb. (celeb. não conhece ninguém)
   | otherwise                     = celebridade (n-1) (a:r) m -- b não é celeb. (todos conhecem celeb.)

@@ -40,12 +40,16 @@ aumentar a eficiência da pesquisa.
 
 \begin{enumerate}
 
-\item Escreva função que implementa algoritmo de pesquisa em lista
-  ordenada.  Ou seja, escreva função que recebe um valor e uma lista,
-  que pode-se supor que está ordenada, em ordem não-decrescente, e
-  retorne valor booleano que indica se o valor está presente ou não na
-  lista. A pesquisa deve considerar, por questão de eficiência, que a
-  lista está ordenada.
+\item \label{pesquisa-sequencial-em-lista-ordenada}
+  \index{pesquisa!sequencial em lista ordenada} Escreva função que
+  implementa algoritmo de pesquisa em lista ordenada.  Ou seja,
+  escreva função que recebe um valor e uma lista, que pode-se supor
+  que está ordenada, em ordem não-decrescente, e retorne valor
+  booleano que indica se o valor está presente ou não na lista. A
+  pesquisa deve considerar que a lista está ordenada.
+
+  Escreva fórmula que indique a complexidade de tempo de execução do
+  algoritmo e justifique.
 
 {\bf Solução}: 
 
@@ -75,15 +79,24 @@ elemOrdL (a, l)
 \end{tabular}
 \end{center}
 
-\item \label{ex:lista-duplamente-encadeada} ....
+A complexidade de tempo é a mesma da complexidade em pesquisa
+sequencial em lista não ordenada: em uma lista de $n$ elementos a
+complexidade é $O(n)$ no pior caso, pois envolve possivelmente
+comparação com cada elemento da lista. No entanto, no caso médio a
+complexidade é menor, dividida por um fator igual a $k$ --- isto é,
+$T(n) \asymp O(n/k) \asymp O(n)$ ---, onde $k$ o número de elementos
+da lista menores que a chave da pesquisa.
 
-\item \label{ex:dicionario} Em computação, um dicionário é um tipo
-  abstrato que define operações de inserção, remoção e
-  pesquisa. Define um tipo abstrato dicionário usando uma árvore
-  binária de pesquisa para implementação das operações sobre o tipo
-  abstrato.
+\item \label{ex:lista-duplamente-encadeada} \index{lista!duplamente
+  encadeada} Uma lista duplamente encadeada ....
 
-  {\bf Solução}: ....
+%\item \label{ex:dicionario} Em computação, um dicionário é um tipo
+%  abstrato que define operações de inserção, remoção e
+%  pesquisa. Defina um tipo abstrato dicionário usando uma árvore
+%  binária de pesquisa para implementação das operações sobre o tipo
+%  abstrato.
+%
+%  {\bf Solução}: ....
 
 \item \label{ex:arvores-MovPraRaiz} Operações em uma árvore MovPraRaiz
   (em inglês, chamada de {\em splay tree\/}), como inserção, remoção
@@ -137,5 +150,41 @@ Essas três possibilidades são ilustradas abaixo.
   remoções de alguns elementos inseridos, em uma árvore vazia, usando
   versão imperativa e/ou funcional dos algoritmos de inserção e
   remoção em árvore AVL.
+
+\item \label{ex:pesquisa-por-interpolacao} \index{pesquisa!por
+  interpolação} A pesquisa por interpolação é bastante similar à
+  pesquisa binária, e como esta deve ser feita também em um arranjo
+  ordenado. Em vez de comparar a chave da pesquisa com o valor que
+  está no meio da faixa do arranjo que está sendo pesquisada, a
+  pesquisa usa o valor da chave, para determinar a posição do arranjo
+  que contém o valor que vai ser comparado com a chave: sendo a faixa
+  do arranjo que está sendo pesquisada do índice $e$ ao índice $r$
+  (i.e.~de {\tt $A$[$e$] até $A$[$d$]}), o algoritmo considera que os
+  valores no arranjo crescem linearmente com o crescimento dos
+  índices.
+
+  O algoritmo se comporta como uma pessoa procura um nome em uma lista
+  telefônica. Ao procurar por um nome que começa com a letra B a
+  pesquisa é dirigida a uma posição mais próxima do início da lista,
+  ao passo que se o nome começa com a letra T a pesquisa é dirigida a
+  uma posição mais próxima do fim da lista.
+  
+  \begin{enumerate}
+
+    \item Modifique os algoritmos de pesquisa binária, cujas versões
+      funcional e imperativa foram apresentadas respectivamente nas
+      seções \ref{sec:pesquisa-binaria-fun} e
+      \ref{sec:pesquisa-binaria-imp}, para que implementem o algoritmo
+      de pesquisa por interpolação.
+
+    \item Documente como você fez para calcular o índice do arranjo
+      que é comparado com a chave (considerando crescimento linear dos
+      valores no arranjo).
+
+    \item Explique porque o pior caso do algoritmo de pesquisa por
+    interpolação é pior do que no caso do algoritmo de pesquisa
+    binária.
+
+  \end{enumerate}
 
 \end{enumerate}

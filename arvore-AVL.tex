@@ -277,7 +277,7 @@ AVL* sobED (AVL* v)
 
 AVL* sobDE (AVL* v)
   v->dir = sobE (v->dir)  // v->dir->esq sobe (se torna v->dir)
-  return sobD(v)         // v->dir      sobe (se torna v)
+  return sobD(v)          // v->dir      sobe (se torna v)
 
 AVL* ins (AVL* nodo, int chave)
     if (nodo == NULL) return novoNodo (chave)

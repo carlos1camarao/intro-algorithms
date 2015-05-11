@@ -112,7 +112,7 @@ um jogo de buraco).
 sort []    = []
 sort (a:x) = insert a (sort x)
 
-insert a [] = []
+insert a [] = [a]
 insert a (b:x) 
    | a <= b    = a:(b:x)
    | otherwise = b:insert a x
