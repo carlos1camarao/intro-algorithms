@@ -132,8 +132,8 @@ fornece $k = \frac{1 \pm \sqrt{5}}{2}$.
 As duas raízes da equação de segundo grau são: 
 
   \[ \begin{array}{l}
-      r_1 = \frac{1 + \sqrt{5}}{2} \\
-      r_2 = \frac{1 - \sqrt{5}}{2}
+      r_1 = (1 + \sqrt{5})/{2} \\
+      r_2 = (1 - \sqrt{5})/{2}
     \end{array}
   \]
 
@@ -150,7 +150,7 @@ Usando as condições iniciais $F(0) = 0$ e $F(1) = 1$, obtemos:
 e portanto $\alpha = \frac{1}{\sqrt{5}}$ e $\beta = -\frac{1}{\sqrt{5}}$. 
 Portanto: 
 
-  \[ F(\inh{n}) = \frac{1}{\sqrt{5}} (\phi^{\inh{n}} - (1 - \phi)^{\inh{n}}) \]
+  \[ F(\inh{n}) = (1/\sqrt{5}) (\phi^{\inh{n}} - (1 - \phi)^{\inh{n}}) \]
 onde $\phi = \frac{1 + \sqrt{5}}{2}$. 
 
 Podemos essa usar fórmula para obter diretamente o \inh{n}-ésimo
@@ -167,10 +167,9 @@ n)$).
 
 Note também que $(1-\phi)^{\inh{n}}$ fica infinitamente pequeno quando
 \inh{n} tende para infinito. Pode ser mostrado (....ref....?)  que o
-resultado de $\frac{1}{\sqrt{5}} (\phi^{\inh{n}} +
-\frac{1}{\phi}^{\inh{n}})$ é o mesmo de $\frac{1}{\sqrt{5}}
-(\phi^{\inh{n}} + \frac{1}{\phi}^{\inh{n}})$ é o mesmo de
-$\frac{1}{\phi}^{\inh{n}}$ arredondado para o inteiro mais próximo.
+resultado de $(1/{\sqrt{5}}) (\phi^{\inh{n}} - (1 - \phi)^{\inh{n}})$
+é o mesmo de $(1/{\sqrt{5}})\phi^{\inh{n}}$ arredondado para o inteiro
+mais próximo.
 
 \subsection{Versão Imperativa}
 
@@ -201,7 +200,7 @@ na versão funcional mostrada na subsecão anterior).
 
 Como mostrado na subseção anterior, podemos usar a fórmula:
 
-  \[ F(\inh{n}) = (1/\sqrt{5}) (\phi^n + \frac{1}{\phi^n}) \]
+  \[ F(\inh{n}) = (1/\sqrt{5}) (\phi^n - (1 - \phi)^{\ina{n}}) \]
 onde $\phi = (1 + \sqrt{5})/2$, para obter uma complexidade de
 tempo igual à complexidade de tempo da função de exponenciação.
 
