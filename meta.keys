@@ -1,4 +1,7 @@
+\newcommand{\prima}{$^{\underline{\textrm a}}$}
+\newcommand{\primo}{$^{\underline{\textrm o}}$}
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\newcommand{\from}{\leftarrow}
 
 \newcommand{\prog}[1]{
   \normalfont\ttfamily 
@@ -148,3 +151,5 @@
 }
 
 \newcommand{\llim}{{\it lim\/}}
+
+\newcommand{\disperse}{{\it disperse\/}}
