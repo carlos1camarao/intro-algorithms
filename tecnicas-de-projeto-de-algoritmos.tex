@@ -242,7 +242,8 @@ de uma lista de pares \inh{((a,b),True)}, que indica que a pessoa
 
 module Celebridade where
 
-import Data.Map (Map, findWithDefault, fromList, mapKeys)
+import Data.Map       (Map, findWithDefault, fromList, mapKeys, null)
+import Prelude hiding (null)
 
 type NumPessoas = Integer
 type Pessoa     = Integer
