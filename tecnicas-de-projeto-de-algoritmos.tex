@@ -217,17 +217,17 @@ de chaves (de um valor \inh{m} de tipo \inh{Map k a}) é chamado de
 {\em domínio\/} de \inh{m}. Internamente, um valor de tipo \inh{Map k
   a} é implementado como uma árvore binária balanceada.
 
-No programa abaixo, usamos valores \inh{m} de tipo \inh{Map
-  (Pessoa,Pessoa) Bool} para indicar se duas pessoas \inh{(a,b)} se
-conhecem ou não: em caso positivo \inh{m ! (a,b)} é igual a
-\inh{True}. Em caso negativo, o par \inh{(a,b)} não faz parte do
-domínio de \inh{m} (ou seja, o par \inh{(a,b)} não foi inserido como
-uma chave de \inh{m}) e nesse caso a avaliação de \inh{m ! (a,b)}
-resulta em um erro. Usamos por isso \inh{findWithDefault False (a,b)
-  m}, que retorna \inh{False} se \inh{(a,b)} não pertence ao domínio
-de \inh{m} (\inh{findWithDefault v k m} retorna \inh{m!k} --- o valor
-associado à chave \inh{k} em \inh{m} --- se \inh{k} pertence ao
-domínio de \inh{m}, caso contrário retorna o valor \inh{v}).
+No programa abaixo, usamos valores \inh{m} de tipo \inh{Map (Pessoa,Pessoa) Bool} 
+para indicar se duas pessoas \inh{(a,b)} se conhecem ou não: em caso
+positivo \inh{m ! (a,b)} é igual a \inh{True}. Em caso negativo, o par
+\inh{(a,b)} não faz parte do domínio de \inh{m} (ou seja, o par
+\inh{(a,b)} não foi inserido como uma chave de \inh{m}) e nesse caso a
+avaliação de \inh{m ! (a,b)} resulta em um erro. Usamos por isso
+\inh{findWithDefault False (a,b) m}, que retorna \inh{False} se
+\inh{(a,b)} não pertence ao domínio de \inh{m} (\inh{findWithDefault v
+  k m} retorna \inh{m!k} --- o valor associado à chave \inh{k} em
+\inh{m} --- se \inh{k} pertence ao domínio de \inh{m}, caso contrário
+retorna o valor \inh{v}).
 
 O mapeamento que indica se pares de pessoas se conhecem pode ser
 criado com a função \inh{conheceM0}, que cria um mapeamento a partir
