@@ -231,7 +231,8 @@ retorna o valor \inh{v}).
 
 \inh{filterWithKey :: Ord k => (k -> a -> Bool) -> Map k a -> Map k a}
 é tal que \inh{filterWithKey p m} seleciona (filtra) todos os valores
-para os quais \inh{p k v} retorna \inh{True}. No caso, queremos
+para os quais \inh{p k v} retorna \inh{True}, para \inh{k} no domínio
+e \inh{v} na imagem de \inh{k} em \inh{m}. No caso, queremos
 selecionar os pares \inh{(a,b)}, para algum \inh{b}, que estão no
 domínio de \inh{m}.
 
