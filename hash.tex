@@ -49,14 +49,12 @@ tamanho (número de índices) da tabela --- alcança um valor
 pré-estabelecido (igual ou pouco maior que 0,5).
 
 \index{algoritmos de dispersão!aberto} \index{algoritmos de
-  dispersão!fecheado} Quando o tamanho da tabela é menor que o número
-de chaves, pode haver {\em colisões\/}: uma colisão ocorre quando a
-função de dispersão retorna o mesmo índice para duas ou mais
-chaves. Colisões devem ocorrer raramente se o tamanho da tabela de
-dispersão é grande e uma boa função de dispersão é usada. Mas um
-mecanismo de tratamento de colisões é necessário em todo algoritmo de
-dispersão (i.e.~sempre que o tamanho da tabela é menor que o número de
-chaves).
+  dispersão!fecheado} Uma {\em colisão\/} ocorre quando a função de
+dispersão retorna o mesmo índice para duas ou mais chaves. Colisões
+devem ocorrer raramente se o tamanho da tabela de dispersão é grande e
+uma boa função de dispersão é usada. Mas um mecanismo de tratamento de
+colisões é em geral necessário em todo algoritmo de dispersão, devido
+à possibilidade de ocorrência de colisões.
 
 A dispersão de valores se baseia no fato de que é mais eficiente
 procurar um valor em um subconjunto de todos os valores, i.e.~o
