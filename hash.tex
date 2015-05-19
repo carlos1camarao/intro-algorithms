@@ -1,3 +1,90 @@
-\chapter{\colorbox{cyan}{Algoritmos de Dispers�o (Hash)}}
+\chapter{Algoritmos de Dispersão (Hash)}
 \label{dispersao}
+
+Este capítulo apresenta uma técnica simples e eficiente de
+implementação de dicionários que ilustra bem o compromisso entre tempo
+e espaço no projeto de implementação de algoritmos e estruturas de
+dados. O uso de mais espaço pode diminuir o tempo e o uso de menos
+espaço pode aumentar o tempo de execução, mas há sempre um limite
+superior para a quantidade de espaço a ser utilizada.
+
+\index{dicionário} Em computação, um dicionário é um tipo abstrato que
+define operações de inserção, remoção e pesquisa.
+
+Os dados são usualmente organizados em registros com diversos campos,
+dentre eles um ou mais campos que são usados como {\em chave\/} para a
+pesquisa, inserção ou remoção.
+
+\index{função de dispersão} \index{índice de dispersão} Algoritmos de
+dispersão (em inglês, {\em hashing\/}) se baseiam na ideia simples de
+distribuir os dados em um vetor de certo tamanho --- que vamos chamar
+de tabela de dispersão --- usando uma {\em função de dispersão\/}, que
+associa um índice do vetor a cada chave. O valor retornado pela função
+de dispersão é chamado de {\em índice de dispersão\/}.
+
+Por exemplo, se a chave é um inteiro positivo ou nulo e a tabela de
+dispersão tem tamanho $m$, a função de dispersão pode ser a função
+$\disperse$ tal que $\disperse(v) = v \% m$, onde $\%$ é a função que
+calcula o resto da divisão de números inteiros.
+
+% Se a chave for um caractere, a função de dispersão $\disperse$ pode
+% ser tal que $\delta(v) = \ord(v) \% m$, onde $\ord$ é a função que
+% associa a cada caractere o código inteiro que o
+% representa. Computadores usam um código para representar cada
+% caractere; hoje em dia usualmente Unicode ou uma variação do código
+% Unicode, antigamente usava-se código Ascii.
+
+A distribuição dos valores a serem pesquisados em uma tabela é um bom
+exemplo do compromisso entre tempo e espaço, fundamental no projeto de
+algoritmos. Se não houver limitação de memória, poderia ser definido
+um tamanho de vetor bastante grande de modo que um único índice fosse
+associado a cada valor. Se não houver limitação de tempo, o projeto
+poderia não usar dispersão (i.e.~considerar vetor de tamanho nulo) e
+usar algoritmos sequenciais em uma lista. Na prática, deve-se procurar
+determinar um tamanho que não gaste espaço de memória de mais e nem de
+menos, para a tabela de dispersão. Há algoritmos que dinamicamente
+alteram (tipicamente, dobram) o tamanho da tabela, quando o {\em fator
+  de ocupação\/} --- número de elementos existentes dividido pelo
+tamanho (número de índices) da tabela --- alcança um valor
+pré-estabelecido (igual ou pouco maior que 0,5).
+
+\index{algoritmos de dispersão!aberto} \index{algoritmos de
+  dispersão!fecheado} Quando o tamanho da tabela é menor que o número
+de chaves, pode haver {\em colisões\/}: uma colisão ocorre quando a
+função de dispersão retorna o mesmo índice para duas ou mais
+chaves. Colisões devem ocorrer raramente se o tamanho da tabela de
+dispersão é grande e uma boa função de dispersão é usada. Mas um
+mecanismo de tratamento de colisões é necessário em todo algoritmo de
+dispersão (i.e.~sempre que o tamanho da tabela é menor que o número de
+chaves).
+
+A dispersão de valores se baseia no fato de que é mais eficiente
+procurar um valor em um subconjunto de todos os valores, i.e.~o
+subconjunto dos valores para os quais a função de dispersão fornece o
+mesmo resultado. A pesquisa usando dispersão é o método conhecido mais
+poderoso e o mais usado para pesquisa de dados. A maioria dos sistemas
+de recuperação de dados usados atualmente são baseados em dispersão.
+
+Há duas versões de tratamento de colisões em algoritmos de dispersão:
+{\em aberto\/} e {\em fechado}. 
+
+No tratamento aberto, também chamado de tratamento de colisão por {\em
+  encadeamento separado\/} (em inglês, {\em separate chaining\/}), a
+tabela de dispersão é uma tabela de apontadores para lista de
+elementos para os quais houve colisão.
+
+No tratamento fechado, também chamado de {\em endereçamento aberto\/}
+(em inglês, {\em open addressing\/}), todas as chaves são armazenadas
+na própria tabela (o que implica/requer que o tamanho da tabela seja
+maior que o número de chaves inseridas). Diferentes estratégias podem
+ser usadas para resolução de conflitos, mas a mais simples --- chamada
+de {\em sondagem linear\/} (em inglês, {\em linear probing\/}) --- usa
+a primeira posição, seguinte à que ocorreu a colisão, que está vazia
+(considerando a tabela como circular, isto é, a primeira posição da
+tabela segue a última). Embora pesquisa e inserção sejam relativamente
+simples de implementar segundo a técnica de sondagem linear, a remoção
+de chaves é mais complicada. Em geral, é usado um símbolo
+especialmente reservado para indicar que uma chave foi removida da
+posição. Não vamos abordar o tratamento fechado de colisões.
+
 
