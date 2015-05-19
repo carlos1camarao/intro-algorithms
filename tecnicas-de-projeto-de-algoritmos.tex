@@ -258,7 +258,7 @@ celebridade :: NumPessoas -> [Pessoa] -> ConheceM -> Pessoa
 celebridade n (a:b:r) m
   | findWithDefault False (a,b) m = celebridade (n-1) (b:r) m -- 'a' não é celeb. (celeb. não conhece ninguém)
   | otherwise                     = celebridade (n-1) (a:r) m -- 'b' não é celeb. (todos conhecem celeb.)
-celebridade _ [a]     m           = mapKeys ((==a) . fst) m   -- se existir (a,_) no domínio de m, 'a' não é celeb.
+celebridade _ [a]     m           = null (mapKeys ((==a) . fst) m) -- se existir (a,_) no domínio de m, 'a' não é celeb.
 \end{hask}
 \end{tabular}
 \end{center}
