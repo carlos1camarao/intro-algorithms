@@ -245,7 +245,6 @@ module Celebridade where
 import Data.Map       (Map, findWithDefault, fromList, mapKeys, null)
 import Prelude hiding (null)
 
-type NumPessoas = Integer
 type Pessoa     = Integer
 
 type ConheceM   = Map (Pessoa,Pessoa) Bool
@@ -254,12 +253,12 @@ type ConheceM   = Map (Pessoa,Pessoa) Bool
 conheceM0 :: [(Pessoa,Pessoa)] -> ConheceM
 conheceM0 x = fromList [(p,True) | p <- x]
 
-celebridade :: NumPessoas -> [Pessoa] -> ConheceM -> Pessoa
+celebridade :: [Pessoa] -> ConheceM -> Pessoa
 -- Pre: celebridade n x m implica n = length x
-celebridade n (a:b:r) m
-  | findWithDefault False (a,b) m = celebridade (n-1) (b:r) m -- 'a' não é celeb. (celeb. não conhece ninguém)
-  | otherwise                     = celebridade (n-1) (a:r) m -- 'b' não é celeb. (todos conhecem celeb.)
-celebridade _ [a]     m           = null (mapKeys ((==a) . fst) m) -- se existir (a,_) no domínio de m, 'a' não é celeb.
+celebridade (a:b:r) m
+  | findWithDefault False (a,b) m = celebridade (b:r) m -- 'a' não é celeb. (celeb. não conhece ninguém)
+  | otherwise                     = celebridade (a:r) m -- 'b' não é celeb. (todos conhecem celeb.)
+celebridade [a]     m = null (mapKeys ((==a) . fst) m)  -- se existir (a,_) no domínio de m, 'a' não é celeb.
 \end{hask}
 \end{tabular}
 \end{center}
