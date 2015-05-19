@@ -231,10 +231,9 @@ retorna o valor \inh{v}).
 
 \inh{filterWithKey :: Ord k => (k -> a -> Bool) -> Map k a -> Map k a}
 é tal que \inh{filterWithKey p m} seleciona (filtra) todos os valores
-q\inh{k}, \inh{v} para os quais \inh{p k v} satisfazem ao predicado
-(i.e.~\inh{p k v} retorna \inh{True}). No caso, queremos selecionar
-apenas os pares \inh{(a,b)}, para algum \inh{b}, que estão no domínio
-de \inh{m}.
+para os quais \inh{p k v} retorna \inh{True}. No caso, queremos
+selecionar os pares \inh{(a,b)}, para algum \inh{b}, que estão no
+domínio de \inh{m}.
 
 O mapeamento que indica se pares de pessoas se conhecem pode ser
 criado com a função \inh{conheceM0}, que cria um mapeamento a partir
