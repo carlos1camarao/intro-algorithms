@@ -130,7 +130,7 @@ lista dada, pode ser definida como a seguir: \index{\inh{elem}}
 \begin{center}
 \begin{tabular}{l}
 \begin{hask}{elem}{\decremento}
-elem :: Eq a => a -> a -> Bool
+elem :: Eq a => a -> [a] -> Bool
 elem a []    = False
 elem a (b:x) = (a == b) || elem a x
 \end{hask}
@@ -228,16 +228,16 @@ elem (k, A)
    i = 0
    while (A[i] != k) do
     i = i + 1
-   return (i < n ? i :  1)
+   return (i < n ? i : -1)
 \end{alg}
 \end{tabular}
 \end{center}
 
 O programa usa uma expressão condicional (em vez do comando
-condicional, ou "comando \ina{if}"), como em \C: a expressão \ina{e ?
-  e1 : e2} denota o mesmo resultado de \ina{e1} ou de \ina{e2}
-conforme a avaliação de \ina{e} seja verdadeira ou falsa,
-respectivamente.
+condicional, ou "comando \ina{if}"), como em \C: a expressão 
+\ina{e ? e1 : e2} denota o mesmo resultado de \ina{e1} ou de 
+\ina{e2} conforme a avaliação de \ina{e} seja verdadeira ou 
+falsa, respectivamente.
 
 \subsection{Inserção}
 \label{sec:insercao-em-lista}
