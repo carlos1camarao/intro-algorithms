@@ -7,9 +7,15 @@ eficiente. Consiste em pesquisar um arranjo ordenado, baseando-se na
 comparação da chave $v$ de pesquisa (i.e.~valor pesquisado) com um
 valor $v'$ na metade do arranjo e repetição dessa operação, se
 $v\not=v'$, considerando apenas a metade à esquerda do arranjo se $v <
-v'$, e à direita de $v > v'$. Veja Figura abaixo.
+v'$, e à direita de $v > v'$. Veja esquema abaixo.
 
-....
+\begin{verbatim}                      
+     a[0] ... a[m-1]  a[m]=v'  a[m+1] ... a[n-1] 
+     |             |           |               |
+     ----pesquisa---           ----pesquisa-----
+         aqui se                   aqui se 
+         v < v'                     v > v'
+\end{verbatim}
 
 Versões recursivas e iterativas são apresentadas, em Haskell e em
 pseudo-código, nas seções \ref{sec:pesquisa-binaria-fun} e
@@ -89,12 +95,12 @@ A versão imperativa é mostrada a seguir, onde supomos que o arranjo
 \begin{center}
 \begin{tabular}{l}
 \begin{alg}{pesqBin}{\decremento}
-pesqBin (chave, A, n) 
+pesqBin (chave, a, n) 
   esq = 0
   dir = n-1
   while esq <= dir
     meio = (esq + dir) / 2
-    v = arr[meio]
+    v = a[meio]
     if (chave < v) dir = meio - 1 else
     if (chave > v) esq = meio + 1
     else return meio 
