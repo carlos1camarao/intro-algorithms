@@ -54,9 +54,12 @@ de balanceamento é igual a -2, são análogas).
 
 \newcommand{\altura}{{\it altura\/}}
 
-A primeira, mostrada no caso \verb+sobE+ abaixo, temos 
-  $\text{\altura\ (\verb+ee+) = \altura\ (\verb+d+)}$.
-Note que: 
+A primeira, mostrada no caso \verb+sobE+ abaixo, temos
+$\text{\altura\ (\verb+ee+) = \altura\ (\verb+d+)}$ antes da inserção
+e o elemento é inserido na sub-árvore \verb+ee+, aumentando a altura
+de \verb+ee+.
+
+ Note que:
   \begin{enumerate}
     \item se
       $\altura\ (\verb+ee+) < \altura\ (\verb+d+)$ então a
@@ -67,6 +70,10 @@ Note que:
       em \verb+ee+.
   \end{enumerate}
    
+Aa segunda, mostrada no caso \verb+sobED+ abaixo, temos
+$\text{\altura\ (\verb+ved+) = \altura\ (\verb+d+)}$ antes da inserção
+e o elemento é inserido na sub-árvore com raiz \verb+ved+. 
+
 \begin{verbatim}
        Caso sobE      Caso sobED
            v              v
