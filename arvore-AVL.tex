@@ -54,10 +54,10 @@ de balanceamento é igual a -2, são análogas).
 
 \newcommand{\altura}{{\it altura\/}}
 
-A primeira, mostrada no caso \verb+sobE+ abaixo, temos
+A primeira possibilidade é mostrada no caso \verb+sobE+ abaixo. Temos
 $\text{\altura\ (\verb+ee+) = \altura\ (\verb+d+)}$ antes da inserção
-e o elemento é inserido na sub-árvore \verb+ee+, aumentando a altura
-de \verb+ee+.
+e o elemento, inserido na sub-árvore \verb+ee+, aumenta a altura de
+\verb+ee+.
 
  Note que:
   \begin{enumerate}
@@ -70,9 +70,11 @@ de \verb+ee+.
       em \verb+ee+.
   \end{enumerate}
    
-Aa segunda, mostrada no caso \verb+sobED+ abaixo, temos
+A segunda possibilidade é mostrada no caso \verb+sobED+ abaixo. Temos
 $\text{\altura\ (\verb+ved+) = \altura\ (\verb+d+)}$ antes da inserção
-e o elemento é inserido na sub-árvore com raiz \verb+ved+. 
+e o elemento, inserido em uma das sub-árvores de \verb+ved+, aumenta a
+altura de \verb+ve+. Neste caso incluímos as sub-árvores de \verb+ved+
+na figura, por motivos didáticos.
 
 \begin{verbatim}
        Caso sobE      Caso sobED
