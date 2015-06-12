@@ -2,6 +2,9 @@
 \chapter{Algoritmos e Árvores de Pesquisa}
 \label{algoritmos-de-pesquisa}
 
+\index{algoritmos!de pesquisa}
+\index{pesquisa}
+\index{chave!de pesquisa}
 Pesquisar em computação significa encontrar um dado valor, chamado de
 {\em chave da pesquisa\/}, dentre vários valores existentes. Os
 valores existentes podem estar representados de várias formas, mas
@@ -9,19 +12,22 @@ vamos tratar neste livro apenas de listas e árvores.  Mesmo nos
 restringindo apenas a essas formas de representação de valores,
 existem vários algoritmos de pesquisa. 
 
-Na seção \ref{sec:pesquisa-em-lista} apresentamos um algoritmo simples
-de {\em pesquisa sequencial\/} em listas (incluindo representação com
-arranjos). Duas variações simples dessa pesquisa sequencial são
-apresentadas nos exercícios resolvidos. A primeira é baseada em
-pesquisa em lista ordenada, que termina a pesquisa sequencial quando a
-chave da pesquisa é encontrada ou quando se torna maior do que um
-elemento da lista (supondo ordem crescente dos valores na lista). A
-segunda usa o que é chamado de {\em sentinela} --- um elemento
-adicionado ao extremo (tipicamente, de arranjo), para evitar teste
-para verificar chegada a esse extremo (por isso, é usada somente
-quando o número de elementos que pode ser armazenado é limitado, como
-ocorre no caso de arranjos).
 
+\index{pesquisa!sequencial} Na seção \ref{sec:pesquisa-em-lista}
+apresentamos um algoritmo simples de {\em pesquisa sequencial\/} em
+listas (incluindo representação com arranjos). Duas variações simples
+dessa pesquisa sequencial são apresentadas nos exercícios
+resolvidos. A primeira é baseada em pesquisa em lista ordenada, que
+termina a pesquisa sequencial quando a chave da pesquisa é encontrada
+ou quando se torna maior do que um elemento da lista (supondo ordem
+crescente dos valores na lista). A segunda usa o que é chamado de {\em
+  sentinela} \index{sentinela} --- um elemento adicionado ao extremo
+(tipicamente, de arranjo), para evitar teste para verificar chegada a
+esse extremo (por isso, é usada somente quando o número de elementos
+que pode ser armazenado é limitado, como ocorre no caso de arranjos).
+
+\index{pesquisa!binária}
+\index{árvore!binária}
 A seção \ref{sec:pesquisa-binaria} apresenta o eficiente algoritmo de
 pesquisa em um arranjo ordenado chamada de {\em pesquisa binária}.  A
 seção \ref{sec:arvore-binaria-de-pesquisa} apresenta algoritmos de
@@ -143,13 +149,15 @@ Essas três possibilidades são ilustradas abaixo.
 \item \label{ex:alg-ins-arv-AVL} Escreva programa para percorrer e
   imprimir árvores resultantes de inserções de elementos em árvore,
   usando versão imperativa e/ou funcional do algoritmo de inserção em
-  árvore AVL.
+  árvore AVL.  
 
 \item \label{ex:alg-rem-arv-AVL} Escreva programa para percorrer e
   imprimir árvores resultantes de inserções repetidas com remoções de
-  alguns elementos inseridos, em uma árvore vazia, usando versão
-  imperativa e/ou funcional dos algoritmos de inserção e remoção em
-  árvore AVL.
+  alguns elementos inseridos em uma árvore, usando versão imperativa
+  e/ou funcional dos algoritmos de inserção e remoção em árvore AVL.
+
+  Mostre a complexidade de tempo de execução do algoritmo de remoção
+  de elemento de árvore AVL.
 
 \item \label{ex:pesquisa-por-interpolacao} \index{pesquisa!por
   interpolação} A pesquisa por interpolação é bastante similar à
