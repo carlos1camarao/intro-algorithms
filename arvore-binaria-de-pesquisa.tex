@@ -2,6 +2,7 @@
 \section{Árvore binária de pesquisa}
 \label{sec:arvore-binaria-de-pesquisa}
 
+\index{árvore binária de pesquisa}
 Uma árvore binária de pesquisa é uma árvore binária --- isto é, um
 árvore com duas sub-árvores (possivelmente vazias), digamos, à
 esquerda e à direita --- com os elementos contidos nos nodos, um
@@ -26,6 +27,7 @@ A propriedade fundamental de uma árvore binária de pesquisa é o acesso
 eficiente a um elemento (veja abaixo comentário sobre a complexidade
 logarítmica da pesquisa por um elemento no caso médio).
 
+\index{dicionário}
 Uma árvore binária de pesquisa é uma importante estruturas de dados,
 gerando implementações simples de pesquisa, inserção e remoção. Em
 computação, um {\em dicionário\/} é um tipo abstrato que define tais
@@ -51,6 +53,7 @@ internos da árvore apresentada na seção \ref{sec:arvores}:
 A pesquisa por um elemento em uma árbore de pesquisa binária é um
 algoritmo simples, mostrado a seguir:
 
+\index{\inh{pesq}}
 \begin{center}
 \begin{tabular}{l}
 \begin{hask}{pesq}{\decremento}
@@ -73,7 +76,8 @@ A complexidade de tempo de \inh{pesq} é determinada a seguir:
   \item A operações relevantes são a comparação (uso de \inh{compare})
     e o casamento de padrão.
 
-  \item \label{complexidade-da-pesquisa-binaria-no-pior-caso} A
+  \item \label{complexidade-da-pesquisa-binaria-no-pior-caso}
+    \index{complexidade!de pesquisa binária} A
     expressão-determinante-da-eficiência é, no pior caso, igual a
     $T(n-1) + k$, onde $k$ é uma constante que expressa o tempo de
     execução da comparação. No pior caso, o elemento está em
@@ -119,6 +123,7 @@ Em uma árvore totalmente desbalanceada, temos no entanto $p = n-1$.
 
 \subsubsection{Inserção}
 
+\index{inserção!em árvore binária de pesquisa}
 O algoritmo para inserção de elementos em uma árvore binária de
 pesquisa é semelhante ao algoritmo de pesquisa:
 
@@ -134,12 +139,14 @@ ins v t@(NodoB v' t1 t2) = case compare v v' of
 \end{tabular}
 \end{center}
 
+\index{complexidade!de inserção em árvore de pesquisa}
 O tempo de complexidade do algoritmo de inserção é o mesmo do de
 pesquisa: $lg n$ no caso de uma árvore balanceada, mas linear no pior
 caso de uma árvore desbalanceada.
 
 \subsubsection{Remoção}
 
+\index{remoção!de árvore binária de pesquisa}
 Para remoção de um nodo $n$, raiz de uma árvore $t$, o algoritmo de
 remoção de elemento essencialmente subsititui $n$ pelo menor elemento
 da sub-árvore direita de $t$ (e remove este menor elemento dessa
@@ -173,6 +180,7 @@ min (NodoB a l      r) = Just (m,r)
 \end{tabular}
 \end{center}
 
+\index{complexidade!de remoção em árvore de pesquisa}
 O tempo de complexidade do algoritmo de remoção de elementos é também
 o mesmo do de pesquisa: $lg n$ no caso de uma árvore balanceada, mas
 linear no pior caso de uma árvore desbalanceada.
@@ -194,9 +202,11 @@ struct ArvoreBinariaDeInteiros
 
 \subsubsection{Pesquisa}
 
+\index{pesquisa!em árvore binária de pesquisa!imperativa}
 A pesquisa iterativa por um valor em uma árvore binária de pesquisa
 com valores inteiros é apresentada a seguir:
 
+\index{\ina{pesq}}
 \begin{center}
 \begin{tabular}{l}
 \begin{alg}{pesq}{\decremento}
@@ -280,6 +290,7 @@ propriedade de complexidade logarítmica para as operações de inserção,
 remoção, pesquisa e ordenação de valores, baseados principalmente em
 técnicas de transformação: simplificação ou mudança de representação.
 
+\index{árvore!AVL}
 A simplificação transforma árvores não balanceadas em árvores
 balanceadas (segundo alguma critério de balanceamento) sem adicionar
 nenhuma informação adicional a nodos da árvore. A seção
@@ -289,6 +300,7 @@ entre a altura das sub-árvores de qualquer nodo não deve ser maior que
 entre esse nodo e uma folha. A altura de uma árvore é altura do nodo
 raiz da árvore.
 
+\index{árvore!movPraRaiz}
 Outro estrutura de dados que provê balanceamento de árvores de
 pesquisa baseada na técnica de transformação por simplificação é a que
 vamos chamar de {\em árvores MovPraRaiz\/} (em inglês, {\em splay
@@ -296,6 +308,9 @@ vamos chamar de {\em árvores MovPraRaiz\/} (em inglês, {\em splay
 operações de inserção, remoção ou pesquisa.  Árvores MovPraRaiz são
 abordadas no exercício resolvido \ref{ex:arvores-MovPraRaiz}.
 
+\index{árvore!bicolor}
+\index{árvore!{\em read-black\/}}
+\index{árvore!B}
 Exemplos de balanceamento via mudança de representação ocorrem com os
 seguintes tipos de árvore: {\em árvore bicolor\/} (também chamadas de
 vermelha-e-preta ou rubro-negra, em inglês {\em red-black tree\/}) e
