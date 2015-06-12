@@ -133,19 +133,20 @@ nodo).
 %1   4   6
 %\end{verbatim}
 
-A tarefa de determinar, usando apenas o próprio fator de
-balanceamento, a variação do fator de balanceamento após uma inserção,
-e demonstrar que tal variação é verificada em todos os casos, é
-deixada para trabalho futuro. Não encontramos na literatura textos que
-abordam o assunto de forma clara e precisa.
+%A tarefa de determinar, usando apenas o próprio fator de
+%balanceamento, a variação do fator de balanceamento após uma inserção,
+%e demonstrar que tal variação é verificada em todos os casos, é
+%deixada para trabalho futuro. Não encontramos na literatura textos que
+%abordam o assunto de forma clara e precisa.
 
 O armazenamento da altura em cada nodo evita ter que calcular a altura
 de cada nodo que está no caminho da árvore até o nodo inserido, o que
-seria desnecessariamente ineficiente. 
+seria desnecessariamente ineficiente.
 
 \subsubsection{Versão funcional}
 
-A inserção de elemento em árvore AVL é feita em Haskell como a seguir:
+A inserção de elemento em árvore AVL pode ser feita em Haskell como a
+seguir:
 
 \begin{center}
 \begin{tabular}{l}
@@ -204,6 +205,9 @@ sobDE (Nodo v _ e (Nodo vd _ (Nodo vde _ dee ded) dd)) =
 
 altura (Nodo _ a _ _) = a
 altura Vazia          = 0
+
+vazia Vazia = True
+vazia _     = False
 \end{hask}
 \end{tabular}
 \end{center}
@@ -315,7 +319,41 @@ $T(n) \asymp lg n$.
 
 \subsection{Remoção}
 
+A remoção de um nodo de uma árvore AVL é feita de modo similar à
+inserção, com a verificação do fator de balanceamento de cada nodo que
+está no caminho da raiz até o removido. 
+
+A versão funcional é apresentada a seguir. A versão imperativa é
+deixada como exercício (exercício \ref{ex:alg-rem-arv-AVL}).
+
 \subsubsection{Versão funcional}
 
-\subsubsection{Versão imperativa}
+A remoção de um elemento de uma árvore AVL pode ser feita em Haskell
+como a seguir:
+
+\begin{center}
+\begin{tabular}{l}
+\begin{hask}{del}{\decremento}
+del:: (Show a, Ord a) => a -> ArvoreAVL a -> ArvoreAVL a
+del k Vazia              = Vazia
+del k arv@(Nodo v _ e d) = 
+ case compare k v of 
+  LT -> let e1 = del k e; ad = altura d; a1 = altura e1
+         in if ad - a1 == 2 -- condição AVL precisa ser restaurada: _d_ sobe 
+            then sobD (Nodo v undefined e1 d)
+            else Nodo v (max a1 ad + 1) e1 d
+  GT -> let d1 = del k d; ae = altura e; a1 = altura d1
+         in if ae - a1 == 2 -- condição AVL precisa ser restaurada: _e_ sobe 
+            then sobE (Nodo v undefined e d1)
+            else Nodo v (max ae a1 + 1) e d1
+  _  -> if vazia e then d else
+        if vazia d then e else Nodo v' (max (altura e') (altura d') + 1) e' d'
+  where
+    (Nodo v' _ e1 d1, e', d')  
+       | altura e >= altura d = (sobE (Nodo v undefined e d), e1, del k d1) 
+       | otherwise            = (sobD (Nodo v undefined e d), del k e1, d1) 
+
+\end{hask}
+\end{tabular}
+\end{center}
 
