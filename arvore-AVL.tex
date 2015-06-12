@@ -2,11 +2,13 @@
 \section{Árvore AVL}
 \label{sec:arvore-AVL}
 
+\index{árvore!AVL}
 O nome AVL é proveniente das iniciais dos sobrenomes dos dois
 pesquisadores russos G.~M.~\underline{A}delson-\underline{V}elsky e
 E.~M.~\underline{L}andis, que foram os primeiros a definir e realizar
 trabalhos com esse tipo de árvore.
 
+\index{fator de balanceamento}
 Seja $n$ um nó de uma árvore binária, $ad_n$ e $ae_n$ as alturas da
 sub-árvore esquerda e direita de $n$, respectivamente, e seja $k_n =
 ae_n - ad_n $ o {\em fator de balanceamento\/} do nodo (i.e.~o fator
@@ -36,6 +38,9 @@ seguintes.
 \subsection{Inserção}
 \label{sec:insercao-em-arvores-AVL-versao-func}
 
+\index{inserção!em árvore AVL}
+\index{árvore!AVL!inserção}
+\index{rotação!em árvore AVL}
 Após inserção de nodo em uma árvore AVL, é feita uma verificação do
 fator de balanceamento de cada nodo que está no caminho da raiz até o
 nodo inserido. Se a inserção tornar o fator de balanceamento maior que
@@ -145,9 +150,16 @@ seria desnecessariamente ineficiente.
 
 \subsubsection{Versão funcional}
 
+\index{inserção!em árvore AVL!versão funcional}
+\index{árvore!AVL!inserção}
 A inserção de elemento em árvore AVL pode ser feita em Haskell como a
 seguir:
 
+\index{\inh{ins}}
+\index{\inh{sobE}}
+\index{\inh{sobED}}
+\index{\inh{sobD}}
+\index{\inh{sobDE}}
 \begin{center}
 \begin{tabular}{l}
 \begin{hask}{ins}{\decremento}
@@ -225,6 +237,8 @@ elementos da árvore):
 
 \subsubsection{Versão imperativa}
 
+\index{inserção!em árvore AVL!versão imperativa}
+\index{árvore!AVL!inserção}
 A versão imperativa, mostrada abaixo, usa:
   
   \begin{itemize}
@@ -246,6 +260,11 @@ A versão imperativa, mostrada abaixo, usa:
 
  \end{itemize}
 
+\index{\ina{ins}}
+\index{\ina{sobE}}
+\index{\ina{sobED}}
+\index{\ina{sobD}}
+\index{\ina{sobDE}}
 \begin{center}
 \begin{tabular}{l}
 \begin{alg}{ins}{\decremento}
@@ -319,6 +338,8 @@ $T(n) \asymp lg n$.
 
 \subsection{Remoção}
 
+\index{remoção!de árvore AVL!versão funcional}
+\index{árvore!AVL!remoção}
 A remoção de um nodo de uma árvore AVL é feita de modo similar à
 inserção, com a verificação do fator de balanceamento de cada nodo que
 está no caminho da raiz até o removido. 
