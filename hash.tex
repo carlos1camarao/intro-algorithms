@@ -1,6 +1,9 @@
 % !TEX encoding = ISO-8859-1
 \chapter{Algoritmos de Dispersão (Hash)}
 \label{dispersao}
+\index{dispersao@dispersão}
+\index{dispersao@dispersão!algoritmos de}
+\index{hash}
 
 Este capítulo apresenta uma técnica simples e eficiente de
 implementação de dicionários que ilustra bem o compromisso entre tempo
@@ -9,8 +12,8 @@ dados. O uso de mais espaço pode diminuir o tempo e o uso de menos
 espaço pode aumentar o tempo de execução, mas há sempre um limite
 superior para a quantidade de espaço a ser utilizada.
 
-\index{dicionário} Em computação, um dicionário é um tipo abstrato que
-define operações de inserção, remoção e pesquisa.
+\index{dicionario@dicionário} Em computação, um dicionário é um tipo
+abstrato que define operações de inserção, remoção e pesquisa.
 
 Os dados são usualmente organizados em registros com diversos campos,
 dentre eles um ou mais campos que são usados como {\em chave\/} para a
@@ -22,10 +25,10 @@ distribuir os dados em um vetor de certo tamanho --- que vamos chamar
 de tabela de dispersão --- usando uma {\em função de dispersão\/}, que
 associa um índice do vetor a cada chave.
 
-Por exemplo, se a chave é um inteiro positivo ou nulo e a tabela de
-dispersão tem tamanho $m$, a função de dispersão pode ser a função
-$\disperse$ tal que $\disperse(v) = v \% m$, onde $\%$ é a função que
-calcula o resto da divisão de números inteiros.
+\index{\disperse} Por exemplo, se a chave é um inteiro positivo ou
+nulo e a tabela de dispersão tem tamanho $m$, a função de dispersão
+pode ser a função $\disperse$ tal que $\disperse(v) = v \% m$, onde
+$\%$ é a função que calcula o resto da divisão de números inteiros.
 
 % Se a chave for um caractere, a função de dispersão $\disperse$ pode
 % ser tal que $\delta(v) = \ord(v) \% m$, onde $\ord$ é a função que
@@ -34,27 +37,29 @@ calcula o resto da divisão de números inteiros.
 % caractere; hoje em dia usualmente Unicode ou uma variação do código
 % Unicode, antigamente usava-se código Ascii.
 
-A distribuição dos valores a serem pesquisados em uma tabela é um bom
-exemplo do compromisso entre tempo e espaço, fundamental no projeto de
-algoritmos. Se não houver limitação de memória, poderia ser definido
-um tamanho de vetor bastante grande de modo que um único índice fosse
-associado a cada valor. Se não houver limitação de tempo, o projeto
-poderia não usar dispersão (i.e.~considerar vetor de tamanho nulo) e
-usar algoritmos sequenciais em uma lista. Na prática, deve-se procurar
-determinar um tamanho que não gaste espaço de memória de mais e nem de
-menos, para a tabela de dispersão. Há algoritmos que dinamicamente
-alteram (tipicamente, dobram) o tamanho da tabela, quando o {\em fator
-  de ocupação\/} --- número de elementos existentes dividido pelo
-tamanho (número de índices) da tabela --- alcança um valor
-pré-estabelecido (igual ou pouco maior que 0,5).
+\index{compromisso entre tempo e espaço} A distribuição dos valores a
+serem pesquisados em uma tabela é um bom exemplo do compromisso entre
+tempo e espaço, fundamental no projeto de algoritmos. Se não houver
+limitação de memória, poderia ser definido um tamanho de vetor
+bastante grande de modo que um único índice fosse associado a cada
+valor. Se não houver limitação de tempo, o projeto poderia não usar
+dispersão (i.e.~considerar vetor de tamanho nulo) e usar algoritmos
+sequenciais em uma lista. Na prática, deve-se procurar determinar um
+tamanho que não gaste espaço de memória de mais e nem de menos, para a
+tabela de dispersão. Há algoritmos que dinamicamente alteram
+(tipicamente, dobram) o tamanho da tabela, quando o {\em fator de
+  ocupação\/} --- número de elementos existentes dividido pelo tamanho
+(número de índices) da tabela --- alcança um valor pré-estabelecido
+(igual ou pouco maior que 0,5).  \index{fator de ocupação!de tabela de
+  dispersão}
 
-\index{algoritmos de dispersão!aberto} \index{algoritmos de
-  dispersão!fecheado} Uma {\em colisão\/} ocorre quando a função de
-dispersão retorna o mesmo índice para duas ou mais chaves. Colisões
-devem ocorrer raramente se o tamanho da tabela de dispersão é grande e
-uma boa função de dispersão é usada. Mas um mecanismo de tratamento de
-colisões é em geral necessário em todo algoritmo de dispersão, devido
-à possibilidade de ocorrência de colisões.
+\index{colisão!em algoritmos de dispersão} Uma {\em colisão\/} ocorre
+quando a função de dispersão retorna o mesmo índice para duas ou mais
+chaves. Colisões devem ocorrer raramente se o tamanho da tabela de
+dispersão é grande e uma boa função de dispersão é usada. Mas um
+mecanismo de tratamento de colisões é em geral necessário em todo
+algoritmo de dispersão, devido à possibilidade de ocorrência de
+colisões.
 
 A dispersão de valores se baseia no fato de que é mais eficiente
 procurar um valor em um subconjunto de todos os valores, i.e.~o
@@ -63,14 +68,21 @@ mesmo resultado. A pesquisa usando dispersão é o método conhecido mais
 poderoso e o mais usado para pesquisa de dados. A maioria dos sistemas
 de recuperação de dados usados atualmente são baseados em dispersão.
 
-Há duas versões de tratamento de colisões em algoritmos de dispersão:
-{\em aberto\/} e {\em fechado}. 
+\index{tratamento de colisões!em algoritmos de dispersão!aberto}
+\index{tratamento de colisões!em algoritmos de dispersão!fechado} Há
+duas versões de tratamento de colisões em algoritmos de dispersão:
+{\em aberto\/} e {\em fechado}.
 
+\index{tratamento de colisões!em algoritmos de dispersão!aberto}
+\index{encadeamento separado}
 No tratamento aberto, também chamado de tratamento de colisão por {\em
   encadeamento separado\/} (em inglês, {\em separate chaining\/}), a
 tabela de dispersão é uma tabela de apontadores para lista de
 elementos para os quais houve colisão.
 
+\index{endereçamento aberto}
+\index{sondagem linear}
+\index{tratamento de colisões!em algoritmos de dispersão!fechado}
 No tratamento fechado, também chamado de {\em endereçamento aberto\/}
 (em inglês, {\em open addressing\/}), todas as chaves são armazenadas
 na própria tabela (o que implica que o tamanho da tabela é maior que o
