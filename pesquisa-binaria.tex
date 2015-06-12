@@ -2,12 +2,13 @@
 \section{Pesquisa binária}
 \label{sec:pesquisa-binaria}
 
-O algoritmo de pesquisa binária é um algoritmo bastante simples e
-eficiente. Consiste em pesquisar um arranjo ordenado, baseando-se na
-comparação da chave $v$ de pesquisa (i.e.~valor pesquisado) com um
-valor $v'$ na metade do arranjo e repetição dessa operação, se
-$v\not=v'$, considerando apenas a metade à esquerda do arranjo se $v <
-v'$, e à direita de $v > v'$. Veja esquema abaixo.
+\index{pesquisa!binária} O algoritmo de pesquisa binária é um
+algoritmo bastante simples e eficiente. Consiste em pesquisar um
+arranjo ordenado, baseando-se na comparação da chave $v$ de pesquisa
+(i.e.~valor pesquisado) com um valor $v'$ na metade do arranjo e
+repetição dessa operação, se $v\not=v'$, considerando apenas a metade
+à esquerda do arranjo se $v < v'$, e à direita de $v > v'$. Veja
+esquema abaixo.
 
 \begin{verbatim}                      
      a[0] ... a[m-1]  a[m]=v'  a[m+1] ... a[n-1] 
@@ -21,6 +22,10 @@ Versões recursivas e iterativas são apresentadas, em Haskell e em
 pseudo-código, nas seções \ref{sec:pesquisa-binaria-fun} e
 \ref{sec:pesquisa-binaria-imp} a seguir. 
 
+\index{dividir-para-conquistar}
+\index{técnica de divisão!dividir-para-conquistar}
+\index{divide-and-conquer@{\em divide and conquer\/}}
+\index{Levitin}
 A pesquisa binária é às vezes apresentada como o melhor exemplo da
 técnica de divisão (comumente chamada de ``dividir-para-conquistar'',
 em inglês {\em divide-and-conquer\/}). No entanto, isso não está de
@@ -40,6 +45,7 @@ por divisão à metade). Esta observação foi feita por Levitin
 
 A versão recursiva é mostrada a seguir.
 
+\index{\inh{pesqBin}}
 \begin{center}
 \begin{tabular}{l}
 \begin{hask}{pesqBin'}{\decremento}
@@ -59,6 +65,7 @@ pesqBin v a = pesqBin' (bounds a)
 \end{tabular}
 \end{center}
 
+\index{\inh{compare}}
 Uma pequena otimização é que é realizada uma única comparação, usando
 \inh{compare v v'}, que retorna se \inh{v} é menor (\inh{LT}, as
 iniciais de {\em \underline{l}ess \underline{t}han\/}), maior
@@ -92,6 +99,7 @@ Uma solução dessa relação de recorrência foi apresentada na seção
 A versão imperativa é mostrada a seguir, onde supomos que o arranjo
 (\ina{A}) tem \ina{n} elementos (indexados de \ina{0} a \ina{n}-1).
 
+\index{\ina{pesqBin}}
 \begin{center}
 \begin{tabular}{l}
 \begin{alg}{pesqBin}{\decremento}
