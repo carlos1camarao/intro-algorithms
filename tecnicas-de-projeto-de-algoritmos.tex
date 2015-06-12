@@ -2,13 +2,17 @@
 \chapter{Técnicas de Projeto de Algoritmos}
 \label{ch:tecnicas-de-projeto-de-algoritmos}
 
+\index{técnicas de projeto de algoritmos}
+\index{Levitin}
 Consideramos as seguintes técnicas de projeto de algoritmos (seguindo
 as ideias de Levitin \cite{Levitin:Introd-Design-Analysis-Alg}):
 
 \begin{description}
 
-\item[Divisão] (em inglês, chamada de {\em divide-and-conquer\/}): é
-  baseada em dividir a instância do problema em duas ou mais partes
+\item[Divisão] (em inglês, chamada de {\em divide-and-conquer\/}):
+  \index{técnica de projeto de algoritmos!divisão} 
+  \index{técnica de projeto de algoritmos!{\em divide-and-conquer\/}} 
+  é baseada em dividir a instância do problema em duas ou mais partes
   menores, resolver essas duas ou mais sub-instâncias e combinar os
   resultados obtidos para solução do problema original.
 
@@ -20,15 +24,18 @@ as ideias de Levitin \cite{Levitin:Introd-Design-Analysis-Alg}):
   \ref{sec:mergeSort}). 
 
 \item[Decremento] (em inglês, chamada de {\em
-  decrease-and-conquer\/}): é baseada em passar da instância original
-  para uma instância menor ou reduzir o tamanho da entrada do problema
-  para solução da instância original. O decréscimo é tipicamente de um
-  valor ou por um fator constante no tamanho da entrada, mas pode
-  também ser um decréscimo de um valor ou por um fator variável. Note
-  que o decremento por um fator constante não é caracterizado como
-  divisão (seguindo \cite{Levitin:Introd-Design-Analysis-Alg}): a
-  diferença está em que decrementar não origina duas ou mais
-  sub-instâncias (apenas decrementa o tamanho da entrada).
+  decrease-and-conquer\/}): 
+  \index{técnica de projeto de algoritmos!decremento} 
+  \index{técnica de projeto de algoritmos!{\em decrease-and-conquer\/}} 
+  é baseada em passar da instância original para uma instância menor
+  ou reduzir o tamanho da entrada do problema para solução da
+  instância original. O decréscimo é tipicamente de um valor ou por um
+  fator constante no tamanho da entrada, mas pode também ser um
+  decréscimo de um valor ou por um fator variável. Note que o
+  decremento por um fator constante não é caracterizado como divisão
+  (seguindo \cite{Levitin:Introd-Design-Analysis-Alg}): a diferença
+  está em que decrementar não origina duas ou mais sub-instâncias
+  (apenas decrementa o tamanho da entrada).
 
   A vasta maioria dos algoritmos apresentados neste livro usam a
   técnica de decremento. Veja por exemplo \inh{maiorElem} (seção
@@ -41,6 +48,8 @@ as ideias de Levitin \cite{Levitin:Introd-Design-Analysis-Alg}):
   \inh{fib} (seção \ref{sec:numeros-de-fibonacci}).
 
 \item[Uso-da-Definição] (também chamada de {\em força bruta\/}):
+  \index{técnica de projeto de algoritmos!uso-da-definição} 
+  \index{técnica de projeto de algoritmos!força-bruta} 
   baseada em uso direto da especificação do problema e das definições
   dos conceitos envolvidos na especificação do problema e, além disso,
   quando a técnica não se encaixa em alguma das demais técnicas acima.
@@ -51,9 +60,9 @@ as ideias de Levitin \cite{Levitin:Introd-Design-Analysis-Alg}):
 
 \end{description}
 
-Vamos chamar cada técnica do conjunto de técnicas acima de TPA. Todo
-programa apresentado neste livro é classificado segundo uma, e apenas
-uma, TPA. O objetivo é o de motivar e ajudar no processo de
+\index{TPA} Vamos chamar cada técnica do conjunto de técnicas acima de
+TPA. Todo programa apresentado neste livro é classificado segundo uma,
+e apenas uma, TPA. O objetivo é o de motivar e ajudar no processo de
 desenvolvimento do raciocínio usado na elaboração de algoritmos. É
 instrutivo não apenas entender a classificação e procurar classificar
 algoritmos segundo uma TPA, mas também considerar a existência ou não
@@ -76,24 +85,31 @@ Quando não se trata de um algoritmo, ou quando são incluídas várias
 funções e não está se considerando a análise da eficiência de um
 algoritmo, é usado fundo branco.
 
+\index{técnicas de solução de problemas}
 As técnicas de projeto de algoritmos abaixo, tradicionalmente vistas
-como principais, são consideradas como sub-classificações, por não
-constituir base para classificação de algoritmos em geral:
+como principais, são consideradas não como técnicas de projeto de
+algoritmos mas como técnicas de solução de problemas, não constituindo
+base para classificação de algoritmos específicos:
 
   \begin{enumerate}
 
-     \item gananciosa (em inglês, {\em greedy\/}) --- para problemas
-       de {\em otimização\/}, baseada na escolha de {\em ótimo\/}
-       local, i.e.~baseada em fazer melhor escolha na fase ou instante
-       corrente.
+     \item gananciosa (em inglês, {\em greedy\/}) 
+       \index{técnica de solução de problema!gananciosa}}
+       \index{técnica de solução de problema!{\em greedy\/}}}
+       --- para problemas de {\em otimização\/}, baseada na escolha de
+       {\em ótimo\/} local, i.e.~baseada em fazer melhor escolha na
+       fase ou instante corrente.
 
        Exemplos...
 
      \item programação dinâmica --- ....
+       \index{técnica de solução de problema!programação dinâmica}}
 
-     \item busca exaustiva --- baseada na tentativa de todos os
-       possíveis valores que possam levar a uma solução, até que uma
-       solução seja encontrada. É um caso de uso-da-definição.
+     \item busca exaustiva --- 
+       \index{técnica de solução de problema!busca exaustiva}
+       baseada na tentativa de todos os possíveis valores que possam
+       levar a uma solução, até que uma solução seja encontrada. É um
+       caso de uso-da-definição.
 
        A limitação mais importante da busca exaustiva é sua
        ineficiência. Em geral, o número de possíveis valores que podem
@@ -104,6 +120,7 @@ constituir base para classificação de algoritmos em geral:
        Exemplos ....
 
      \item retrocedimento (em inglês, {\em backtracking\/}) ---
+       \index{técnica de solução de problema!retrocedimento}
        baseada na tentativa de realizar escolhas, dentre opções
        existentes, para construção da solução passo a passo e
        retroceder na escolha feita em um passo se esta escolha não
@@ -136,6 +153,10 @@ constituir base para classificação de algoritmos em geral:
 %         \item[{\colorbox{\preProcess}{pré-processamento}}]
 %      \end{description}
 
+\index{técnica de solução de problemas!transformação}
+\index{técnica de solução de problemas!{\em transform-and-conquer\/}}
+\index{transformação}
+\index{{\em transform-and-conquer\/}}
 Levitin considera também a técnica de transformação (em inglês,
 chamada de {\em transform-and-conquer\/}), baseada em transformar a
 instância do problema original em outra instância do mesmo ou de outro
@@ -145,6 +166,10 @@ transformação para uma instância do mesmo problema pode envolver {\em
   simplificação\/} ou {\em mudança de representação\/} ou {\em
   pré-processamento\/} da entrada.
 
+\index{técnica de solução de problemas!simplificação}
+\index{simplificação}
+\index{técnica de solução de problemas!mudança de representação}
+\index{mudança de representação}
 A simplificação não envolve mudança de representação da entrada: usa a
 mesma representação original, transformando a entrada para que ela
 tenha alguma propriedade que torna a solução do problema mais fácil ou
@@ -154,17 +179,19 @@ adicionais sobre os dados de entrada, para obtenção de dados extras,
 novamente para tornar a solução do problema mais fácil ou mais
 eficiente.
 
-Consideramos que a técnica de transformação está em um outro nível,
-acima das TPAs. Ela constitui uma técnica de projeto usada para
-solução de um problema mas não uma classificação de técnica de projeto
-usada para um algoritmo particular, como acontece nos casos das
-TPAs. Consideramos o projeto de algoritmos como tendo duas fases: a
-primeira consiste em decidir se uma transformação vai ser usada ou
-não. A segunda fase consiste do projeto do algoritmo propriamente dito
-(usando uma das TPAs). Na primeira fase, se a técnica de transformação
-for usada, a transformação precisa ser especificada e implementada,
-ela própria, por meio de um algoritmo, o qual deve ser classificado de
-acordo com alguma TPA.
+Consideramos que a técnica de transformação está, assim como as
+técnicas gananciosa, programação dinâmica, busca exaustiva e
+retrocedimento, mencionadas acima, em um outro nível, acima das
+TPAs. Elas constituem técnicas usadas para solução de um problema mas
+não uma classificação de técnica de projeto usada para um algoritmo
+particular, como acontece nos casos das TPAs. 
+
+O projeto de algoritmos é composto por duas fases: a primeira consiste
+em decidir qual técnica usar para solução do problema. A segunda fase
+consiste no projeto do algoritmo propriamente dito, usando uma das
+TPAs. Seja qual for a técnica adotada na solução de um problema, o
+algoritmo deve ser projetado e implementado, e poderá então ser
+classificado de acordo com alguma TPA.
 
 \section{Exercícios Resolvidos}
 
@@ -173,9 +200,15 @@ indique a TPA usada.
 
 \begin{enumerate}
 
-\item \label{ex:caminhamento-em-arvores-binarias} Considere o problema
-  de caminhamento em árvores (aplicado em geral a grafos) chamados de
-  {\em busca em profundidade\/} e {\em busca em largura\/}.
+\item \label{ex:caminhamento-em-arvores-binarias} 
+      \index{caminhamento em árvore binária}
+      \index{árvore binária!caminhamento}
+      \index{árvore binária!busca em profundidade}
+      \index{árvore binária!busca em largura}
+
+  Considere o problema de caminhamento em árvores (aplicado em geral a
+  grafos) chamados de {\em busca em profundidade\/} e {\em busca em
+    largura\/}.
 
   A busca em profundidade ...
 
@@ -186,13 +219,15 @@ indique a TPA usada.
     representação com primogênito-irmão-e-pai} (e indique a técnica
   usada em cada algoritmo).
 
-\item Problema da Celebridade: uma celebridade de um grupo de $n$
-  pessoas é uma pessoa que não conhece ninguém do grupo mas é
-  conhecida por todas as pessoas do grupo.  O problema consiste em,
-  dados: i) $n$, ii) uma lista de pessoas, e iii) uma tabela que
-  indica, para cada par de pessoas $(a,b)$ da lista, se $a$ conhece
-  $b$, identificar uma celebridade do grupo de pessoas (supondo, por
-  simplicidade, que uma celebridade de fato existe).
+\item Problema da Celebridade: \index{celebridade}
+      \index{problema da celebridade}
+  uma celebridade de um grupo de $n$ pessoas é uma pessoa que não
+  conhece ninguém do grupo mas é conhecida por todas as pessoas do
+  grupo.  O problema consiste em, dados: i) $n$, ii) uma lista de
+  pessoas, e iii) uma tabela que indica, para cada par de pessoas
+  $(a,b)$ da lista, se $a$ conhece $b$, identificar uma celebridade do
+  grupo de pessoas (supondo, por simplicidade, que uma celebridade de
+  fato existe).
 
   {\bf Solução}: O algoritmo que soluciona o problema usa a técnica de
   decremento. Se só há duas ou mais pessoas quaisquer $a$ e $b$ na
