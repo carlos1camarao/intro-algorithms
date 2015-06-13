@@ -230,15 +230,26 @@ indique a TPA usada.
   fato existe).
 
   {\bf Solução}: O algoritmo que soluciona o problema usa a técnica de
-  decremento. Se só há duas ou mais pessoas quaisquer $a$ e $b$ na
-  lista, o algoritmo verifica se $a$ conhece $b$; em caso positivo,
-  $a$ é removido da lista (celebridades não conhecem ninguém) e, em
-  caso negativo, $b$ é removido (celebridades são conhecidas por
-  todos). Se há só uma pessoa na lista, essa pessoa é uma celebridade.
+  decremento. O essential é considerar (``descobrir'') que basta usar
+  um mapeamento que, para cada pessoa, guarda duas informações: 1) se
+  ela conhece alguém, e 2) o número de pessoas que a conhece.  Ou
+  seja, não é preciso uma estrutura de dados ``bi-dimensional'', que
+  guarda uma lista de informações para cada pessoa, nem um arranjo
+  bidimensional de pessoas.  
+
+  Para cada par de pessoas $a$ e $b$ tais que $a$ conhece $b$, o
+  algoritmo simplesmente armazena que $a$ conhece alguém (portanto,
+  não pode ser celebridade) e incrementa o número de pessoas que
+  conhece $b$. No final, só pode existir uma única pessoa que não
+  conhece ninguém (se existirem duas pessoas que não conhecem ninguém,
+  não há celebridade); para esta única pessoa que não conhece ninguém,
+  basta verificar se o número de pessoas que a conhece é igual ao
+  total de pessoas menos 1.
  
 {\bf Versão funcional}: Em Haskell, usamos abaixo um mapeamento, em
-vez de um arranjo, para definir quando duas pessoas se conhecem ou
-não.
+vez de um arranjo, para armazenar, para cada pessoa ($p$), as duas
+informações necessárias (se $p$ conhece alguém e o número de pessoas
+que conhecem $p$).
 
 \HRule
 {\em Nota\/}: 
