@@ -97,4 +97,87 @@ de chaves é mais complicada. Em geral, é usado um símbolo
 especialmente reservado para indicar que uma chave foi removida da
 posição. Não vamos abordar o tratamento fechado de colisões.
 
+Funções em Haskell para criação de tabelas de dispersão com tamanho
+especificado como parâmetro, e algoritmos simples para inserção,
+pesquisa e remoção de elementos na tabela de dispersão criada são
+apresentadas a seguir. 
 
+As funções usam código monádico, na mônada \inh{IO}, devido ao uso dos
+chamados arranjos {\em mutáveis\/}, isto é, arranjos cujo conteúdo
+pode ser modificado (em vez de ser criado novo arranjo que difere do
+original apenas por uma operação de modificar um valor contido no
+arranjo).
+
+\begin{center}
+\begin{tabular}{l}
+\begin{hask}{insere,novaTabDisp,remove,pesquisa}{\definicao}
+-----------------------------------------------------------------------
+module Dispersão (TabDisp, novaTabDisp, insere, remove, pesquisa) where
+
+import Prelude 
+import Data.Maybe        (Maybe)
+import Data.IORef        (IORef, newIORef, readIORef, writeIORef)
+import Data.Array.MArray (getBounds, newArray, readArray, writeArray)
+import Data.Array.IO     (IOArray)
+import Data.Hashable     (Hashable, hash)
+
+-----------------------------------------------------------------------
+type Indice            = Int
+type TabDisp chave val = IOArray Int [(chave,val)]
+
+-- ------------------------------------------------------------
+novaTabDisp :: Int -> IO (TabDisp chave val) 
+novaTabDisp tam = newArray (0,tam-1) []
+
+-- -----------------------------------------------------------------------------
+insere :: Hashable chave => TabDisp chave val -> chave -> val -> IO ()
+-- Insere (chave,val) na tabela de dispersão. Entradas podem ter a
+-- mesma chave.  'pesquisa' returna a entrada mais recente para uma
+-- dada chave.  Isso é feito por questão de eficiência. Usar
+-- 'atualiza' para obter uma única entrada para cada val.
+insere tab chave val = atualizaTab ((chave,val):) tab chave
+
+--------------------------------------------------------------------------------
+obtemLista :: Hashable chave => TabDisp chave val -> chave -> IO [(chave,val)]
+obtemLista tab chave = do 
+   (_,n) <- getBounds tab
+   lista <- readArray tab (hash chave)
+   return lista
+
+atualizaTab :: Hashable chave => ([(chave,val)] -> [(chave,val)]) -> 
+               TabDisp chave val -> chave -> IO ()
+atualizaTab funObtemLista tab chave = do
+  lista <- obtemLista tab chave
+  (_,n) <- getBounds tab
+  writeArray tab (hash chave) (funObtemLista lista)
+
+-- -----------------------------------------------------------------------------
+remAll :: Hashable chave => (chave -> Bool) -> [(chave,val)] -> [(chave, val)]
+-- Remove chave de lista
+remAll _     []             = []
+remAll eq_k0 (par@(k0,_):x) =
+  case remAll eq_k0 x of
+    x' | eq_k0 k0  -> x'
+       | otherwise -> par:x'
+
+remove :: (Eq chave, Hashable chave) => TabDisp chave val -> chave -> IO ()
+remove tab chave = atualizaTab (remAll (==chave)) tab chave
+
+-- -----------------------------------------------------------------------------
+atualiza :: (Eq chave, Hashable chave)=>TabDisp chave val->chave->val->IO ()
+atualiza tab chave val =
+  atualizaTab (\x -> let x' = remAll (==chave) x in ((chave,val):x')) tab chave
+
+-------------------------------------------------------------------------------
+-- Retorna valor correspondente a chave na tabela de dispersão.
+pesquisa :: (Eq chave,Hashable chave)=>TabDisp chave val->chave->IO (Maybe val)
+pesquisa tab chave = do
+  lista <- obtemLista tab chave
+  let primVal (k,v) r | chave == k  = Just v
+                      | otherwise   = r
+  return (foldr primVal Nothing lista)
+
+-------------------------------------------------------------------------------
+\end{hask}
+\end{tabular}
+\end{center}
