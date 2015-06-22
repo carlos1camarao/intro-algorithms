@@ -131,10 +131,9 @@ novaTabDisp tam = newArray (0,tam-1) []
 
 -- -----------------------------------------------------------------------------
 insere :: Hashable chave => TabDisp chave val -> chave -> val -> IO ()
--- Insere (chave,val) na tabela de dispersão. Entradas podem ter a
--- mesma chave.  'pesquisa' returna a entrada mais recente para uma
--- dada chave.  Isso é feito por questão de eficiência. Usar
--- 'atualiza' para obter uma única entrada para cada val.
+-- Insere (chave,val) na tabela de dispersão. Chaves podem ter o mesmo
+-- índice (valor inteiro usado para dispersão), portanto a tabela armazena a
+-- lista de chaves que têm o mesmo índice.
 insere tab chave val = atualizaTab ((chave,val):) tab chave
 
 --------------------------------------------------------------------------------
@@ -164,11 +163,6 @@ remove :: (Eq chave, Hashable chave) => TabDisp chave val -> chave -> IO ()
 remove tab chave = atualizaTab (remAll (==chave)) tab chave
 
 -- -----------------------------------------------------------------------------
-atualiza :: (Eq chave, Hashable chave)=>TabDisp chave val->chave->val->IO ()
-atualiza tab chave val =
-  atualizaTab (\x -> let x' = remAll (==chave) x in ((chave,val):x')) tab chave
-
--------------------------------------------------------------------------------
 -- Retorna valor correspondente a chave na tabela de dispersão.
 pesquisa :: (Eq chave,Hashable chave)=>TabDisp chave val->chave->IO (Maybe val)
 pesquisa tab chave = do
