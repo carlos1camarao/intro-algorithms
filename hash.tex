@@ -97,10 +97,40 @@ de chaves é mais complicada. Em geral, é usado um símbolo
 especialmente reservado para indicar que uma chave foi removida da
 posição. Não vamos abordar o tratamento fechado de colisões.
 
+\subsection{Inserção, pesquisa e remoção de elementos de tabela de dispersão com encadeamento separado}
+\label{Ops-dicionario-hash-aberto}
+
+Basicamente, as operações usam uma função de dispersão \disperse\ e
+operações em uma lista sequencial, como mostrado a seguir, onde
+\ina{ins}, \ina{pesq} e \ina{remov} são funções para inserção,
+pesquisa e remoção em lista sequencial de valores e supomos que
+  \begin{enumerate}
+     \item \ina{tabDisp} é um arranjo de ponteiros, de tipo
+       \ina{TabDisp}, onde os elementos são ponteiros para valores de
+       tipo \ina(Dados),
+
+     \item \ina{\disperse} é uma função que retorna um índice
+       (inteiro) de \ina{tabDisp} ao receber uma chave, e 
+
+     \item a chave é campo de nome \ina{chave} de \ina{Dados}.
+  \end{enumerate}
+
+\begin{center}
+\begin{tabular}{l}
+\begin{alg}{tabDisp_ins, tabDisp_pesq, tabDisp_remov}{\definicao}
+TabDisp tabDisp_ins (e, t) = ins(e, t[disperse(e -> chave)])
+
+Dados tabDisp_pesq (chave, t) = pesq(chave, t[disperse(chave)])
+
+TabDisp tabDisp_remov (e, t) = remov(e, t[disperse(e -> chave)])
+\end{alg}
+\end{tabular}
+\end{center}
+
 Funções em Haskell para criação de tabelas de dispersão com tamanho
 especificado como parâmetro, e algoritmos simples para inserção,
 pesquisa e remoção de elementos na tabela de dispersão criada são
-apresentadas a seguir. 
+apresentados a seguir.
 
 As funções usam código monádico, na mônada \inh{IO}, devido ao uso dos
 chamados arranjos {\em mutáveis\/}, isto é, arranjos cujo conteúdo
@@ -111,6 +141,9 @@ arranjo).
 \begin{center}
 \begin{tabular}{l}
 \begin{hask}{insere,novaTabDisp,remove,pesquisa}{\definicao}
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+-- Implementação de algoritmo simples de dispersão de valores. 
 -----------------------------------------------------------------------
 module Dispersão (TabDisp, novaTabDisp, insere, remove, pesquisa) where
 
@@ -125,15 +158,16 @@ import Data.Hashable     (Hashable, hash)
 type Indice            = Int
 type TabDisp chave val = IOArray Int [(chave,val)]
 
+-- Chaves podem ter o mesmo índice (valor de dispersão), portanto a 
+-- tabela armazenada além do valor a lista de chaves com mesmo índice.
+
 -- ------------------------------------------------------------
 novaTabDisp :: Int -> IO (TabDisp chave val) 
 novaTabDisp tam = newArray (0,tam-1) []
 
 -- -----------------------------------------------------------------------------
 insere :: Hashable chave => TabDisp chave val -> chave -> val -> IO ()
--- Insere (chave,val) na tabela de dispersão. Chaves podem ter o mesmo
--- índice (valor inteiro usado para dispersão), portanto a tabela armazena a
--- lista de chaves que têm o mesmo índice.
+-- Insere (chave,val) na cabeça da lista de chaves com mesmo índice na tabela.  
 insere tab chave val = atualizaTab ((chave,val):) tab chave
 
 --------------------------------------------------------------------------------
@@ -152,7 +186,7 @@ atualizaTab funObtemLista tab chave = do
 
 -- -----------------------------------------------------------------------------
 remAll :: Hashable chave => (chave -> Bool) -> [(chave,val)] -> [(chave, val)]
--- Remove chave de lista
+-- Remove chave de lista.
 remAll _     []             = []
 remAll eq_k0 (par@(k0,_):x) =
   case remAll eq_k0 x of
@@ -171,7 +205,7 @@ pesquisa tab chave = do
                       | otherwise   = r
   return (foldr primVal Nothing lista)
 
--------------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
 \end{hask}
 \end{tabular}
 \end{center}
