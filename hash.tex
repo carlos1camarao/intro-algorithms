@@ -97,7 +97,7 @@ de chaves é mais complicada. Em geral, é usado um símbolo
 especialmente reservado para indicar que uma chave foi removida da
 posição. Não vamos abordar o tratamento fechado de colisões.
 
-\subsection{Inserção, pesquisa e remoção de elementos de tabela de dispersão com encadeamento separado}
+\section{Inserção, pesquisa e remoção de elementos de tabela de dispersão com encadeamento separado}
 \label{Ops-dicionario-hash-aberto}
 
 Basicamente, as operações usam uma função de dispersão \disperse\ e
@@ -159,7 +159,7 @@ type Indice            = Int
 type TabDisp chave val = IOArray Int [(chave,val)]
 
 -- Chaves podem ter o mesmo índice (valor de dispersão), portanto a 
--- tabela armazenada além do valor a lista de chaves com mesmo índice.
+-- tabela armazena além do valor a lista de chaves com mesmo índice.
 
 -- ------------------------------------------------------------
 novaTabDisp :: Int -> IO (TabDisp chave val) 
